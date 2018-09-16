@@ -24,7 +24,9 @@ Route::post('/register', 'RegistrationController@store');
 
 Route::get('/login', 'SessionsController@create');
 
-Route::post('/login', 'SessionsController@store');
+//Route::post('login', 'SessionsController@store');
+
+Route::post('login', [ 'as' => 'login', 'uses' => 'SessionsController@store']);
 
 Route::get('/logout', 'SessionsController@destroy');
 
@@ -37,6 +39,7 @@ Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
+Route::resource('links', 'LinksController');
 //Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

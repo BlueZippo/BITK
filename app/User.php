@@ -37,4 +37,9 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
+    public function links()
+    {
+        return $this->hasMany('App\Link');
+    }
+
 }
