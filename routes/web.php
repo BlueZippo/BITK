@@ -40,6 +40,8 @@ Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
 Route::resource('links', 'LinksController');
+
+Route::get('links/{id}/follow', 'LinksController@follow');
 //Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

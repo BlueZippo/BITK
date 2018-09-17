@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Link;
+use App\LinksFollow;
 
 use DB;
 
 class LinksController extends Controller
 {
-	
+
     /**
      * Display a listing of the resource.
      *
@@ -103,5 +104,19 @@ class LinksController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function follow($id)
+    {
+    	$user_id = auth()->id();
+
+    	$follow = new LinksFollow;
+
+    	$follow->user_id = $user_id;
+    	$follow->link_id = $id;
+
+    	$follow->save();
+
+    	return json_encode(array('user_id' => $user_id, 'link_id' => $id));
     }
 }

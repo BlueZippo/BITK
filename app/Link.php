@@ -14,4 +14,9 @@ class Link extends Model
     {
     	return $this->belongsTo('App\User');
     }
+
+    public function follow()
+    {
+    	return $this->belongsToMany('App\LinksFollow');
+    }
 }

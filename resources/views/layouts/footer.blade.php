@@ -8,5 +8,10 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+
+    <script src="{{ asset('js/script.js') }}"></script>
