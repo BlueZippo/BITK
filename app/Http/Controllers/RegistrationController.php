@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 
 use App\User;
 
+use App\Mail\NewRegister;
+
 class RegistrationController extends Controller
 {
     public function create() {
 
     	return view('registration.create');
-    	
+
     }
 
     public function store() {
@@ -28,7 +30,9 @@ class RegistrationController extends Controller
 
     	auth()->login($user);
 
+      \Mail::to($user)->send(new NewRegister);
+
     	return redirect()->home();
-    	
+
     }
 }
