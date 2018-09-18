@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Link;
+use App\Stack;
 use App\LinksFollow;
 
 class PagesController extends Controller {
@@ -19,21 +20,33 @@ class PagesController extends Controller {
 
     	$user_id = auth()->id();    	
 
-    	$mylinks = User::find($user_id)
-    				->links()
+    	$mystacks = User::find($user_id)
+    				->stacks()
     				->limit(3)
     				->orderBy('created_at', 'desc')
     				->get();
 
-    	$links = Link::orderBy('created_at', 'desc')
+    	$stacks = Stack::orderBy('created_at', 'desc')
     			 ->where('user_id', '!=' , $user_id)
     			 ->get();			
 
     	$follows = 	User::find($user_id)
-    				->linksFollow($user_id)
-    				->get();
+                    ->stacksFollow($user_id)
+                    ->get();
 
-    	$data = ['mylinks' => $mylinks , 'links' => $links, 'follows' => $follows];
+        $tags = User::find($user_id)
+                ->tags()
+                ->get();
+
+        $parking = User::find($user_id)                    
+                   ->links()
+                   ->get();
+
+    	$data = ['mystacks' => $mystacks , 
+                 'stacks' => $stacks, 
+                 'follows' => $follows, 
+                 'tags' => $tags, 
+                 'parking' => $parking];
 
     	return view('pages.index')->with('data', $data);
     	

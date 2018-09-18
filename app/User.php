@@ -47,4 +47,21 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Link', 'links_follows', 'user_id');
     }
 
+    public function stacks()
+    {
+        return $this->hasMany('App\Stack');
+    }
+
+
+    public function stacksFollow()
+    {
+        return $this->belongsToMany('App\Stack', 'stacks_follows', 'user_id');
+    }
+
+
+    public function tags()
+    {
+        return $this->hasMany('App\Tag');
+    }
+
 }

@@ -15,20 +15,6 @@
 
 	<div class="form-group">
 
-		{{Form::label('subtitle', 'Sub Title')}}
-		{{Form::text('subtitle', '', ['class' => 'form-control', 'placeholder' => 'Sub Title'])}}
-
-	</div>	
-
-	<div class="form-group">
-
-		{{Form::label('description', 'Descrition')}}
-		{{Form::textarea('description', '', ['class' => 'form-control textarea', 'placeholder' => 'Description'])}}
-
-	</div>	
-
-	<div class="form-group">
-
 		{{Form::label('link', 'Link')}}
 		{{Form::text('link', '', ['class' => 'form-control', 'placeholder' => 'Link'])}}
 

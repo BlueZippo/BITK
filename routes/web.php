@@ -34,12 +34,15 @@ Route::get('/stacks/create', 'StacksController@create');
 
 Route::post('/stacks', 'StacksController@store');
 
+Route::get('/stacks/{id}/follow', 'StacksController@follow');
+
 // OAuth Routes
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
 Route::resource('links', 'LinksController');
+Route::resource('tags', 'TagsController');
 
 Route::get('links/{id}/follow', 'LinksController@follow');
 //Auth::routes();

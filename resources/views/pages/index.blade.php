@@ -4,13 +4,13 @@
 	
 	@include('pages.nav')
 
-	@include('links.following')
+	@include('stacks.following')
 
 	@include('people.following')
 
-	@include('links.mylinks')
+	@include('stacks.mystacks')
 
-	@include('links.recommended')
+	@include('stacks.recommended')
 
 	@include('pages.tags')
 

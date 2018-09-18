@@ -6,33 +6,36 @@
         
 		<div class="col-sm-8">
             
-			<h1>Test PlatStack Post</h1>
+			<h1>Create A Stack</h1>
             
             <hr />
 
-            <form method="POST" action="/stacks">
-                
-                {{ csrf_field() }}
-                
+            {!! Form::open(['action' => 'StacksController@store', 'method' => 'POST']) !!}
+
                 <div class="form-group">
-                    
-                    <label for="title">Title</label>
-                    
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
-                    
-                </div>
-                
+
+                    {{Form::label('title', 'Title')}}
+                    {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
+
+                </div>  
+
                 <div class="form-group">
-                    
-                    <label for="content">Content</label>
-                    
-                    <textarea class="form-control" id="content" name="content" rows="3"></textarea>
-                    
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Publish</button>
-                
-            </form>
+
+                    {{Form::label('subtitle', 'Sub Title')}}
+                    {{Form::text('subtitle', '', ['class' => 'form-control', 'placeholder' => 'Sub Title'])}}
+
+                </div>  
+
+                <div class="form-group">
+
+                    {{Form::label('content', 'Content')}}
+                    {{Form::textarea('content', '', ['class' => 'form-control textarea', 'placeholder' => 'Content'])}}
+
+                </div>                 
+
+                {{Form::submit('Save', ['class' => 'btn btn-primary'])}}
+
+            {!! Form::close() !!}
 
 		</div>
         
