@@ -6,11 +6,19 @@
 
 			@foreach($data['parking'] as $parking)
 
-				<div class="well">
 
-					{{$parking->title}}
 
-				</div>	
+					<div class="col-md-12">
+
+						<div class="card card-body">
+
+							{{$parking->title}}
+
+						</div>	
+
+					</div>
+
+				
 
 
 			@endforeach

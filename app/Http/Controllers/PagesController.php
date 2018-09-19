@@ -9,6 +9,9 @@ use App\Link;
 use App\Stack;
 use App\LinksFollow;
 
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 class PagesController extends Controller {
 
 	public function __construct()
@@ -18,7 +21,9 @@ class PagesController extends Controller {
 
     public function index() {
 
-    	$user_id = auth()->id();    	
+        $user_id = auth()->id();    	
+
+        User::find($user_id)->assignRole('writer', 'admin');
 
     	$mystacks = User::find($user_id)
     				->stacks()
