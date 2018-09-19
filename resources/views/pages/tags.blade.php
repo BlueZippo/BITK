@@ -1,15 +1,22 @@
-<h2>Tags <a href="/tags/create" class="add-tag"><i class="fa fa-plus-circle"></i></a></h2>
+	
+	<h2>Tags <a href="/tags/create" class="add-tag"><i class="fa fa-plus-circle"></i></a></h2>
 
 	<div class="row tags-container">
 
-		@if (count($data['tags']) > 0)
+		<div class="col-md-12">
 
-			@foreach($data['tags'] as $tag)
+	
+				@if (count($data['tags']) > 0)
 
-				<span>#{{$tag->tag}}</span>
+					@foreach($data['tags'] as $tag)
 
-			@endforeach
+						<span>#{{$tag->tag}}</span>
 
-		@endif
+					@endforeach
+
+				@endif
+
+
+		</div>
 
 	</div>	
