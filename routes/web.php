@@ -16,9 +16,8 @@ Route::get('/', function () {
 });
 */
 
-Auth::routes();
-
 Route::get('/', 'PagesController@index')->name('home');
+
 
 Route::group(['middleware' => ['auth']], function() {
 	Route::resource('roles', 'RoleController');
@@ -50,10 +49,14 @@ Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
+// Password Reset Routes...
+//Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+//Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+//Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+//Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
 Route::resource('links', 'LinksController');
 Route::resource('tags', 'TagsController');
 //Route::resource('categories', 'CategoriesController');
-
-Route::get('admin', 'PagesController@admin');
 
 Route::get('links/{id}/follow', 'LinksController@follow');
