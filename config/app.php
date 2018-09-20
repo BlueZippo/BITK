@@ -166,7 +166,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,        
 
         /*
          * Package Service Providers...

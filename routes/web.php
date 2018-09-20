@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::resource('roles', 'RoleController');
 	Route::resource('users', 'UserController');
 	Route::resource('stacks', 'StackController');
+	Route::resource('categories', 'CategoriesController');	
 });
 
 Route::get('/register', 'RegistrationController@create');
@@ -51,13 +52,8 @@ Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallba
 
 Route::resource('links', 'LinksController');
 Route::resource('tags', 'TagsController');
+//Route::resource('categories', 'CategoriesController');
 
 Route::get('admin', 'PagesController@admin');
 
 Route::get('links/{id}/follow', 'LinksController@follow');
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
