@@ -23,9 +23,7 @@ class PagesController extends Controller {
 
         $user_id = auth()->id();    	
 
-        User::find($user_id)->assignRole('writer', 'admin');
-
-    	$mystacks = User::find($user_id)
+        $mystacks = User::find($user_id)
     				->stacks()
     				->limit(3)
     				->orderBy('created_at', 'desc')

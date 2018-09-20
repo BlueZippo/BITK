@@ -18,6 +18,14 @@ Route::get('/', function () {
 
 Route::get('/', 'PagesController@index')->name('home');
 
+
+Route::group(['middleware' => ['auth']], function() {
+	Route::resource('roles', 'RoleController');
+	Route::resource('users', 'UserController');
+	Route::resource('stacks', 'StackController');
+	Route::resource('categories', 'CategoriesController');	
+});
+
 Route::get('/register', 'RegistrationController@create');
 
 Route::post('/register', 'RegistrationController@store')->name('register');
@@ -49,8 +57,6 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::resource('links', 'LinksController');
 Route::resource('tags', 'TagsController');
+//Route::resource('categories', 'CategoriesController');
 
 Route::get('links/{id}/follow', 'LinksController@follow');
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
