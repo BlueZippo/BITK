@@ -22,9 +22,11 @@ Route::get('/', 'PagesController@index')->name('home');
 Route::group(['middleware' => ['auth']], function() {
 	Route::resource('roles', 'RoleController');
 	Route::resource('users', 'UserController');
-	Route::resource('stacks', 'StackController');
+	Route::resource('stacks', 'StacksController');
 	Route::resource('categories', 'CategoriesController');	
 });
+
+Route::resource('permissions', 'PermissionController');
 
 Route::get('/register', 'RegistrationController@create');
 
@@ -38,11 +40,11 @@ Route::post('login', [ 'as' => 'login', 'uses' => 'SessionsController@store']);
 
 Route::get('/logout', 'SessionsController@destroy');
 
-Route::get('/stacks/create', 'StacksController@create');
+//Route::get('/stacks/create', 'StacksController@create');
 
-Route::post('/stacks', 'StacksController@store');
+//Route::post('/stacks', 'StacksController@store');
 
-Route::get('/stacks/{id}/follow', 'StacksController@follow');
+//Route::get('/stacks/{id}/follow', 'StacksController@follow');
 
 // OAuth Routes
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');

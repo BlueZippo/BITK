@@ -13,6 +13,15 @@ class StacksController extends Controller {
 
         $this->middleware('auth');
 
+        $this->middleware('permission:stack-list');
+
+        $this->middleware('permission:stack-create', ['only' => ['create','store']]);
+
+        $this->middleware('permission:stack-edit', ['only' => ['edit','update']]);
+
+        $this->middleware('permission:stack-delete', ['only' => ['destroy']]);
+    
+
     }
 
     public function create() {

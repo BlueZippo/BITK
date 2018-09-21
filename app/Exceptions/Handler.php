@@ -52,6 +52,7 @@ class Handler extends ExceptionHandler
         {
 
             //return response()->json(['User have not permission for this page access.']);
+            abort('401');
 
         }
 
