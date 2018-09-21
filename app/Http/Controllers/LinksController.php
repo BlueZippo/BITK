@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 
 use App\Link;
 use App\LinksFollow;
+use App\Stack;
+use App\Category;
+use App\LinkCategory;
+use App\StackLink;
 
 use DB;
 
@@ -30,7 +34,10 @@ class LinksController extends Controller
      */
     public function create()
     {
-        return view('links.create');
+        $data['stacks'] = Stack::get();
+        $data['categories'] = Category::get();
+
+        return view('links.create')->with($data);
     }
 
     /**
@@ -54,8 +61,45 @@ class LinksController extends Controller
        $link->subtitle = $request->input('subtitle');
        $link->description = $request->input('description');
        $link->link = $request->input('link');
+
        $link->user_id = auth()->id();
        $link->save();
+
+       if ($request->has('category'))
+       {
+        foreach($request->input('category') as $category_id)
+        {
+            $category = LinkCategory::where('category_id', '=', $category_id)->where('link_id', '=', $link->id);
+
+            $category->delete();
+
+            $category = new LinkCategory;
+
+            $category->link_id = $link->id;
+            $category->category_id = $category_id;
+
+            $category->save();
+
+        }
+       } 
+
+       if ($request->has('stack'))
+       {
+        foreach($request->input('stack') as $stack_id)
+        {
+            $stack = StackLink::where('stack_id', '=', $stack_id)->where('link_id', '=', $link->id);
+
+            $stack->delete();
+
+            $stack = new StackLink;
+
+            $stack->link_id = $link->id;
+            $stack->stack_id = $stack_id;
+
+            $stack->save();
+
+        }
+       } 
 
        return redirect('/')->with('success', 'Link Added');
 
