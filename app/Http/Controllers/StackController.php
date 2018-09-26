@@ -24,10 +24,10 @@ class ProductController extends Controller
     function __construct()
     {
 
-         $this->middleware('permission:stack-list');
-         $this->middleware('permission:stack-create', ['only' => ['create','store']]);
-         $this->middleware('permission:stack-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:stack-delete', ['only' => ['destroy']]);
+         //$this->middleware('permission:subscriber');
+         //$this->middleware('permission:stack-create', ['only' => ['create','store']]);
+         //$this->middleware('permission:stack-edit', ['only' => ['edit','update']]);
+         //$this->middleware('permission:stack-delete', ['only' => ['destroy']]);
 
     }
 

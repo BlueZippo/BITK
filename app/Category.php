@@ -12,4 +12,9 @@ class Category extends Model
     public $primaryKey = 'id';
     public $timestamps = true;
 
+    public function link()
+    {
+    	return $this->belongsTo('App\Link');
+    }
+
 }

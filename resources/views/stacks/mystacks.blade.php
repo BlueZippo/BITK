@@ -14,8 +14,10 @@
 				<div class="row">
 					@foreach($data['mystacks'] as $stack)
 						<div class="col-md-4">
-							<h3>{{$stack->title}}</h3>
-							<small>{{$stack->subtitle}}</small>
+							<a href="/stacks/{{$stack->id}}/dashboard">
+								<h3>{{$stack->title}}</h3>
+								<small>{{$stack->subtitle}}</small>
+							</a>
 						</div>
 					@endforeach
 				</div>

@@ -19,4 +19,15 @@ class Link extends Model
     {
     	return $this->belongsToMany('App\LinksFollow');
     }
+
+    public function category()
+    {
+        return $this->belongsToMany('App\Category', 'link_categories');
+    }
+
+
+    public function stack()
+    {
+        return $this->belongsToMany('App\Stack', 'link_stacks');
+    }
 }

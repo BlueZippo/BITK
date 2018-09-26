@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Stack;
 use App\StacksFollow;
+use App\Category;
 
 class StacksController extends Controller {
 
@@ -13,13 +14,13 @@ class StacksController extends Controller {
 
         $this->middleware('auth');
 
-        $this->middleware('permission:stack-list');
+        $this->middleware('permission:Subscriber');
 
-        $this->middleware('permission:stack-create', ['only' => ['create','store']]);
+        //$this->middleware('permission:stack-create', ['only' => ['create','store']]);
 
-        $this->middleware('permission:stack-edit', ['only' => ['edit','update']]);
+        //$this->middleware('permission:stack-edit', ['only' => ['edit','update']]);
 
-        $this->middleware('permission:stack-delete', ['only' => ['destroy']]);
+        //$this->middleware('permission:stack-delete', ['only' => ['destroy']]);
     
 
     }
@@ -87,6 +88,23 @@ class StacksController extends Controller {
         $follow->save();
 
         return json_encode(array('user_id' => $user_id, 'stack_id' => $id));
+    }
+
+    public function dashboard($id)
+    {
+        $stack = Stack::find($id);
+
+        $links = $stack->links;
+
+        $categories = Category::get();
+
+        $data['links'] = $links;
+
+        $data['categories'] = $categories;
+
+        $data['stack'] = $stack;           
+
+        return view('stacks.dashboard')->with($data);
     }
     
 }
