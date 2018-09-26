@@ -124,7 +124,13 @@ class LinksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $link = Link::find($id);
+
+        $data['stacks'] = Stack::get();
+        $data['categories'] = Category::get();        
+        $data['link'] = $link;
+
+        return view('links.edit')->with($data);
     }
 
     /**

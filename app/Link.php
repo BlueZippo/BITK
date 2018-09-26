@@ -28,6 +28,6 @@ class Link extends Model
 
     public function stack()
     {
-        return $this->belongsToMany('App\Stack', 'link_stacks');
+        return $this->belongsToMany('App\Stack', 'stack_links');
     }
 }
