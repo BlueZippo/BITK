@@ -11,6 +11,7 @@ use App\Stack;
 use App\Category;
 use App\LinkCategory;
 use App\StackLink;
+use App\User;
 
 use DB;
 
@@ -34,10 +35,13 @@ class LinksController extends Controller
      */
     public function create()
     {
-        $data['stacks'] = Stack::get();
+        $stacks = User::find(auth()->id())->stacks;
+
+        $data['stacks'] = $stacks; 
         $data['categories'] = Category::get();
 
         return view('links.create')->with($data);
+        
     }
 
     /**
