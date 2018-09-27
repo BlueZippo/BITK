@@ -8,10 +8,12 @@
 
 				<div class="col-md-2">
 
-					<h3>{{$stack->title}}</h3>
-					<small>{{$stack->subtitle}}</small>
+					<a href="/stacks/{{$stack->id}}/dashboard">
 
-					<a class="follow-button" data-id="{{$stack->id}}"><i class="fas fa-plus-circle"></i></a>
+					<h3>{{$stack->title}}</h3>
+					<small>{{$stack->subtitle}}</small>					
+
+					</a>
 
 				</div>	
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Stack;
 use App\StacksFollow;
 use App\Category;
+use App\Link;
 
 class StacksController extends Controller {
 
@@ -94,9 +95,21 @@ class StacksController extends Controller {
     {
         $stack = Stack::find($id);
 
+        $categories = array();
+
         $links = $stack->links;
 
-        $categories = Category::get();
+        foreach($links as $link)
+        {
+           $cats = Link::find($link->id)->category->pluck('id')->toArray();
+
+           $categories = array_merge($categories, $cats);
+           
+        }
+
+        $categories = Category::whereIn('id', $categories)->get();
+
+
 
         $data['links'] = $links;
 
