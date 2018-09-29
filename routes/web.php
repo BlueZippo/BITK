@@ -61,6 +61,7 @@ Route::resource('links', 'LinksController');
 Route::resource('tags', 'TagsController');
 //Route::resource('categories', 'CategoriesController');
 
-Route::get('links/{id}/follow', 'LinksController@follow');
+Route::get('stacks/{id}/follow', 'StacksController@follow');
+Route::get('stacks/{id}/unfollow', 'StacksController@unfollow');
 
 Route::get('stacks/{id}/dashboard', 'StacksController@dashboard');

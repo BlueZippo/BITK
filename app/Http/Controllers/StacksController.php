@@ -91,6 +91,18 @@ class StacksController extends Controller {
         return json_encode(array('user_id' => $user_id, 'stack_id' => $id));
     }
 
+    public function unfollow($id)
+    {
+        $user_id = auth()->id();
+
+        $stack = StacksFollow::where('user_id', '=', $user_id)
+                 ->where('stack_id', '=', $id);
+
+        $stack->delete();        
+
+        return json_encode(array('user_id' => $user_id, 'stack_id' => $id));
+    }
+
     public function dashboard($id)
     {
         $stack = Stack::find($id);
@@ -109,13 +121,18 @@ class StacksController extends Controller {
 
         $categories = Category::whereIn('id', $categories)->get();
 
+        $follows = $stack->userFollow;
+
+        print_r($follows);
 
 
         $data['links'] = $links;
 
         $data['categories'] = $categories;
 
-        $data['stack'] = $stack;           
+        $data['stack'] = $stack;     
+
+        $data['follow'] = sprintf("<a class='follow-button' data-id='%s' data-action='%s'>%s</a>", $id, 'follow', 'Follow');      
 
         return view('stacks.dashboard')->with($data);
     }

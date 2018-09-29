@@ -6,7 +6,7 @@
         
 		<div class="col-md-12">
 
-            <h2>{{$stack->title}}</h2>
+            <h2>{{$stack->title}} <small>{!! html_entity_decode($follow) !!}</small></h2>
 
             {!! html_entity_decode($stack->content) !!}
 

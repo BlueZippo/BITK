@@ -56,7 +56,7 @@ class User extends Authenticatable
 
     public function stacksFollow()
     {
-        return $this->belongsToMany('App\Stack', 'stacks_follows', 'user_id');
+        return $this->belongsToMany('App\StackFollow');
     }
 
 
