@@ -2,9 +2,9 @@
 
 	<div class="row">
 
-		@if (count($data['stacks']) > 0)
+		@if (count($stacks) > 0)
 
-			@foreach($data['stacks'] as $stack)
+			@foreach($stacks as $stack)
 
 				<div class="col-md-2">
 

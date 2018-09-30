@@ -34,7 +34,7 @@ class PagesController extends Controller {
     			 ->get();			
 
     	$follows = 	User::find($user_id)
-                    ->stacksFollow($user_id)
+                    ->stacksFollow()
                     ->get();
 
         $tags = User::find($user_id)
@@ -51,7 +51,7 @@ class PagesController extends Controller {
                  'tags' => $tags, 
                  'parking' => $parking];
 
-    	return view('pages.index')->with('data', $data);
+    	return view('pages.index')->with($data);
     	
     }
 

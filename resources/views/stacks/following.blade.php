@@ -2,14 +2,14 @@
 
 <div class="row">
 
-	@if (count($data['follows']) > 0)
+	@if (count($follows) > 0)
 
-		@foreach($data['follows'] as $follow)
+		@foreach($follows as $follow)
 
 			<div class="col-md-3">	
 
-				<h3>{{$follow->title}}</h3>
-				<small>{{$follow->subtitle}}</small>
+				<h3>{{$follow->stack->title}}</h3>
+				<small>{{$follow->stack->subtitle}}</small>
 
 			</div>	
 

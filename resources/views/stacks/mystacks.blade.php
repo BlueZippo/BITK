@@ -10,9 +10,9 @@
 
 		<div class="col-md-4">	
 
-			@if (count($data['mystacks']) > 0)
+			@if (count($mystacks) > 0)
 				<div class="row">
-					@foreach($data['mystacks'] as $stack)
+					@foreach($mystacks as $stack)
 						<div class="col-md-4">
 							<a href="/stacks/{{$stack->id}}/dashboard">
 								<h3>{{$stack->title}}</h3>

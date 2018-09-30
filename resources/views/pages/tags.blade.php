@@ -6,9 +6,9 @@
 		<div class="col-md-12">
 
 	
-				@if (count($data['tags']) > 0)
+				@if (count($tags) > 0)
 
-					@foreach($data['tags'] as $tag)
+					@foreach($tags as $tag)
 
 						<span>#{{$tag->tag}}</span>
 

@@ -2,9 +2,9 @@
 
 	<div class="row parking-container">
 
-		@if (count($data['parking']) > 0)
+		@if (count($parking) > 0)
 
-			@foreach($data['parking'] as $parking)
+			@foreach($parking as $parking)
 
 					<div class="col-md-12">
 

@@ -18,6 +18,6 @@ class StacksFollow extends Model
 
     public function stack()
     {
-    	$this->belongsTo('App\Stack');
+    	return $this->belongsTo('App\Stack');
     }
 }
