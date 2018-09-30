@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Stack;
 use App\StacksFollow;
 use App\Category;
+use App\user;
 use App\Link;
 
 class StacksController extends Controller {
@@ -121,10 +122,18 @@ class StacksController extends Controller {
 
         $categories = Category::whereIn('id', $categories)->get();
 
-        $follows = $stack->userFollow;
+        $follows = User::find(auth()->id())
+                   ->stacksFollow()
+                   ->pluck('stack_id')
+                   ->toArray();
 
-        print_r($follows);
+        $mystack = User::find(auth()->id())
+                   ->stacks()
+                   ->get()
+                   ->pluck('id')
+                   ->toArray();                   
 
+        print_r($mystack);
 
         $data['links'] = $links;
 
@@ -132,7 +141,16 @@ class StacksController extends Controller {
 
         $data['stack'] = $stack;     
 
-        $data['follow'] = sprintf("<a class='follow-button' data-id='%s' data-action='%s'>%s</a>", $id, 'follow', 'Follow');      
+        $data['follow'] = "";
+
+        if (in_array($id, $follows))
+        {    
+            $data['follow'] = sprintf("<a class='follow-button' data-id='%s' data-action='%s'>%s</a>", $id, 'follow', 'UnFollow');      
+        }
+        else if (!in_array($id, $mystack))
+        {
+            $data['follow'] = sprintf("<a class='follow-button' data-id='%s' data-action='%s'>%s</a>", $id, 'follow', 'Follow');         
+        } 
 
         return view('stacks.dashboard')->with($data);
     }

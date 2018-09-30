@@ -8,8 +8,8 @@
 
 			<div class="col-md-3">	
 
-				<h3>{{$follow->stack->title}}</h3>
-				<small>{{$follow->stack->subtitle}}</small>
+				<a href="/stacks/{{$follow->stack->id}}/dashboard"><h3>{{$follow->stack->title}}</h3>
+				<small>{{$follow->stack->subtitle}}</small></a>
 
 			</div>	
 
