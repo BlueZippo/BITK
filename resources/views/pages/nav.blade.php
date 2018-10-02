@@ -1,23 +1,23 @@
 <ul class="nav nav-pills">
   		<li class="nav-item">
-    		<a class="nav-link" href="#">Create</a>
+    		<a class="nav-link" href="/stacks/create">Create</a>
   		</li>
   		<li class="nav-item">
-    		<a class="nav-link" href="#">Explore</a>
+    		<a class="nav-link" href="/stacks/explore">Explore</a>
   		</li>
   		<li class="nav-item">
-    		<a class="nav-link" href="#">Parking Lot</a>
+    		<a class="nav-link" href="/parking-lot/">Parking Lot</a>
   		</li>
   		<li class="nav-item">
-    		<a class="nav-link" href="#">Profile</a>
+    		<a class="nav-link" href="/users/profile">Profile</a>
   		</li>
   		<li class="nav-item">
-    		<a class="nav-link" href="#">Skills & Topics</a>
+    		<a class="nav-link" href="/skills-and-topics">Skills & Topics</a>
   		</li>
   		<li class="nav-item">
-    		<a class="nav-link" href="#">People</a>
+    		<a class="nav-link" href="/people/">People</a>
   		</li>
   		<li class="nav-item">
-    		<a class="nav-link" href="#">Tags</a>
+    		<a class="nav-link" href="/tags/">Tags</a>
   		</li>
 	</ul>

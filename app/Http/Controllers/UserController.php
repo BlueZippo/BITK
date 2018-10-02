@@ -97,7 +97,6 @@ class UserController extends Controller
 
         $input['password'] = Hash::make($input['password']);
 
-
         $user = User::create($input);
 
         $user->assignRole($request->input('roles'));
@@ -233,7 +232,6 @@ class UserController extends Controller
      */
 
     public function destroy($id)
-
     {
 
         User::find($id)->delete();
@@ -242,6 +240,63 @@ class UserController extends Controller
 
                         ->with('success','User deleted successfully');
 
+    }
+
+
+    public function profile()
+    {
+        $user = User::find(auth()->id());
+
+        return view('users.profile')->with('user', $user);
+    }
+
+
+    public function profile_update(Request $request)
+    {
+        $this->validate($request, [
+
+            'name' => 'required',
+            'password' => 'same:confirm-password',
+
+        ]);
+
+        $input = $request->all();
+
+        
+
+        $user = User::find(auth()->id());
+
+        $user->update($input);
+
+        return redirect()->route('users.profile')
+                ->with('success', 'Profile updated');
+    }
+
+
+    public function upload(Request $request)
+    {
+
+        $this->validate($request, [
+
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+
+        $image = $request->file('image');
+
+        $user_id = auth()->id();
+
+        $input['photo'] = sprintf("photo-%s-%s.%s", $user_id, time(), $image->getClientOriginalExtension());
+
+        $destinationPath = public_path('/upload');
+
+        $image->move($destinationPath, $input['photo']);
+
+        $user = User::find($user_id);
+
+        $user->update($input);
+
+        return ['Image uploaded successfully'];
     }
 
 }

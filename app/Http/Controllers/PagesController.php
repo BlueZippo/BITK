@@ -49,6 +49,7 @@ class PagesController extends Controller {
                  'stacks' => $stacks, 
                  'follows' => $follows, 
                  'tags' => $tags, 
+                 'user_id' => $user_id,
                  'parking' => $parking];
 
     	return view('pages.index')->with($data);

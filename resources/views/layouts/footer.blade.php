@@ -20,3 +20,5 @@
     <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 
     <script src="{{ asset('js/script.js') }}"></script>
+
+    <script src="{{ asset('js/upload-image.js') }}"></script>

@@ -19,14 +19,24 @@ Route::get('/', function () {
 Route::get('/', 'PagesController@index')->name('home');
 
 
+
 Route::group(['middleware' => ['auth']], function() {
 	Route::resource('roles', 'RoleController');
+
+	Route::post('users/image-upload', 'UserController@upload');
+
+	Route::post('users/profile/update',  ['as' => 'users.profile_update', 'uses' => 'UserController@profile_update']);
+	
+	Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);	
+
 	Route::resource('users', 'UserController');
 	Route::resource('stacks', 'StacksController');
 	Route::resource('categories', 'CategoriesController');	
 });
 
 Route::resource('permissions', 'PermissionController');
+
+Route::resource('people', 'PeopleController');
 
 Route::get('/register', 'RegistrationController@create');
 
@@ -65,3 +75,5 @@ Route::get('stacks/{id}/follow', 'StacksController@follow');
 Route::get('stacks/{id}/unfollow', 'StacksController@unfollow');
 
 Route::get('stacks/{id}/dashboard', 'StacksController@dashboard');
+
+
