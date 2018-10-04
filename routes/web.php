@@ -29,9 +29,14 @@ Route::group(['middleware' => ['auth']], function() {
 	
 	Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);	
 
+	Route::get('stacks/explore', 'StacksController@explore');
+
 	Route::resource('users', 'UserController');
 	Route::resource('stacks', 'StacksController');
 	Route::resource('categories', 'CategoriesController');	
+
+
+
 });
 
 Route::resource('permissions', 'PermissionController');
@@ -75,6 +80,7 @@ Route::get('stacks/{id}/follow', 'StacksController@follow');
 Route::get('stacks/{id}/unfollow', 'StacksController@unfollow');
 
 Route::get('stacks/{id}/dashboard', 'StacksController@dashboard');
+
 
 Route::get('people/{id}/follow', 'PeopleController@follow');
 Route::get('people/{id}/unfollow', 'PeopleController@unfollow');

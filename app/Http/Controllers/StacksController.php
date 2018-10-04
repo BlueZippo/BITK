@@ -133,7 +133,7 @@ class StacksController extends Controller {
                    ->pluck('id')
                    ->toArray();                   
 
-        print_r($mystack);
+      
 
         $data['links'] = $links;
 
@@ -153,6 +153,14 @@ class StacksController extends Controller {
         } 
 
         return view('stacks.dashboard')->with($data);
+    }
+
+    public function explore()
+    {
+
+        $stacks = Stack::all();
+
+        return view('stacks.explore')->with(['stacks' => $stacks]);
     }
     
 }
