@@ -22,7 +22,15 @@
                 {{$user->name}}
             </div>    
 
+            @if ($follows->contains($user->id))
+
+            <input class="btn btn-primary follow-people-button" data-id={{$user->id}} value="Unfollow">
+
+            @else
+
             <input class="btn btn-primary follow-people-button" data-id={{$user->id}} value="Follow">
+
+            @endif
 
         </div>   
 

@@ -59,6 +59,11 @@ class User extends Authenticatable
          return $this->hasManyThrough('App\StacksFollow', 'App\Stack', 'id', 'user_id');
     }
 
+    public function peopleFollow()
+    {
+         return $this->hasManyThrough('App\PeopleFollow', 'App\User', 'id', 'user_id');
+    }
+
 
     public function tags()
     {

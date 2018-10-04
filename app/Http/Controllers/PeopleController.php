@@ -17,7 +17,11 @@ class PeopleController extends Controller
     {
         $users = User::all();
 
-        return view('people.index')->with('users', $users);
+        $follows = User::find(auth()->id())
+                    ->peopleFollow()
+                    ->pluck('people_id');            
+
+        return view('people.index')->with(['users' => $users, 'follows' => $follows]);
     }
 
     /**
