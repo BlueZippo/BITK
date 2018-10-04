@@ -78,5 +78,6 @@ Route::get('stacks/{id}/dashboard', 'StacksController@dashboard');
 
 Route::get('people/{id}/follow', 'PeopleController@follow');
 Route::get('people/{id}/unfollow', 'PeopleController@unfollow');
+Route::get('people/{id}/stacks', 'PeopleController@stacks');
 
 

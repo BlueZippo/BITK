@@ -120,4 +120,11 @@ class PeopleController extends Controller
 
         return json_encode(array('user_id' => $user_id, 'people_id' => $id));
     }
+
+    public function stacks($user_id)
+    {
+        $user = User::find($user_id);
+
+        return view('people.stacks')->with(['user' => $user]);
+    }
 }

@@ -10,6 +10,8 @@
 
         <div class="col-md-2 text-center people-{{$user->id}}">
 
+            <a href="/people/{{$user->id}}/stacks">
+
             <div class="image-container">
                 @if ($user->photo)
                 <img src="/upload/{{$user->photo}}">
@@ -21,6 +23,8 @@
             <div class="name-container">
                 {{$user->name}}
             </div>    
+
+            </a>
 
             @if ($follows->contains($user->id))
 
