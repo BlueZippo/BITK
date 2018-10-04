@@ -41,7 +41,7 @@ $(document).ready(function()
 	$('.follow-people-button').click(function()
 	{
 		var people_id = $(this).data('id');
-		var action = $(this).html();
+		var action = $(this).val();
 
 		if (action == 'Follow')
 		{
@@ -58,14 +58,16 @@ $(document).ready(function()
 			dataType: 'json',
 			success: function(data)
 			{
+				console.log(action)
+
 				if (action == 'follow')
 				{	
-					$('.people-' + people_id + ' .follow-people-button').html('Unfollow');
+					$('.people-' + people_id + ' .follow-people-button').val('Unfollow');
 					$('.people-' + people_id + ' .follow-people-button').attr('data-action', 'unfollow')
 				}
 				else
 				{
-					$('.people-' + people_id + ' .follow-people-button').html('Follow');
+					$('.people-' + people_id + ' .follow-people-button').val('Follow');
 					$('.people-' + people_id + ' .follow-people-button').attr('data-action', 'follow')
 				}
 			}
