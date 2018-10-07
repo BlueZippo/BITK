@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);	
 
 	Route::get('stacks/explore', 'StacksController@explore');
+	Route::post('stacks/search', 'StacksController@search');
 
 	Route::resource('users', 'UserController');
 	Route::resource('stacks', 'StacksController');

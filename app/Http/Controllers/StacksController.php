@@ -162,5 +162,14 @@ class StacksController extends Controller {
 
         return view('stacks.explore')->with(['stacks' => $stacks]);
     }
+
+    public function search(Request $request)
+    {
+        $keywords = $request->input('search');
+
+        $stacks = Stack::where("title", "LIKE", "%".$keywords."%")->get();
+
+        return view('stacks.explore')->with(['stacks' => $stacks]);   
+    }
     
 }
