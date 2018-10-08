@@ -195,7 +195,20 @@ class StacksController extends Controller {
 
     public function update(Request $request, $id)
     {
+
+        $stack = Stack::find($id);
         
+        $stack->title = request('title');
+        
+        $stack->content = request('content');
+
+        $stack->subtitle = request('subtitle');
+
+        $stack->user_id = auth()->id();
+
+        $stack->save();
+
+        return redirect('stacks/' .  $id . '/edit')->with('success', 'Stack updated');
     }
     
 }

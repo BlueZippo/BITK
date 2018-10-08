@@ -6,11 +6,11 @@
         
 		<div class="col-sm-8">
             
-			<h1>Create A Stack</h1>
+			<h1>Edit Stack</h1>
             
             <hr />
 
-            {!! Form::open(['action' => 'stacks/' . $stack->id . '/update', 'method' => 'POST']) !!}
+            {!! Form::open(['action' => ['StacksController@update', $stack->id], 'method' => 'POST']) !!}
 
                 {{Form::hidden('id', $stack->id)}}
 
@@ -35,6 +35,7 @@
 
                 </div>                 
 
+                {{Form::hidden('_method', 'PUT')}}
                 {{Form::submit('Save', ['class' => 'btn btn-primary'])}}
 
             {!! Form::close() !!}

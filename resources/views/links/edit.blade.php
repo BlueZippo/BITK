@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Create Link</h1>
+<h1>Edit Link</h1>
 
 {!! Form::open(['url' => action('LinksController@update', ['id' => $link->id]), 'method' => 'POST']) !!}
 
@@ -62,7 +62,7 @@
 
 	{{Form::hidden('_method', 'PUT')}}
 	{{Form::submit('Save', ['class' => 'btn btn-primary'])}}
-	}
+	
 
 {!! Form::close() !!}
 
