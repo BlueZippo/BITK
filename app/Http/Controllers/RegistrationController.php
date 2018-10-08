@@ -20,7 +20,7 @@ class RegistrationController extends Controller
 
     	$this->validate(request(), [
     		'name' 		=> 'required',
-    		'email' 	=> 'required|email',
+    		'email' 	=> 'unique:users|required|email',
     		'password' 	=> 'required|confirmed'
     	]);
 

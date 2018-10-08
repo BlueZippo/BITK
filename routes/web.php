@@ -30,12 +30,20 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);	
 
 	Route::get('stacks/explore', 'StacksController@explore');
+
+	Route::get('stacks/view-all', 'StacksController@view_all');
+
 	Route::post('stacks/search', 'StacksController@search');
 
+	Route::post('stacks/{id}/update', 'StacksController@update');
+
 	Route::resource('users', 'UserController');
+
 	Route::resource('stacks', 'StacksController');
+
 	Route::resource('categories', 'CategoriesController');	
 
+	Route::resource('links', 'LinksController');
 
 
 });
@@ -73,7 +81,11 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-Route::resource('links', 'LinksController');
+
+
+
+
+
 Route::resource('tags', 'TagsController');
 //Route::resource('categories', 'CategoriesController');
 

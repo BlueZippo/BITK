@@ -61,7 +61,7 @@ class CategoriesController extends Controller
 
         return redirect()->route('categories.index')
 
-                        ->with('success','User created successfully');
+                        ->with('success','Category created successfully');
     }
 
     /**
@@ -109,7 +109,7 @@ class CategoriesController extends Controller
 
         return redirect()->route('categories.index')
 
-                        ->with('success','User updated successfully');
+                        ->with('success','Category updated successfully');
     }
 
     /**

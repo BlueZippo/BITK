@@ -171,5 +171,31 @@ class StacksController extends Controller {
 
         return view('stacks.explore')->with(['stacks' => $stacks]);   
     }
+
+
+    public function view_all()
+    {
+         $stacks = User::find(auth()->id())
+                    ->stacks()
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+
+        return view('stacks.view-all', compact('stacks', $stacks));           
+    }
+
+
+    public function edit($id)
+    {
+
+        $stack = Stack::find($id);
+
+        return view('stacks.edit', compact('stack'));              
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        
+    }
     
 }

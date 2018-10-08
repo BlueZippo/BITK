@@ -18,6 +18,17 @@
 								<h3>{{$stack->title}}</h3>
 								<small>{{$stack->subtitle}}</small>
 							</a>
+							<div class="buttons">
+
+								<form method="post" action="/stacks/delete">
+
+									<input type="hidden" name="stack_id" value="{{$stack->id}}">
+
+									<a href="/stacks/{{$stack->id}}/edit">Edit</a> | <a class="delete-button">Delete</a>
+
+								</form>
+
+							</div>
 						</div>
 					@endforeach
 				</div>
@@ -35,7 +46,7 @@
 
 		<div class="col-md-12 text-center">
 
-				<a class="view-all">View All</a>
+				<a class="view-all" href="/stacks/view-all">View All</a>
 
 		</div>
 

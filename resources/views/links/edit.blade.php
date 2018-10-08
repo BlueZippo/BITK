@@ -4,7 +4,7 @@
 
 <h1>Create Link</h1>
 
-{!! Form::open(['action' => 'LinksController@store', 'method' => 'POST']) !!}
+{!! Form::open(['url' => action('LinksController@update', ['id' => $link->id]), 'method' => 'POST']) !!}
 
 	<div class="form-group">
 
@@ -60,7 +60,9 @@
 
 	</div>	
 
+	{{Form::hidden('_method', 'PUT')}}
 	{{Form::submit('Save', ['class' => 'btn btn-primary'])}}
+	}
 
 {!! Form::close() !!}
 
