@@ -1,25 +1,40 @@
-<h2>Parking Lot <a href="/links/create"><i class="fa fa-plus-circle"></i></a></h2>
+<div class="panel panel-default">
 
-	<div class="row parking-container">
+	<div class="panel-heading">Parking Lot <a href="/links/create"><i class="fa fa-plus-circle"></i></a></div>
 
-		@if (count($parking) > 0)
+	<div class="panel-body">
 
-			@foreach($parking as $parking)
+			
 
-					<div class="col-md-12">
+			@if (count($parking) > 0)
 
-						<div class="card card-body">
+				@foreach($parking as $parking)
 
-							<a href="{{$parking->link}}" target="_blank">{{$parking->title}}</a>
-							<div class="meta small"><a data-action="edit" href="/links/{{$parking->id}}/edit">Edit</a> | <a data-id="{{$parking->id}}" data-action="delete">Delete</a> </div>
+					<div class="row parking-container">
 
-						</div>	
+						<div class="col-md-12">
 
-					</div>			
+							<div class="well">
+
+								<a href="{{$parking->link}}" target="_blank">{{$parking->title}}</a>
+
+								<div class="meta small">
+									<a data-action="edit" href="/links/{{$parking->id}}/edit">Edit</a> | <a data-id="{{$parking->id}}" data-action="delete">Delete</a> 
+								</div>
+
+							</div>	
+
+						</div>			
+
+					</div>	
 
 
-			@endforeach
+				@endforeach
 
-		@endif
+			@endif
+
+		
 
 	</div>
+	
+</div>		

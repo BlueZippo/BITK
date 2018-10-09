@@ -1,23 +1,35 @@
-<h2>Stacks Recommended for you</h2>
+<div class="panel panel-default">
 
-	<div class="row">
+	<div class="panel-heading">Stacks Recommended for you</div>
 
-		@if (count($stacks) > 0)
+	<div class="panel-body">
 
-			@foreach($stacks as $stack)
+		<div class="row">
 
-				<div class="col-md-2">
+			@if (count($stacks) > 0)
 
-					<a href="/stacks/{{$stack->id}}/dashboard">
+				@foreach($stacks as $stack)
 
-					<h3>{{$stack->title}}</h3>
-					<small>{{$stack->subtitle}}</small>					
+					<div class="col-md-2">
 
-					</a>
+						<div class="well">
 
-				</div>	
+							<a href="/stacks/{{$stack->id}}/dashboard">
 
-			@endforeach
+							<h4>{{$stack->title}}</h4>
+							<small>{{$stack->subtitle}}</small>					
 
-		@endif
+							</a>
+
+						</div>
+
+					</div>	
+
+				@endforeach
+
+			@endif
+		</div>
+
 	</div>
+
+</div>		

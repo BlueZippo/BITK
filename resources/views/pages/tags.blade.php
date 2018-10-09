@@ -1,22 +1,29 @@
+<div class="panel panel-default">
 	
-	<h2>Tags <a href="/tags/create" class="add-tag"><i class="fa fa-plus-circle"></i></a></h2>
+	<div class="panel-heading">Tags <a href="/tags/create" class="add-tag"><i class="fa fa-plus-circle"></i></a></div>
 
-	<div class="row tags-container">
+	<div class="panel-body">
 
-		<div class="col-md-12">
+		<div class="row tags-container">
 
-	
-				@if (count($tags) > 0)
+			<div class="col-md-12">
 
-					@foreach($tags as $tag)
+		
+					@if (count($tags) > 0)
 
-						<span>#{{$tag->tag}}</span>
+						@foreach($tags as $tag)
 
-					@endforeach
+							<span>#{{$tag->tag}}</span>
 
-				@endif
+						@endforeach
+
+					@endif
 
 
-		</div>
+			</div>
+
+		</div>	
 
 	</div>	
+
+</div>	

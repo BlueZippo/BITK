@@ -1,20 +1,32 @@
-<h2>Stacks I'm Following</h2>
+<div class="panel panel-default">
 
-<div class="row">
+	<div class="panel-heading">Stacks I'm Following</div>
 
-	@if (count($follows) > 0)
+	<div class="panel-body">
 
-		@foreach($follows as $follow)
+		@if (count($follows) > 0)
 
-			<div class="col-md-3">	
+			<div class="row">	
 
-				<a href="/stacks/{{$follow->stack->id}}/dashboard"><h3>{{$follow->stack->title}}</h3>
-				<small>{{$follow->stack->subtitle}}</small></a>
+			@foreach($follows as $follow)
 
-			</div>	
+				<div class="col-md-3">	
 
-		@endforeach	
+					<div class="well well-lg">
 
-	@endif;
+						<a href="/stacks/{{$follow->stack->id}}/dashboard"><h3>{{$follow->stack->title}}</h3>
+						<small>{{$follow->stack->subtitle}}</small></a>
 
-</div>	
+					</div>	
+
+				</div>	
+
+			@endforeach	
+
+			</div>
+
+	@endif
+
+	</div>	
+
+</div>
