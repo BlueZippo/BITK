@@ -1,0 +1,34 @@
+/*****************************
+Table of Content:
+
+#Layout
+#Header
+*****************************/
+/*****************************
+    #Layout
+*****************************/
+body > .container {
+    padding: 80px 15px 0 !important;
+}
+@media screen and (min-width: 1600px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+@media screen
+and (max-width: 1599px)
+and (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+/*****************************
+    #Header
+*****************************/
+.main_nav.bg-light {
+    background-color: #ffffff !important;
+    height: 80px;
+}
+.main_nav .navbar-collapse > ul.justify-content-end {
+    width: 100%;
+}
