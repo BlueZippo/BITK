@@ -19,6 +19,8 @@
                     {{Form::label('title', 'Title')}}
                     {{Form::text('title', $stack->title, ['class' => 'form-control', 'placeholder' => 'Title'])}}
 
+                    <span class="small">Last updated: {{date("M d, Y", strtotime($stack->updated_at))}}</span>
+
                 </div>  
 
                 
@@ -29,6 +31,8 @@
                     {{Form::textarea('content', $stack->content, ['class' => 'form-control textarea', 'placeholder' => 'Content'])}}
 
                 </div>    
+
+                @include('stacks.meta-author')
 
                 <div class="row stack-links">
 

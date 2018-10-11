@@ -229,6 +229,8 @@ class StacksController extends Controller {
 
         $data['stack'] = $stack;
 
+        $data['user'] = User::find(auth()->id());
+
         $data['links'] = $stack->links;
 
         return view('stacks.edit')->with($data);              

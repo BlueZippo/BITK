@@ -8,7 +8,13 @@
 
 			<div class="user-ctrl">
 				<div class="avatar">
-					<img class="author-photo" src="/upload/{{$user->photo}}">
+					@if ($user->photo)
+						<img class="author-photo" src="/upload/{{$user->photo}}">
+					@else
+						<div class="inner">
+							{{ render_initials( isset($user->name) ? $user->name : $user->email) }}
+						</div>
+					@endif
 				</div>
 			</div>	
 
@@ -18,13 +24,8 @@
 
 		<div class="col-md-3">
 
-			<div class="alert alert-warning">
-
-				Upvote
-
-			</div>
-
-			Downvote
+			<a class="btn" href="">Upvote</a> 	
+			<a class="btn" href="">Downvote</a>
 
 		</div>	
 

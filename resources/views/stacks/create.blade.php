@@ -17,6 +17,8 @@
                     {{Form::label('title', 'Title')}}
                     {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
 
+                    
+
                 </div>  
 
                
