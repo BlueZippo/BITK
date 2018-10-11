@@ -4,8 +4,11 @@ var linkCounter ={{$linkCounter}}
 
 $(document).ready(function()
 {
-    $('input[name=link_url]').change(function()
+    $('input[name=link_url]').focusout(function()
     {
+        $('.add-link-button').hide();
+
+        $('.add-link-button').after('<span class="alert alert-danger"><strong>Fetching link details, please wait...</strong></span>');
        
         $.ajaxSetup({
             headers: {
@@ -35,6 +38,9 @@ $(document).ready(function()
                 {
                     $('.link-image img').attr('src', data.image);
                 }
+
+                $('.alert').hide();
+                $('.add-link-button').show();
             }
         });
     });

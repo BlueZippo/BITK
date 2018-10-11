@@ -18,7 +18,7 @@
 
                 Link Image:
 
-                <span class="link-image"><img src=""></span>
+                <span class="link-image"><img src="/images/no-available-image.png"></span>
 
             </div>
 
@@ -45,6 +45,8 @@
 
 
         <a class="btn btn-primary add-link-button">Add Link</a>
+
+        
 
     </div>
 
