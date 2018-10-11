@@ -1,6 +1,6 @@
 <script>
 
-var linkCounter ={{$linkCounter}}
+var linkCounter = {{count($links)}};
 
 $(document).ready(function()
 {

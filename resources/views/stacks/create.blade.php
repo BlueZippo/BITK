@@ -26,36 +26,13 @@
                     {{Form::label('content', 'Content')}}
                     {{Form::textarea('content', '', ['class' => 'form-control textarea', 'placeholder' => 'Content'])}}
 
-                </div>        
+                </div>    
 
-                <div class="row stack-links">
+                @php $linkCounter = 0; @endphp    
 
-                    @php $linkCounter = 0; @endphp
+                @include('stacks.links')  
 
-                    @if (count($links))
-
-                        @foreach($links as $link)
-
-                            <div class="col-md-3">
-                                <input type="hidden" name="links[{{$linkCounter}}][url]" value="{{$link['url']}}">
-                                <input type="hidden" name="links[{{$linkCounter}}][title]" value="{{$link['title']}}">
-                                <input type="hidden" name="links[{{$linkCounter}}][description]" value="{{$link['description']}}">
-                                <input type="hidden" name="links[{{$linkCounter}}][image]" value="{{$link['image']}}">
-                                <div class="image"><img src="{{$link['image']}}"></div>
-                                <div class="title">{{$link['title']}}</div>
-                            </div>  
-
-                            @php $linkCounter++ @endphp
-
-
-                        @endforeach
-
-                    
-                    @endif
-
-
-                </div>         
-
+                @include('stacks.meta-author') 
 
                 @include('stacks.add-link')
 
