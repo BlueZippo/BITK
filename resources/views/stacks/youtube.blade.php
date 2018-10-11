@@ -4,7 +4,7 @@
 
     @include('stacks.youtube-frame');
 
-  @elseif ($stack->video_id)  
+  @elseif (isset($stack->video_id) && $stack->video_id)  
 
     @include('stacks.youtube-frame2');  
 

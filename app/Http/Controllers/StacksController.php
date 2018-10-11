@@ -40,6 +40,8 @@ class StacksController extends Controller {
 
         $data['user'] = User::find(auth()->id());
 
+        $data['categories'] = Category::all();
+
         if ($request->old('links'))
         {
             $data['links'] = $request->old('links');

@@ -34,9 +34,9 @@
 
                 @php $linkCounter = 0; @endphp    
 
-                @include('stacks.links')  
-
                 @include('stacks.meta-author') 
+
+                @include('stacks.links')  
 
                 @include('stacks.add-link')
 
