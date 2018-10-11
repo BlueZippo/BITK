@@ -13,6 +13,7 @@ use App\Category;
 use App\user;
 use App\Link;
 use App\StackLink;
+use App\LinkCategory;
 
 class StacksController extends Controller {
 
@@ -103,6 +104,17 @@ class StacksController extends Controller {
 
                 $xy->link_id = $x->id;
                 $xy->stack_id = $stack->id;
+
+                $xy->save();
+
+                $xy = LinkCategory::where('link_id', '=', $x->id)->where('category_id', '=', $link['category']);
+
+                $xy->delete();
+
+                $xy = new LinkCategory;
+
+                $xy->link_id = $x->id;
+                $xy->category_id = $link['category'];
 
                 $xy->save();
 
@@ -235,6 +247,8 @@ class StacksController extends Controller {
 
         $data['links'] = $stack->links;
 
+        $data['categories'] = Category::all();
+
         return view('stacks.edit')->with($data);              
     }
 
@@ -292,6 +306,17 @@ class StacksController extends Controller {
 
                 $xy->link_id = $x->id;
                 $xy->stack_id = $stack->id;
+
+                $xy->save();
+
+                $xy = LinkCategory::where('link_id', '=', $x->id)->where('category_id', '=', $link['category']);
+
+                $xy->delete();
+
+                $xy = new LinkCategory;
+
+                $xy->link_id = $x->id;
+                $xy->category_id = $link['category'];
 
                 $xy->save();
 

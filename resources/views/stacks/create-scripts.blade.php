@@ -52,6 +52,8 @@ $(document).ready(function()
         var desc = $('textarea[name=link_description]').val();
         var img = $('.link-image img').attr('src');
 
+        var category = $('input[name=link_category]').val();
+
         linkCounter++;
 
         var html = '<div class="col-md-3 single-link" id="link'+linkCounter+'">';        
@@ -60,6 +62,7 @@ $(document).ready(function()
         html += '<input type="hidden" name="links['+linkCounter+'][title]" value="'+title+'">'
         html += '<input type="hidden" name="links['+linkCounter+'][description]" value="'+desc+'">'
         html += '<input type="hidden" name="links['+linkCounter+'][image]" value="'+img+'">'
+        html += '<input type="hidden" name="links['+linkCounter+'][category]" value="'+category+'">'
 
         html += '<div class="image"><img src="' +img + '"></div>'
         html += '<div class="title">' + title + '</div>';
@@ -68,7 +71,10 @@ $(document).ready(function()
 
         html += '</div>';
 
-        $('.stack-links').append(html);
+
+        $('#addLinkModal').modal('hide');
+
+        $('#category'+category+' .stack-links').append(html);
 
         $('input[name=link_title]').val('');
         $('input[name=link_url]').val('');
@@ -94,7 +100,15 @@ $(document).ready(function()
             $('input[name=video_id]').val(url[1]);
         }    
 
-    })
+    });
+
+
+    $('.add-link-modal').click(function()
+    {
+        category = $(this).data('category');
+
+        $('#addLinkModal input[name=link_category]').val(category);
+    });
 
   
 }); 

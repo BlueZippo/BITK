@@ -38,7 +38,7 @@
 
                 @include('stacks.links')  
 
-                @include('stacks.add-link')
+                @include('stacks.add-link-form')
 
                 {{Form::submit('Save', ['class' => 'btn btn-primary'])}}
 
