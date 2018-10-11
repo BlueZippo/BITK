@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::resource('categories', 'CategoriesController');	
 
+	Route::post('links/get-meta-tags', 'LinksController@get_meta_tags');
+
 	Route::resource('links', 'LinksController');
 
 

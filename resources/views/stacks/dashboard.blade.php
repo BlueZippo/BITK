@@ -24,7 +24,9 @@
                 @foreach($links as $link)                    
                     @if ($link->category->contains($category->id))
                         <div class="col-md-3 card card-body">
-                            <a href="{{$link->link}}" target="_blank">{{$link->title}}</a>
+                            <div class="well">
+                                <a href="{{$link->link}}" target="_blank">{{$link->title}}</a>
+                            </div>    
                         </div>    
                     @endif                    
                 @endforeach

@@ -426,6 +426,7 @@ class ComposerStaticInit09d0a8ab5cfd1496a7fcb458e7996b13
         'App\\LinkCategory' => __DIR__ . '/../..' . '/app/LinkCategory.php',
         'App\\LinksFollow' => __DIR__ . '/../..' . '/app/LinksFollow.php',
         'App\\Mail\\NewRegister' => __DIR__ . '/../..' . '/app/Mail/NewRegister.php',
+        'App\\PeopleFollow' => __DIR__ . '/../..' . '/app/PeopleFollow.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

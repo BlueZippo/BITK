@@ -16,16 +16,22 @@
     </div>
     </form>
 
+    <hr />
+
     <div class="row">
 
         @foreach($stacks as $stack)
 
         <div class="col-md-4">
 
-            <a href="/stacks/{{$stack->id}}/dashboard">
-                <h3>{{$stack->title}}</h3>
-                <small>{{$stack->subtitle}}</small>
-            </a>
+            <div class="well">
+
+                <a href="/stacks/{{$stack->id}}/dashboard">
+                    <h4>{{$stack->title}}</h4>
+                    <small>{{$stack->subtitle}}</small>
+                </a>
+
+            </div>    
 
         </div>
 

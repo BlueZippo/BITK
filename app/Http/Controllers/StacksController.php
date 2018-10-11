@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
+use Validator;
+
 use Illuminate\Http\Request;
 
 use App\Stack;
@@ -9,8 +12,12 @@ use App\StacksFollow;
 use App\Category;
 use App\user;
 use App\Link;
+use App\StackLink;
 
 class StacksController extends Controller {
+
+
+    var $links = array();
 
     public function __construct() {
 
@@ -27,21 +34,33 @@ class StacksController extends Controller {
 
     }
 
-    public function create() {
+    public function create(Request $request) 
+    { 
+        $data['links'] = array();
 
-    	return view('stacks.create');
-    	
+        if ($request->old('links'))
+        {
+            $data['links'] = $request->old('links');
+        }    
+
+
+        return view('stacks.create')->with($data);    	
     }
     
-    public function store(Request $request) {
-        
-        //dd(request()->all());
-
-        $this->validate($request,
+    public function store(Request $request) 
+    {
+        $validator = Validator::make($request->all(),
             [
              'title' => 'required',          
             ] 
         );
+
+        if ($validator->fails()) 
+        {
+            return redirect('stacks/create')
+                        ->withInput($request->all())
+                        ->withErrors($validator);
+        }
         
         $stack = new Stack;
         
@@ -52,21 +71,39 @@ class StacksController extends Controller {
         $stack->subtitle = request('subtitle');
 
         $stack->user_id = auth()->id();
-
-        /*
-        Stack::create([
-
-            'title' => request('title'),
-
-            'content' => request('content'),
-
-            'user_id' => Auth::user()->getId()
-
-        ]);
-        */
-        
         
         $stack->save();
+
+
+        if ($request->has('links'))
+        {
+            $links = $request->input('links');
+
+            foreach($links as $link)
+            {
+                $x = new Link;
+
+                $x->title = $link['title'];
+                $x->link = $link['url'];
+                $x->description = $link['description'];
+                $x->image = $link['image'];
+                $x->user_id = auth()->id();
+
+                $x->save();
+
+                $xy = StackLink::where('stack_id', '=', $stack->id)->where('link_id', '=', $x->id);
+
+                $xy->delete();
+
+                $xy = new StackLink;
+
+                $xy->link_id = $x->id;
+                $xy->stack_id = $stack->id;
+
+                $xy->save();
+
+            }    
+        }    
         
         return redirect()->home();
         
@@ -186,10 +223,13 @@ class StacksController extends Controller {
 
     public function edit($id)
     {
-
         $stack = Stack::find($id);
 
-        return view('stacks.edit', compact('stack'));              
+        $data['stack'] = $stack;
+
+        $data['links'] = $stack->links;
+
+        return view('stacks.edit')->with($data);              
     }
 
 
@@ -207,6 +247,48 @@ class StacksController extends Controller {
         $stack->user_id = auth()->id();
 
         $stack->save();
+
+        $links = StackLink::where('stack_id', '=', $stack->id)->get();
+
+        foreach($links as $link)
+        {
+            $link_id = $link->link_id;
+
+            Link::find($link_id)->delete();
+
+            StackLink::where('stack_id', '=', $stack->id)->where('link_id', '=', $link_id)->delete();
+        }    
+
+
+        if ($request->has('links'))
+        {
+            $links = $request->input('links');
+
+            foreach($links as $link)
+            {
+                $x = new Link;
+
+                $x->title = $link['title'];
+                $x->link = $link['url'];
+                $x->description = $link['description'];
+                $x->image = $link['image'];
+                $x->user_id = auth()->id();
+
+                $x->save();
+
+                $xy = StackLink::where('stack_id', '=', $stack->id)->where('link_id', '=', $x->id);
+
+                $xy->delete();
+
+                $xy = new StackLink;
+
+                $xy->link_id = $x->id;
+                $xy->stack_id = $stack->id;
+
+                $xy->save();
+
+            }    
+        }    
 
         return redirect('stacks/' .  $id . '/edit')->with('success', 'Stack updated');
     }
