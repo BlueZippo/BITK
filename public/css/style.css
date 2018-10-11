@@ -139,3 +139,11 @@
 	width:39px;
 	height:39px;
 }
+
+.youtube .click-here
+{
+	display:block;
+	width:350px;
+	height:220px;
+	background:url(../images/youtube-video.png);
+}

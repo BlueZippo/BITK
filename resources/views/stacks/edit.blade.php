@@ -12,7 +12,10 @@
 
             {!! Form::open(['action' => ['StacksController@update', $stack->id], 'method' => 'POST']) !!}
 
+                @include('stacks.youtube')
+
                 {{Form::hidden('id', $stack->id)}}
+                {{Form::hidden('video_id', $stack->video_id)}}
 
                 <div class="form-group">
 

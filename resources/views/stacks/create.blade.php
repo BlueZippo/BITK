@@ -12,12 +12,14 @@
 
             {!! Form::open(['action' => 'StacksController@store', 'method' => 'POST']) !!}
 
+                @include('stacks.youtube')
+
+                {{Form::hidden('video_id', 0)}}
+
                 <div class="form-group">
 
                     {{Form::label('title', 'Title')}}
-                    {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
-
-                    
+                    {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}                    
 
                 </div>  
 

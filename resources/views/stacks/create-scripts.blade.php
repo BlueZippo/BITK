@@ -77,6 +77,25 @@ $(document).ready(function()
     });
 
 
+    $('#youtubeModal .btn-primary').click(function()
+    {
+        var url = $('#youtubeModal input[name=youtube]').val();
+
+        url = url.split('=');
+
+        if (url[1])
+        {
+            var iframe  = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+url[1]+'?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><br /><a data-toggle="modal" data-target="#youtubeModal">New Video</a>';
+
+            $('.youtube').html(iframe);
+
+            $('#youtubeModal').modal('hide');
+
+            $('input[name=video_id]').val(url[1]);
+        }    
+
+    })
+
   
 }); 
 

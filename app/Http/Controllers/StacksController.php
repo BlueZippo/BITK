@@ -70,9 +70,9 @@ class StacksController extends Controller {
         
         $stack->content = request('content');
 
-        $stack->subtitle = request('subtitle');
-
         $stack->user_id = auth()->id();
+
+        $stack->video_id = request('video_id');
         
         $stack->save();
 
@@ -249,6 +249,8 @@ class StacksController extends Controller {
         $stack->subtitle = request('subtitle');
 
         $stack->user_id = auth()->id();
+
+        $stack->video_id = request('video_id');
 
         $stack->save();
 
