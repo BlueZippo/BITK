@@ -162,3 +162,78 @@
 	height:220px;
 	background:url(../images/youtube-video.png);
 }
+
+.inner-wrap
+{
+	box-shadow:0px 3px 5px rgba(0,0,0,0.5);
+	overflow:hidden;
+	margin-bottom:30px;
+	border-top:5px solid #1da1f2;
+}
+
+.featured-image img
+{
+	width:100%;
+	max-height:222px;
+}
+
+.stack-content
+{
+	padding:10px;
+}
+
+.stack-content .title a
+{
+	font-weight:bold;
+	color:#000;
+}
+
+.stack-content .categories
+{
+	float:left;
+	line-height:3;
+}
+
+.stack-content .date
+{
+	float:right;
+	line-height:3;
+}
+
+.stack-content .author.user-ctrl
+{
+	clear:both;
+	border-top:solid 1px #ccc;
+	border-bottom:solid 1px #ccc;
+	padding:20px 0;
+}
+
+.stack-footer
+{
+	padding:5px 0;
+}
+
+.stack-footer i
+{
+	color:#fff;
+	background:#1da1f2;
+	padding:8px 11px;
+	border-radius:50%;
+}
+
+.stack-wrapper
+{
+	border:solid 1px #ccc;
+	padding:20px;
+}
+
+.stack-wrapper .meta .author
+{
+	float:left;
+}
+
+.stack-wrapper .meta .stack-rate
+{
+	float:right;
+}
+

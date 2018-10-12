@@ -211,7 +211,37 @@ class StacksController extends Controller {
     public function explore()
     {
 
-        $stacks = Stack::all();
+        $results = Stack::all();
+
+        $stacks = array();
+
+        foreach($results as $result)
+        {
+            $author = array('name' => $result->user->name,
+                            'email' => $result->user->email,
+                            'photo' => $result->user->photo);
+
+            $categories = array();
+
+            $links = $result->links;
+
+            foreach($links as $link)
+            {
+                foreach($link->category as $cat)
+                {
+                    $categories[] = $cat->cat_name;
+                }    
+            } 
+
+
+            $stacks[] = array('title' => $result->title,
+                              'image' => $result->video_id,
+                              'author' => $author,
+                              'id' => $result->id,
+                              'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+                              'categories' => implode(', ', $categories)
+                          );
+        }    
 
         return view('stacks.explore')->with(['stacks' => $stacks]);
     }
@@ -220,7 +250,38 @@ class StacksController extends Controller {
     {
         $keywords = $request->input('search');
 
-        $stacks = Stack::where("title", "LIKE", "%".$keywords."%")->get();
+        $results = Stack::where("title", "LIKE", "%".$keywords."%")->get();
+
+        $stacks = array();
+
+         foreach($results as $result)
+        {
+            $author = array('name' => $result->user->name,
+                            'email' => $result->user->email,
+                            'photo' => $result->user->photo);
+
+            $categories = array();
+
+            $links = $result->links;
+
+            foreach($links as $link)
+            {
+                foreach($link->category as $cat)
+                {
+                    $categories[] = $cat->cat_name;
+                }    
+            } 
+
+
+            $stacks[] = array('title' => $result->title,
+                              'image' => $result->video_id,
+                              'author' => $author,
+                              'id' => $result->id,
+                              'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+                              'categories' => implode(', ', $categories)
+                          );
+        }    
+
 
         return view('stacks.explore')->with(['stacks' => $stacks]);   
     }
