@@ -197,7 +197,7 @@ class UserController extends Controller
 
         }else{
 
-            $input = array_except($input,array('password'));    
+            //$input = array_except($input,array('password'));    
 
         }
 
