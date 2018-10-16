@@ -332,6 +332,8 @@ class StacksController extends Controller {
         return substr($query, 0,$limit);
     }
 
+    
+
 
     function get_results($query)
     {
