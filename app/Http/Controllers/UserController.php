@@ -191,13 +191,9 @@ class UserController extends Controller
 
         $input = $request->all();
 
-        if(!empty($input['password'])){ 
-
-            $input['password'] = Hash::make($input['password']);
-
-        }else{
-
-            //$input = array_except($input,array('password'));    
+        if(!empty($input['password']))
+        { 
+            $input['confirm-password'] = Hash::make($input['password']);
 
         }
 
@@ -256,20 +252,32 @@ class UserController extends Controller
         $this->validate($request, [
 
             'name' => 'required',
-            'password' => 'same:confirm-password',
+            'password' => 'same:password_confirmation',
 
         ]);
 
         $input = $request->all();
 
-        
 
+        if(!empty($input['password']))
+        { 
+            $input['password_confirmation'] = Hash::make($input['password']);
+
+        }
+        else
+        {
+            unset($input['password'], $input['password_confirmation']);
+        }  
+
+        
         $user = User::find(auth()->id());
 
         $user->update($input);
 
         return redirect()->route('users.profile')
-                ->with('success', 'Profile updated');
+                ->with('success', 'Profile updated');        
+
+
     }
 
 

@@ -7,6 +7,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
+            @if (Auth::check())
             <div class="user-ctrl-mobile">
                 <div class="avatar user-col-1"><div class="inner">{{ render_initials( isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email ) }}</div></div>
                 <div class="user-col-2">
@@ -19,6 +20,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             <ul class="navbar-nav mr-auto justify-content-end">
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>

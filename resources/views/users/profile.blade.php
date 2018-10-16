@@ -115,7 +115,7 @@
 
             <strong>Confirm Password:</strong>
 
-            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+            {!! Form::password('password_confirmation', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
 
         </div>
 

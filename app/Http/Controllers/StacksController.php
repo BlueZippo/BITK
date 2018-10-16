@@ -14,6 +14,7 @@ use App\user;
 use App\Link;
 use App\StackLink;
 use App\LinkCategory;
+use DB;
 
 class StacksController extends Controller {
 
@@ -250,16 +251,21 @@ class StacksController extends Controller {
     {
         $keywords = $request->input('search');
 
-        $results = Stack::where("title", "LIKE", "%".$keywords."%")->get();
+        $results = $this->get_results($keywords);
 
         $stacks = array();
 
-         foreach($results as $result)
+        foreach($results as $result)
         {
-            $author = array('name' => $result->user->name,
-                            'email' => $result->user->email,
-                            'photo' => $result->user->photo);
+            $author = array();
+            $categories = array();
 
+
+            $author = array('name' => $result->name,
+                            'email' => $result->email,
+                            'photo' => $result->photo);
+
+            /*
             $categories = array();
 
             $links = $result->links;
@@ -270,7 +276,8 @@ class StacksController extends Controller {
                 {
                     $categories[] = $cat->cat_name;
                 }    
-            } 
+            }
+            */ 
 
 
             $stacks[] = array('title' => $result->title,
@@ -278,12 +285,180 @@ class StacksController extends Controller {
                               'author' => $author,
                               'id' => $result->id,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
-                              'categories' => implode(', ', $categories)
+                              'categories' => $result->cat_name
                           );
         }    
 
 
         return view('stacks.explore')->with(['stacks' => $stacks]);   
+        
+    }
+
+
+    
+    private function filterSearchKeys($query)
+    {
+        $query = trim(preg_replace("/(\s+)+/", " ", $query));
+        
+        $words = array();
+       
+        $list = array("in","it","a","the","of","or","I","you","he","me","us","they","she","to","but","that","this","those","then");
+        
+        $c = 0;
+        
+        foreach(explode(" ", $query) as $key)
+        {
+            
+            if (in_array($key, $list))
+            {
+                continue;
+            }
+            
+            $words[] = $key;
+            
+            if ($c >= 15)
+            {
+                break;
+            }
+
+            $c++;
+        }
+        return $words;
+    }
+
+
+    private function limitChars($query, $limit = 200)
+    {
+        return substr($query, 0,$limit);
+    }
+
+
+    function get_results($query)
+    {
+
+        $query = trim($query);
+        
+        if (mb_strlen($query)===0)
+        {
+            return false; 
+        }
+
+        $query = $this->limitChars($query);
+
+        $scoreFullTitle = 6;
+        $scoreTitleKeyword = 5;
+        $scoreUsername = 5;
+        $scoreSummaryKeyword = 4;
+        $scoreFullDocument = 4;
+        $scoreDocumentKeyword = 3;
+        $scoreCategoryKeyword = 2;
+        $scoreUrlKeyword = 1;
+
+        $keywords = $this->filterSearchKeys($query);
+        
+        $escQuery = $query; // see note above to get db object
+        
+        $titleSQL = array();
+        
+        $userSQL = array();
+        
+        $docSQL = array();
+        
+        $categorySQL = array();
+        
+        $urlSQL = array();
+
+        if (count($keywords) > 1)
+        {
+            $titleSQL[] = "if (s.title LIKE '%".$escQuery."%',{$scoreFullTitle},0)";
+            $userSQL[] = "if (u.name LIKE '%".$escQuery."%',{$scoreUsername},0)";
+            $docSQL[] = "if (s.content LIKE '%".$escQuery."%',{$scoreFullDocument},0)";
+        }
+
+    
+        foreach($keywords as $key)
+        {
+            $titleSQL[] = "if (s.title LIKE '%".$key."%',{$scoreTitleKeyword},0)";
+            $userSQL[] = "if (u.name LIKE '%".$key."%',{$scoreUsername},0)";
+            $docSQL[] = "if (s.content LIKE '%".$key."%',{$scoreDocumentKeyword},0)";
+            //$urlSQL[] = "if (p_url LIKE '%".$key."%',{$scoreUrlKeyword},0)";
+            
+            
+            $categorySQL[] = "if ((
+                SELECT count(cc.id)
+                FROM categories cc
+                JOIN link_categories lc ON lc.category_id = cc.id
+                JOIN stack_links ls ON ls.link_id = lc.link_id
+                WHERE ls.stack_id = s.id
+                AND cc.cat_name = '".$key."'
+                            ) > 0,{$scoreCategoryKeyword},0)";
+                        
+        }
+
+    
+        if (empty($titleSQL))
+        {
+            $titleSQL[] = 0;
+        }
+
+        if (empty($userSQL))
+        {
+            $userSQL[] = 0;
+        }
+
+        if (empty($docSQL))
+        {
+            $docSQL[] = 0;
+        }
+
+        if (empty($urlSQL))
+        {
+            $urlSQL[] = 0;
+        }
+
+        if (empty($tagSQL)){
+            $tagSQL[] = 0;
+        }
+
+        $sql = "SELECT DISTINCT s.*, ";
+
+        $sql .= " u.name, u.photo, u.email,";
+
+        $sql .= " ( SELECT cat_name 
+                    FROM categories c 
+                    LEFT JOIN link_categories c2 ON c2.category_id = c.id
+                    WHERE c2.link_id = s2.link_id
+                  ) as cat_name, ";
+
+        $sql .= "(
+                    (".implode(" + ", $titleSQL)    .") +
+                    (".implode(" + ", $docSQL)      .") + 
+                    (".implode(" + ", $userSQL)     .") + 
+                    (".implode(" + ", $categorySQL) .")
+                  
+                ) as relevance";
+
+        $sql .= " FROM stacks s";
+
+        $sql .= " JOIN users u ON u.id = s.user_id";
+
+        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
+        
+        //$sql .= " LEFT JOIN link_categories c ON c.link_id = s2.link_id";
+
+        //$sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
+
+       $sql .= " ORDER BY relevance DESC";
+
+       $results = DB::select($sql);
+
+       
+        if (!$results)
+        {
+            return false;
+        }
+        
+        return $results;
     }
 
 
