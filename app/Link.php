@@ -22,7 +22,7 @@ class Link extends Model
 
     public function category()
     {
-        return $this->belongsToMany('App\Category', 'link_categories');
+        return $this->belongsToMany('App\Category', 'link_categories', 'link_id', 'category_id');
     }
 
 

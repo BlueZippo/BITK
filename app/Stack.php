@@ -24,4 +24,7 @@ class Stack extends Model {
     	return $this->belongsToMany('App\Link', 'stack_links');
     }
 
+
+  
+
 }

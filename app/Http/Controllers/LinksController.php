@@ -39,6 +39,7 @@ class LinksController extends Controller
 
         $data['stacks'] = $stacks; 
         $data['categories'] = Category::get();
+        $data['links'] = array();
 
         return view('links.create')->with($data);
         
@@ -135,7 +136,7 @@ class LinksController extends Controller
         $data['stacks'] = $stacks; 
 
         $data['categories'] = Category::get();        
-        
+
         $data['link'] = $link;
 
         return view('links.edit')->with($data);
@@ -222,5 +223,34 @@ class LinksController extends Controller
     	$follow->save();
 
     	return json_encode(array('user_id' => $user_id, 'link_id' => $id));
+    }
+
+    public function get_meta_tags(Request $request)
+    {
+       $url = $request->input('link_url');
+
+       $meta = get_meta_tags($url);
+
+       $data = array('title' => '', 'description' => '', 'image' => '/images/no-available-image.png');
+
+       foreach($meta as $key => $value)
+       {
+        if (preg_match('/title/', $key))
+        {
+            $data['title'] = $value;
+        }
+
+        if (preg_match('/description/', $key))
+        {
+            $data['description'] = $value;
+        }    
+
+        if (preg_match('/image/', $key))
+        {
+            $data['image'] = $value;
+        }
+       } 
+
+       return json_encode($data);
     }
 }

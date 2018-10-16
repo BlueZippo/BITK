@@ -42,6 +42,7 @@ return array(
     'App\\LinkCategory' => $baseDir . '/app/LinkCategory.php',
     'App\\LinksFollow' => $baseDir . '/app/LinksFollow.php',
     'App\\Mail\\NewRegister' => $baseDir . '/app/Mail/NewRegister.php',
+    'App\\PeopleFollow' => $baseDir . '/app/PeopleFollow.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

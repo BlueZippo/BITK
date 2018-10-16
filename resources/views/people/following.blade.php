@@ -1,5 +1,13 @@
-<h2>People I'm Following</h2>
+<div class="panel panel-default">
 
-	<div class="row">
+	<div class="panel-heading">People I'm Following</div>
 
-	</div>	
+	<div class="panel-body">
+
+		<div class="row">
+
+		</div>	
+
+	</div>
+
+</div>

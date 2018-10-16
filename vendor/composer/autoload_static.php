@@ -21,6 +21,7 @@ class ComposerStaticInit09d0a8ab5cfd1496a7fcb458e7996b13
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
+        'e617b14322a074392076a2f38eaf6115' => __DIR__ . '/../..' . '/app/Helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -426,6 +427,7 @@ class ComposerStaticInit09d0a8ab5cfd1496a7fcb458e7996b13
         'App\\LinkCategory' => __DIR__ . '/../..' . '/app/LinkCategory.php',
         'App\\LinksFollow' => __DIR__ . '/../..' . '/app/LinksFollow.php',
         'App\\Mail\\NewRegister' => __DIR__ . '/../..' . '/app/Mail/NewRegister.php',
+        'App\\PeopleFollow' => __DIR__ . '/../..' . '/app/PeopleFollow.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
