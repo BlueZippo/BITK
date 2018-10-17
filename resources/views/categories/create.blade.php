@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2>Add New Category</h2>
+            <h2>Add New Media Type</h2>
 
         </div>
 
@@ -56,7 +56,7 @@
 
             <strong>Name:</strong>
 
-            {!! Form::text('cat_name', null, array('placeholder' => 'Category Name','class' => 'form-control')) !!}
+            {!! Form::text('cat_name', null, array('placeholder' => 'Media Type','class' => 'form-control')) !!}
 
         </div>
 

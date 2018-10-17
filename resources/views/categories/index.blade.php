@@ -9,13 +9,13 @@
 
         <div class="pull-left">
 
-            <h2>Categories</h2>
+            <h2>Media Type</h2>
 
         </div>
 
         <div class="pull-right">
 
-            <a class="btn btn-success" href="{{ route('categories.create') }}"> Add Category</a>
+            <a class="btn btn-success" href="{{ route('categories.create') }}"> Add Media Type</a>
 
         </div>
 
@@ -41,7 +41,7 @@
 
    <th>No</th>
 
-   <th>Category</th>
+   <th>Media Type</th>
 
    <th width="280px">Action</th>
 
