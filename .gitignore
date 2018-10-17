@@ -4,18 +4,13 @@
 /storage/*.key
 /vendor
 /.idea
-<<<<<<< HEAD
-=======
 /.vscode
->>>>>>> e236547ae1352cda20a82d8e253db6ee8eb6ec3c
 /.vagrant
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
-<<<<<<< HEAD
-=======
 .phpunit.result.cache
 composer.lock
 vendor/bin/php-parse
@@ -138,5 +133,3 @@ vendor/nikic/php-parser/test/PhpParser/Builder/UseTest.php
 vendor/nikic/php-parser/test/PhpParser/BuilderFactoryTest.php
 vendor/nikic/php-parser/test/PhpParser/CodeParsingTest.php
 vendor/nikic/php-parser/test/updateTests.php
-.DS_Store
->>>>>>> e236547ae1352cda20a82d8e253db6ee8eb6ec3c
