@@ -216,8 +216,12 @@ class StacksController extends Controller {
 
         $stacks = array();
 
+        return $results;
+
         foreach($results as $result)
         {
+
+
             if ($result->user)
             {    
                 $author = array('name' => '',
