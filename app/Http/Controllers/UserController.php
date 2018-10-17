@@ -193,9 +193,12 @@ class UserController extends Controller
 
         if(!empty($input['password']))
         { 
-            $input['confirm-password'] = Hash::make($input['password']);
-
+            $input['password'] = Hash::make($input['password']);
         }
+        else
+        {
+           $input = array_except($input,array('password'));   
+        }    
 
 
         $user = User::find($id);
