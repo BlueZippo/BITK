@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <header>
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -57,6 +58,8 @@
     </nav>
 </header>
 =======
+=======
+>>>>>>> e236547ae1352cda20a82d8e253db6ee8eb6ec3c
 <header>
     <!-- Fixed navbar -->
     <nav class="navbar main_nav navbar-expand-md navbar-light fixed-top bg-light">
@@ -133,4 +136,7 @@
     </div><!-- .inner -->
     </nav>
 </header>
+<<<<<<< HEAD
 >>>>>>> a298193d466df19cca21e11c3575073676d3e7c0
+=======
+>>>>>>> e236547ae1352cda20a82d8e253db6ee8eb6ec3c
