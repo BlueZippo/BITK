@@ -216,27 +216,11 @@ class StacksController extends Controller {
 
         $stacks = array();
 
-        return $results;
-
         foreach($results as $result)
         {
-
-
-            if ($result->user)
-            {    
-                $author = array('name' => '',
-                                'email' => '',
-                                'photo' => ''
-                            );
-
-            }
-            else
-            {
-                $author = array('name' => $result->user->name,
+            $author = array('name' => $result->user->name,
                                 'email' => $result->user->email,
                                 'photo' => $result->user->photo);
-            }    
-
 
             $categories = array();
 
