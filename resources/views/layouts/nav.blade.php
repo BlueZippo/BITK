@@ -50,7 +50,19 @@
                 <li class="list-divider"></li>
                 <li class="nav-item dropdown user-ctrl">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <div class="avatar"><div class="inner">{{ render_initials( isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email ) }}</div></div>
+                        
+                        <div class="avatar">
+                            @if (Auth::user()->photo)    
+
+                            <img src="{{Auth::user()->photo}}">
+                            
+                            @else
+
+                            <div class="inner">{{ render_initials( isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email ) }}</div>
+
+                            @endif
+                        </div>
+
                         <div class="name">{{ Auth::user()->name }}</div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
