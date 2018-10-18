@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::get('stacks/explore', 'StacksController@explore');
 
+	Route::get('stacks/{id}/category', 'StacksController@category');
+
 	Route::get('stacks/view-all', 'StacksController@view_all');
 
 	Route::post('stacks/search', 'StacksController@search');

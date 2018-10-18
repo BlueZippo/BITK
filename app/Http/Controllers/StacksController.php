@@ -217,6 +217,8 @@ class StacksController extends Controller {
 
         $stacks = array();
 
+        $medias = Category::orderBy('cat_name')->get();
+
         foreach($results as $result)
         {
             $author = array('name' => $result->user->name,
@@ -245,7 +247,7 @@ class StacksController extends Controller {
                           );
         }    
 
-        return view('stacks.explore')->with(['stacks' => $stacks]);
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
     }
 
     public function search(Request $request)
@@ -253,6 +255,8 @@ class StacksController extends Controller {
         $keywords = $request->input('search');
 
         $results = $this->get_results($keywords);
+
+         $medias = Category::orderBy('cat_name')->get();
 
         $stacks = array();
 
@@ -291,7 +295,7 @@ class StacksController extends Controller {
         }    
 
 
-        return view('stacks.explore')->with(['stacks' => $stacks]);   
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);   
         
     }
 
@@ -570,6 +574,17 @@ class StacksController extends Controller {
         }    
 
         return redirect('stacks/' .  $id . '/edit')->with('success', 'Stack updated');
+    }
+
+
+    public function category($category)
+    {
+
+        $medias = Category::orderBy('cat_name')->get();
+
+        $stacks = array();
+
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);   
     }
     
 }
