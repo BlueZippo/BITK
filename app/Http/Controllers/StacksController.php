@@ -14,6 +14,7 @@ use App\user;
 use App\Link;
 use App\StackLink;
 use App\LinkCategory;
+use App\Search;
 use DB;
 
 class StacksController extends Controller {
@@ -338,6 +339,9 @@ class StacksController extends Controller {
     function get_results($query)
     {
 
+        $algorithm = Search::first();
+
+
         $query = trim($query);
         
         if (mb_strlen($query)===0)
@@ -347,13 +351,17 @@ class StacksController extends Controller {
 
         $query = $this->limitChars($query);
 
-        $scoreFullTitle = 6;
-        $scoreTitleKeyword = 5;
-        $scoreUsername = 5;
-        $scoreSummaryKeyword = 4;
-        $scoreFullDocument = 4;
-        $scoreDocumentKeyword = 3;
-        $scoreCategoryKeyword = 2;
+        $scoreFullTitle = $algorithm->title;        
+        $scoreTitleKeyword = $algorithm->title;
+        
+        $scoreUsername = $algorithm->author;
+
+        $scoreSummaryKeyword = $algorithm->content;
+        
+        $scoreFullDocument = $algorithm->content;
+        $scoreDocumentKeyword = $algorithm->content;        
+        $scoreCategoryKeyword = $algorithm->category;
+
         $scoreUrlKeyword = 1;
 
         $keywords = $this->filterSearchKeys($query);
