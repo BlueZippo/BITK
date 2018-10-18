@@ -4,7 +4,7 @@
 
 	<div class="row">
         
-		<div class="col-sm-8">
+		<div class="col-sm-12">
             
 			<h1>Edit Stack</h1>
             
@@ -12,30 +12,45 @@
 
             {!! Form::open(['action' => ['StacksController@update', $stack->id], 'method' => 'POST']) !!}
 
-                @include('stacks.youtube')
 
-                {{Form::hidden('id', $stack->id)}}
-                {{Form::hidden('video_id', $stack->video_id)}}
+                <div class="row">
 
-                <div class="form-group">
+                    <div class="col-md-7">                    
 
-                    {{Form::label('title', 'Title')}}
-                    {{Form::text('title', $stack->title, ['class' => 'form-control', 'placeholder' => 'Title'])}}
+                        {{Form::hidden('id', $stack->id)}}
+                        {{Form::hidden('video_id', $stack->video_id)}}
 
-                    <span class="small">Last updated: {{date("M d, Y", strtotime($stack->updated_at))}}</span>
+                        <div class="form-group">
 
-                </div>  
+                            {{Form::label('title', 'Title')}}
+                            {{Form::text('title', $stack->title, ['class' => 'form-control', 'placeholder' => 'Title'])}}
 
-                
+                            <span class="small">Last updated: {{date("M d, Y", strtotime($stack->updated_at))}}</span>
 
-                <div class="form-group">
+                        </div>  
 
-                    {{Form::label('content', 'Content')}}
-                    {{Form::textarea('content', $stack->content, ['class' => 'form-control textarea', 'placeholder' => 'Content'])}}
+                        
+
+                        <div class="form-group">
+
+                            {{Form::label('content', 'Content')}}
+                            {{Form::textarea('content', $stack->content, ['class' => 'form-control textarea', 'placeholder' => 'Content'])}}
+
+                        </div>    
+
+                         @include('stacks.meta-author')
+
+                    </div>
+
+                    <div class="col-md-5">
+
+                        @include('stacks.youtube')
+
+                    </div>    
 
                 </div>    
 
-                @include('stacks.meta-author')
+               
 
                 @php $linkCounter = 0; @endphp
                 

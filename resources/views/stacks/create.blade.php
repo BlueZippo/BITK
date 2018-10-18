@@ -4,37 +4,51 @@
 
 	<div class="row">
         
-		<div class="col-sm-8">
+		<div class="col-sm-12">
             
 			<h1>Create A Stack</h1>
             
             <hr />
 
-            {!! Form::open(['action' => 'StacksController@store', 'method' => 'POST']) !!}
-
-                @include('stacks.youtube')
+            {!! Form::open(['action' => 'StacksController@store', 'method' => 'POST']) !!}               
 
                 {{Form::hidden('video_id', 0)}}
 
-                <div class="form-group">
+                <div class="row">
 
-                    {{Form::label('title', 'Title')}}
-                    {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}                    
+                    <div class="col-md-7">
 
-                </div>  
+                        <div class="form-group">
 
-               
+                            {{Form::label('title', 'Title')}}
+                            {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}                    
 
-                <div class="form-group">
+                        </div>  
 
-                    {{Form::label('content', 'Content')}}
-                    {{Form::textarea('content', '', ['class' => 'form-control textarea', 'placeholder' => 'Content'])}}
+                       
 
+                        <div class="form-group">
+
+                            {{Form::label('content', 'Content')}}
+                            {{Form::textarea('content', '', ['class' => 'form-control textarea', 'placeholder' => 'Content'])}}
+
+                        </div>  
+
+                        @include('stacks.meta-author')   
+
+                    </div>
+                    
+                    <div class="col-md-5">    
+
+                         @include('stacks.youtube')
+
+                    </div>
+                    
                 </div>    
 
                 @php $linkCounter = 0; @endphp    
 
-                @include('stacks.meta-author') 
+                
 
                 @include('stacks.links')  
 

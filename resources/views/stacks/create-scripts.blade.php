@@ -1,3 +1,5 @@
+
+
 <script>
 
 var linkCounter = {{count($links)}};
@@ -91,7 +93,7 @@ $(document).ready(function()
 
         if (url[1])
         {
-            var iframe  = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+url[1]+'?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><br /><a data-toggle="modal" data-target="#youtubeModal">New Video</a>';
+            var iframe  = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/'+url[1]+'?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><br /><a data-toggle="modal" data-target="#youtubeModal">New Video</a>';
 
             $('.youtube').html(iframe);
 

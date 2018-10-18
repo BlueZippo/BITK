@@ -1,19 +1,17 @@
-<div class="accordion">
+<ul class="nav nav-tabs" role="tablist">
+    @foreach($categories as $category)
 
-@foreach($categories as $category)
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#category{{$category->id}}" role="tab">{{$category->cat_name}}</a>
+        </li>
 
-    <div class="card">
+    @endforeach
+</ul>
 
-        <div class="card-header">
+<div class="tab-content">
+    @foreach($categories as $category)
 
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#category{{$category->id}}" aria-expanded="true" aria-controls="collapseOne">
-                {{$category->cat_name}}
-            </button>
-
-        </div>    
-
-
-        <div class="collapse" id="category{{$category->id}}" data-category="{{$category->id}}">
+        <div class="tab-pane" id="category{{$category->id}}" role="tabpanel"  data-category="{{$category->id}}">
 
             <div class="container">
 
@@ -57,13 +55,9 @@
                 </div>    
 
 
-         </div>   
+            </div>
 
-        </div>
+         </div>    
 
-    
-    </div>
-
-@endforeach
-
-</div>
+    @endforeach
+</div>    
