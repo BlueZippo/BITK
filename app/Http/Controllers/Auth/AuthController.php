@@ -26,12 +26,6 @@ class AuthController extends Controller {
 
         $authUser = User::where('email', $user->email)->first();
 
-        print_r($user);
-
-        die();
-
-        return false;
-
         if ($authUser) {
             return $authUser;
         }
@@ -39,7 +33,8 @@ class AuthController extends Controller {
             'name'     => $user->name,
             'email'    => $user->email,
             'provider' => $provider,
-            'provider_id' => $user->id
+            'provider_id' => $user->id,
+            'photo' => $user->avatar
         ]);
     }
 
