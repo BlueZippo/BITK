@@ -33,6 +33,7 @@ class AuthController extends Controller {
             'name'     => $user->name,
             'email'    => $user->email,
             'provider' => $provider,
+            'photo'   => $user->getAvatar(),
             'provider_id' => $user->id
         ]);
     }
