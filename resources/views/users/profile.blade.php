@@ -49,7 +49,7 @@
         <label for="exampleInputFile">Selected image:</label>
         <br>
         @if ($user->photo)
-        <img id="preview-img" src="/upload/{{$user->photo}}">
+        <img id="preview-img" src="{{$user->photo}}">
         @else
         <img id="preview-img" style="display:none">
         @endif
