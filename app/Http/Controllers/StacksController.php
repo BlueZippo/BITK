@@ -222,8 +222,8 @@ class StacksController extends Controller {
         foreach($results as $result)
         {
             $author = array('name' => $result->user->name,
-                                'email' => $result->user->email,
-                                'photo' => $result->user->photo);
+                            'email' => $result->user->email,
+                            'photo' => $result->user->photo);
 
             $categories = array();
 
@@ -434,15 +434,11 @@ class StacksController extends Controller {
             $tagSQL[] = 0;
         }
 
-        $sql = "SELECT DISTINCT s.*, ";
+        $sql = "SELECT s.*, ";
 
         $sql .= " u.name, u.photo, u.email,";
 
-        $sql .= " ( SELECT cat_name 
-                    FROM categories c 
-                    LEFT JOIN link_categories c2 ON c2.category_id = c.id
-                    WHERE c2.link_id = s2.link_id
-                  ) as cat_name, ";
+        $sql .= " GROUP_CONCAT(DISTINCT c2.cat_name SEPARATOR ',') as cat_name, ";
 
         $sql .= "(
                     (".implode(" + ", $titleSQL)    .") +
@@ -458,13 +454,15 @@ class StacksController extends Controller {
 
         $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
         
-        //$sql .= " LEFT JOIN link_categories c ON c.link_id = s2.link_id";
+        $sql .= " LEFT JOIN link_categories c ON c.link_id = s2.link_id";
 
-        //$sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
+        $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
 
-       $sql .= " ORDER BY relevance DESC";
+        $sql .= " GROUP BY s.id";
 
-       $results = DB::select($sql);
+        $sql .= " ORDER BY relevance DESC";
+
+        $results = DB::select($sql);
 
        
         if (!$results)

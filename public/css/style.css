@@ -237,3 +237,8 @@
 	float:right;
 }
 
+
+.show .dropdown-menu
+{
+	display:block;
+}
