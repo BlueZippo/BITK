@@ -21,7 +21,7 @@ Route::get('/', 'PagesController@index')->name('home');
 
 
 Route::group(['middleware' => ['auth']], function() {
-	Route::resource('roles', 'RoleController');
+	Route::resource('admin/roles', 'RoleController');
 
 	Route::post('users/image-upload', 'UserController@upload');
 
@@ -37,15 +37,17 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::post('stacks/{id}/update', 'StacksController@update');
 
-	Route::resource('users', 'UserController');
+	Route::resource('admin/users', 'UserController');
 
 	Route::resource('stacks', 'StacksController');
 
-	Route::resource('categories', 'CategoriesController');	
+	Route::resource('admin/categories', 'CategoriesController');	
 
 	Route::post('links/get-meta-tags', 'LinksController@get_meta_tags');
 
 	Route::resource('links', 'LinksController');
+
+	Route::resource('admin/search', 'SearchController');
 
 
 });

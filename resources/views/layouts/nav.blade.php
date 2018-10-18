@@ -29,13 +29,18 @@
                 @role('admin')
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/categories">Media Type</a>
+                    <a class="nav-link" href="/admin/categories">Media Type</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/users">Users</a>
+                    <a class="nav-link" href="/admin/users">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/roles">Roles</a>
+                    <a class="nav-link" href="/admin/roles">Roles</a>
+                </li>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/search">Search Algorithm</a>
                 </li>
 
                 @endrole
