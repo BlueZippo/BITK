@@ -297,13 +297,15 @@ class UserController extends Controller
 
         $user_id = auth()->id();
 
-        $input['photo'] = sprintf("photo-%s-%s.%s", $user_id, time(), $image->getClientOriginalExtension());
+        $photo = sprintf("photo-%s-%s.%s", $user_id, time(), $image->getClientOriginalExtension());
 
         $destinationPath = public_path('/upload');
 
-        $image->move($destinationPath, $input['photo']);
+        $image->move($destinationPath, $photo);
 
         $user = User::find($user_id);
+
+        $input['photo'] = '/upload/' . $photo;
 
         $user->update($input);
 
