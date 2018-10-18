@@ -26,6 +26,12 @@ class AuthController extends Controller {
 
         $authUser = User::where('email', $user->email)->first();
 
+        print_r($user);
+
+        die();
+
+        return false;
+
         if ($authUser) {
             return $authUser;
         }
