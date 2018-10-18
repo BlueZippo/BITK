@@ -9,7 +9,7 @@
 			<div class="user-ctrl">
 				<div class="avatar">
 					@if ($user->photo)
-						<img class="author-photo" src="/upload/{{$user->photo}}">
+						<img class="author-photo" src="{{$user->photo}}">
 					@else
 						<div class="inner">
 							{{ render_initials( isset($user->name) ? $user->name : $user->email) }}
