@@ -13,7 +13,7 @@
 
 						@foreach($tags as $tag)
 
-							<span>#{{$tag->tag}}</span>
+							<span class="tag" id="tag{{$tag->id}}" data-id="{{$tag->id}}">#{{$tag->tag}} <i class="fa fa-minus"></i></span>
 
 						@endforeach
 

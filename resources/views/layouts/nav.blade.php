@@ -2,10 +2,15 @@
     <!-- Fixed navbar -->
     <nav class="navbar main_nav navbar-expand-md navbar-light fixed-top bg-light">
         <div class="inner container">
-        <a class="navbar-brand" href="/">SITE LOGO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        
+            <a class="navbar-brand" href="/">SITE LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            @include('layouts.search')
+
+
         <div class="collapse navbar-collapse" id="navbarCollapse">
             @if (Auth::check())
             <div class="user-ctrl-mobile">
@@ -26,25 +31,7 @@
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
 
-                @role('admin')
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/categories">Media Type</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/users">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/roles">Roles</a>
-                </li>
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/search">Search Algorithm</a>
-                </li>
-
-                @endrole
-
+               
                 @if (Auth::check())
 
                 <li class="list-divider"></li>
@@ -68,6 +55,27 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="/stacks/create">Create a Stack</a>
                         <a class="dropdown-item" href="/users/profile">User Settings</a>
+
+                        @role('admin')
+
+                        <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item">ADMIN</a>
+
+                        <div class="dropdown-divider"></div>                       
+
+                
+                        <a class="dropdown-item" href="/admin/categories">Media Type</a>
+                    
+                        <a class="dropdown-item" href="/admin/users">Users</a>
+                    
+                        <a class="dropdown-item" href="/admin/roles">Roles</a>
+                    
+                        <a class="dropdown-item" href="/admin/search">Search Algorithm</a>
+
+
+                        @endrole
+
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>

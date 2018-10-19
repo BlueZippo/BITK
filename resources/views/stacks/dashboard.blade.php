@@ -26,7 +26,7 @@
 
                             @if ($stack->user->photo)
 
-                                <img src="/upload/{{$stack->user->photo}}">
+                                <img src="{{$stack->user->photo}}">
 
                             @else
 
