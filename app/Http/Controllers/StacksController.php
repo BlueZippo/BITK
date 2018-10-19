@@ -277,8 +277,7 @@ class StacksController extends Controller {
 
         foreach($results as $result)
         {
-            $author = array();
-            $categories = array();
+            $author = array();          
 
             $author = array('name' => $result->name,
                             'email' => $result->email,
@@ -290,7 +289,7 @@ class StacksController extends Controller {
                               'author' => $author,
                               'id' => $result->id,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
-                              'categories' => implode(', ', $categories)
+                              'categories' => $result->cat_name
                           );
         }    
 
@@ -455,100 +454,6 @@ class StacksController extends Controller {
 
     function get_results($query)
     {
-
-        /*
-        $algorithm = Search::first();
-
-
-        $query = trim($query);
-        
-        if (mb_strlen($query)===0)
-        {
-            return false; 
-        }
-
-        $query = $this->limitChars($query);
-
-        $scoreFullTitle = $algorithm->title;        
-        $scoreTitleKeyword = $algorithm->title;
-        
-        $scoreUsername = $algorithm->author;
-
-        $scoreSummaryKeyword = $algorithm->content;
-        
-        $scoreFullDocument = $algorithm->content;
-        $scoreDocumentKeyword = $algorithm->content;        
-        $scoreCategoryKeyword = $algorithm->category;
-
-        $scoreUrlKeyword = 1;
-
-        $keywords = $this->filterSearchKeys($query);
-        
-        $escQuery = $query; // see note above to get db object
-        
-        $titleSQL = array();
-        
-        $userSQL = array();
-        
-        $docSQL = array();
-        
-        $categorySQL = array();
-        
-        $urlSQL = array();
-
-        if (count($keywords) > 1)
-        {
-            $titleSQL[] = "if (s.title LIKE '%".$escQuery."%',{$scoreFullTitle},0)";
-            $userSQL[] = "if (u.name LIKE '%".$escQuery."%',{$scoreUsername},0)";
-            $docSQL[] = "if (s.content LIKE '%".$escQuery."%',{$scoreFullDocument},0)";
-        }
-
-    
-        foreach($keywords as $key)
-        {
-            $titleSQL[] = "if (s.title LIKE '%".$key."%',{$scoreTitleKeyword},0)";
-            $userSQL[] = "if (u.name LIKE '%".$key."%',{$scoreUsername},0)";
-            $docSQL[] = "if (s.content LIKE '%".$key."%',{$scoreDocumentKeyword},0)";
-            //$urlSQL[] = "if (p_url LIKE '%".$key."%',{$scoreUrlKeyword},0)";
-            
-            
-            $categorySQL[] = "if ((
-                SELECT count(cc.id)
-                FROM categories cc
-                JOIN link_categories lc ON lc.category_id = cc.id
-                JOIN stack_links ls ON ls.link_id = lc.link_id
-                WHERE ls.stack_id = s.id
-                AND cc.cat_name = '".$key."'
-                            ) > 0,{$scoreCategoryKeyword},0)";
-                        
-        }
-
-    
-        if (empty($titleSQL))
-        {
-            $titleSQL[] = 0;
-        }
-
-        if (empty($userSQL))
-        {
-            $userSQL[] = 0;
-        }
-
-        if (empty($docSQL))
-        {
-            $docSQL[] = 0;
-        }
-
-        if (empty($urlSQL))
-        {
-            $urlSQL[] = 0;
-        }
-
-        if (empty($tagSQL)){
-            $tagSQL[] = 0;
-        }
-
-        */
 
         list($titleSQL, $docSQL, $userSQL, $categorySQL) = $this->getSearchWeight($query);
 
@@ -722,7 +627,68 @@ class StacksController extends Controller {
 
         $medias = Category::orderBy('cat_name')->get();
 
+        $catData = Category::where('id', '=', $category)->first();
+
         $stacks = array();
+
+        $categorySQL = array();
+
+        $categorySQL[] = "if ((
+                SELECT count(cc.id)
+                FROM categories cc
+                JOIN link_categories lc ON lc.category_id = cc.id
+                JOIN stack_links ls ON ls.link_id = lc.link_id
+                WHERE ls.stack_id = s.id
+                AND cc.cat_name = '".$catData->cat_name."'
+                            ) > 0,99,0)";
+
+
+        $sql = "SELECT s.*, ";
+
+        $sql .= " u.name, u.photo, u.email,";
+
+        $sql .= " GROUP_CONCAT(DISTINCT c2.cat_name SEPARATOR ',') as cat_name, ";
+
+        $sql .= "(
+                    (".implode(" + ", $categorySQL) .")
+                  
+                ) as relevance";
+
+        $sql .= " FROM stacks s";
+
+        $sql .= " JOIN users u ON u.id = s.user_id";
+
+        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
+        
+        $sql .= " LEFT JOIN link_categories c ON c.link_id = s2.link_id";
+
+        $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
+
+        $sql .= " GROUP BY s.id";
+
+        $sql .= " ORDER BY relevance DESC";
+       
+
+        $results = DB::select($sql);    
+
+
+        foreach($results as $result)
+        {
+            $author = array();
+            
+            $author = array('name' => $result->name,
+                            'email' => $result->email,
+                            'photo' => $result->photo);
+
+
+            $stacks[] = array('title' => $result->title,
+                              'image' => $result->video_id,
+                              'author' => $author,
+                              'id' => $result->id,
+                              'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+                              'categories' => $result->cat_name
+                          );
+        } 
 
         return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);   
     }
