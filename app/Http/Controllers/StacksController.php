@@ -267,7 +267,7 @@ class StacksController extends Controller {
 
         $sql .= " GROUP BY s.id";
 
-        $sql .= " ORDER BY relevance DESC";
+        $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
 
         $results = DB::select($sql);    
 
@@ -507,7 +507,7 @@ class StacksController extends Controller {
 
         $sql .= " GROUP BY s.id";
 
-        $sql .= " ORDER BY relevance DESC";
+        $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
 
         $results = DB::select($sql);
 
@@ -666,7 +666,7 @@ class StacksController extends Controller {
 
         $sql .= " GROUP BY s.id";
 
-        $sql .= " ORDER BY relevance DESC";
+        $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
        
 
         $results = DB::select($sql);    
