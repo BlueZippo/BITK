@@ -247,3 +247,30 @@
 {
 	width:70%;
 }
+
+.tags-container span
+{
+	position:relative;
+	cursor:pointer;
+}
+
+.tags-container span i
+{
+	color:#3097d1;
+	position:absolute;
+	top:0;
+	left:0;
+	background:rgba(0,0,0,0.2);
+	width:100%;
+	height:32px;
+	text-align:center;
+	line-height:32px;
+	font-size:24px;
+	border-radius:15px;
+	display:none;
+}
+
+.tags-container span:hover i
+{
+	display:block;
+}

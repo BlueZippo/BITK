@@ -93,6 +93,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
 Route::resource('tags', 'TagsController');
+Route::get('/tags/{id}/delete', 'TagsController@destroy');
 //Route::resource('categories', 'CategoriesController');
 
 Route::get('stacks/{id}/follow', 'StacksController@follow');

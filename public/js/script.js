@@ -58,8 +58,6 @@ $(document).ready(function()
 			dataType: 'json',
 			success: function(data)
 			{
-				console.log(action)
-
 				if (action == 'follow')
 				{	
 					$('.people-' + people_id + ' .follow-people-button').val('Unfollow');
@@ -74,6 +72,22 @@ $(document).ready(function()
 		});
 	});
 
+	$('.tags-container span').on('click', function()
+	{
+		var id = $(this).data('id');
 
+		$.ajax(
+		{
+			url: '/tags/' + id + '/delete',
+			type: 'get',
+			dataType: 'json',
+			success: function()
+			{
+				$('#tag' + id).remove();		
+			}
+		})
+
+		
+	})
 	
 });

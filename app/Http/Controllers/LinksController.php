@@ -229,28 +229,129 @@ class LinksController extends Controller
     {
        $url = $request->input('link_url');
 
-       $meta = get_meta_tags($url);
+       $meta = $this->getUrlData($url);
 
-       $data = array('title' => '', 'description' => '', 'image' => '/images/no-available-image.png');
+       $data = array('title' => $meta['title'], 'description' => '', 'image' => '/images/no-available-image.png');
 
-       foreach($meta as $key => $value)
+       foreach($meta['metaProperties'] as $key => $value)
        {
         if (preg_match('/title/', $key))
         {
-            $data['title'] = $value;
+            $data['title'] = $value['value'];
         }
 
         if (preg_match('/description/', $key))
         {
-            $data['description'] = $value;
+            $data['description'] = $value['value'];
         }    
 
         if (preg_match('/image/', $key))
         {
-            $data['image'] = $value;
+            $data['image'] = $value['value'];
         }
        } 
 
        return json_encode($data);
     }
+
+    function getUrlData($url, $raw=false) // $raw - enable for raw display
+    {
+        $result = false;
+       
+        $contents = $this->getUrlContents($url);
+
+        if (isset($contents) && is_string($contents))
+        {
+            $title = null;
+            $metaTags = null;
+            $metaProperties = null;
+           
+            preg_match('/<title>([^>]*)<\/title>/si', $contents, $match );
+
+            if (isset($match) && is_array($match) && count($match) > 0)
+            {
+                $title = strip_tags($match[1]);
+            }
+           
+            $pattern = '~<\s*meta\s(?=[^>]*?\b(?:name|property|http-equiv)\s*=\s*(?|"\s*([^"]*?)\s*"|\'\s*([^\']*?)\s*\'|([^"\'>]*?)(?=\s*/?\s*>|\s\w+\s*=)))[^>]*?\bcontent\s*=\s*(?|"\s*([^"]*?)\s*"|\'\s*([^\']*?)\s*\'|([^"\'>]*?)(?=\s*/?\s*>|\s\w+\s*=))[^>]*>~ix';
+
+            preg_match_all($pattern, $contents, $match);
+
+            if (isset($match) && is_array($match))
+            {
+                $originals = $match[0];
+                $names = $match[1];
+                $values = $match[2];
+
+                if (count($originals) == count($names) && count($names) == count($values))
+                {
+                    $metaTags = array();
+                    $metaProperties = $metaTags;
+                    if ($raw) {
+                        if (version_compare(PHP_VERSION, '5.4.0') == -1)
+                             $flags = ENT_COMPAT;
+                        else
+                             $flags = ENT_COMPAT | ENT_HTML401;
+                    }
+                   
+                    for ($i=0, $limiti=count($names); $i < $limiti; $i++)
+                    {
+                        if ($match[1][$i] == 'name')
+                             $meta_type = 'metaTags';
+                        else
+                             $meta_type = 'metaProperties';
+                        if ($raw)
+                            ${$meta_type}[$names[$i]] = array (
+                                'html' => htmlentities($originals[$i], $flags, 'UTF-8'),
+                                'value' => $values[$i]
+                            );
+                        else
+                            ${$meta_type}[$names[$i]] = array (
+                                'html' => $originals[$i],
+                                'value' => $values[$i]
+                            );
+                    }
+                }
+            }
+           
+            $result = array (
+                'title' => $title,
+                'metaTags' => $metaTags,
+                'metaProperties' => $metaProperties,
+            );
+        }
+
+        return $result;
+    }
+
+    function getUrlContents($url, $maximumRedirections = null, $currentRedirection = 0)
+    {
+        $result = false;
+       
+        $contents = @file_get_contents($url);
+       
+        // Check if we need to go somewhere else
+       
+        if (isset($contents) && is_string($contents))
+        {
+            preg_match_all('/<[\s]*meta[\s]*http-equiv="?REFRESH"?' . '[\s]*content="?[0-9]*;[\s]*URL[\s]*=[\s]*([^>"]*)"?' . '[\s]*[\/]?[\s]*>/si', $contents, $match);
+           
+            if (isset($match) && is_array($match) && count($match) == 2 && count($match[1]) == 1)
+            {
+                if (!isset($maximumRedirections) || $currentRedirection < $maximumRedirections)
+                {
+                    return getUrlContents($match[1][0], $maximumRedirections, ++$currentRedirection);
+                }
+               
+                $result = false;
+            }
+            else
+            {
+                $result = $contents;
+            }
+        }
+       
+        return $contents;
+    }
+
 }

@@ -95,6 +95,10 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $json = ['succes' => $id];
+
+        $tag = Tag::find($id)->delete();
+
+        return $json;
     }
 }

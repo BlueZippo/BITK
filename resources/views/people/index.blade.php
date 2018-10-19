@@ -4,6 +4,8 @@
 
     <h2>People</h2>            
 
+    <hr />
+
     <div class="row">
         
         @foreach($users as $user)
@@ -14,7 +16,7 @@
 
             <div class="image-container">
                 @if ($user->photo)
-                <img src="/upload/{{$user->photo}}">
+                <img src="{{$user->photo}}">
                 @else
                 <img src="/upload/no-image.png">
                 @endif
