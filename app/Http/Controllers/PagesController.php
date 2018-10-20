@@ -8,6 +8,7 @@ use App\User;
 use App\Link;
 use App\Stack;
 use App\LinksFollow;
+use App\StacksFollow;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -21,21 +22,111 @@ class PagesController extends Controller {
 
     public function index() {
 
-        $user_id = auth()->id();    	
+        $user_id = auth()->id();
 
-        $mystacks = User::find($user_id)
+        $results = User::find($user_id)
     				->stacks()
     				->limit(3)
     				->orderBy('created_at', 'desc')
     				->get();
 
-    	$stacks = Stack::orderBy('created_at', 'desc')
-    			 ->where('user_id', '!=' , $user_id)
-    			 ->get();			
+				$mystacks = array();
 
-    	$follows = 	User::find($user_id)
+				foreach($results as $result)
+				{
+					$author = User::find($result->user_id);
+
+					$categories = array();
+
+					foreach($result->links as $link)
+					{
+						$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+					}
+
+					$follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+					$mystacks[] = array(
+						    'id' => $result->id,
+								'title' => $result->title,
+								'content' => $result->content,
+						    'image' => $result->video_id,
+								'author' => $author,
+								'follow' => $follow->isEmpty() ? false : true,
+								'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+								'categories' => implode(',', array_unique($categories))
+						);
+				}
+
+
+
+    		$results = Stack::orderBy('created_at', 'desc')
+    			 ->where('user_id', '!=' , $user_id)
+    			 ->get();
+
+
+			  $follows = array();
+				$stacks = array();
+
+				foreach($results as $stack)
+				{
+
+					$author = User::find($result->user_id);
+
+					$categories = array();
+
+					foreach($stack->links as $link)
+					{
+						$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+					}
+
+					$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
+
+					$stacks[] = array(
+						    'id' => $stack->id,
+								'title' => $stack->title,
+								'content' => $stack->content,
+						    'image' => $stack->video_id,
+								'author' => $author,
+								'follow' => $follow->isEmpty() ? false : true,
+								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
+								'categories' => implode(',', array_unique($categories))
+						);
+				}
+
+
+
+    		$results = 	User::find($user_id)
                     ->stacksFollow()
                     ->get();
+
+				foreach($results as $result)
+				{
+					$stack = Stack::find($result->stack_id);
+
+					$author = User::find($result->user_id);
+
+					$categories = array();
+
+					foreach($stack->links as $link)
+					{
+						$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+					}
+
+					$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
+
+					$follows[] = array(
+						    'id' => $stack->id,
+								'title' => $stack->title,
+								'content' => $stack->content,
+						    'image' => $stack->video_id,
+								'author' => $author,
+								'follow' => $follow->isEmpty() ? false : true,
+								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
+								'categories' => implode(',', array_unique($categories))
+						);
+				}
+
+
 
         $tags = User::find($user_id)
                 ->tags()
@@ -50,20 +141,23 @@ class PagesController extends Controller {
         $people = User::whereIn('id', $people)->get();
 
 
-        $parking = User::find($user_id)                    
+        $parking = User::find($user_id)
                    ->links()
                    ->get();
 
-    	$data = ['mystacks' => $mystacks , 
-                 'stacks' => $stacks, 
-                 'follows' => $follows, 
-                 'tags' => $tags, 
+    	$data = ['mystacks' => $mystacks ,
+                 'stacks' => $stacks,
+                 'follows' => $follows,
+                 'tags' => $tags,
                  'people' => $people,
                  'user_id' => $user_id,
                  'parking' => $parking];
 
     	return view('pages.index')->with($data);
-    	
+
     }
+
+
+
 
 }

@@ -25,6 +25,7 @@ class Stack extends Model {
     }
 
 
-  
+    
+
 
 }

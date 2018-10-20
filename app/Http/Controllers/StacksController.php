@@ -179,8 +179,6 @@ class StacksController extends Controller {
                    ->pluck('id')
                    ->toArray();
 
-
-
         $data['links'] = $links;
 
         $data['categories'] = $categories;
@@ -507,10 +505,39 @@ class StacksController extends Controller {
 
     public function view_all()
     {
-         $stacks = User::find(auth()->id())
+         $results = User::find(auth()->id())
                     ->stacks()
                     ->orderBy('created_at', 'desc')
                     ->get();
+
+        $stacks = array();
+
+
+        foreach($results as $stack)
+				{
+					$author = User::find($stack->user_id);
+
+					$categories = array();
+
+					foreach($stack->links as $link)
+					{
+						$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+					}
+
+					$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
+
+					$stacks[] = array(
+						    'id' => $stack->id,
+								'title' => $stack->title,
+								'content' => $stack->content,
+						    'image' => $stack->video_id,
+								'author' => $author,
+								'follow' => $follow->isEmpty() ? false : true,
+								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
+								'categories' => implode(',', array_unique($categories))
+						);
+				}
+
 
         return view('stacks.view-all', compact('stacks', $stacks));
     }
