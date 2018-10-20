@@ -21,23 +21,9 @@
 					<div class="row">
 						@foreach($mystacks as $stack)
 							<div class="col-md-4">
-								<div class="well">
-									<a href="/stacks/{{$stack->id}}/dashboard">
-										<h4>{{$stack->title}}</h4>
-										<small>{{$stack->subtitle}}</small>
-									</a>
-									<div class="buttons">
 
-										<form method="post" action="/stacks/delete">
-
-											<input type="hidden" name="stack_id" value="{{$stack->id}}">
-
-											<a href="/stacks/{{$stack->id}}/edit">Edit</a> | <a class="delete-button">Delete</a>
-
-										</form>
-
-									</div>
-								</div>
+								@include('stacks.box')
+								
 							</div>
 						@endforeach
 					</div>

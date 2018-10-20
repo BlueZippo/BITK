@@ -6,27 +6,22 @@
 
 		@if (count($follows) > 0)
 
-			<div class="row">	
+			<div class="row">
 
-			@foreach($follows as $follow)
+			@foreach($follows as $stack)
 
-				<div class="col-md-3">	
+				<div class="col-md-3">
 
-					<div class="well well-lg">
+					@include('stacks.box')
 
-						<a href="/stacks/{{$follow->stack->id}}/dashboard"><h3>{{$follow->stack->title}}</h3>
-						<small>{{$follow->stack->subtitle}}</small></a>
+				</div>
 
-					</div>	
-
-				</div>	
-
-			@endforeach	
+			@endforeach
 
 			</div>
 
 	@endif
 
-	</div>	
+	</div>
 
 </div>

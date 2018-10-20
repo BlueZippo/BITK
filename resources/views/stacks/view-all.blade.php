@@ -8,7 +8,7 @@
 
         <div class="col-md-3">
 
-            <h3><a href="/stacks/{{$stack->id}}/dashboard">{{$stack->title}}</a></h3>
+            @include('stacks.box')
 
 
         </div>
@@ -18,6 +18,6 @@
 
 
     </div>
-   
+
 
 @endsection

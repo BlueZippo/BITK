@@ -10,20 +10,11 @@
 
 				@foreach($stacks as $stack)
 
-					<div class="col-md-2">
+					<div class="col-md-3">
 
-						<div class="well">
+						@include('stacks.box')
 
-							<a href="/stacks/{{$stack->id}}/dashboard">
-
-							<h4>{{$stack->title}}</h4>
-							<small>{{$stack->subtitle}}</small>					
-
-							</a>
-
-						</div>
-
-					</div>	
+					</div>
 
 				@endforeach
 
@@ -32,4 +23,4 @@
 
 	</div>
 
-</div>		
+</div>
