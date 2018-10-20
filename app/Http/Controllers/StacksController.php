@@ -144,7 +144,7 @@ class StacksController extends Controller {
 
         $follow->save();
 
-        return json_encode(array('user_id' => $user_id, 'stack_id' => $id));
+        return json_encode(array('user_id' => $user_id, 'stack_id' => $id, 'action' => 'follow'));
     }
 
     public function unfollow($id)
@@ -156,7 +156,7 @@ class StacksController extends Controller {
 
         $stack->delete();        
 
-        return json_encode(array('user_id' => $user_id, 'stack_id' => $id));
+        return json_encode(array('user_id' => $user_id, 'stack_id' => $id, 'action' => 'unfollow'));
     }
 
     public function dashboard($id)
@@ -284,14 +284,18 @@ class StacksController extends Controller {
                             'photo' => $result->photo);
 
 
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+
             $stacks[] = array('title' => $result->title,
                               'image' => $result->video_id,
                               'author' => $author,
                               'id' => $result->id,
+                              'follow' => $follow->isEmpty() ? false : true,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
                           );
-        }    
+        } 
 
         return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
     }
@@ -316,25 +320,14 @@ class StacksController extends Controller {
                             'email' => $result->email,
                             'photo' => $result->photo);
 
-            /*
-            $categories = array();
-
-            $links = $result->links;
-
-            foreach($links as $link)
-            {
-                foreach($link->category as $cat)
-                {
-                    $categories[] = $cat->cat_name;
-                }    
-            }
-            */ 
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
 
             $stacks[] = array('title' => $result->title,
                               'image' => $result->video_id,
                               'author' => $author,
                               'id' => $result->id,
+                              'follow' => $follow->isEmpty() ? false : true,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
                           );
@@ -681,10 +674,13 @@ class StacksController extends Controller {
                             'photo' => $result->photo);
 
 
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
             $stacks[] = array('title' => $result->title,
                               'image' => $result->video_id,
                               'author' => $author,
                               'id' => $result->id,
+                              'follow' => $follow->isEmpty() ? false : true,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
                           );

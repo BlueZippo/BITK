@@ -1,42 +1,51 @@
+$(document).on('click', 'a.follow-button', function()
+{
+	stack_id = $(this).data('id');	
+	action = $(this).attr('data-action');
+
+	console.log(action);
+
+	$.ajax(
+	{
+		url: '/stacks/' + stack_id + '/' + action,
+		type: 'get',
+		dataType: 'json',
+		success: function(data)
+		{
+			var action = data.action;
+
+			if (action == 'follow')
+			{	
+				$('#stack' + stack_id + ' .follow-button').html('<i class="fa fa-plus"></i> Saved');
+				$('#stack' + stack_id + ' .follow-button').attr('data-action', 'unfollow')
+			}
+			else
+			{
+				$('#stack' + stack_id + ' .follow-button').html('<i class="fa fa-plus"></i> Save');
+				$('#stack' + stack_id + ' .follow-button').attr('data-action', 'follow')
+			}
+		}
+	});
+	
+
+});
+
+
 $(document).ready(function()
 {
 	$('.textarea').ckeditor();        
 
 
-	$('a.follow-button').click(function()
+	/*
+	$('a.follow-button').on('click', function()
 	{
-		var stack_id = $(this).data('id');	
-		var action = $(this).html();
+		
+		
 
-		if (action == 'Follow')
-		{
-			action = 'follow'
-		}
-		else
-		{
-			action = 'unfollow';
-		}	
-
-		$.ajax({
-			url: '/stacks/' + stack_id + '/' + action,
-			type: 'get',
-			dataType: 'json',
-			success: function()
-			{
-				if (action == 'follow')
-				{	
-					$('.follow-button').html('Unfollow');
-					$('.follow-button').attr('data-action', 'unfollow')
-				}
-				else
-				{
-					$('.follow-button').html('Follow');
-					$('.follow-button').attr('data-action', 'follow')
-				}
-			}
-		});
+		
 		
 	});
+	*/
 
 	$('.follow-people-button').click(function()
 	{

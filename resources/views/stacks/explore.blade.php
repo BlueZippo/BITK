@@ -23,7 +23,7 @@
 
                 <div class="col-md-4">
 
-                    <div class="inner-wrap">
+                    <div class="inner-wrap" id="stack{{$stack['id']}}">
 
                         <div class="featured-image">
 
@@ -97,8 +97,11 @@
 
                             <div class="stack-footer">  
 
-
-                                <a class="follow-button" data-id="{{$stack['id']}}"><i class="fa fa-plus"></i> Save</a>
+                                @if ($stack['follow'])
+                                    <a class="follow-button" data-action="unfollow" data-id="{{$stack['id']}}"><i class="fa fa-plus"></i> Saved</a>
+                                @else
+                                    <a class="follow-button" data-action="follow" data-id="{{$stack['id']}}"><i class="fa fa-plus"></i> Save</a>
+                                @endif
 
 
                             </div>    

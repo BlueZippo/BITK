@@ -41,6 +41,15 @@ class PagesController extends Controller {
                 ->tags()
                 ->get();
 
+
+        $people = User::find($user_id)
+                  ->peopleFollow()
+                  ->get()
+                  ->pluck('people_id');
+
+        $people = User::whereIn('id', $people)->get();
+
+
         $parking = User::find($user_id)                    
                    ->links()
                    ->get();
@@ -49,6 +58,7 @@ class PagesController extends Controller {
                  'stacks' => $stacks, 
                  'follows' => $follows, 
                  'tags' => $tags, 
+                 'people' => $people,
                  'user_id' => $user_id,
                  'parking' => $parking];
 
