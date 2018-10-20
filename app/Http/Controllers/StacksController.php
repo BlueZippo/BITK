@@ -26,19 +26,10 @@ class StacksController extends Controller {
 
         $this->middleware('auth');
 
-        //$this->middleware('permission:Subscriber');
-
-        //$this->middleware('permission:stack-create', ['only' => ['create','store']]);
-
-        //$this->middleware('permission:stack-edit', ['only' => ['edit','update']]);
-
-        //$this->middleware('permission:stack-delete', ['only' => ['destroy']]);
-    
-
     }
 
-    public function create(Request $request) 
-    { 
+    public function create(Request $request)
+    {
         $data['links'] = array();
 
         $data['user'] = User::find(auth()->id());
@@ -48,37 +39,37 @@ class StacksController extends Controller {
         if ($request->old('links'))
         {
             $data['links'] = $request->old('links');
-        }    
+        }
 
 
-        return view('stacks.create')->with($data);    	
+        return view('stacks.create')->with($data);
     }
-    
-    public function store(Request $request) 
+
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(),
             [
-             'title' => 'required',          
-            ] 
+             'title' => 'required',
+            ]
         );
 
-        if ($validator->fails()) 
+        if ($validator->fails())
         {
             return redirect('stacks/create')
                         ->withInput($request->all())
                         ->withErrors($validator);
         }
-        
+
         $stack = new Stack;
-        
+
         $stack->title = request('title');
-        
+
         $stack->content = request('content');
 
         $stack->user_id = auth()->id();
 
         $stack->video_id = request('video_id');
-        
+
         $stack->save();
 
 
@@ -120,11 +111,11 @@ class StacksController extends Controller {
 
                 $xy->save();
 
-            }    
-        }    
-        
+            }
+        }
+
         return redirect()->home();
-        
+
     }
 
 
@@ -135,7 +126,7 @@ class StacksController extends Controller {
         $stack = StacksFollow::where('user_id', '=', $user_id)
                  ->where('stack_id', '=', $id);
 
-        $stack->delete();         
+        $stack->delete();
 
         $follow = new StacksFollow;
 
@@ -154,7 +145,7 @@ class StacksController extends Controller {
         $stack = StacksFollow::where('user_id', '=', $user_id)
                  ->where('stack_id', '=', $id);
 
-        $stack->delete();        
+        $stack->delete();
 
         return json_encode(array('user_id' => $user_id, 'stack_id' => $id, 'action' => 'unfollow'));
     }
@@ -172,7 +163,7 @@ class StacksController extends Controller {
            $cats = Link::find($link->id)->category->pluck('id')->toArray();
 
            $categories = array_merge($categories, $cats);
-           
+
         }
 
         $categories = Category::whereIn('id', $categories)->get();
@@ -186,26 +177,26 @@ class StacksController extends Controller {
                    ->stacks()
                    ->get()
                    ->pluck('id')
-                   ->toArray();                   
+                   ->toArray();
 
-      
+
 
         $data['links'] = $links;
 
         $data['categories'] = $categories;
 
-        $data['stack'] = $stack;     
+        $data['stack'] = $stack;
 
         $data['follow'] = "";
 
         if (in_array($id, $follows))
-        {    
-            $data['follow'] = sprintf("<a class='follow-button' data-id='%s' data-action='%s'>%s</a>", $id, 'follow', 'UnFollow');      
+        {
+            $data['follow'] = sprintf("<a class='follow-button' data-id='%s' data-action='%s'>%s</a>", $id, 'follow', 'UnFollow');
         }
         else if (!in_array($id, $mystack))
         {
-            $data['follow'] = sprintf("<a class='follow-button' data-id='%s' data-action='%s'>%s</a>", $id, 'follow', 'Follow');         
-        } 
+            $data['follow'] = sprintf("<a class='follow-button' data-id='%s' data-action='%s'>%s</a>", $id, 'follow', 'Follow');
+        }
 
         return view('stacks.dashboard')->with($data);
     }
@@ -231,8 +222,8 @@ class StacksController extends Controller {
                 $categorySQL = array_merge($categorySQL, $cSQL);
 
             }
-            
-        }    
+
+        }
         else
         {
             $titleSQL[] = 0;
@@ -249,10 +240,10 @@ class StacksController extends Controller {
 
         $sql .= "(
                     (".implode(" + ", $titleSQL)    .") +
-                    (".implode(" + ", $docSQL)      .") + 
-                    (".implode(" + ", $userSQL)     .") + 
+                    (".implode(" + ", $docSQL)      .") +
+                    (".implode(" + ", $userSQL)     .") +
                     (".implode(" + ", $categorySQL) .")
-                  
+
                 ) as relevance";
 
         $sql .= " FROM stacks s";
@@ -260,7 +251,7 @@ class StacksController extends Controller {
         $sql .= " JOIN users u ON u.id = s.user_id";
 
         $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
-        
+
         $sql .= " LEFT JOIN link_categories c ON c.link_id = s2.link_id";
 
         $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
@@ -269,7 +260,7 @@ class StacksController extends Controller {
 
         $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
 
-        $results = DB::select($sql);    
+        $results = DB::select($sql);
 
         $stacks = array();
 
@@ -277,7 +268,7 @@ class StacksController extends Controller {
 
         foreach($results as $result)
         {
-            $author = array();          
+            $author = array();
 
             $author = array('name' => $result->name,
                             'email' => $result->email,
@@ -295,7 +286,7 @@ class StacksController extends Controller {
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
                           );
-        } 
+        }
 
         return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
     }
@@ -331,35 +322,35 @@ class StacksController extends Controller {
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
                           );
-        }    
+        }
 
 
-        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);   
-        
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
+
     }
 
 
-    
+
     private function filterSearchKeys($query)
     {
         $query = trim(preg_replace("/(\s+)+/", " ", $query));
-        
+
         $words = array();
-       
+
         $list = array("in","it","a","the","of","or","I","you","he","me","us","they","she","to","but","that","this","those","then");
-        
+
         $c = 0;
-        
+
         foreach(explode(" ", $query) as $key)
         {
-            
+
             if (in_array($key, $list))
             {
                 continue;
             }
-            
+
             $words[] = $key;
-            
+
             if ($c >= 15)
             {
                 break;
@@ -376,22 +367,22 @@ class StacksController extends Controller {
         return substr($query, 0,$limit);
     }
 
-    
+
     function getSearchWeight($query)
     {
         $titleSQL = array();
-        
+
         $userSQL = array();
-        
+
         $docSQL = array();
-        
+
         $categorySQL = array();
 
         $query = trim($query);
-        
+
         if (mb_strlen($query)===0)
         {
-            return false; 
+            return false;
         }
 
         $query = $this->limitChars($query);
@@ -402,15 +393,15 @@ class StacksController extends Controller {
 
         $algorithm = Search::first();
 
-        $scoreFullTitle = $algorithm->title;        
+        $scoreFullTitle = $algorithm->title;
         $scoreTitleKeyword = $algorithm->title;
-        
+
         $scoreUsername = $algorithm->author;
 
         $scoreSummaryKeyword = $algorithm->content;
-        
+
         $scoreFullDocument = $algorithm->content;
-        $scoreDocumentKeyword = $algorithm->content;        
+        $scoreDocumentKeyword = $algorithm->content;
         $scoreCategoryKeyword = $algorithm->category;
 
         if (count($keywords) > 1)
@@ -427,8 +418,8 @@ class StacksController extends Controller {
             $userSQL[] = "if (u.name LIKE '%".$key."%',{$scoreUsername},0)";
             $docSQL[] = "if (s.content LIKE '%".$key."%',{$scoreDocumentKeyword},0)";
             //$urlSQL[] = "if (p_url LIKE '%".$key."%',{$scoreUrlKeyword},0)";
-            
-            
+
+
             $categorySQL[] = "if ((
                 SELECT count(cc.id)
                 FROM categories cc
@@ -437,12 +428,12 @@ class StacksController extends Controller {
                 WHERE ls.stack_id = s.id
                 AND cc.cat_name = '".$key."'
                             ) > 0,{$scoreCategoryKeyword},0)";
-                        
+
         }
 
         return array($titleSQL, $docSQL, $userSQL, $categorySQL);
 
-    }    
+    }
 
 
     function get_results($query)
@@ -482,10 +473,10 @@ class StacksController extends Controller {
 
         $sql .= "(
                     (".implode(" + ", $titleSQL)    .") +
-                    (".implode(" + ", $docSQL)      .") + 
-                    (".implode(" + ", $userSQL)     .") + 
+                    (".implode(" + ", $docSQL)      .") +
+                    (".implode(" + ", $userSQL)     .") +
                     (".implode(" + ", $categorySQL) .")
-                  
+
                 ) as relevance";
 
         $sql .= " FROM stacks s";
@@ -493,7 +484,7 @@ class StacksController extends Controller {
         $sql .= " JOIN users u ON u.id = s.user_id";
 
         $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
-        
+
         $sql .= " LEFT JOIN link_categories c ON c.link_id = s2.link_id";
 
         $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
@@ -504,12 +495,12 @@ class StacksController extends Controller {
 
         $results = DB::select($sql);
 
-       
+
         if (!$results)
         {
             return false;
         }
-        
+
         return $results;
     }
 
@@ -521,7 +512,7 @@ class StacksController extends Controller {
                     ->orderBy('created_at', 'desc')
                     ->get();
 
-        return view('stacks.view-all', compact('stacks', $stacks));           
+        return view('stacks.view-all', compact('stacks', $stacks));
     }
 
 
@@ -537,7 +528,7 @@ class StacksController extends Controller {
 
         $data['categories'] = Category::all();
 
-        return view('stacks.edit')->with($data);              
+        return view('stacks.edit')->with($data);
     }
 
 
@@ -545,9 +536,9 @@ class StacksController extends Controller {
     {
 
         $stack = Stack::find($id);
-        
+
         $stack->title = request('title');
-        
+
         $stack->content = request('content');
 
         $stack->subtitle = request('subtitle');
@@ -567,7 +558,7 @@ class StacksController extends Controller {
             Link::find($link_id)->delete();
 
             StackLink::where('stack_id', '=', $stack->id)->where('link_id', '=', $link_id)->delete();
-        }    
+        }
 
 
         if ($request->has('links'))
@@ -608,8 +599,8 @@ class StacksController extends Controller {
 
                 $xy->save();
 
-            }    
-        }    
+            }
+        }
 
         return redirect('stacks/' .  $id . '/edit')->with('success', 'Stack updated');
     }
@@ -644,7 +635,7 @@ class StacksController extends Controller {
 
         $sql .= "(
                     (".implode(" + ", $categorySQL) .")
-                  
+
                 ) as relevance";
 
         $sql .= " FROM stacks s";
@@ -652,7 +643,7 @@ class StacksController extends Controller {
         $sql .= " JOIN users u ON u.id = s.user_id";
 
         $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
-        
+
         $sql .= " LEFT JOIN link_categories c ON c.link_id = s2.link_id";
 
         $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
@@ -660,15 +651,15 @@ class StacksController extends Controller {
         $sql .= " GROUP BY s.id";
 
         $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
-       
 
-        $results = DB::select($sql);    
+
+        $results = DB::select($sql);
 
 
         foreach($results as $result)
         {
             $author = array();
-            
+
             $author = array('name' => $result->name,
                             'email' => $result->email,
                             'photo' => $result->photo);
@@ -684,9 +675,9 @@ class StacksController extends Controller {
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
                           );
-        } 
+        }
 
-        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);   
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
     }
-    
+
 }
