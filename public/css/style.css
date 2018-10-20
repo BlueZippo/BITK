@@ -246,6 +246,26 @@
 .search-wrapper
 {
 	width:70%;
+	position:relative;
+}
+
+.search-wrapper input.form-control
+{
+	padding:0px 0px 0px 45px;
+	position:relative;
+}
+
+.search-wrapper::before
+{
+	content: "\f002";
+	display:block;
+	position:absolute;
+	top:4px;
+	left:12px;
+	font-family: FontAwesome;
+	color:#ccc;
+	font-size:18px;
+	z-index:9;
 }
 
 .tags-container span
