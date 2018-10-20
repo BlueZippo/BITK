@@ -10,4 +10,9 @@ class PeopleFollow extends Model
     {
         $this->belongsTo('App\User');
     }
+
+    public function people()
+    {
+    	$this->belongsTo('App\User', 'people_id');
+    }
 }
