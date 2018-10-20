@@ -229,26 +229,46 @@ class LinksController extends Controller
     {
        $url = $request->input('link_url');
 
+       $metaTitle = false;
+       $metaDescription  = false;
+       $metaImage = false;
+
        $meta = $this->getUrlData($url);
 
-       $data = array('title' => $meta['title'], 'description' => '', 'image' => '/images/no-available-image.png');
+       $data = array('title' => '', 'description' => '', 'image' => '/images/no-available-image.png');
+
+
+       if (isset($meta['title']))
+       {
+        $data['title'] = $meta['title'];
+        $metaTitle = true;
+       }
 
        foreach($meta['metaProperties'] as $key => $value)
        {
-        if (preg_match('/title/', $key))
-        {
-            $data['title'] = $value['value'];
-        }
 
-        if (preg_match('/description/', $key))
-        {
-            $data['description'] = $value['value'];
-        }    
+        $keys = explode(':', $key);
 
-        if (preg_match('/image/', $key))
-        {
-            $data['image'] = $value['value'];
-        }
+        if (count($keys) == 2)
+        {   
+
+            if (preg_match('/title/', $key))
+            {
+                $data['title'] = $value['value'];
+            }
+
+            if (preg_match('/description/', $key))
+            {
+                $data['description'] = $value['value'];
+            }    
+
+            if (preg_match('/image/', $key))
+            {
+                $data['image'] = $value['value'];
+            }
+
+         }
+            
        } 
 
        return json_encode($data);
@@ -257,8 +277,17 @@ class LinksController extends Controller
     function getUrlData($url, $raw=false) // $raw - enable for raw display
     {
         $result = false;
-       
+
+
         $contents = $this->getUrlContents($url);
+
+        $result = array (
+                'title' => '',
+                'metaTags' => array(),
+                'metaProperties' => array(),
+            );
+
+
 
         if (isset($contents) && is_string($contents))
         {
@@ -276,6 +305,8 @@ class LinksController extends Controller
             $pattern = '~<\s*meta\s(?=[^>]*?\b(?:name|property|http-equiv)\s*=\s*(?|"\s*([^"]*?)\s*"|\'\s*([^\']*?)\s*\'|([^"\'>]*?)(?=\s*/?\s*>|\s\w+\s*=)))[^>]*?\bcontent\s*=\s*(?|"\s*([^"]*?)\s*"|\'\s*([^\']*?)\s*\'|([^"\'>]*?)(?=\s*/?\s*>|\s\w+\s*=))[^>]*>~ix';
 
             preg_match_all($pattern, $contents, $match);
+
+           
 
             if (isset($match) && is_array($match))
             {
@@ -329,7 +360,8 @@ class LinksController extends Controller
         $result = false;
        
         $contents = @file_get_contents($url);
-       
+
+
         // Check if we need to go somewhere else
        
         if (isset($contents) && is_string($contents))
