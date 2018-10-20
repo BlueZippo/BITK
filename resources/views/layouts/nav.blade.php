@@ -3,7 +3,7 @@
     <nav class="navbar main_nav navbar-expand-md navbar-light fixed-top bg-light">
         <div class="inner container">
         
-            <a class="navbar-brand" href="/">SITE LOGO</a>
+            <a class="navbar-brand" href="/">{{Html::image('/images/logo.png')}}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,9 +27,8 @@
             </div>
             @endif
             <ul class="navbar-nav mr-auto justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
+                
+                
 
                
                 @if (Auth::check())

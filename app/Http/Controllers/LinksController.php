@@ -355,6 +355,9 @@ class LinksController extends Controller
         return $result;
     }
 
+
+    
+
     function getUrlContents($url, $maximumRedirections = null, $currentRedirection = 0)
     {
         $result = false;
