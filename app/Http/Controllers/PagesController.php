@@ -137,6 +137,8 @@ class PagesController extends Controller {
 					}	
 				}
 
+				print_r($follows); return "";
+
 
 
         $tags = User::find($user_id)
