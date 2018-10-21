@@ -69,10 +69,9 @@ class PagesController extends Controller {
 
 				foreach($results as $stack)
 				{
-
 					$user = User::find($stack->user_id);
 
-					$author = array('name' => $user->name, 'email' => $user->email);
+					$author = array('name' => $user->name, 'email' => $user->email, 'photo' => $user->photo);
 
 					$categories = array();
 
