@@ -8,20 +8,15 @@
 
 			@foreach($people as $person)
 
-				<div class="col-md-3">	
+				<div class="col-md-2" id="people{{$person->id}}">
 
-					<div class="well well-lg">
+					@include('people.box')
 
-						<a href="/people/{{$person->id}}/stacks"><h3>{{$person->name}}</h3>
-						
-
-					</div>	
-
-				</div>	
+				</div>
 
 			@endforeach
 
-		</div>	
+		</div>
 
 	</div>
 

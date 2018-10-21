@@ -46,13 +46,13 @@
 {
 	margin-bottom: 20px;
 	background-color: #fff;
-	border: 1px solid #ccc;    
+	border: 1px solid #ccc;
 	border-radius: 4px;
 	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 
-.panel-heading 
+.panel-heading
 {
     padding: 10px 15px;
     border-bottom: 1px solid transparent;
@@ -60,7 +60,7 @@
     border-top-right-radius: 3px;
 }
 
-.panel-default > .panel-heading 
+.panel-default > .panel-heading
 {
     color: #333;
     background-color: #f5f5f5;
@@ -78,7 +78,7 @@
 	color:#fff;
 }
 
-.well 
+.well
 {
     min-height: 20px;
     padding: 19px;
@@ -92,7 +92,7 @@
 
 .add-link-modal
 {
-	display:block;	
+	display:block;
 	width:200px;
 	border:solid 1px #ccc;
 	text-align:center;
@@ -146,6 +146,12 @@
 .author .user-ctrl
 {
 	display:inline-block;
+}
+
+.user-ctrl .avatar
+{
+	float:left;
+	margin-top:-7px;
 }
 
 .avatar > img
@@ -293,4 +299,18 @@
 .tags-container span:hover i
 {
 	display:block;
+}
+
+.meta-category .categories
+{
+	width:56%;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+.people-box .header
+{
+	min-height:50px;
+	background:#3097d1;
 }
