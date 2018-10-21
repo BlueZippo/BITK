@@ -23,7 +23,7 @@
               <img src="{{$stack['author']['photo']}}">
             @else
               <div class="inner">
-                {{ render_initials( $stack['author']['name'] ? $stack['author']['name'] : $stack['author']['email']   ) }}
+                
               </div>
             @endif
           </div>
