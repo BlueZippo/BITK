@@ -110,13 +110,9 @@ class PagesController extends Controller {
 				{
 					$stack = Stack::find($result->stack_id);
 
-					$author = User::find($result->user_id);
+					$author = User::find($stack->user_id);
 
-					print_r($result);
-
-					print_r($author);
-
-					/*
+					
 					if ($author)
 					{
 
@@ -140,7 +136,7 @@ class PagesController extends Controller {
 									'categories' => implode(',', array_unique($categories))
 							);
 					}	
-					*/
+					
 				}
 
 
