@@ -69,9 +69,14 @@ class PagesController extends Controller {
 
 				foreach($results as $stack)
 				{
+					print_r($stack);
+
 					$user = User::find($stack->user_id);
 
-					print_r($user);
+					if ($user->isEmpty())
+					{
+						echo "xxxx";
+					}	
 
 					/*
 					$author = array('name' => $user->name, 'email' => $user->email, 'photo' => $user->photo);
