@@ -71,6 +71,8 @@ class PagesController extends Controller {
 				{
 					$user = User::find($stack->user_id);
 
+					print_r($user);
+
 					$author = array('name' => $user->name, 'email' => $user->email, 'photo' => $user->photo);
 
 					$categories = array();
@@ -93,6 +95,8 @@ class PagesController extends Controller {
 								'categories' => implode(',', array_unique($categories))
 						);
 				}
+
+				return "";
 
 
 
