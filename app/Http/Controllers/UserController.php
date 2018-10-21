@@ -312,4 +312,32 @@ class UserController extends Controller
         return json_encode(array('message'=> 'Image uploaded successfully', 'photo' => $input['photo']));
     }
 
+    public function background(Request $request)
+    {
+
+        $this->validate($request, [
+
+            'background' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+
+        $image = $request->file('background');
+
+        $user_id = auth()->id();
+
+        $photo = sprintf("background-%s-%s.%s", $user_id, time(), $image->getClientOriginalExtension());
+
+        $destinationPath = public_path('/upload');
+
+        $image->move($destinationPath, $photo);
+
+        $user = User::find($user_id);
+
+        $input['background'] = '/upload/' . $photo;
+
+        $user->update($input);
+
+        return json_encode(array('message'=> 'Image uploaded successfully', 'background' => $input['background']));
+    }
+
 }

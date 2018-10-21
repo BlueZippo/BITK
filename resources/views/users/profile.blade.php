@@ -44,11 +44,14 @@
 
 @endif
 
+<div class="profile-header" @if($user->background) style="background-image:url({{$user->background}})" @endif >
 
+    <div class="profile-background-button">
 
+        <a href="" data-toggle="modal" data-target="#updateProfileBackgroundModal"><i class="fa fa-camera"></i> Update Profile Background</a>
 
+    </div>
 
-<div class="profile-header">
     <div class="profile-avatar">
         @if ($user->photo)
         <img id="profile-img" src="{{$user->photo}}">
@@ -57,12 +60,13 @@
          @endif
 
          <div class="hover">
-            <a href="" data-toggle="modal" data-target="#updateProfilePhotoModal"><i class="fa fa-camera"></i> Upload Profile Picture</a>
+            <a href="" data-toggle="modal" data-target="#updateProfilePhotoModal"><i class="fa fa-camera"></i> Update Profile Picture</a>
          </div>   
     </div>
 </div>
 
 @include('users.profile-upload-photo')
+@include('users.profile-upload-background')
 
 
 {!! Form::model($user, ['method' => 'post','route' => ['users.profile_update']]) !!}

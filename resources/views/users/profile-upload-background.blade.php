@@ -1,26 +1,24 @@
-<div class="modal fade" id="updateProfilePhotoModal" tabindex="-1" role="dialog" aria-labelledby="updateProfilePhotoModal" aria-hidden="true">
+<div class="modal fade" id="updateProfileBackgroundModal" tabindex="-1" role="dialog" aria-labelledby="updateProfileBackgroundModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="updateProfilePhotoModal">Upload Profile Photo</h5>
+        <h5 class="modal-title" id="updateProfileBackgroundModal">Upload Profile Background</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body">          
 
-          
+        <form id="upload-background-form" action="/users/profile/background" method="post" enctype="multipart/form-data">      
 
-        <form id="upload-image-form" action="/users/profile/upload" method="post" enctype="multipart/form-data">      
-
-          @if ($user->photo)
-            <img id="preview-img" src="{{$user->photo}}">
+          @if ($user->background)
+            <img id="background-img" src="{{$user->background}}">
           @else
             <img id="background-img" src="/images/no-available-image.png">
            @endif
 
           <div class="form-group">
-              {!! Form::file('image', array('class' => 'image', 'id' => 'file')) !!}
+              {!! Form::file('background', array('class' => 'image', 'id' => 'background')) !!}
           </div>      
         </form>
 
@@ -35,7 +33,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary upload-photo-button">Update Profile Photo</button>
+        <button type="button" class="btn btn-primary upload-background-button">Update Profile Background</button>
       </div>
     </div>
   </div>
