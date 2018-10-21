@@ -314,3 +314,8 @@
 	min-height:50px;
 	background:#3097d1;
 }
+
+.stack-content .user-ctrl .avatar > .inner
+{
+	position:relative;
+}
