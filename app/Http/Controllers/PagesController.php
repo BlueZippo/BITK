@@ -73,6 +73,7 @@ class PagesController extends Controller {
 
 					print_r($user);
 
+					/*
 					$author = array('name' => $user->name, 'email' => $user->email, 'photo' => $user->photo);
 
 					$categories = array();
@@ -94,6 +95,7 @@ class PagesController extends Controller {
 								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
 								'categories' => implode(',', array_unique($categories))
 						);
+					*/
 				}
 
 				return "";
