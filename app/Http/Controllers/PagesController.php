@@ -70,7 +70,7 @@ class PagesController extends Controller {
 				foreach($results as $stack)
 				{
 
-					$author = User::find($result->user_id);
+					$author = User::find($stack->user_id);
 
 					$categories = array();
 
