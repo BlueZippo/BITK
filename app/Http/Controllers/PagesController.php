@@ -69,7 +69,7 @@ class PagesController extends Controller {
 
 				foreach($results as $stack)
 				{
-					print_r($stack);
+					echo $stack->user_id;
 
 					$user = User::find($stack->user_id);
 
