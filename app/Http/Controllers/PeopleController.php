@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\PeopleFollow;
+use App\Stack;
+use App\StacksFollow;
 
 class PeopleController extends Controller
 {
@@ -125,6 +127,33 @@ class PeopleController extends Controller
     {
         $user = User::find($user_id);
 
-        return view('people.stacks')->with(['user' => $user]);
+        $stacks = array();
+
+        foreach($user->stacks as $result)
+        {
+            $author = User::find($result->user_id);
+
+            $categories = array();
+
+            foreach($result->links as $link)
+            {
+                $categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+            }
+
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+            $stacks[] = array(
+                    'id' => $result->id,
+                    'title' => $result->title,
+                    'content' => $result->content,
+                    'image' => $result->video_id,
+                    'author' => $author,
+                    'follow' => $follow->isEmpty() ? false : true,
+                    'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+                    'categories' => implode(',', array_unique($categories))
+                );
+        }
+
+        return view('people.stacks')->with(['user' => $user, 'stacks' => $stacks]);
     }
 }

@@ -308,3 +308,9 @@
 	text-overflow:ellipsis;
 	white-space:nowrap;
 }
+
+.people-box .header
+{
+	min-height:50px;
+	background:#3097d1;
+}

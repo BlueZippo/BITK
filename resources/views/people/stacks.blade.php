@@ -8,14 +8,11 @@
 
     <div class="row">
 
-        @foreach($user->stacks as $stack)
+        @foreach($stacks as $stack)
 
-        <div class="col-md-4">
+        <div class="col-md-3">
 
-            <a href="/stacks/{{$stack->id}}/dashboard">
-                <h3>{{$stack->title}}</h3>
-                <small>{{$stack->subtitle}}</small>
-            </a>
+            @include('stacks.box')
 
         </div>
 

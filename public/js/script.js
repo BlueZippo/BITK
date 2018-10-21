@@ -50,16 +50,8 @@ $(document).ready(function()
 	$('.follow-people-button').click(function()
 	{
 		var people_id = $(this).data('id');
-		var action = $(this).val();
-
-		if (action == 'Follow')
-		{
-			action = 'follow'
-		}
-		else
-		{
-			action = 'unfollow';
-		}	
+		var action = $(this).attr('data-action');
+		
 
 		$.ajax({
 			url: '/people/' + people_id + '/' + action,
