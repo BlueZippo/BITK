@@ -23,7 +23,7 @@ class PeopleController extends Controller
                     ->peopleFollow()
                     ->pluck('people_id');            
 
-        return view('people.index')->with(['users' => $users, 'follows' => $follows]);
+        return view('people.index')->with(['users' => $users, 'peopleFollows' => $follows]);
     }
 
     /**
