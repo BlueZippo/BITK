@@ -8,35 +8,11 @@
 
     <div class="row">
         
-        @foreach($users as $user)
+        @foreach($users as $person)
 
-        <div class="col-md-2 text-center people-{{$user->id}}">
+        <div class="col-md-2 text-center people-{{$person->id}}">
 
-            <a href="/people/{{$user->id}}/stacks">
-
-            <div class="image-container">
-                @if ($user->photo)
-                <img src="{{$user->photo}}">
-                @else
-                <img src="/upload/no-image.png">
-                @endif
-            </div>
-
-            <div class="name-container">
-                {{$user->name}}
-            </div>    
-
-            </a>
-
-            @if ($follows->contains($user->id))
-
-            <input class="btn btn-primary follow-people-button" data-id={{$user->id}} value="Unfollow">
-
-            @else
-
-            <input class="btn btn-primary follow-people-button" data-id={{$user->id}} value="Follow">
-
-            @endif
+            @include('people.box')
 
         </div>   
 

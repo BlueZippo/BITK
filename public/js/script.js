@@ -48,12 +48,12 @@ $(document).ready(function()
 			{
 				if (action == 'follow')
 				{	
-					$('.people-' + people_id + ' .follow-people-button').val('Unfollow');
+					$('.people-' + people_id + ' .follow-people-button').html('Unfollow');
 					$('.people-' + people_id + ' .follow-people-button').attr('data-action', 'unfollow')
 				}
 				else
 				{
-					$('.people-' + people_id + ' .follow-people-button').val('Follow');
+					$('.people-' + people_id + ' .follow-people-button').html('Follow');
 					$('.people-' + people_id + ' .follow-people-button').attr('data-action', 'follow')
 				}
 			}

@@ -8,7 +8,7 @@
 
 			@foreach($people as $person)
 
-				<div class="col-md-2" id="people{{$person->id}}">
+				<div class="col-md-2 people-{{$person->id}}" id="people-{{$person->id}}">
 
 					@include('people.box')
 

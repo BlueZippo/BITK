@@ -163,6 +163,7 @@ class PagesController extends Controller {
                  'follows' => $follows,
                  'tags' => $tags,
                  'people' => $people,
+                 'peopleFollows' => $people,
                  'user_id' => $user_id,
                  'parking' => $parking];
 
