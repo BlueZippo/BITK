@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::post('users/image-upload', 'UserController@upload');
 
+	Route::post('users/background', 'UserController@background');
+
 	Route::post('users/profile/update',  ['as' => 'users.profile_update', 'uses' => 'UserController@profile_update']);
 	
 	Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);	

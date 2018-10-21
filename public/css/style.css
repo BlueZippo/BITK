@@ -319,3 +319,105 @@
 {
 	position:relative;
 }
+
+.profile-header
+{
+	width:100%;
+	height:300px;
+	background:#1da1f2;
+	margin-bottom:120px;
+	position:relative;
+	background-size:cover;
+	background-position:middle left;
+}
+
+.profile-avatar
+{
+	position:absolute;
+	bottom:-100px;
+	left:20px;
+	cursor:pointer;
+	border:solid 4px #fff;
+	border-radius:50%;	
+	overflow:hidden;
+}
+
+.profile-avatar .hover
+{
+	display:none;
+	width:100%;
+	height:100%;
+	color:#fff;
+	background:rgba(0,0,0,0.5);
+	position:absolute;
+	top:0;
+	vertical-align: middle;
+}
+
+.profile-avatar .hover a
+{
+	padding-top:40%;
+	display:block;
+	font-weight:bold;
+	color:#fff;
+	text-align:center;
+}
+
+.profile-avatar .hover a:hover
+{
+	text-decoration:none;
+}
+
+.profile-avatar:hover .hover
+{
+	display:block;
+}
+
+.profile-avatar img,
+#upload-image-form img
+{
+	max-width:200px;	
+	max-height:200px;
+	width:200px;
+	height:200px;
+}
+
+#upload-image-form img
+{
+	margin-bottom:20px;
+	border-radius:50%;
+}
+
+.profile-background-button
+{
+	background:#000;
+	padding:5px;
+	margin:20px;
+	border:1px solid #fff;
+	float:left;
+	display:none;
+}
+
+.profile-header:hover .profile-background-button
+{
+	display:inline-block;
+}
+
+.profile-background-button a,
+.profile-background-button a:hover
+{
+	color:#fff;
+	text-decoration:none;
+}
+
+.profile-background-button:hover
+{
+	border:solid 1px #ccc;
+}
+
+#upload-background-form img
+{
+	max-width:100%;
+	max-height:300px;
+}
+
