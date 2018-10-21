@@ -112,25 +112,29 @@ class PagesController extends Controller {
 
 					$author = User::find($result->user_id);
 
-					$categories = array();
-
-					foreach($stack->links as $link)
+					if ($author)
 					{
-						$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
-					}
 
-					$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
+						$categories = array();
 
-					$follows[] = array(
-						    'id' => $stack->id,
-								'title' => $stack->title,
-								'content' => $stack->content,
-						    'image' => $stack->video_id,
-								'author' => $author,
-								'follow' => $follow->isEmpty() ? false : true,
-								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
-								'categories' => implode(',', array_unique($categories))
-						);
+						foreach($stack->links as $link)
+						{
+							$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+						}
+
+						$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
+
+						$follows[] = array(
+							    'id' => $stack->id,
+									'title' => $stack->title,
+									'content' => $stack->content,
+							    'image' => $stack->video_id,
+									'author' => $author,
+									'follow' => $follow->isEmpty() ? false : true,
+									'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
+									'categories' => implode(',', array_unique($categories))
+							);
+					}	
 				}
 
 
