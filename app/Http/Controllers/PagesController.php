@@ -112,6 +112,9 @@ class PagesController extends Controller {
 
 					$author = User::find($result->user_id);
 
+					print_r($author);
+
+					/*
 					if ($author)
 					{
 
@@ -135,9 +138,8 @@ class PagesController extends Controller {
 									'categories' => implode(',', array_unique($categories))
 							);
 					}	
+					*/
 				}
-
-				print_r($follows); return "";
 
 
 
