@@ -112,6 +112,8 @@ class PagesController extends Controller {
 
 					$author = User::find($result->user_id);
 
+					print_r($result);
+
 					print_r($author);
 
 					/*
