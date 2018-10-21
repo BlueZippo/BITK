@@ -98,9 +98,7 @@ class PagesController extends Controller {
 
 					}	
 					
-				}
-
-				return "";
+				}			
 
 
 
