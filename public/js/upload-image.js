@@ -32,17 +32,27 @@ $(document).ready(function (e) {
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')  },
       url: "/users/image-upload",
       type: "POST",
+      dataType:'json',
       data: new FormData(this),
       contentType: false,
       cache: false,
       processData: false,
       success: function(data)
       {
-        $('#loading').hide();
-        $('#message').html(data);
+        $('#loading').hide();      
+
+        $('#profile-img').attr('src', data.photo);
+
+        $('#updateProfilePhotoModal').modal('hide');
+        
       }
     });
 
+  });
+
+  $('.upload-photo-button').click(function()
+  {
+    $('#upload-image-form').submit();
   });
 
   $('#file').change(function() {

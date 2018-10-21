@@ -309,7 +309,7 @@ class UserController extends Controller
 
         $user->update($input);
 
-        return ['Image uploaded successfully'];
+        return json_encode(array('message'=> 'Image uploaded successfully', 'photo' => $input['photo']));
     }
 
 }

@@ -3,8 +3,6 @@ $(document).on('click', 'a.follow-button', function()
 	stack_id = $(this).data('id');	
 	action = $(this).attr('data-action');
 
-	console.log(action);
-
 	$.ajax(
 	{
 		url: '/stacks/' + stack_id + '/' + action,
@@ -34,18 +32,7 @@ $(document).on('click', 'a.follow-button', function()
 $(document).ready(function()
 {
 	$('.textarea').ckeditor();        
-
-
-	/*
-	$('a.follow-button').on('click', function()
-	{
-		
-		
-
-		
-		
-	});
-	*/
+	
 
 	$('.follow-people-button').click(function()
 	{
