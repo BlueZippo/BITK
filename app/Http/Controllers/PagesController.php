@@ -69,35 +69,35 @@ class PagesController extends Controller {
 
 				foreach($results as $stack)
 				{
-					echo $stack->user_id;
-
 					$user = User::find($stack->user_id);
 
+					if ($user)
+					{	
+
+						$author = array('name' => $user->name, 'email' => $user->email, 'photo' => $user->photo);
+
+						$categories = array();
+
+						foreach($stack->links as $link)
+						{
+							$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+						}
+
+						$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
+
+						$stacks[] = array(
+							    'id' => $stack->id,
+									'title' => $stack->title,
+									'content' => $stack->content,
+							    'image' => $stack->video_id,
+									'author' => $author,
+									'follow' => $follow->isEmpty() ? false : true,
+									'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
+									'categories' => implode(',', array_unique($categories))
+							);
+
+					}	
 					
-
-					/*
-					$author = array('name' => $user->name, 'email' => $user->email, 'photo' => $user->photo);
-
-					$categories = array();
-
-					foreach($stack->links as $link)
-					{
-						$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
-					}
-
-					$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
-
-					$stacks[] = array(
-						    'id' => $stack->id,
-								'title' => $stack->title,
-								'content' => $stack->content,
-						    'image' => $stack->video_id,
-								'author' => $author,
-								'follow' => $follow->isEmpty() ? false : true,
-								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
-								'categories' => implode(',', array_unique($categories))
-						);
-					*/
 				}
 
 				return "";
