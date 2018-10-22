@@ -438,6 +438,7 @@ class ComposerStaticInit09d0a8ab5cfd1496a7fcb458e7996b13
         'App\\Stack' => __DIR__ . '/../..' . '/app/Stack.php',
         'App\\StackLink' => __DIR__ . '/../..' . '/app/StackLink.php',
         'App\\StacksFollow' => __DIR__ . '/../..' . '/app/StacksFollow.php',
+        'App\\StacksVote' => __DIR__ . '/../..' . '/app/StacksVote.php',
         'App\\Tag' => __DIR__ . '/../..' . '/app/Tag.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',

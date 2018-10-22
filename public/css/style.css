@@ -530,3 +530,20 @@
 	max-height:300px;
 }
 
+a.downvote
+{
+	cursor:pointer;
+}
+
+
+a.upvote
+{
+	background:#f2f2f2;
+	border-color:#969696;
+}
+
+a.upvote:hover
+{
+	background:#fff;
+	border-color:#969696;
+}

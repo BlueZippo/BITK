@@ -25,7 +25,10 @@ class Stack extends Model {
     }
 
 
-    
+    public function votes()
+    {
+        return $this->hasMany('App\StacksVote', 'stack_id');
+    }
 
 
 }

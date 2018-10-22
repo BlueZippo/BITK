@@ -53,6 +53,7 @@ return array(
     'App\\Stack' => $baseDir . '/app/Stack.php',
     'App\\StackLink' => $baseDir . '/app/StackLink.php',
     'App\\StacksFollow' => $baseDir . '/app/StacksFollow.php',
+    'App\\StacksVote' => $baseDir . '/app/StacksVote.php',
     'App\\Tag' => $baseDir . '/app/Tag.php',
     'App\\User' => $baseDir . '/app/User.php',
     'ArithmeticError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
