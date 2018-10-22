@@ -243,6 +243,43 @@
 	float:right;
 }
 
+.dashboard .stack-content .title
+{
+	font-weight:bold;
+	text-transform: uppercase;
+	margin-bottom:30px;
+	font-size:16px;
+}
+
+.dashboard .stack-content .author.user-ctrl
+{
+	border-top:solid 1px #efefef;
+	border-bottom:none;
+	font-weight:bold;
+}
+
+.dashboard .inner-wrap 
+{
+	min-height:250px;
+	position:relative;
+}
+
+.dashboard .stack-footer
+{
+	position:absolute;
+	width:100%;
+	text-align:center;
+	bottom:5px;
+}
+
+.dashboard .stack-footer a
+{
+	text-transform: uppercase;
+	border-radius:0;
+	background-color:#1da1f2;
+	border-color:#1da1f2;
+	font-size:12px;
+}
 
 .show .dropdown-menu
 {

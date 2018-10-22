@@ -10,9 +10,9 @@
 
 				@foreach($stacks as $stack)
 
-					<div class="col-md-3">
+					<div class="col-md-2">
 
-						@include('stacks.box')
+						@include('stacks.dashboard-box')
 
 					</div>
 
