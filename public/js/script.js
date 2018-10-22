@@ -32,6 +32,37 @@ $(document).on('click', 'a.follow-button', function()
 $(document).ready(function()
 {
 	$('.textarea').ckeditor();        
+
+
+	$('.upvote, .downvote').on('click', function()
+	{
+		var stack_id = $(this).data('id');
+
+		var params = 'stack_id=' + stack_id + '&vote=1';
+
+		if ($(this).hasClass('downvote'))
+		{
+			params = 'stack_id=' + stack_id + '&vote=0';
+		}	
+
+		 $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+		$.ajax(
+		{
+			url: '/stacks/' + stack_id + '/vote',
+			data: params,
+			type: 'post',
+			dataType: 'json',
+			success: function(data)
+			{
+				$('.upvote').html('Upvote  | ' + data.vote);
+			}
+		})
+	});
 	
 
 	$('.follow-people-button').click(function()
