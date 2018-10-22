@@ -13,11 +13,13 @@
 				<div class="author user-ctrl">
 			      <div class="avatar">
 			      	<div class="inner">
-			        @if ($person->photo)
-			          <img src="{{$person->photo}}">
-			        @else			          
-			            {{ render_initials( $person->name ? $person->name : $person->email   ) }}			          
-			        @endif
+			      		<a href="/people/{{$person->id}}/stacks">
+					        @if ($person->photo)
+					          <img src="{{$person->photo}}">
+					        @else			          
+					            {{ render_initials( $person->name ? $person->name : $person->email   ) }}			          
+					        @endif
+			        	</a>
 			        </div>
 			      </div>      
 			    </div>	
