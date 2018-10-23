@@ -29,7 +29,7 @@
 
 <body>
 
-    @include('layouts.nav')
+    @include('layouts.nav.nav')
 
     <!-- Begin page content -->
     <main role="main" class="container">

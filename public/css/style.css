@@ -151,7 +151,7 @@
 .user-ctrl .avatar
 {
 	float:left;
-	margin-top:-7px;
+	margin-top: 0px;
 }
 
 .avatar > img
@@ -258,7 +258,7 @@
 	font-weight:bold;
 }
 
-.dashboard .inner-wrap 
+.dashboard .inner-wrap
 {
 	min-height:250px;
 	position:relative;
@@ -289,7 +289,7 @@
 
 .search-wrapper
 {
-	width:70%;
+	width:74%;
 	position:relative;
 }
 
@@ -299,18 +299,18 @@
 	position:relative;
 }
 
-.search-wrapper::before
+.search-wrapper a.input-button
 {
-	content: "\f002";
-	display:block;
-	position:absolute;
-	top:4px;
-	left:12px;
-	font-family: FontAwesome;
-	color:#ccc;
 	font-size:18px;
-	z-index:9;
+	color:#ccc !important;
+	position:absolute;
+	z-index: 9;
+	top:4px;
+	left:0px;
+	width:45px;
+	text-align:center;
 }
+
 
 .tags-container span
 {
@@ -364,8 +364,8 @@
 }
 
 .people-box .details
-{	
-	text-align:left;	
+{
+	text-align:left;
 	margin-left:8px;
 }
 
@@ -448,7 +448,7 @@
 	left:20px;
 	cursor:pointer;
 	border:solid 4px #fff;
-	border-radius:50%;	
+	border-radius:50%;
 	overflow:hidden;
 }
 
@@ -486,7 +486,7 @@
 .profile-avatar img,
 #upload-image-form img
 {
-	max-width:200px;	
+	max-width:200px;
 	max-height:200px;
 	width:200px;
 	height:200px;

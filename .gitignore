@@ -133,3 +133,4 @@ vendor/nikic/php-parser/test/PhpParser/Builder/UseTest.php
 vendor/nikic/php-parser/test/PhpParser/BuilderFactoryTest.php
 vendor/nikic/php-parser/test/PhpParser/CodeParsingTest.php
 vendor/nikic/php-parser/test/updateTests.php
+.DS_Store

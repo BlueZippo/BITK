@@ -468,6 +468,10 @@ class StacksController extends Controller {
             $tagSQL[] = 0;
         }
 
+         if (empty($categorySQL)){
+            $categorySQL[] = 0;
+        }
+
         $sql = "SELECT s.*, ";
 
         $sql .= " u.name, u.photo, u.email,";
