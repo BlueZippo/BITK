@@ -51,7 +51,7 @@
                     <div class="stack-rate">
 
 
-                        <a class="upvote btn btn-primary">Upvote | {{$stack->vote}}</a> Downvote
+                        <a data-id="{{$stack->id}}" class="upvote btn btn-primary">Upvote | {{$upVotes}}</a> <a data-id="{{$stack->id}}" class="downvote">Downvote</a>
 
                         <a class=""><i class="fa fa-facebook"></i></a>
                         <a class=""><i class="fa fa-instagram"></i></a>

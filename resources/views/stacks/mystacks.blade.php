@@ -34,7 +34,8 @@
 			
 			<div class="col-md-2">	
 
-				<a href="" class="set-link-reminder btn btn-primary">Set a reminder on a link</a>
+				
+				@include('stacks.reminder')
 
 			</div>	
 

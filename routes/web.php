@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::post('stacks/{id}/update', 'StacksController@update');
 
+	Route::post('stacks/{id}/vote',   'StacksController@vote');
+
 	Route::resource('admin/users', 'UserController');
 
 	Route::resource('stacks', 'StacksController');
@@ -48,6 +50,8 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::resource('admin/categories', 'CategoriesController');	
 
 	Route::post('links/get-meta-tags', 'LinksController@get_meta_tags');
+
+	Route::post('links/addreminder', ['as' => 'links.addreminder', 'uses' => 'LinksController@addreminder']);
 
 	Route::resource('links', 'LinksController');
 

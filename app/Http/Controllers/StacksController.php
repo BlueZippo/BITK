@@ -15,6 +15,7 @@ use App\Link;
 use App\StackLink;
 use App\LinkCategory;
 use App\Search;
+use App\StacksVote;
 use DB;
 
 class StacksController extends Controller {
@@ -168,6 +169,8 @@ class StacksController extends Controller {
 
         $categories = Category::whereIn('id', $categories)->get();
 
+        $votes = $stack->votes()->where('vote','=', 1)->get();
+
         $follows = User::find(auth()->id())
                    ->stacksFollow()
                    ->pluck('stack_id')
@@ -186,6 +189,8 @@ class StacksController extends Controller {
         $data['stack'] = $stack;
 
         $data['follow'] = "";
+
+        $data['upVotes'] = count($votes);
 
         if (in_array($id, $follows))
         {
@@ -705,6 +710,34 @@ class StacksController extends Controller {
         }
 
         return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
+    }
+
+    public function vote(Request $request, $id)
+    {
+        $vote = 1;
+
+        $action = $request->input('vote');
+
+        StacksVote::where('stack_id', '=', $id)->where('user_id', '=', auth()->id())->delete();
+
+        
+        $stack = new StacksVote;
+
+        $stack->user_id = auth()->id();
+        $stack->stack_id = $id;
+        $stack->vote = $action;
+
+        $stack->save();
+
+
+
+        $stack = Stack::find($id);
+
+
+        $vote = $stack->votes()->where('vote','=', 1)->get();
+
+
+        return json_encode(array('stack_id' => $id, 'vote' => count($vote)));
     }
 
 }

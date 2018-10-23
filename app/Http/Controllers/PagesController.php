@@ -47,13 +47,14 @@ class PagesController extends Controller {
 
 					$mystacks[] = array(
 						    'id' => $result->id,
-								'title' => $result->title,
-								'content' => $result->content,
+							'title' => $result->title,
+							'content' => $result->content,
 						    'image' => $result->video_id,
-								'author' => $author,
-								'follow' => $follow->isEmpty() ? false : true,
-								'updated_at' => date("F d, Y", strtotime($result->updated_at)),
-								'categories' => implode(',', array_unique($categories))
+							'author' => $author,
+							'user_id' => $result->user_id,
+							'follow' => $follow->isEmpty() ? false : true,
+							'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+							'categories' => implode(',', array_unique($categories))
 						);
 				}
 
@@ -87,13 +88,14 @@ class PagesController extends Controller {
 
 						$stacks[] = array(
 							    'id' => $stack->id,
-									'title' => $stack->title,
-									'content' => $stack->content,
+								'title' => $stack->title,
+								'content' => $stack->content,
 							    'image' => $stack->video_id,
-									'author' => $author,
-									'follow' => $follow->isEmpty() ? false : true,
-									'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
-									'categories' => implode(',', array_unique($categories))
+								'author' => $author,
+								'user_id' => $stack->user_id,
+								'follow' => $follow->isEmpty() ? false : true,
+								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
+								'categories' => implode(',', array_unique($categories))
 							);
 
 					}	
@@ -127,13 +129,14 @@ class PagesController extends Controller {
 
 						$follows[] = array(
 							    'id' => $stack->id,
-									'title' => $stack->title,
-									'content' => $stack->content,
+								'title' => $stack->title,
+								'content' => $stack->content,
 							    'image' => $stack->video_id,
-									'author' => $author,
-									'follow' => $follow->isEmpty() ? false : true,
-									'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
-									'categories' => implode(',', array_unique($categories))
+								'author' => $author,
+								'user_id' => $stack->user_id,
+								'follow' => $follow->isEmpty() ? false : true,
+								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
+								'categories' => implode(',', array_unique($categories))
 							);
 					}	
 					
