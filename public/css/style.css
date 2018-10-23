@@ -299,14 +299,16 @@
 	position:relative;
 }
 
-a.search-button
+.search-wrapper a.input-button
 {
 	font-size:18px;
 	color:#ccc !important;
 	position:absolute;
 	z-index: 9;
 	top:4px;
-	left:27px;
+	left:0px;
+	width:45px;
+	text-align:center;
 }
 
 

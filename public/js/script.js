@@ -34,7 +34,7 @@ $(document).ready(function()
 	$('.textarea').ckeditor();    
 
 
-	$('a.search-button').click(function()
+	$('.search-wrapper a.input-button').click(function()
 	{
 		var ss = $('.search-wrapper input[name=search]').val();
 
