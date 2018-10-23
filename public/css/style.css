@@ -151,7 +151,7 @@
 .user-ctrl .avatar
 {
 	float:left;
-	margin-top:-7px;
+	margin-top: 0px;
 }
 
 .avatar > img
@@ -258,7 +258,7 @@
 	font-weight:bold;
 }
 
-.dashboard .inner-wrap 
+.dashboard .inner-wrap
 {
 	min-height:250px;
 	position:relative;
@@ -288,7 +288,7 @@
 
 .search-wrapper
 {
-	width:70%;
+	width:74%;
 	position:relative;
 }
 
@@ -363,8 +363,8 @@
 }
 
 .people-box .details
-{	
-	text-align:left;	
+{
+	text-align:left;
 	margin-left:8px;
 }
 
@@ -447,7 +447,7 @@
 	left:20px;
 	cursor:pointer;
 	border:solid 4px #fff;
-	border-radius:50%;	
+	border-radius:50%;
 	overflow:hidden;
 }
 
@@ -485,7 +485,7 @@
 .profile-avatar img,
 #upload-image-form img
 {
-	max-width:200px;	
+	max-width:200px;
 	max-height:200px;
 	width:200px;
 	height:200px;
@@ -529,4 +529,3 @@
 	max-width:100%;
 	max-height:300px;
 }
-
