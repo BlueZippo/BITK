@@ -31,7 +31,18 @@ $(document).on('click', 'a.follow-button', function()
 
 $(document).ready(function()
 {
-	$('.textarea').ckeditor();     
+	$('.textarea').ckeditor();    
+
+
+	$('a.search-button').click(function()
+	{
+		var ss = $('.search-wrapper input[name=search]').val();
+
+		if (ss.length > 0)
+		{
+			$('.search-wrapper form').submit();
+		}	
+	});
 
 
 	$('button.set-reminder-link').click(function()
@@ -41,8 +52,8 @@ $(document).ready(function()
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-		
-		
+
+
 		$.ajax(
 		{
 			url: '/links/addreminder',

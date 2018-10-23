@@ -299,18 +299,16 @@
 	position:relative;
 }
 
-.search-wrapper::before
+a.search-button
 {
-	content: "\f002";
-	display:block;
-	position:absolute;
-	top:4px;
-	left:12px;
-	font-family: FontAwesome;
-	color:#ccc;
 	font-size:18px;
-	z-index:9;
+	color:#ccc !important;
+	position:absolute;
+	z-index: 9;
+	top:4px;
+	left:27px;
 }
+
 
 .tags-container span
 {
