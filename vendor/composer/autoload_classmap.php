@@ -49,6 +49,7 @@ return array(
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
+    'App\\Reminder' => $baseDir . '/app/Reminder.php',
     'App\\Search' => $baseDir . '/app/Search.php',
     'App\\Stack' => $baseDir . '/app/Stack.php',
     'App\\StackLink' => $baseDir . '/app/StackLink.php',
