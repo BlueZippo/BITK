@@ -20,24 +20,7 @@
 
                 <div class="topics-mobile">@include('layouts.nav.topics')</div>
 
-            @if (Auth::check())
-
-                <div class="user-ctrl-mobile">
-                    <div class="avatar user-col-1"><div class="inner">{{ render_initials( isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email ) }}</div></div>
-                    <div class="user-col-2">
-                        <div class="name"><p>{{ Auth::user()->name }}</p></div>
-                        <div class="links">
-                            <a class="" href="/stacks/create">Create a Stack</a>
-                            <a class="" href="/users/profile">User Settings</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="" href="/logout">Logout</a>
-                        </div>
-                    </div>
-                </div>
-
-            @endif
-
-                <ul class="navbar-nav mr-auto justify-content-end">
+                <ul class="navbar-nav mr-auto justify-content-end user-menu">
 
                     @if (Auth::check())
 
