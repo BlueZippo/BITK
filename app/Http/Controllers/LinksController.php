@@ -12,11 +12,18 @@ use App\Category;
 use App\LinkCategory;
 use App\StackLink;
 use App\User;
+use App\Reminder;
 
 use DB;
 
 class LinksController extends Controller
 {
+
+    public function __construct() {
+
+        $this->middleware('auth');
+
+    }
 
     /**
      * Display a listing of the resource.
@@ -387,6 +394,46 @@ class LinksController extends Controller
         }
        
         return $contents;
+    }
+
+    public function addreminder(Request $request)
+    {
+        $input = $request->all();
+
+        $link = $request->input('link');
+        $day = $request->input('day');
+        $unit = $request->input('options');
+
+        switch ((int)$unit)
+        {
+            case 2: //months
+
+                $date = date("Y-m-d", strtotime(sprintf("+%s months", $day)));
+
+            break;
+
+            case 1: //week
+
+                $date = date("Y-m-d", strtotime(sprintf("+%s weeks", $day)));
+
+            break;
+
+            default:
+
+                $date = date("Y-m-d", strtotime(sprintf("+%s days", $day)));
+
+
+        }
+
+        $reminder = new Reminder;
+
+        $reminder->user_id = auth()->id();
+        $reminder->link = $link;
+        $reminder->date = $date;
+
+        $reminder->save();
+
+        return ['Success'];
     }
 
 }

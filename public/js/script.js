@@ -31,7 +31,30 @@ $(document).on('click', 'a.follow-button', function()
 
 $(document).ready(function()
 {
-	$('.textarea').ckeditor();        
+	$('.textarea').ckeditor();     
+
+
+	$('button.set-reminder-link').click(function()
+	{
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+		
+		
+		$.ajax(
+		{
+			url: '/links/addreminder',
+			data: $('#reminderModal form').serialize(),
+			type: 'post',
+			dataType: 'json',
+			success: function(data)
+			{
+				$('#reminderModal').modal('hide');
+			}
+		});		
+	});	
 
 
 	$('.upvote, .downvote').on('click', function()
@@ -45,7 +68,7 @@ $(document).ready(function()
 			params = 'stack_id=' + stack_id + '&vote=0';
 		}	
 
-		 $.ajaxSetup({
+		$.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }

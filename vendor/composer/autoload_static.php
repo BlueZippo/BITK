@@ -434,6 +434,7 @@ class ComposerStaticInit09d0a8ab5cfd1496a7fcb458e7996b13
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Reminder' => __DIR__ . '/../..' . '/app/Reminder.php',
         'App\\Search' => __DIR__ . '/../..' . '/app/Search.php',
         'App\\Stack' => __DIR__ . '/../..' . '/app/Stack.php',
         'App\\StackLink' => __DIR__ . '/../..' . '/app/StackLink.php',
