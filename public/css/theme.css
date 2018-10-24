@@ -252,9 +252,17 @@ header {
         display: none;
     }
 }
+@media screen and (max-width:639px) {
+    .mobile-menu-wrapper {
+        /*height: 100vh;*/
+    }
+}
 /*****************************
     #Layout
 *****************************/
+main {
+    min-height: calc(100vh - 203px);
+}
 .footer {
     background-color: #ffffff;
 }
@@ -263,4 +271,11 @@ header {
     padding-top: 30px;
     padding-bottom: 30px;
     margin-top: 40px;
+}
+.footer .copyright {
+    color: #959595;
+    letter-spacing: 0.08em;
+    font-size: .85em;
+    font-weight: 300;
+    line-height: normal;
 }
