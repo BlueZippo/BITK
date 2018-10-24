@@ -226,6 +226,10 @@ header {
     .mobile-nav {
         display: none;
     }
+    .navbar-brand > img.mobile {
+        display: none;
+        margin-top: -8px;
+    }
 }
 @media screen and (max-width: 767px) {
     .main_nav li.list-divider {
@@ -250,6 +254,12 @@ header {
     }
     .user-menu {
         display: none;
+    }
+    .navbar-brand > img:not(.mobile) {
+        display: none;
+    }
+    .navbar-brand > img.mobile {
+        margin-top: -8px;
     }
 }
 @media screen and (max-width:639px) {
