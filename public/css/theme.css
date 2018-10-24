@@ -9,6 +9,10 @@ Table of Content:
 /*****************************
     #Layout
 *****************************/
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+}
 body > .container {
     padding: 20px 15px 0 !important;
 }
