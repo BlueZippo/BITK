@@ -118,9 +118,8 @@
 
                                 @if ($link->category->contains($category->id))
 
-                                     <div class="col-md-3 single-link" id="link{{$linkCounter}}">
-                                        <div class="image"><img src="{{$link['image']}}"></div>
-                                        <div class="title">{{$link['title']}}</div>                                    
+                                     <div class="col-md-3" id="link{{$linkCounter}}">
+                                        @include('links.box')
                                     </div>  
 
                                     @php $linkCounter++ @endphp
@@ -147,6 +146,10 @@
     @endforeach
 
     </div>
+
+    <br /><br />
+
+    @include('stacks.related')
 
    
 

@@ -157,13 +157,21 @@ class StacksController extends Controller {
 
         $categories = array();
 
+        $related = array();
+
         $links = $stack->links;
 
-        foreach($links as $link)
+        foreach($links as $i => $link)
         {
            $cats = Link::find($link->id)->category->pluck('id')->toArray();
 
            $categories = array_merge($categories, $cats);
+
+           $url = parse_url($link->link);
+
+           $links[$i]['domain'] = $url['host'];
+           $links[$i]['date'] = date("F d, Y", strtotime($link->created_at)); 
+           $links[$i]['cats'] = Category::whereIn('id', $cats)->pluck('cat_name')->toArray();
 
         }
 
@@ -182,6 +190,26 @@ class StacksController extends Controller {
                    ->pluck('id')
                    ->toArray();
 
+
+        $results = User::find(auth()->id())->stacks()->where('id', '!=', $id)->limit(4)->get();
+
+
+        foreach($results as $result)
+        {
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();            
+
+            $related[] = array(
+                            'id' => $result->id,
+                            'title' => $result->title,
+                            'content' => $result->content,
+                            'image' => $result->video_id,
+                            'follow' => $follow->isEmpty() ? false : true,
+                            'updated_at' => date("F d, Y", strtotime($result->updated_at)),                            
+                        );
+        }    
+         
+
+
         $data['links'] = $links;
 
         $data['categories'] = $categories;
@@ -189,6 +217,8 @@ class StacksController extends Controller {
         $data['stack'] = $stack;
 
         $data['follow'] = "";
+
+        $data['related'] = $related;
 
         $data['upVotes'] = count($votes);
 
