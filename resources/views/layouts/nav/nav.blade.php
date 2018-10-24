@@ -13,12 +13,11 @@
             @include('layouts.nav.search')
 
 
-            <div class="user-wrapper collapse navbar-collapse" id="navbarCollapse">
+            <div class="mobile-menu-wrapper collapse navbar-collapse" id="navbarCollapse">
 
                 <!-- Mobile User Settings -->
-                <div class="search-mobile">@include('layouts.nav.search')</div>
 
-                <div class="topics-mobile">@include('layouts.nav.topics')</div>
+                @include('layouts.nav.mobile-menu')
 
                 <ul class="navbar-nav mr-auto justify-content-end user-menu">
 
@@ -44,7 +43,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="/stacks/create">Create a Stack</a>
-                            <a class="dropdown-item" href="/users/profile">User Settings</a>
+                            <a class="dropdown-item" href="/users/profile">My Profile</a>
+                            <a class="dropdown-item" href="/parking-lot">Parking Lot</a>
 
                             @role('admin')
 
