@@ -31,10 +31,12 @@
         </div>
 
         <div class="stack-footer">
-          @if ($stack['follow'])
-            <a class="follow-button" data-action="unfollow" data-id="{{$stack['id']}}"><i class="fa fa-plus"></i> Saved</a>
-          @else
-            <a class="follow-button" data-action="follow" data-id="{{$stack['id']}}"><i class="fa fa-plus"></i> Save</a>
+          @if (Auth::check())
+            @if ($stack['follow'])
+              <a class="follow-button" data-action="unfollow" data-id="{{$stack['id']}}"><i class="fa fa-plus"></i> Saved</a>
+            @else
+              <a class="follow-button" data-action="follow" data-id="{{$stack['id']}}"><i class="fa fa-plus"></i> Save</a>
+            @endif
           @endif
         </div>
       </div>

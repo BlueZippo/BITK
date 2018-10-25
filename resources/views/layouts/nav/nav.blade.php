@@ -3,7 +3,11 @@
     <nav class="navbar main_nav navbar-expand-md navbar-light fixed-top bg-light">
         <div class="inner container">
 
-            <a class="navbar-brand" href="/">
+            @if (Auth::check())
+                <a class="navbar-brand" href="/dashboard">
+            @else
+                <a class="navbar-brand" href="/">
+            @endif
                 {{Html::image('/images/logo-v1.jpg', 'PlatStack')}}
                 {{ Html::image('/images/logo-mobile-v1.jpg', 'PlatStack', ['class' => 'mobile']) }}
             </a>

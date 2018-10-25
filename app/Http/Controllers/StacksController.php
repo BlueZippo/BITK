@@ -17,6 +17,7 @@ use App\LinkCategory;
 use App\Search;
 use App\StacksVote;
 use DB;
+use Auth;
 
 class StacksController extends Controller {
 
@@ -26,7 +27,7 @@ class StacksController extends Controller {
     public function __construct() 
     {
 
-        //$this->middleware('auth');
+       //$this->middleware('auth');
 
     }
 
@@ -180,24 +181,31 @@ class StacksController extends Controller {
 
         $votes = $stack->votes()->where('vote','=', 1)->get();
 
-        $follows = User::find(auth()->id())
-                   ->stacksFollow()
-                   ->pluck('stack_id')
-                   ->toArray();
+        if (Auth::check())
+        {    
+            $follows = User::find(auth()->id())
+                       ->stacksFollow()
+                       ->pluck('stack_id')
+                       ->toArray();
+        }
+        else
+        {
+            $follows = [];
+        }               
 
-        $mystack = User::find(auth()->id())
+        $mystack = User::find($stack->user_id)
                    ->stacks()
                    ->get()
                    ->pluck('id')
                    ->toArray();
 
 
-        $results = User::find(auth()->id())->stacks()->where('id', '!=', $id)->limit(4)->get();
+        $results = User::find($stack->user_id)->stacks()->where('id', '!=', $id)->limit(4)->get();
 
 
         foreach($results as $result)
         {
-            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();            
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', $stack->user_id)->get();            
 
             $related[] = array(
                             'id' => $result->id,
