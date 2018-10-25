@@ -16,6 +16,7 @@ use App\StackLink;
 use App\LinkCategory;
 use App\Search;
 use App\StacksVote;
+use App\MediaType;
 use DB;
 use Auth;
 
@@ -37,7 +38,7 @@ class StacksController extends Controller {
 
         $data['user'] = User::find(auth()->id());
 
-        $data['categories'] = Category::all();
+        $data['medias'] = MediaType::all();
 
         if ($request->old('links'))
         {
@@ -88,10 +89,13 @@ class StacksController extends Controller {
                 $x->link = $link['url'];
                 $x->description = $link['description'];
                 $x->image = $link['image'];
+                $x->media_id = $link['media_id'];
+                $x->stack_id = $stack->id;
                 $x->user_id = auth()->id();
 
                 $x->save();
 
+                /*
                 $xy = StackLink::where('stack_id', '=', $stack->id)->where('link_id', '=', $x->id);
 
                 $xy->delete();
@@ -113,6 +117,8 @@ class StacksController extends Controller {
                 $xy->category_id = $link['category'];
 
                 $xy->save();
+
+                */
 
             }
         }
@@ -157,7 +163,7 @@ class StacksController extends Controller {
     {
         $stack = Stack::find($id);
 
-        $categories = array();
+        $medias = array();
 
         $related = array();
 
@@ -165,19 +171,18 @@ class StacksController extends Controller {
 
         foreach($links as $i => $link)
         {
-           $cats = Link::find($link->id)->category->pluck('id')->toArray();
-
-           $categories = array_merge($categories, $cats);
+           $medias[] = $link->media_id;
 
            $url = parse_url($link->link);
 
            $links[$i]['domain'] = $url['host'];
+           $links[$i]['media_type'] = $link->media->media_type;
            $links[$i]['date'] = date("F d, Y", strtotime($link->created_at)); 
-           $links[$i]['cats'] = Category::whereIn('id', $cats)->pluck('cat_name')->toArray();
+           
 
         }
 
-        $categories = Category::whereIn('id', $categories)->get();
+        $medias = MediaType::whereIn('id', $medias)->get();
 
         $votes = $stack->votes()->where('vote','=', 1)->get();
 
@@ -221,7 +226,7 @@ class StacksController extends Controller {
 
         $data['links'] = $links;
 
-        $data['categories'] = $categories;
+        $data['medias'] = $medias;
 
         $data['stack'] = $stack;
 
@@ -601,7 +606,8 @@ class StacksController extends Controller {
 
         $data['links'] = $stack->links;
 
-        $data['categories'] = Category::all();
+
+        $data['medias'] = MediaType::all();
 
         return view('stacks.edit')->with($data);
     }
@@ -624,15 +630,15 @@ class StacksController extends Controller {
 
         $stack->save();
 
-        $links = StackLink::where('stack_id', '=', $stack->id)->get();
+        $links = Link::where('stack_id', '=', $id)->get();
 
         foreach($links as $link)
         {
-            $link_id = $link->link_id;
+            $link_id = $link->id;
 
             Link::find($link_id)->delete();
 
-            StackLink::where('stack_id', '=', $stack->id)->where('link_id', '=', $link_id)->delete();
+            //StackLink::where('stack_id', '=', $stack->id)->where('link_id', '=', $link_id)->delete();
         }
 
 
@@ -648,10 +654,13 @@ class StacksController extends Controller {
                 $x->link = $link['url'];
                 $x->description = $link['description'];
                 $x->image = $link['image'];
+                $x->media_id = $link['media_id'];
+                $x->stack_id = $id;
                 $x->user_id = auth()->id();
 
                 $x->save();
 
+                /*
                 $xy = StackLink::where('stack_id', '=', $stack->id)->where('link_id', '=', $x->id);
 
                 $xy->delete();
@@ -673,6 +682,7 @@ class StacksController extends Controller {
                 $xy->category_id = $link['category'];
 
                 $xy->save();
+                */
 
             }
         }

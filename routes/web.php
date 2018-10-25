@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function()
 	Route::resource('stacks', 'StacksController');
 
 	Route::resource('admin/categories', 'CategoriesController');	
+	Route::resource('admin/media_types', 'MediaTypeController');
 
 	Route::post('links/get-meta-tags', 'LinksController@get_meta_tags');
 

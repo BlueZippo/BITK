@@ -4,15 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
+use App\MediaType;
 
-use App\Category;
-
-use DB;
-
-use Hash;
-
-class CategoriesController extends Controller
+class MediaTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,10 +15,10 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Category::orderBy('cat_name')->get();
+        $data['medias'] = MediaType::orderBy('media_type')->get();
         $data['i'] = 0;
 
-        return view('categories.index')->with($data);
+        return view('media_types.index')->with($data);
     }
 
     /**
@@ -34,7 +28,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('media_types.create');
     }
 
     /**
@@ -47,21 +41,21 @@ class CategoriesController extends Controller
     {
         $this->validate($request, [
 
-            'cat_name' => 'required',
+            'media_type' => 'required',
 
 
         ]);
 
 
-        $category = new Category;
+        $media = new MediaType;
 
-        $category->cat_name = $request->input('cat_name');
+        $media->media_type = $request->input('media_type');
 
-        $category->save();
+        $media->save();
 
-        return redirect()->route('categories.index')
+        return redirect()->route('media_types.index')
 
-                        ->with('success','Category created successfully');
+                        ->with('success','Media type successfully');
     }
 
     /**
@@ -83,9 +77,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
+        $media = MediaType::find($id);
 
-        return view('categories.edit',compact('category'));
+        return view('media_types.edit',compact('media'));
     }
 
     /**
@@ -97,19 +91,19 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+         $this->validate($request, [
 
-            'cat_name' => 'required'
+            'media_type' => 'required'
 
         ]);  
         
-        $category = Category::find($id);
+        $media = MediaType::find($id);
 
-        $category->update($request->all());       
+        $media->update($request->all());       
 
-        return redirect()->route('categories.index')
+        return redirect()->route('media_types.index')
 
-                        ->with('success','Category updated successfully');
+                        ->with('success','Media type updated successfully');
     }
 
     /**
@@ -120,11 +114,10 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id)->delete();
+        MediaType::find($id)->delete();
 
+        return redirect()->route('media_types.index')
 
-        return redirect()->route('categories.index')
-
-                        ->with('success','Category deleted successfully');
+                        ->with('success','Media type deleted successfully');
     }
 }

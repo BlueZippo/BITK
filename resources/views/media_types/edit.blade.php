@@ -9,13 +9,13 @@
 
         <div class="pull-left">
 
-            <h2>Add Category</h2>
+            <h2>Edit Media Type</h2>
 
         </div>
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('categories.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('media_types.index') }}"> Back</a>
 
         </div>
 
@@ -45,8 +45,7 @@
 @endif
 
 
-
-{!! Form::open(array('route' => 'categories.store','method'=>'POST')) !!}
+{!! Form::model($media, ['method' => 'PATCH','route' => ['media_types.update', $media->id]]) !!}
 
 <div class="row">
 
@@ -56,11 +55,12 @@
 
             <strong>Name:</strong>
 
-            {!! Form::text('cat_name', null, array('placeholder' => 'Category','class' => 'form-control')) !!}
+            {!! Form::text('media_type', null, array('placeholder' => 'Media Type','class' => 'form-control')) !!}
 
         </div>
 
-    </div>
+    </div>  
+
 
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 

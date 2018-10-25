@@ -9,13 +9,13 @@
 
         <div class="pull-left">
 
-            <h2>Categories</h2>
+            <h2>Media Type</h2>
 
         </div>
 
         <div class="pull-right">
 
-            <a class="btn btn-success" href="{{ route('categories.create') }}"> Add Category</a>
+            <a class="btn btn-success" href="{{ route('media_types.create') }}"> Add Media Type</a>
 
         </div>
 
@@ -25,33 +25,32 @@
 
 
 
-
 <table class="table table-bordered">
 
  <tr>
 
    <th>No</th>
 
-   <th>Category</th>
+   <th>Media Type</th>
 
    <th width="280px">Action</th>
 
  </tr>
 
- @foreach ($categories as $key => $category)
+ @foreach ($medias as $key => $media)
 
   <tr>
 
     <td>{{ ++$i }}</td>
 
-    <td>{{ $category->cat_name }}</td>
+    <td>{{ $media->media_type }}</td>
 
     
     <td>
 
-       <a class="btn btn-primary" href="{{ route('categories.edit',$category->id) }}">Edit</a>
+       <a class="btn btn-primary" href="{{ route('media_types.edit',$media->id) }}">Edit</a>
 
-        {!! Form::open(['method' => 'DELETE','route' => ['categories.destroy', $category->id],'style'=>'display:inline']) !!}
+        {!! Form::open(['method' => 'DELETE','route' => ['media_types.destroy', $media->id],'style'=>'display:inline']) !!}
 
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 
