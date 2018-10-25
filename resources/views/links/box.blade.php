@@ -1,47 +1,27 @@
-<div class="single-link">
+	<div class="single-link">
 
 	<div class="image"><img src="{{$link['image']}}"></div>
 
-	<div class="title">{{$link['title']}}</div> 
+	<div class="inner">
 
-	<div class="link-meata">                                   
+		<div class="title"><a href="{{$link['link']}}" target="_blank">{{$link['title']}}</a></div>
 
-		<div class="row">
+		<div class="divider"></div>
 
-			<div class="col-md-6">
+		<div class="link-meta">
 
-				<a href="{{$link['link']}}" target="_blank">{{$link['domain']}}</a>
+			<div class="row">
 
-			</div>	
+				<div class="col-md-12">
 
+					<a href="/stacks/{{$category->id}}/category">{{$category->cat_name}}</a>
 
-			<div class="col-md-6">
+				</div>
 
-				{{$link['date']}}
+			</div>
 
-			</div>	
+		</div>
 
+	</div><!-- .inner -->
 
-		</div>	
-
-		<div class="row">
-
-			<div class="col-md-6">
-
-				<a href="/stacks/{{$category->id}}/category">{{$category->cat_name}}</a>
-
-			</div>	
-
-
-			<div class="col-md-6">
-
-				
-
-			</div>	
-
-
-		</div>	
-
-	</div> 
-
-</div>		
+</div>
