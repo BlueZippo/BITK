@@ -114,6 +114,10 @@ class MediaTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        MediaType::find($id)->delete();
+
+        return redirect()->route('media_types.index')
+
+                        ->with('success','Media type deleted successfully');
     }
 }
