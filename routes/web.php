@@ -16,8 +16,9 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/', 'PagesController@index')->name('home');
+Route::get('/', 'PublicController@index')->name('home');
 
+Route::get('/dashboard', 'PagesController@index')->name('home');
 
 
 Route::group(['middleware' => ['auth']], function() 
@@ -34,11 +35,11 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::get('stacks/explore', 'StacksController@explore');
 
-	Route::get('stacks/{id}/category', 'StacksController@category');
+	
 
 	Route::get('stacks/view-all', 'StacksController@view_all');
 
-	Route::post('stacks/search', 'StacksController@search');
+	
 
 	Route::post('stacks/{id}/update', 'StacksController@update');
 
@@ -103,6 +104,9 @@ Route::get('stacks/{id}/follow', 'StacksController@follow');
 Route::get('stacks/{id}/unfollow', 'StacksController@unfollow');
 
 Route::get('stacks/{id}/dashboard', 'StacksController@dashboard');
+
+Route::get('stacks/{id}/category', 'StacksController@category');
+Route::post('stacks/search', 'StacksController@search');
 
 
 Route::get('people/{id}/follow', 'PeopleController@follow');

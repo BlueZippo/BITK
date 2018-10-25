@@ -97,6 +97,7 @@
                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#category{{$category->id}}" aria-expanded="true" aria-controls="collapseOne">
                     {{$category->cat_name}}
                 </button>
+                <div class="divider"></div>
 
             </div>
 

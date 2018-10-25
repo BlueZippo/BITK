@@ -144,6 +144,7 @@ $(document).ready(function()
 	})
 
 	mobile_menu($);
+	single_stack($);
 
 });
 
@@ -163,5 +164,24 @@ function mobile_menu($) {
 		}
 
 	});
+
+}
+
+function single_stack($) {
+
+	var button = $('.accordion.stack-single .card-header > button');
+
+	if( button.length ) {
+
+		button.on('click', function() {
+
+			if( !$(this).hasClass('open') ) {
+				$(this).addClass('open');
+			} else {
+				$(this).removeClass('open');
+			}
+		});
+
+	}
 
 }
