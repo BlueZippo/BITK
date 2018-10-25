@@ -62,7 +62,9 @@
                             <div class="dropdown-divider"></div>
 
 
-                            <a class="dropdown-item" href="/admin/categories">Media Type</a>
+                            <a class="dropdown-item" href="/admin/categories">Categories</a>
+
+                            <a class="dropdown-item" href="/admin/media_types">Media Types</a>                                
 
                             <a class="dropdown-item" href="/admin/users">Users</a>
 
