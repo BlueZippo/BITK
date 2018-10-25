@@ -5,6 +5,7 @@ Table of Content:
 #Typography
 #Header
 #Footer
+#Single Stack
 *****************************/
 /*****************************
     #Layout
@@ -168,6 +169,10 @@ header {
     position: absolute;
     left: -5px;
 }
+.mobile-nav > ul.menu > li.user > a > .avatar > img {
+    width: 30px;
+    height: 30px;
+}
 .mobile-nav > ul.menu > li.user > a > .avatar > .inner {
     border: 0;
     width: 30px;
@@ -268,7 +273,7 @@ header {
     }
 }
 /*****************************
-    #Layout
+    #Footer
 *****************************/
 main {
     min-height: calc(100vh - 203px);
@@ -288,4 +293,13 @@ main {
     font-size: .85em;
     font-weight: 300;
     line-height: normal;
+}
+/*****************************
+    #Single Stack
+*****************************/
+.stack-wrapper .content h2 {
+    font-weight: 600;
+}
+.stack-wrapper .content p {
+    font-size: 1rem;
 }

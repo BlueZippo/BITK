@@ -5,8 +5,8 @@
     <div class="stack-wrapper">
 
         <div class="row">
-            
-    		<div class="col-md-7">
+
+    		<div class="col-md-7 content">
 
                 <h2>{{$stack->title}}</h2>
 
@@ -34,7 +34,7 @@
 
                                     {{ render_initials( $stack->user->name ? $stack->user->name : $stack->user->email   )}}
 
-                                </div>    
+                                </div>
 
                             @endif
 
@@ -45,7 +45,7 @@
                         {{$stack->user->name}}
 
 
-                    </div>    
+                    </div>
 
 
                     <div class="stack-rate">
@@ -58,10 +58,10 @@
                         <a class=""><i class="fa fa-pinterest"></i></a>
 
 
-                    </div>     
+                    </div>
 
 
-                </div>    
+                </div>
 
             </div>
 
@@ -73,24 +73,24 @@
 
                 @else
 
-                   <div class="featured-image"> 
+                   <div class="featured-image">
 
                         <img src="/images/youtube-image.png">
 
-                    </div>    
+                    </div>
 
 
                 @endif
 
 
 
-            </div>    
-            
+            </div>
+
     	</div>
 
     </div>
 
-   <div class="accordion">
+   <div class="accordion stack-single">
 
     @foreach($categories as $category)
 
@@ -102,13 +102,13 @@
                     {{$category->cat_name}}
                 </button>
 
-            </div>    
+            </div>
 
             <div class="collapse" id="category{{$category->id}}" data-category="{{$category->id}}">
 
                 <div class="container">
 
-                    <div class="row stack-links">   
+                    <div class="row stack-links">
 
                         @if (count($links))
 
@@ -120,28 +120,28 @@
 
                                      <div class="col-md-3" id="link{{$linkCounter}}">
                                         @include('links.box')
-                                    </div>  
+                                    </div>
 
                                     @php $linkCounter++ @endphp
 
-                                @endif    
+                                @endif
 
 
                             @endforeach
-                        
+
                         @endif
 
 
-                    </div>               
+                    </div>
 
 
-                </div>   
+                </div>
 
             </div>
 
 
         </div>
-        
+
 
     @endforeach
 
@@ -151,6 +151,6 @@
 
     @include('stacks.related')
 
-   
+
 
 @endsection
