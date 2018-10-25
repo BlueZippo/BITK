@@ -28,6 +28,11 @@ class Link extends Model
 
     public function stack()
     {
-        return $this->belongsToMany('App\Stack', 'stack_links');
+        return $this->belongsTo('App\Stack');
+    }
+
+    public function media()
+    {
+        return $this->belongsTo('App\MediaType');
     }
 }

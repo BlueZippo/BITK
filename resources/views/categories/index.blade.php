@@ -9,13 +9,13 @@
 
         <div class="pull-left">
 
-            <h2>Media Type</h2>
+            <h2>Categories</h2>
 
         </div>
 
         <div class="pull-right">
 
-            <a class="btn btn-success" href="{{ route('categories.create') }}"> Add Media Type</a>
+            <a class="btn btn-success" href="{{ route('categories.create') }}"> Add Category</a>
 
         </div>
 
@@ -24,15 +24,6 @@
 </div>
 
 
-@if ($message = Session::get('success'))
-
-<div class="alert alert-success">
-
-  <p>{{ $message }}</p>
-
-</div>
-
-@endif
 
 
 <table class="table table-bordered">
@@ -41,7 +32,7 @@
 
    <th>No</th>
 
-   <th>Media Type</th>
+   <th>Category</th>
 
    <th width="280px">Action</th>
 

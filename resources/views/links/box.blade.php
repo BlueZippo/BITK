@@ -12,11 +12,17 @@
 
 			<div class="row">
 
-				<div class="col-md-12">
+				<div class="col-md-10">
 
-					<a href="/stacks/{{$category->id}}/category">{{$category->cat_name}}</a>
+					{{$link['media_type']}}
 
 				</div>
+
+				<div class="col-md-2">
+
+					<i class="fa fa-comment"></i>
+
+				</div>	
 
 			</div>
 

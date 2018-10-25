@@ -77,7 +77,9 @@ class MediaTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $media = MediaType::find($id);
+
+        return view('media_types.edit',compact('media'));
     }
 
     /**
@@ -89,7 +91,19 @@ class MediaTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $this->validate($request, [
+
+            'media_type' => 'required'
+
+        ]);  
+        
+        $media = MediaType::find($id);
+
+        $media->update($request->all());       
+
+        return redirect()->route('media_types.index')
+
+                        ->with('success','Media type updated successfully');
     }
 
     /**

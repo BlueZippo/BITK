@@ -64,7 +64,7 @@ $(document).ready(function()
         html += '<input type="hidden" name="links['+linkCounter+'][title]" value="'+title+'">'
         html += '<input type="hidden" name="links['+linkCounter+'][description]" value="'+desc+'">'
         html += '<input type="hidden" name="links['+linkCounter+'][image]" value="'+img+'">'
-        html += '<input type="hidden" name="links['+linkCounter+'][category]" value="'+category+'">'
+        html += '<input type="hidden" name="links['+linkCounter+'][media_id]" value="'+category+'">'
 
         html += '<div class="image"><img src="' +img + '"></div>'
         html += '<div class="title">' + title + '</div>';

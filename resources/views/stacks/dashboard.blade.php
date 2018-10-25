@@ -88,20 +88,20 @@
 
    <div class="accordion stack-single">
 
-    @foreach($categories as $category)
+    @foreach($medias as $media)
 
         <div class="card">
 
             <div class="card-header">
 
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#category{{$category->id}}" aria-expanded="true" aria-controls="collapseOne">
-                    {{$category->cat_name}}
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#category{{$media->id}}" aria-expanded="true" aria-controls="collapseOne">
+                    {{$media->media_type}}
                 </button>
                 <div class="divider"></div>
 
             </div>
 
-            <div class="collapse" id="category{{$category->id}}" data-category="{{$category->id}}">
+            <div class="collapse" id="category{{$media->id}}" data-category="{{$media->id}}">
 
                 <div class="container">
 
@@ -113,7 +113,7 @@
 
                             @foreach($links as $link)
 
-                                @if ($link->category->contains($category->id))
+                                @if ($link->media_id == $media->id)
 
                                      <div class="col-md-3" id="link{{$linkCounter}}">
                                         @include('links.box')

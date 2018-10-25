@@ -13,7 +13,7 @@
         </div>
 
         <div class="meta-category">
-          <div class="categories">{{$stack['categories']}}</div>
+          <div class="categories"></div>
           <div class="date">{{$stack['updated_at']}}</div>
         </div>
 
