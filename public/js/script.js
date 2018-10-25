@@ -145,6 +145,7 @@ $(document).ready(function()
 
 	mobile_menu($);
 	single_stack($);
+	equal_heights($);
 
 });
 
@@ -183,5 +184,14 @@ function single_stack($) {
 		});
 
 	}
+
+}
+
+function equal_heights($) {
+
+	$('.stack-links .single-link .title').matchHeight({
+		byRow: false,
+	    property: 'height'
+	});
 
 }
