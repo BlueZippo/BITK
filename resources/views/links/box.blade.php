@@ -1,4 +1,4 @@
-	<div class="single-link">
+<div class="single-link">
 
 	<div class="image"><img src="{{$link['image']}}"></div>
 
