@@ -8,7 +8,7 @@
             
     		<div class="col-md-7">
 
-                <h2>{{$stack->title}}</h2>
+                <h2 class="stack-title">{{$stack->title}} <span>Last updated: {{date("M d, Y", strtotime($stack->updated_at))}} <i class="fa fa-comment"></i> English <i class="fa fa-plus-circle"></i></span></h2>
 
                 <hr />
 
