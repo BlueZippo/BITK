@@ -5,10 +5,14 @@ Table of Content:
 #Typography
 #Header
 #Footer
+#Single Stack
 *****************************/
 /*****************************
     #Layout
 *****************************/
+body {
+    font-family: "Lato", sans-serif;
+}
 body > .container {
     padding: 20px 15px 0 !important;
 }
@@ -165,6 +169,10 @@ header {
     position: absolute;
     left: -5px;
 }
+.mobile-nav > ul.menu > li.user > a > .avatar > img {
+    width: 30px;
+    height: 30px;
+}
 .mobile-nav > ul.menu > li.user > a > .avatar > .inner {
     border: 0;
     width: 30px;
@@ -223,6 +231,10 @@ header {
     .mobile-nav {
         display: none;
     }
+    .navbar-brand > img.mobile {
+        display: none;
+        margin-top: -8px;
+    }
 }
 @media screen and (max-width: 767px) {
     .main_nav li.list-divider {
@@ -248,10 +260,24 @@ header {
     .user-menu {
         display: none;
     }
+    .navbar-brand > img:not(.mobile) {
+        display: none;
+    }
+    .navbar-brand > img.mobile {
+        margin-top: -8px;
+    }
+}
+@media screen and (max-width:639px) {
+    .mobile-menu-wrapper {
+        /*height: 100vh;*/
+    }
 }
 /*****************************
-    #Layout
+    #Footer
 *****************************/
+main {
+    min-height: calc(100vh - 203px);
+}
 .footer {
     background-color: #ffffff;
 }
@@ -260,4 +286,86 @@ header {
     padding-top: 30px;
     padding-bottom: 30px;
     margin-top: 40px;
+}
+.footer .copyright {
+    color: #959595;
+    letter-spacing: 0.08em;
+    font-size: .85em;
+    font-weight: 300;
+    line-height: normal;
+}
+/*****************************
+    #Single Stack
+*****************************/
+.stack-wrapper .content h2 {
+    font-weight: 600;
+}
+.stack-wrapper .content p {
+    font-size: 1rem;
+    font-weight: 300;
+}
+.stack-wrapper .content .meta {
+    margin-top: 20px;
+}
+.stack-wrapper .content .author.user-ctrl {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.stack-wrapper .content .author.user-ctrl p span {
+    font-weight: 300;
+    font-style: italic;
+    margin-right: 15px;
+}
+.stack-wrapper .content .author.user-ctrl p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.stack-wrapper .meta .stack-rate {
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.stack-wrapper .meta .stack-rate a {
+    font-size: 12px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+.stack-wrapper .meta .stack-rate a.upvote,
+.stack-wrapper .meta .stack-rate a.downvote {
+    font-weight: 600;
+}
+.stack-wrapper .meta .stack-rate a:first-child {
+    margin-left: 0;
+}
+.stack-wrapper .meta .stack-rate a:last-child {
+    margin-right: 0;
+}
+.stack-wrapper .meta .divider {
+    display: block;
+    width: 1px;
+    height: 30px;
+    background-color: #cccccc;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.stack-wrapper .stack-rate a.icon-social {
+    font-size: 20px;
+    color: #969696;
+}
+.accordion.stack-single .card {
+    border: 0;
+}
+.accordion.stack-single .card-header {
+    background-color: transparent;
+    border-bottom: 0;
+    padding: 0;
+}
+.accordion.stack-single .card-header > button {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #404040;
+    letter-spacing: .12em;
 }

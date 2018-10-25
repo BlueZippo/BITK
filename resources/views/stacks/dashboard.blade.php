@@ -5,10 +5,10 @@
     <div class="stack-wrapper">
 
         <div class="row">
-            
-    		<div class="col-md-7">
 
-                <h2>{{$stack->title}}</h2>
+    		<div class="col-md-7 content">
+
+                <h2 class="stack-title">{{$stack->title}} <span>Last updated: {{date("M d, Y", strtotime($stack->updated_at))}} <i class="fa fa-comment"></i> English <i class="fa fa-plus-circle"></i></span></h2>
 
                 <hr />
 
@@ -19,8 +19,7 @@
 
                     <div class="author user-ctrl">
 
-
-                        Created by:
+                        <p><span>Created By:</span></p>
 
                         <div class="avatar">
 
@@ -34,7 +33,7 @@
 
                                     {{ render_initials( $stack->user->name ? $stack->user->name : $stack->user->email   )}}
 
-                                </div>    
+                                </div>
 
                             @endif
 
@@ -42,26 +41,23 @@
                         </div>
 
 
-                        {{$stack->user->name}}
+                        <p>{{$stack->user->name}}</p>
 
-
-                    </div>    
+                    </div>
 
 
                     <div class="stack-rate">
 
-
                         <a data-id="{{$stack->id}}" class="upvote btn btn-primary">Upvote | {{$upVotes}}</a> <a data-id="{{$stack->id}}" class="downvote">Downvote</a>
+                        <div class="divider"></div>
+                        <a href="#" class="icon-social"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="icon-social"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="icon-social"><i class="fa fa-pinterest"></i></a>
 
-                        <a class=""><i class="fa fa-facebook"></i></a>
-                        <a class=""><i class="fa fa-instagram"></i></a>
-                        <a class=""><i class="fa fa-pinterest"></i></a>
+                    </div>
 
 
-                    </div>     
-
-
-                </div>    
+                </div>
 
             </div>
 
@@ -73,24 +69,24 @@
 
                 @else
 
-                   <div class="featured-image"> 
+                   <div class="featured-image">
 
                         <img src="/images/youtube-image.png">
 
-                    </div>    
+                    </div>
 
 
                 @endif
 
 
 
-            </div>    
-            
+            </div>
+
     	</div>
 
     </div>
 
-   <div class="accordion">
+   <div class="accordion stack-single">
 
     @foreach($categories as $category)
 
@@ -102,13 +98,13 @@
                     {{$category->cat_name}}
                 </button>
 
-            </div>    
+            </div>
 
             <div class="collapse" id="category{{$category->id}}" data-category="{{$category->id}}">
 
                 <div class="container">
 
-                    <div class="row stack-links">   
+                    <div class="row stack-links">
 
                         @if (count($links))
 
@@ -120,28 +116,28 @@
 
                                      <div class="col-md-3" id="link{{$linkCounter}}">
                                         @include('links.box')
-                                    </div>  
+                                    </div>
 
                                     @php $linkCounter++ @endphp
 
-                                @endif    
+                                @endif
 
 
                             @endforeach
-                        
+
                         @endif
 
 
-                    </div>               
+                    </div>
 
 
-                </div>   
+                </div>
 
             </div>
 
 
         </div>
-        
+
 
     @endforeach
 
@@ -151,6 +147,6 @@
 
     @include('stacks.related')
 
-   
+
 
 @endsection
