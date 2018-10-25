@@ -302,4 +302,70 @@ main {
 }
 .stack-wrapper .content p {
     font-size: 1rem;
+    font-weight: 300;
+}
+.stack-wrapper .content .meta {
+    margin-top: 20px;
+}
+.stack-wrapper .content .author.user-ctrl {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.stack-wrapper .content .author.user-ctrl p span {
+    font-weight: 300;
+    font-style: italic;
+    margin-right: 15px;
+}
+.stack-wrapper .content .author.user-ctrl p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.stack-wrapper .meta .stack-rate {
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.stack-wrapper .meta .stack-rate a {
+    font-size: 12px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+.stack-wrapper .meta .stack-rate a.upvote,
+.stack-wrapper .meta .stack-rate a.downvote {
+    font-weight: 600;
+}
+.stack-wrapper .meta .stack-rate a:first-child {
+    margin-left: 0;
+}
+.stack-wrapper .meta .stack-rate a:last-child {
+    margin-right: 0;
+}
+.stack-wrapper .meta .divider {
+    display: block;
+    width: 1px;
+    height: 30px;
+    background-color: #cccccc;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.stack-wrapper .stack-rate a.icon-social {
+    font-size: 20px;
+    color: #969696;
+}
+.accordion.stack-single .card {
+    border: 0;
+}
+.accordion.stack-single .card-header {
+    background-color: transparent;
+    border-bottom: 0;
+    padding: 0;
+}
+.accordion.stack-single .card-header > button {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #404040;
+    letter-spacing: .12em;
 }

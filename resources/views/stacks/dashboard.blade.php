@@ -19,8 +19,7 @@
 
                     <div class="author user-ctrl">
 
-
-                        Created by:
+                        <p><span>Created By:</span></p>
 
                         <div class="avatar">
 
@@ -42,21 +41,18 @@
                         </div>
 
 
-                        {{$stack->user->name}}
-
+                        <p>{{$stack->user->name}}</p>
 
                     </div>
 
 
                     <div class="stack-rate">
 
-
                         <a data-id="{{$stack->id}}" class="upvote btn btn-primary">Upvote | {{$upVotes}}</a> <a data-id="{{$stack->id}}" class="downvote">Downvote</a>
-
-                        <a class=""><i class="fa fa-facebook"></i></a>
-                        <a class=""><i class="fa fa-instagram"></i></a>
-                        <a class=""><i class="fa fa-pinterest"></i></a>
-
+                        <div class="divider"></div>
+                        <a href="#" class="icon-social"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="icon-social"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="icon-social"><i class="fa fa-pinterest"></i></a>
 
                     </div>
 
