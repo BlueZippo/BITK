@@ -23,9 +23,10 @@ class StacksController extends Controller {
 
     var $links = array();
 
-    public function __construct() {
+    public function __construct() 
+    {
 
-        $this->middleware('auth');
+        //$this->middleware('auth');
 
     }
 
