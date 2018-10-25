@@ -1,6 +1,6 @@
-<div class="panel panel-default">
+<div class="stack-panel">
 
-	<div class="panel-heading">Related Stacks</div>
+	<div class="panel-heading"><h3>Related <span>Stacks</span></h3></div>
 
 		<div class="panel-body">
 
@@ -12,14 +12,14 @@
 
 						@include('stacks.related-box')
 
-					</div>	
+					</div>
 
 				@endforeach
 
 			</div>
 
 		</div>
-		
+
 	</div>
 
-</div>	
+</div>
