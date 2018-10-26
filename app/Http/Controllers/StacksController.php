@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Stack;
 use App\StacksFollow;
 use App\Category;
-use App\user;
+use App\User;
 use App\Link;
 use App\StackLink;
 use App\LinkCategory;
