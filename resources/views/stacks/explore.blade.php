@@ -2,37 +2,32 @@
 
 @section('content')
 
-    <h2><a href="/stacks/explore">Explore</a></h2>            
+    @if (Auth::check())
+
+        <h2><a href="/stacks/explore">Explore</a></h2>
+
+
+    @else
+
+        <h2><a href="/">Explore</a></h2>            
+
+    @endif    
 
     <hr />
 
     <div class="row">
 
-        <div class="col-md-3">
+        @foreach($stacks as $stack)
 
-            @include('stacks.media-type')
-
-
-        </div>
-        
-        <div class="col-md-9">    
-
-            <div class="row">
-
-                @foreach($stacks as $stack)
-
-                <div class="col-md-4">
+            <div class="col-md-2">
 
                     @include('stacks.box')
 
-                </div>
-
-
-                @endforeach
-
             </div>
-            
-         </div>       
+
+
+    @endforeach
+
         
         
     </div>    
