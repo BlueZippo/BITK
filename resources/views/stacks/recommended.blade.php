@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="stack-panel">
 
 	<div class="panel-heading">Stacks Recommended for you</div>
 

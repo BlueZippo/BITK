@@ -1,6 +1,6 @@
-<div class="panel panel-default">
+<div class="stack-panel">
 
-	<div class="panel-heading">My Stacks</div>
+	<div class="panel-heading"><h3>My <span>Stacks</span></h3></div>
 
 	<div class="panel-body">
 
@@ -10,40 +10,40 @@
 
 				<a href="/stacks/create" class="btn btn-primary btn-circle btn-xl create-stack-button"><i class="fa fa-plus"></i></a>
 
-				
+
 			</div>
 
-			<div class="col-md-8">	
+			<div class="col-md-8">
 
 				@if (count($mystacks) > 0)
 
-					
+
 					<div class="row">
 						@foreach($mystacks as $stack)
 							<div class="col-md-3">
 
 								@include('stacks.dashboard-box')
-								
+
 							</div>
 						@endforeach
 					</div>
-					
+
 				@endif
 
 			</div>
-			
-			<div class="col-md-2">	
 
-				
+			<div class="col-md-2">
+
+
 				@include('stacks.reminder')
 
-			</div>	
+			</div>
 
-		
 
-			
 
-		
+
+
+
 
 		</div>
 
