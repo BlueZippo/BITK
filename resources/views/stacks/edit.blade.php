@@ -18,11 +18,12 @@
             
             <hr />
 
-            {!! Form::open(['action' => 'StacksController@store', 'method' => 'POST']) !!}               
+            {!! Form::open(['action' => ['StacksController@update', $stack->id],  'method' => 'POST']) !!}               
 
                 {{Form::hidden('video_id', 0)}}
                 {{Form::hidden('title', $stack->title)}}
                 {{Form::hidden('content', $stack->content)}}
+                {{Form::hidden('status_id', $stack->status_id)}}
 
                 <div class="dotted">
 
@@ -41,9 +42,11 @@
 
                             </div> 
 
-                            <div class="stack-meta text-right">
+                            <div class="stack-meta">
 
-                                Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a>
+                                <div class="switch @if($stack->status_id == 1) switchOn @endif"></div>
+
+                                <div class="meta-data text-right">Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a></div>
 
                             </div> 
 

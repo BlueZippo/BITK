@@ -28,40 +28,42 @@ class PagesController extends Controller {
     				->stacks()
     				->limit(3)
     				->orderBy('created_at', 'desc')
+    				->where('status_id', '=', 1)
     				->get();
 
-				$mystacks = array();
+		$mystacks = array();
 
-				foreach($results as $result)
-				{
-					$author = User::find($result->user_id);
+		foreach($results as $result)
+		{
+			$author = User::find($result->user_id);
 
-					$categories = array();
+			$categories = array();
 
-					foreach($result->links as $link)
-					{
-						$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
-					}
+			foreach($result->links as $link)
+			{
+				$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+			}
 
-					$follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+			$follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
-					$mystacks[] = array(
-						    'id' => $result->id,
-							'title' => $result->title,
-							'content' => $result->content,
-						    'image' => $result->video_id,
-							'author' => $author,
-							'user_id' => $result->user_id,
-							'follow' => $follow->isEmpty() ? false : true,
-							'updated_at' => date("F d, Y", strtotime($result->updated_at)),
-							'categories' => implode(',', array_unique($categories))
-						);
-				}
+			$mystacks[] = array(
+				    'id' => $result->id,
+					'title' => $result->title,
+					'content' => $result->content,
+				    'image' => $result->video_id,
+					'author' => $author,
+					'user_id' => $result->user_id,
+					'follow' => $follow->isEmpty() ? false : true,
+					'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+					'categories' => implode(',', array_unique($categories))
+				);
+		}
 
 
 
     		$results = Stack::orderBy('created_at', 'desc')
     			 ->where('user_id', '!=' , $user_id)
+    			 ->where('status_id', '=', 1)
     			 ->get();
 
 
@@ -115,7 +117,7 @@ class PagesController extends Controller {
 					$author = User::find($stack->user_id);
 
 					
-					if ($author)
+					if ($author && $stack->status_id == 1)
 					{
 
 						$categories = array();
@@ -158,7 +160,8 @@ class PagesController extends Controller {
 
 
         $parking = User::find($user_id)
-                   ->links()
+                   ->links()                   
+                   ->where('stack_id', '=', 0)
                    ->get();
 
     	$data = ['mystacks' => $mystacks ,
