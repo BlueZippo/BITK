@@ -50,6 +50,7 @@ class MediaTypeController extends Controller
         $media = new MediaType;
 
         $media->media_type = $request->input('media_type');
+        $media->icon = $request->input('icon');
 
         $media->save();
 
