@@ -168,7 +168,7 @@ $(document).ready(function()
 
         linkCounter++;
 
-        var html = '<div class="col-md-3" id="link'+linkCounter+'">';        
+        var html = '<div class="col-md-3 category' +category+ '" id="link'+linkCounter+'">';        
 
         html += '<div class="single-link">'
 
