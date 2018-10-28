@@ -95,6 +95,13 @@
             <div class="card-header">
 
                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#category{{$media->id}}" aria-expanded="true" aria-controls="collapseOne">
+
+                    @if($media->icon)
+
+                    <i class="fa {{$media->icon}}"></i>
+
+                    @endif
+
                     {{$media->media_type}}
                 </button>
                 <div class="divider"></div>
