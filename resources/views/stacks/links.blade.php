@@ -1,17 +1,15 @@
-<ul class="nav nav-tabs links" role="tablist">
+<div class="links-nav" role="tablist">
 
-    <li><a class="nav-link">All</a></li>
+    <a class="all active">All</a>
     
-    <li><a class="nav-link">Top Three</a></li>
+    <a class="top-three">Top Three</a>
 
     @foreach($medias as $media)
 
-        <li>
-            <a class="nav-link" data-category="{{$media->id}}" data-toggle="tab" href="#category{{$media->id}}" role="tab">{{$media->media_type}}</a>
-        </li>
+       <a class="category-button" data-category="{{$media->id}}" data-toggle="tab" role="tab">{{$media->media_type}}</a>
 
     @endforeach
-</ul>
+</div>
 
 <div class="tab-content">
     
@@ -21,7 +19,7 @@
 
         @foreach($links as $link)               
 
-             <div class="col-md-3" id="link{{$linkCounter}}">
+             <div class="col-md-3 category{{$link['media_id']}}" id="link{{$linkCounter}}">
                 <div class="single-link">
                     <input type="hidden" name="links[{{$linkCounter}}][url]" value="{{$link['link']}}">
                     <input type="hidden" name="links[{{$linkCounter}}][title]" value="{{$link['title']}}">
