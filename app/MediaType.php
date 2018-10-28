@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MediaType extends Model
 {
-    protected $fillable = ['media_type'];
+    protected $fillable = ['media_type', 'icon'];
 
     protected $table = 'media_types';
     public $primaryKey = 'id';

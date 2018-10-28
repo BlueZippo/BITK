@@ -59,10 +59,18 @@
 
         </div>
 
+         <div class="form-group">
+
+            <strong>Icon:</strong>
+
+            {!! Form::text('icon', null, array('placeholder' => 'Fontawesome icon','class' => 'form-control')) !!}
+
+        </div>
+
     </div>  
 
 
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+    <div class="col-xs-12 col-sm-12 col-md-12">
 
         <button type="submit" class="btn btn-primary">Submit</button>
 

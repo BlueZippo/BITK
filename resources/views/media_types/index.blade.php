@@ -33,6 +33,8 @@
 
    <th>Media Type</th>
 
+   <th>Icon</th>
+
    <th width="280px">Action</th>
 
  </tr>
@@ -44,6 +46,9 @@
     <td>{{ ++$i }}</td>
 
     <td>{{ $media->media_type }}</td>
+
+
+    <td><i class="fa {{$media->icon}}"></i></td>
 
     
     <td>
