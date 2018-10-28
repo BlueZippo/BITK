@@ -6,6 +6,7 @@ Table of Content:
 #Header
 #Footer
 #Single Stack
+#Dashboard
 *****************************/
 /*****************************
     #Layout
@@ -40,6 +41,9 @@ and (min-width: 1200px) {
     }
     a {
         color: #1da1f2;
+    }
+    .transition a {
+        transition: all 200ms ease-in-out;
     }
 /*****************************
     #Header
@@ -462,4 +466,40 @@ main {
 }
 .stack-panel .stack-content .stack-footer i {
     padding: 8px 10px;
+}
+/*****************************
+    #Dashboard
+*****************************/
+.dashboard .nav.nav-pills {
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+.dashboard .nav.nav-pills li a {
+    font-size: 14px;
+    color: #404040;
+    font-weight: 500;
+    position: relative;
+}
+.dashboard .nav.nav-pills li a:hover {
+    color: #1da1f2;
+}
+.dashboard .nav.nav-pills li a.create {
+    background-color: #1da1f2;
+    color: #ffffff;
+    border-radius: 26px;
+    padding-right: 32px;
+}
+.dashboard .nav.nav-pills li a.create:hover {
+    background-color: #404040;
+}
+.dashboard .nav.nav-pills li a.create:after {
+    content: "\f055";
+    font-family: 'FontAwesome';
+    font-size: 16px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    right: 12px;
+    bottom: 0;
+    margin: auto;
 }
