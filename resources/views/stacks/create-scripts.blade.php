@@ -25,6 +25,20 @@ $(document).ready(function()
         });
     });
 
+    $('.switch').click(function()
+    {  
+        $(this).toggleClass("switchOn");  
+
+        if ($(this).hasClass("switchOn"))
+        {
+            $('input[name=status_id]').val(1)
+        }   
+        else
+        {
+            $('input[name=status_id]').val(0);
+        }
+    }); 
+
 
     $('.links-nav a').click(function()
     {

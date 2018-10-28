@@ -77,6 +77,8 @@ class StacksController extends Controller {
 
         $stack->video_id = request('video_id');
 
+        $stack->status_id = request('status_id');
+
         $stack->save();
 
 
@@ -174,13 +176,20 @@ class StacksController extends Controller {
 
         foreach($links as $i => $link)
         {
-           $medias[] = $link->media_id;
+            $media_type = "";
 
-           $url = parse_url($link->link);
+            $medias[] = $link->media_id;
 
-           $links[$i]['domain'] = $url['host'];
-           $links[$i]['media_type'] = $link->media->media_type;
-           $links[$i]['date'] = date("F d, Y", strtotime($link->created_at)); 
+            if ($link->media_id > 0)
+            {
+                $media_type = $link->media->media_type;                
+            }    
+
+            $url = parse_url($link->link);
+
+            $links[$i]['domain'] = $url['host'];
+            $links[$i]['media_type'] = $media_type;
+            $links[$i]['date'] = date("F d, Y", strtotime($link->created_at)); 
            
 
         }
@@ -208,12 +217,18 @@ class StacksController extends Controller {
                    ->toArray();
 
 
-        $results = User::find($stack->user_id)->stacks()->where('id', '!=', $id)->limit(4)->get();
+        $results = User::find($stack->user_id)
+                    ->stacks()
+                    ->where('status_id', '=', 1)
+                    ->where('id', '!=', $id)
+                    ->limit(4)->get();
 
 
         foreach($results as $result)
         {
-            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', $stack->user_id)->get();            
+            $follow = StacksFollow::where('stack_id', '=', $result->id)
+                                  ->where('user_id', '=', $stack->user_id)                                 
+                                  ->get();            
 
             $related[] = array(
                             'id' => $result->id,
@@ -570,29 +585,29 @@ class StacksController extends Controller {
 
 
         foreach($results as $stack)
-				{
-					$author = User::find($stack->user_id);
+		{
+			$author = User::find($stack->user_id);
 
-					$categories = array();
+			$categories = array();
 
-					foreach($stack->links as $link)
-					{
-						$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
-					}
+			foreach($stack->links as $link)
+			{
+				$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+			}
 
-					$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
+			$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
 
-					$stacks[] = array(
-						    'id' => $stack->id,
-								'title' => $stack->title,
-								'content' => $stack->content,
-						    'image' => $stack->video_id,
-								'author' => $author,
-								'follow' => $follow->isEmpty() ? false : true,
-								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
-								'categories' => implode(',', array_unique($categories))
-						);
-				}
+			$stacks[] = array(
+				    'id' => $stack->id,
+						'title' => $stack->title,
+						'content' => $stack->content,
+				    'image' => $stack->video_id,
+						'author' => $author,
+						'follow' => $follow->isEmpty() ? false : true,
+						'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
+						'categories' => implode(',', array_unique($categories))
+				);
+		}
 
 
         return view('stacks.view-all', compact('stacks', $stacks));
@@ -635,6 +650,8 @@ class StacksController extends Controller {
         $stack->user_id = auth()->id();
 
         $stack->video_id = request('video_id');
+
+        $stack->status_id = request('status_id');
 
         $stack->save();
 

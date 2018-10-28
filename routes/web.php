@@ -33,13 +33,9 @@ Route::group(['middleware' => ['auth']], function()
 	
 	Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);	
 
-	Route::get('stacks/explore', 'StacksController@explore');
+	Route::get('stacks/explore', 'StacksController@explore');	
 
-	
-
-	Route::get('stacks/view-all', 'StacksController@view_all');
-
-	
+	Route::get('stacks/view-all', 'StacksController@view_all');	
 
 	Route::post('stacks/{id}/update', 'StacksController@update');
 
@@ -47,9 +43,12 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::resource('admin/users', 'UserController');
 
+	Route::post('stacks/{id}', 'StacksController@update');
+
 	Route::resource('stacks', 'StacksController');
 
 	Route::resource('admin/categories', 'CategoriesController');	
+
 	Route::resource('admin/media_types', 'MediaTypeController');
 
 	Route::post('links/get-meta-tags', 'LinksController@get_meta_tags');

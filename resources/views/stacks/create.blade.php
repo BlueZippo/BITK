@@ -24,6 +24,7 @@
                 {{Form::hidden('video_id', 0)}}
                 {{Form::hidden('title', '')}}
                 {{Form::hidden('content', '')}}
+                {{Form::hidden('status_id', 0)}}
 
                 <div class="dotted">
 
@@ -42,9 +43,11 @@
 
                             </div> 
 
-                            <div class="stack-meta text-right">
+                            <div class="stack-meta">
 
-                                Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a>
+                                <div class="switch"></div>
+
+                                <div class="meta-data text-right">Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a></div>
 
                             </div> 
 
