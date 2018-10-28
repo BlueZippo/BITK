@@ -31,9 +31,6 @@ $(document).on('click', 'a.follow-button', function()
 
 $(document).ready(function()
 {
-	$('.textarea').ckeditor();
-
-
 	$('.search-wrapper a.input-button').click(function()
 	{
 		var ss = $('.search-wrapper input[name=search]').val();

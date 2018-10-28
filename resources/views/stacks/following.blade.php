@@ -1,6 +1,6 @@
-<div class="panel panel-default">
+<div class="stack-panel">
 
-	<div class="panel-heading">Stacks I'm Following</div>
+	<div class="panel-heading"><h3><span>Stacks</span> I'm Following</h3></div>
 
 	<div class="panel-body">
 

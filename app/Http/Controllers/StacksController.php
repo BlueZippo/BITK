@@ -45,6 +45,9 @@ class StacksController extends Controller {
             $data['links'] = $request->old('links');
         }
 
+        $data['last_updated'] = date("M d, Y");
+        $data['upvote'] = 0;
+
 
         return view('stacks.create')->with($data);
     }
@@ -66,9 +69,9 @@ class StacksController extends Controller {
 
         $stack = new Stack;
 
-        $stack->title = request('title');
+        $stack->title = strip_tags(request('title'));
 
-        $stack->content = request('content');
+        $stack->content = strip_tags(request('content'));
 
         $stack->user_id = auth()->id();
 
@@ -606,6 +609,11 @@ class StacksController extends Controller {
 
         $data['links'] = $stack->links;
 
+        $upvote = StacksVote::where('stack_id', '=', $id)->get();
+
+        $data['upvote'] = count($upvote);
+
+        $data['last_updated'] = date("M d, Y", strtotime($stack->updated_at));
 
         $data['medias'] = MediaType::all();
 

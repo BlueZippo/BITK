@@ -19,7 +19,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicon/apple-touch-icon-180x180.png') }}" />
 
     {{--<title>{{config('app.name')}}</title>--}}
-    <title>PlatStack</title>
+    <title>Platstack</title>
 
     <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
 
@@ -30,6 +30,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
+
+    @yield('style')
 
     <!-- Custom styles for this template -->
     {{--<link href="/css/sticky-footer-navbar.css" rel="stylesheet">--}}

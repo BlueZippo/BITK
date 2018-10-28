@@ -6,11 +6,90 @@ var linkCounter = {{count($links)}};
 
 $(document).ready(function()
 {
+
+    $('a.fa-edit').click(function()
+    {
+        var par = $(this).parent();
+
+        $('.content', par).each(function()
+        {
+            $(this).attr('contenteditable', true);
+
+            if ($(this).html() == 'enter title...' || $(this).html() == 'enter description...')
+            {
+                $(this).html('');
+            }
+
+            $(par).removeClass('error');
+            $(this).focus();
+        });
+    });
+
+    $('.content').click(function()
+    {
+        var isEditable = $(this).attr('contenteditable');
+
+        if (isEditable == "true")
+        {
+            $(this).focus();
+            $(this).removeClass('error');
+        }    
+    })
+
+    $('form').submit(function()
+    {
+        var error = false;
+
+        $('.dotted').each(function()
+        {
+            var field = $(this).data('field');
+
+            var content = $('.content', this).html();           
+
+            switch (field)
+            {
+                case 'title':
+
+                    $('input[name=title]').val(content);
+
+                    if (content == 'enter title...' || content == '')
+                    {
+                        error = true;
+                        $(this).addClass('error');
+                    }
+
+                break;
+
+                case 'content':
+
+                    if (content != 'enter description...')
+                    {
+                        $('input[name=content]').val(content);
+                    }    
+
+                break;
+                
+            }
+
+
+           
+        });
+
+
+
+
+        if (error)
+         {
+
+            return false;
+         } 
+    })
+
     $('input[name=link_url]').focusout(function()
     {
-        $('.add-link-button').hide();
+        $('.submit-button').addClass('disabled');
 
-        $('.add-link-button').after('<span class="alert alert-danger"><strong>Fetching link details, please wait...</strong></span>');
+        $('.solid .content').html('Fetching link information, please wait...')
        
         $.ajaxSetup({
             headers: {
@@ -28,37 +107,38 @@ $(document).ready(function()
             {
                 if (data.title)
                 {
-                    $('input[name=link_title]').val(data.title);
+                    $('*[data-field="link_title"] .content').html(data.title)
                 }
 
                 if (data.description)
                 {
-                    $('textarea[name=link_description]').val(data.description);
+                    $('*[data-field="link_description"] .content').html(data.description);
                 }
 
                 if (data.image)
                 {
-                    $('.link-image img').attr('src', data.image);
+                    $('.image-container').html('<img src="'+data.image+'">');
                 }
 
-                $('.alert').hide();
-                $('.add-link-button').show();
+                $('.submit-button').removeClass('disabled');
             }
         });
     });
 
-    $('.add-link-button').click(function()
+    $('.add-link .submit-button').click(function()
     {
-        var title = $('input[name=link_title]').val();
+        var title = $('*[data-field="link_title"] .content').html();
         var url = $('input[name=link_url]').val();
-        var desc = $('textarea[name=link_description]').val();
-        var img = $('.link-image img').attr('src');
+        var desc = $('*[data-field="link_description"] .content').html();
+        var img = $('.image-container img').attr('src');
 
-        var category = $('input[name=link_category]').val();
+        var category = $('.links a.active').data('category');
 
         linkCounter++;
 
-        var html = '<div class="col-md-3 single-link" id="link'+linkCounter+'">';        
+        var html = '<div class="col-md-3" id="link'+linkCounter+'">';        
+
+        html += '<div class="single-link">'
 
         html += '<input type="hidden" name="links['+linkCounter+'][url]" value="'+url+'">'
         html += '<input type="hidden" name="links['+linkCounter+'][title]" value="'+title+'">'
@@ -73,15 +153,16 @@ $(document).ready(function()
 
         html += '</div>';
 
+        html += '</div>';        
 
-        $('#addLinkModal').modal('hide');
+        $('.add-link-button-wrapper').before(html);
 
-        $('#category'+category+' .stack-links').append(html);
-
-        $('input[name=link_title]').val('');
+        $('*[data-field="link_title"] .content').html('');
         $('input[name=link_url]').val('');
-        $('textarea[name=link_description]').val('');
-        $('.link-image img').attr('src', '');
+        $('*[data-field="link_description"] .content').html('');
+        $('.image-container').html('');
+
+        $('.links-container').hide();
     });
 
 
@@ -107,9 +188,28 @@ $(document).ready(function()
 
     $('.add-link-modal').click(function()
     {
-        category = $(this).data('category');
+        var offset = $(this).offset();
 
-        $('#addLinkModal input[name=link_category]').val(category);
+        $('.links-container').removeClass('right-position');
+        $('.links-container').removeClass('left-position');
+
+        $('.links-container').css('right', 'auto');
+        $('.links-container').css('left', 'auto');
+
+        console.log(offset);
+
+        if (offset.left < 500)
+        {
+            $('.links-container').addClass('right-position');
+            $('.links-container').css('right', '-505px');
+        }   
+        else
+        {
+            $('.links-container').addClass('left-position');
+            $('.links-container').css('left', '-505px');
+        } 
+
+        $('.links-container').show();
     });
 
   

@@ -1,4 +1,4 @@
-<div class="well">
+<div class="stack-author">
 
 	<div class="row author">
 
@@ -18,24 +18,29 @@
 				</div>
 			</div>	
 
-			{{$user->name}}
+			<span class="author-name">{{$user->name}}</span>
 		
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-6 text-right">
 
-			<a class="btn" href="">Upvote</a> 	
-			<a class="btn" href="">Downvote</a>
+			<a class="upvote">Upvote | {{$upvote}}</a> 	
 
-		</div>	
+			<a class="downvote">Downvote</a>
 
-		<div class="col-md-3">
+			<div class="social">
 
-			<i class="fa fa-facebook-square"></i>
+				<a class="fa fa-facebook-square"></a>
 
-			<i class="fa fa-twitter"></i>
+				<a class="fa fa-twitter"></a>
 
-			<i class="fa fa-pinterest"></i>			
+				<a class="fa fa-google-plus-circle"></a>			
+
+				<a class="fa fa-reddit-alien"></a>			
+
+				<a class="">...</a>
+
+			</div>	
 
 
 		</div>	
