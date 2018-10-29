@@ -383,6 +383,13 @@ main {
     padding-right: 20px;
     position: relative;
 }
+
+.accordion.stack-single .card-header > button > i
+{
+    color:#1da1f2;
+    font-size:22px;
+}
+
 .accordion.stack-single .card-header > button:before {
     content: "\f054";
     color: #1da1f2;
@@ -394,7 +401,8 @@ main {
     bottom: 0;
     margin: auto;
 }
-.accordion.stack-single .card-header > button.open:before {
+.accordion.stack-single .card-header > button.open:before 
+{
     content: "\f078";
 }
 .accordion.stack-single .card-header > button:hover,

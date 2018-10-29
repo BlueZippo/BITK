@@ -1,5 +1,14 @@
 @extends ('layouts.master')
 
+@section('style')
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
+<link href="{{ asset('css/create-stack.css') }}" rel="stylesheet">
+
+@endsection
+
 @section('content')
 
 	<div class="row">
@@ -13,37 +22,60 @@
             {!! Form::open(['action' => 'StacksController@store', 'method' => 'POST']) !!}               
 
                 {{Form::hidden('video_id', 0)}}
+                {{Form::hidden('title', '')}}
+                {{Form::hidden('content', '')}}
+                {{Form::hidden('status_id', 0)}}
 
-                <div class="row">
+                <div class="dotted">
 
-                    <div class="col-md-7">
+                    <div class="row">
 
-                        <div class="form-group">
+                        <div class="col-md-7">
 
-                            {{Form::label('title', 'Title')}}
-                            {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}                    
+                            <div class="form-group">
 
-                        </div>  
+                                <div class="dotted" data-field="title">
+                                    <div class="content" contenteditable="false">enter title...</div>
+                                    <a class="fa fa-edit"></a>
+                                </div>
 
-                       
+                                
 
-                        <div class="form-group">
+                            </div> 
 
-                            {{Form::label('content', 'Content')}}
-                            {{Form::textarea('content', '', ['class' => 'form-control textarea', 'placeholder' => 'Content'])}}
+                            <div class="stack-meta">
 
-                        </div>  
+                                <div class="switch"></div>
 
-                        @include('stacks.meta-author')   
+                                <div class="meta-data text-right">Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a></div>
 
+                            </div> 
+
+                            <hr />
+
+                            <div class="form-group">
+
+                                <div class="dotted" data-field="content">
+                                    <div class="content" contenteditable="false">enter description...</div>
+                                    <a class="fa fa-edit"></a>
+                                </div>
+
+                                
+
+                            </div>  
+
+                            @include('stacks.meta-author')   
+
+                        </div>
+                        
+                        <div class="col-md-5">    
+
+                             @include('stacks.youtube')
+
+                        </div>
+                        
                     </div>
-                    
-                    <div class="col-md-5">    
 
-                         @include('stacks.youtube')
-
-                    </div>
-                    
                 </div>    
 
                 @php $linkCounter = 0; @endphp    
@@ -52,7 +84,7 @@
 
                 @include('stacks.links')  
 
-                @include('stacks.add-link-form')
+                
 
                 {{Form::submit('Save', ['class' => 'btn btn-primary'])}}
 

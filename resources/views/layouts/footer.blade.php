@@ -1,6 +1,6 @@
     <footer class="footer">
       <div class="container">
-        <span class="copyright">PlatStack 2018</span>
+        <span class="copyright">Platstack {{date("Y")}}</span>
       </div>
     </footer>
 
@@ -16,12 +16,9 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 
-
-    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
-
+    <script src="{{ asset('js/masonry.js') }}"></script>
+    
     <script src="{{ asset('js/jquery.matchHeight-min.js') }}"></script>
 
     <script src="{{ asset('js/script.js') }}"></script>

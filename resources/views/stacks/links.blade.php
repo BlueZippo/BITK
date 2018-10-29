@@ -1,63 +1,52 @@
-<ul class="nav nav-tabs" role="tablist">
+<div class="links-nav" role="tablist">
+
+    <a class="all active">All</a>
+    
+    <a class="top-three">Top Three</a>
+
     @foreach($medias as $media)
 
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#category{{$media->id}}" role="tab">{{$media->media_type}}</a>
-        </li>
+       <a class="category-button" data-category="{{$media->id}}" data-toggle="tab" role="tab">{{$media->media_type}}</a>
 
     @endforeach
-</ul>
+</div>
 
 <div class="tab-content">
-    @foreach($medias as $media)
+    
+    <div class="row stack-links">   
 
-        <div class="tab-pane" id="category{{$media->id}}" role="tabpanel"  data-category="{{$media->id}}">
+        @php $linkCounter = 0 @endphp
 
-            <div class="container">
+        @foreach($links as $link)               
 
-                <div class="row stack-links">   
-
-                    @if (count($links))
-
-                        @foreach($links as $link)
-
-                            @if ($link->media_id == $media->id)
-
-                                 <div class="col-md-3 single-link" id="link{{$linkCounter}}">
-                                    <input type="hidden" name="links[{{$linkCounter}}][url]" value="{{$link['link']}}">
-                                    <input type="hidden" name="links[{{$linkCounter}}][title]" value="{{$link['title']}}">
-                                    <input type="hidden" name="links[{{$linkCounter}}][description]" value="{{$link['description']}}">
-                                    <input type="hidden" name="links[{{$linkCounter}}][image]" value="{{$link['image']}}">
-                                    <input type="hidden" name="links[{{$linkCounter}}][media_id]" value="{{$link['media_id']}}">
-                                    <div class="image"><img src="{{$link['image']}}"></div>
-                                    <div class="title">{{$link['title']}}</div>
-                                    <div class="link-hover"><a data-id={{$linkCounter}} onClick="$('#link{{$linkCounter}}').remove()" class="btn btn-primary link-delete-button"><i class="fa fa-minus"></i></a></div>
-                                </div>  
-
-                                @php $linkCounter++ @endphp
-
-                            @endif    
-
-
-                        @endforeach
-
-                    
-                    @endif
-
-
+             <div class="col-md-3 category{{$link['media_id']}}" id="link{{$linkCounter}}">
+                <div class="single-link">
+                    <input type="hidden" name="links[{{$linkCounter}}][url]" value="{{$link['link']}}">
+                    <input type="hidden" name="links[{{$linkCounter}}][title]" value="{{$link['title']}}">
+                    <input type="hidden" name="links[{{$linkCounter}}][description]" value="{{$link['description']}}">
+                    <input type="hidden" name="links[{{$linkCounter}}][image]" value="{{$link['image']}}">
+                    <input type="hidden" name="links[{{$linkCounter}}][media_id]" value="{{$link['media_id']}}">
+                    <div class="image"><img src="{{$link['image']}}"></div>
+                    <div class="title">{{$link['title']}}</div>
+                    <div class="link-hover"><a data-id={{$linkCounter}} onClick="$('#link{{$linkCounter}}').remove()" class="btn btn-primary link-delete-button"><i class="fa fa-minus"></i></a></div>
                 </div>
+            </div>  
 
-                <div class="row">  
+            @php $linkCounter++ @endphp
 
-                    <a href="" class="add-link-modal" data-category="{{$media->id}}"  data-toggle="modal" data-target="#addLinkModal"><i class="fa fa-plus-circle"></i></a>    
+        @endforeach
 
+        <div class="col-md-3 add-link-button-wrapper">
 
-                </div>    
+            <a class="add-link-modal"><i class="fa fa-plus-circle"></i></a>
 
+            @include('stacks.add-link-form')
 
-            </div>
+        </div>   
 
-         </div>    
+        
 
-    @endforeach
+    </div>
+
+            
 </div>    
