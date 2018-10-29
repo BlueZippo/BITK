@@ -4,17 +4,11 @@
 	font-size:.875rem !important;
 }
 
-.stack-wrapper .meta .stack-rate a.upvote
-{
-	font-style: normal;
-	display: inline-block;
-	line-height: 2;
-	padding: 0px 15px !important;
-	border: solid 1px #969696;
-	border-radius: 5px;
-	background: #f2f2f2;
-	border-color: #969696;
-	font-size:.875rem;
+.stack-wrapper .meta .stack-rate a.upvote {
+	display: flex;
+}
+.stack-wrapper .meta .stack-rate a.upvote i {
+	margin-right: 5px;
 }
 
 a.upvote:hover
@@ -78,4 +72,3 @@ a.upvote:hover
 {
 	color:#fff;
 }
-

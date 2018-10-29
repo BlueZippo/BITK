@@ -2,7 +2,7 @@
 
 @section('style')
 
-<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 <link href="{{ asset('css/stack-dashboard.css') }}" rel="stylesheet">
 
 @endsection
@@ -34,7 +34,13 @@
 
     		<div class="col-md-7 content">
 
-                <h2 class="stack-title">{{$stack->title}} <span>Last updated: {{date("M d, Y", strtotime($stack->updated_at))}} <i class="fa fa-comment"></i> English <i class="fa fa-plus-circle"></i></span></h2>
+                <h2 class="stack-title">{{$stack->title}}</h2>
+                <div class="stack-meta">
+                    <div class="date">Last updated: {{date("M d, Y", strtotime($stack->updated_at))}}</div>
+                    <div class="comment-trigger"><i class="fa fa-comment"></i></div>
+                    <div class="language">English</div>
+                    <div class="follow-trigger"><a><i class="fa fa-plus-circle"></i></a></div>
+                </div>
 
                 <hr />
 
@@ -74,9 +80,9 @@
 
                     <div class="stack-rate">
 
-                        <a class="upvote">Upvote | {{$upvote}}</a>  
+                        <a class="upvote"><i class="thumbsup"></i>{{$upvote}}</a>
 
-                        <a class="downvote">Downvote</a>
+                        <a class="downvote"><i class="thumbsdown"></i></a>
 
                         <div class="social">
 
@@ -84,13 +90,13 @@
 
                             <a class="fa fa-twitter"></a>
 
-                            <a class="fa fa-google-plus-circle"></a>            
+                            <a class="fa fa-google-plus-circle"></a>
 
-                            <a class="fa fa-reddit-alien"></a>          
+                            <a class="fa fa-reddit-alien"></a>
 
                             <a class="">...</a>
 
-                        </div>  
+                        </div>
 
                     </div>
 
