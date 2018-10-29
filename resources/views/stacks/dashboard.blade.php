@@ -1,6 +1,32 @@
 @extends ('layouts.master')
 
+@section('style')
+
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
+<link href="{{ asset('css/stack-dashboard.css') }}" rel="stylesheet">
+
+@endsection
+
+@section('sidebar')
+
+<div class="stack-sidebar">
+
+    <a class="chats"><i class="fa fa-comments"></i></a>
+
+    <a class="views"><i class="fa fa-bars"></i> Change View</a>
+
+    @if (auth::check() && auth::user()->id == $stack->user_id)
+
+    <a class="edit" href="/stacks/{{$stack->id}}/edit"><i class="fa fa-edit"></i> Edit Stack</a>
+
+    @endif
+
+</div>
+
+@endsection
+
 @section('content')
+
 
     <div class="stack-wrapper">
 
@@ -48,11 +74,23 @@
 
                     <div class="stack-rate">
 
-                        <a data-id="{{$stack->id}}" class="upvote btn btn-primary">Upvote | {{$upVotes}}</a> <a data-id="{{$stack->id}}" class="downvote">Downvote</a>
-                        <div class="divider"></div>
-                        <a href="#" class="icon-social"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="icon-social"><i class="fa fa-instagram"></i></a>
-                        <a href="#" class="icon-social"><i class="fa fa-pinterest"></i></a>
+                        <a class="upvote">Upvote | {{$upvote}}</a>  
+
+                        <a class="downvote">Downvote</a>
+
+                        <div class="social">
+
+                            <a class="fa fa-facebook-square"></a>
+
+                            <a class="fa fa-twitter"></a>
+
+                            <a class="fa fa-google-plus-circle"></a>            
+
+                            <a class="fa fa-reddit-alien"></a>          
+
+                            <a class="">...</a>
+
+                        </div>  
 
                     </div>
 

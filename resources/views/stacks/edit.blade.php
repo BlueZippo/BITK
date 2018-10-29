@@ -14,7 +14,7 @@
         
         <div class="col-sm-12">
             
-            <h1>Create A Stack</h1>
+            <h1>Edit Stack</h1>
             
             <hr />
 

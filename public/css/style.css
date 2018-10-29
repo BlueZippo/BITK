@@ -550,14 +550,4 @@ a.downvote
 }
 
 
-a.upvote
-{
-	background:#f2f2f2;
-	border-color:#969696;
-}
 
-a.upvote:hover
-{
-	background:#fff;
-	border-color:#969696;
-}
