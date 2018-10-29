@@ -1,6 +1,6 @@
-<div class="panel panel-default">
-	
-	<div class="panel-heading">Tags <a href="/tags/create" class="add-tag"><i class="fa fa-plus-circle"></i></a></div>
+<div class="stack-panel">
+
+	<div class="panel-heading"><h3><span>Tags</span></h3> <a href="/tags/create" class="add-tag"><i class="fa fa-plus-circle"></i></a></div>
 
 	<div class="panel-body">
 
@@ -8,7 +8,7 @@
 
 			<div class="col-md-12">
 
-		
+
 					@if (count($tags) > 0)
 
 						@foreach($tags as $tag)
@@ -22,8 +22,8 @@
 
 			</div>
 
-		</div>	
+		</div>
 
-	</div>	
+	</div>
 
-</div>	
+</div>

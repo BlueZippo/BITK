@@ -1,6 +1,6 @@
 <div class="stack-panel">
 
-	<div class="panel-heading">Stacks Recommended for you</div>
+	<div class="panel-heading"><h3><span>Stacks</span> Recommended for you</h3></div>
 
 	<div class="panel-body">
 
