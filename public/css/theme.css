@@ -481,10 +481,10 @@ main {
     position: relative;
 }
 .dashboard .nav.nav-pills li a:hover {
-    color: #1da1f2;
+    color: #fd3b82;
 }
 .dashboard .nav.nav-pills li a.create {
-    background-color: #1da1f2;
+    background-color: #fd3b82;
     color: #ffffff;
     border-radius: 26px;
     padding-right: 32px;
