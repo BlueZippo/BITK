@@ -618,21 +618,30 @@ class StacksController extends Controller {
     {
         $stack = Stack::find($id);
 
-        $data['stack'] = $stack;
+        if (auth()->id() == $stack->user_id)
+        {        
 
-        $data['user'] = User::find(auth()->id());
+            $data['stack'] = $stack;
 
-        $data['links'] = $stack->links;
+            $data['user'] = User::find($stack->user_id);
 
-        $upvote = StacksVote::where('stack_id', '=', $id)->get();
+            $data['links'] = $stack->links;
 
-        $data['upvote'] = count($upvote);
+            $upvote = StacksVote::where('stack_id', '=', $id)->get();
 
-        $data['last_updated'] = date("M d, Y", strtotime($stack->updated_at));
+            $data['upvote'] = count($upvote);
 
-        $data['medias'] = MediaType::all();
+            $data['last_updated'] = date("M d, Y", strtotime($stack->updated_at));
 
-        return view('stacks.edit')->with($data);
+            $data['medias'] = MediaType::all();
+
+            return view('stacks.edit')->with($data);
+
+        }
+        else
+        {
+            return redirect('/stacks/' . $id . '/dashboard');
+        }    
     }
 
 

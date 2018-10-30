@@ -14,8 +14,7 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 
-
-    <script src="{{ asset('js/masonry.js') }}"></script>
+    <script src="{{ asset('js/plugins/custom/jquery-ui.js') }}"></script>
 
     <script src="{{ asset('js/jquery.matchHeight-min.js') }}"></script>
 

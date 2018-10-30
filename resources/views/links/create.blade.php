@@ -1,57 +1,34 @@
-@extends('layouts.master')
+<div class="add-link-form">
 
-@section('content')
+<form>
+  
 
-<h1>Create Link</h1>
+        <div class="links-container">
 
-{!! Form::open(['action' => 'LinksController@store', 'method' => 'POST']) !!}
+            <div class="add-link">             
+              
 
-	<div class="form-group">
+              @include('links.create-step1')
 
-		{{Form::label('title', 'Title')}}
-		{{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
+              @include('links.create-step2')   
 
-	</div>	
+                <div class="row">               
 
-	<div class="form-group">
+                  <div class="col-md-12 text-right">
 
-		{{Form::label('link', 'Link')}}
-		{{Form::text('link', '', ['class' => 'form-control', 'placeholder' => 'Link'])}}
 
-	</div>	
+                    <a class="back-button">Go Back</a> <a class="cancel-btn">Cancel</a> <a class="btn btn-primary continue-button">Continue</a> <a class="btn btn-primary submit-button">Save</a>
 
-	<div class="form-group">
 
-		{{Form::label('stack', 'Choose Where to Save Link')}}		
-		
-		@foreach($stacks as $stack)
-			<div class="form-check">
-				{{Form::checkbox('stack[]', $stack->id, false, ['class' => 'form-check-input'])}}
-				<label class="form-check-label">{{$stack->title}}</label>
-			</div>		
-		@endforeach
+                  </div>  
 
-	</div>
 
-	<div class="form-group">
-	
-		{{Form::label('category', 'Choose Media Category')}}		
+                </div> 
 
-		@foreach($categories as $category)
+            </div>
 
-		<div class="form-check">		
+        </div>            
 
-			{{Form::checkbox('category[]', $category->id, false, ['class' => 'form-check-input'])}}
-			<label class="form-check-label">{{$category->cat_name}}</label>
+ </form> 
 
-		</div>
-
-		@endforeach
-
-	</div>	
-
-	{{Form::submit('Save', ['class' => 'btn btn-primary'])}}
-
-{!! Form::close() !!}
-
-@endsection
+</div>

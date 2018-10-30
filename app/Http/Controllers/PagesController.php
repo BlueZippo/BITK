@@ -9,6 +9,7 @@ use App\Link;
 use App\Stack;
 use App\LinksFollow;
 use App\StacksFollow;
+use App\MediaType;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -32,6 +33,8 @@ class PagesController extends Controller {
     				->get();
 
 		$mystacks = array();
+
+
 
 		foreach($results as $result)
 		{
@@ -58,7 +61,6 @@ class PagesController extends Controller {
 					'categories' => implode(',', array_unique($categories))
 				);
 		}
-
 
 
     		$results = Stack::orderBy('created_at', 'desc')
@@ -145,6 +147,9 @@ class PagesController extends Controller {
 				}
 
 
+		$user_stacks = Stack::select('id as value', 'title as label')->where('user_id', '=', auth()->id())->get();
+
+
 
         $tags = User::find($user_id)
                 ->tags()
@@ -164,6 +169,8 @@ class PagesController extends Controller {
                    ->where('stack_id', '=', 0)
                    ->get();
 
+        $medias = MediaType::all();
+
     	$data = ['mystacks' => $mystacks ,
                  'stacks' => $stacks,
                  'follows' => $follows,
@@ -171,6 +178,8 @@ class PagesController extends Controller {
                  'people' => $people,
                  'peopleFollows' => $people,
                  'user_id' => $user_id,
+                 'medias' => $medias,
+                 'MyStacks' => $user_stacks,
                  'parking' => $parking];
 
     	return view('pages.index')->with($data);

@@ -62,58 +62,27 @@ class LinksController extends Controller
     {
         $this->validate($request,
         	[
-        	 'title' => 'required',
-        	 'link' => 'required'
+        	 'link_title' => 'required',
+        	 'link_url' => 'required'
         	] 
         );
 
        $link = new Link;
 
-       $link->title = $request->input('title');
-       $link->subtitle = $request->input('subtitle');
-       $link->description = $request->input('description');
-       $link->link = $request->input('link');
+       $link->title = $request->input('link_title');
+       $link->description = $request->input('link_description');
+       $link->link = $request->input('link_url');
+       $link->stack_id = $request->input('stack_id');
+       $link->media_id = $request->input('media_id');
+       $link->image = $request->input('link_image');
 
        $link->user_id = auth()->id();
+
        $link->save();
 
-       if ($request->has('category'))
-       {
-        foreach($request->input('category') as $category_id)
-        {
-            $category = LinkCategory::where('category_id', '=', $category_id)->where('link_id', '=', $link->id);
+      
 
-            $category->delete();
-
-            $category = new LinkCategory;
-
-            $category->link_id = $link->id;
-            $category->category_id = $category_id;
-
-            $category->save();
-
-        }
-       } 
-
-       if ($request->has('stack'))
-       {
-        foreach($request->input('stack') as $stack_id)
-        {
-            $stack = StackLink::where('stack_id', '=', $stack_id)->where('link_id', '=', $link->id);
-
-            $stack->delete();
-
-            $stack = new StackLink;
-
-            $stack->link_id = $link->id;
-            $stack->stack_id = $stack_id;
-
-            $stack->save();
-
-        }
-       } 
-
-       return redirect('/')->with('success', 'Link Added');
+      return ["Success"];
 
     }
 

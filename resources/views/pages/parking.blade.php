@@ -1,10 +1,14 @@
-<div class="stack-panel">
+<div class="stack-panel parking-lot-container">
 
-	<div class="panel-heading"><h3><span>Parking</span> Lot</h3> <a href="/links/create"><i class="fa fa-plus-circle"></i></a></div>
+	<div class="panel-heading">
+
+		<h3><span>Parking</span> Lot <a class="add-a-link-button">Add a Link</a></h3> 
+
+		@include('links.create')
+
+	</div>
 
 	<div class="panel-body">
-
-
 
 			@if (count($parking) > 0)
 
