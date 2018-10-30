@@ -35,4 +35,11 @@ class Link extends Model
     {
         return $this->belongsTo('App\MediaType');
     }
+
+    public function get_host($link)
+    {
+        $url = parse_url($link);
+
+        return $url['host'];
+    }
 }

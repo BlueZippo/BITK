@@ -16,14 +16,28 @@
 
 					<div class="row parking-container">
 
-						<div class="col-md-12">
+						<div class="col-md-2 link-image">
 
-							<div class="well">
+							<img src="{{$parking->image}}">
 
-								<a href="{{$parking->link}}" target="_blank">{{$parking->title}}</a>
+						</div>
+
+						<div class="col-md-10">
+
+							<div class="link-data">
+
+								<h3><a href="{{$parking->link}}" target="_blank">{{$parking->title}}</a></h3>
+
+								<div class="host">
+
+									{{$parking->get_host($parking->link)}}
+
+								</div>	
 
 								<div class="meta small">
-									<a data-action="edit" href="/links/{{$parking->id}}/edit">Edit</a> | <a data-id="{{$parking->id}}" data-action="delete">Delete</a>
+
+									<a class="edit-link" data-id={{$parking->id}}>Edit</a> | <a class="delete-link" data-id="{{$parking->id}}">Delete</a>
+									
 								</div>
 
 							</div>
