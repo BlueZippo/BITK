@@ -80,9 +80,9 @@
 
                     <div class="stack-rate">
 
-                        <a class="upvote"><i class="thumbsup"></i>{{$upvote}}</a>
+                        <a class="upvote" data-id="{{$stack->id}}"><i class="thumbsup"></i>{{$upvote}}</a>
 
-                        <a class="downvote"><i class="thumbsdown"></i></a>
+                        <a class="downvote" data-id="{{$stack->id}}"><i class="thumbsdown"></i></a>
 
                         <div class="social">
 
