@@ -8,6 +8,23 @@
 
 @endsection
 
+@section('sidebar')
+
+<div class="stack-sidebar">
+
+    <a class="chats"><i class="fa fa-comments"></i></a>
+
+    <a class="views"><i class="fa fa-bars"></i> change view</a>
+
+    <a class="cancel" href="/dashboard/"><i class="fa fa-times-circle"></i> cancel</a>    
+
+    <a class="save"><i class="fa fa-edit"></i> save</a>    
+
+</div>
+
+@endsection
+
+
 @section('content')
 
     <div class="row">
@@ -85,7 +102,7 @@
 
                 
 
-                {{Form::submit('Save', ['class' => 'btn btn-primary'])}}
+                
 
             {!! Form::close() !!}
 

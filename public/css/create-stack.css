@@ -364,5 +364,55 @@ div.links-container.left-position::after
 } 
 
 
+.stack-sidebar
+{
+	position:fixed;
+	right:-5px;
+	top:100px;
+	z-index:9;
+}
 
+.stack-sidebar a
+{
+	display:block;
+	border:solid 1px #d1d1d1;
+	border-radius:5px;
+	font-size:11px;
+	padding:15px;
+	margin-bottom:20px;
+	cursor:pointer;
+	width:85px;
+	text-align:center;
+}
+
+.stack-sidebar a i
+{
+	color:#1da1f2;
+	font-size:38px;
+}
+
+.stack-sidebar a.save,
+.stack-sidebar a.cancel
+{
+	background:#1da1f2;
+	border:solid 1px #1da1f2;
+	margin-bottom:0;
+	color:#fff;	
+}
+
+.stack-sidebar a.cancel
+{
+	border-bottom-left-radius:0;
+}
+
+.stack-sidebar a.save
+{
+	border-top-left-radius:0;
+}
+
+.stack-sidebar a.save i,
+.stack-sidebar a.cancel i
+{
+	color:#fff;
+}
 

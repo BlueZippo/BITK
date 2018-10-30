@@ -80,7 +80,12 @@ $(document).ready(function()
             $(this).focus();
             $(this).removeClass('error');
         }    
-    })
+    });
+
+    $('a.save').click(function()
+    {
+        $('form').submit();
+    });
 
     $('form').submit(function()
     {
