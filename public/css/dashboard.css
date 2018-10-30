@@ -229,3 +229,8 @@
 	text-decoration:none;
 	color:#1da1f2;
 }
+
+.parking-lot-container .panel-body
+{
+	border-top:solid 1px #d1d1d1;
+}
