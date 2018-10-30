@@ -477,6 +477,14 @@ main {
 .stack-links .single-link .title a {
     color: #404040;
     font-weight: 600;
+    text-decoration: none;
+    transition: all 200ms ease-in-out;
+}
+.stack-links .single-link .title a:hover {
+    color: #1da1f2;
+}
+.stack-links .link-meta .col-md-10 {
+    color: #fd3b82;
 }
 .stack-links .single-link .divider {
     display: block;
