@@ -22,11 +22,7 @@
         </div>
 
         <div class="stack-footer">
-            <a class="btn btn-primary" href="/stacks/{{$stack['id']}}/dashboard">Start Learning</a>
-            @if ($stack['user_id'] == $user_id)
-            <br />
-            <a class="btn btn-primary" href="/stacks/{{$stack['id']}}/edit">Edit Stack</a>
-            @endif
+            <a class="btn btn-primary" href="/stacks/{{$stack['id']}}/dashboard">Start Learning</a>            
         </div>
       </div>
     </div>

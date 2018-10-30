@@ -1,10 +1,10 @@
-<div class="panel panel-default">
+<div class="stack-panel">
 
-	<div class="panel-heading">Parking Lot <a href="/links/create"><i class="fa fa-plus-circle"></i></a></div>
+	<div class="panel-heading"><h3><span>Parking</span> Lot</h3> <a href="/links/create"><i class="fa fa-plus-circle"></i></a></div>
 
 	<div class="panel-body">
 
-			
+
 
 			@if (count($parking) > 0)
 
@@ -19,22 +19,22 @@
 								<a href="{{$parking->link}}" target="_blank">{{$parking->title}}</a>
 
 								<div class="meta small">
-									<a data-action="edit" href="/links/{{$parking->id}}/edit">Edit</a> | <a data-id="{{$parking->id}}" data-action="delete">Delete</a> 
+									<a data-action="edit" href="/links/{{$parking->id}}/edit">Edit</a> | <a data-id="{{$parking->id}}" data-action="delete">Delete</a>
 								</div>
 
-							</div>	
+							</div>
 
-						</div>			
+						</div>
 
-					</div>	
+					</div>
 
 
 				@endforeach
 
 			@endif
 
-		
+
 
 	</div>
-	
-</div>		
+
+</div>

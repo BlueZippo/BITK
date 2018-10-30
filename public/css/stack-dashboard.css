@@ -1,0 +1,74 @@
+.stack-wrapper .meta .stack-rate a
+{
+	font-weight:normal !important;
+	font-size:.875rem !important;
+}
+
+.stack-wrapper .meta .stack-rate a.upvote {
+	display: flex;
+}
+.stack-wrapper .meta .stack-rate a.upvote i {
+	margin-right: 5px;
+}
+
+a.upvote:hover
+{
+	background:#fff;
+	border-color:#969696;
+}
+
+.stack-rate .social
+{
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: right;
+    float: right;
+    padding-left: 10px;
+    margin-left: 10px;
+    margin-top: 5px;
+    border-left: solid 1px #d1d1d1;
+}
+
+.stack-wrapper .meta .stack-rate .social a
+{
+	font-size:20px !important;
+}
+
+
+.stack-sidebar
+{
+	position:fixed;
+	right:-5px;
+	top:100px;
+	z-index:9;
+}
+
+.stack-sidebar a
+{
+	display:block;
+	border:solid 1px #d1d1d1;
+	border-radius:5px;
+	font-size:11px;
+	padding:15px;
+	margin-bottom:20px;
+	cursor:pointer;
+	width:85px;
+	text-align:center;
+}
+
+.stack-sidebar a i
+{
+	color:#1da1f2;
+	font-size:38px;
+}
+
+.stack-sidebar a.edit
+{
+	background:#1da1f2;
+	color:#fff;
+}
+
+.stack-sidebar a.edit i
+{
+	color:#fff;
+}

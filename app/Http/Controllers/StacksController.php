@@ -252,7 +252,7 @@ class StacksController extends Controller {
 
         $data['related'] = $related;
 
-        $data['upVotes'] = count($votes);
+        $data['upvote'] = count($votes);
 
         if (in_array($id, $follows))
         {

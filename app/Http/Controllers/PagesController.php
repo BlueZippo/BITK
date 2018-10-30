@@ -26,7 +26,7 @@ class PagesController extends Controller {
 
         $results = User::find($user_id)
     				->stacks()
-    				->limit(3)
+    				->limit(4)
     				->orderBy('created_at', 'desc')
     				->where('status_id', '=', 1)
     				->get();
