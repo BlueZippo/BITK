@@ -132,6 +132,8 @@
 
    <div class="accordion stack-single">
 
+    @php $showPanel = 'show'; @endphp
+
     @foreach($medias as $media)
 
         <div class="card">
@@ -152,7 +154,7 @@
 
             </div>
 
-            <div class="collapse" id="category{{$media->id}}" data-category="{{$media->id}}">
+            <div class="collapse {{$showPanel}}" id="category{{$media->id}}" data-category="{{$media->id}}">
 
                 <div class="container">
 
@@ -190,6 +192,7 @@
 
         </div>
 
+        @php $showPanel = ''; @endphp
 
     @endforeach
 
