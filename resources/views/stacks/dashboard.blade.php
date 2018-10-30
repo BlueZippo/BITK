@@ -134,13 +134,15 @@
 
     @php $showPanel = 'show'; @endphp
 
+    @php $showPanelBtn = 'open'; @endphp
+
     @foreach($medias as $media)
 
         <div class="card">
 
             <div class="card-header">
 
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#category{{$media->id}}" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn btn-link {{$showPanelBtn}}" type="button" data-toggle="collapse" data-target="#category{{$media->id}}" aria-expanded="true" aria-controls="collapseOne">
 
                     @if($media->icon)
 
@@ -193,6 +195,8 @@
         </div>
 
         @php $showPanel = ''; @endphp
+
+        @php $showPanelBtn = ''; @endphp
 
     @endforeach
 

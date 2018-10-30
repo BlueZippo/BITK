@@ -3,6 +3,7 @@ Table of Content:
 
 #Layout
 #Typography
+#Common Styles
 #Header
 #Footer
 #Single Stack
@@ -53,6 +54,16 @@ and (min-width: 1200px) {
     }
     i.thumbsup {background-image: url(../images/icons/stack-like.svg);}
     i.thumbsdown {background-image: url(../images/icons/stack-dislike.svg);}
+/*****************************
+    #Common Styles
+*****************************/
+.dark-gradient {
+    background: rgb(108,108,108);
+    background: -moz-radial-gradient(circle, rgba(108,108,108,1) 0%, rgba(64,64,64,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(108,108,108,1) 0%, rgba(64,64,64,1) 100%);
+    background: radial-gradient(circle, rgba(108,108,108,1) 0%, rgba(64,64,64,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6c6c6c",endColorstr="#404040",GradientType=1);
+}
 /*****************************
     #Header
 *****************************/
@@ -418,7 +429,7 @@ main {
 
 .accordion.stack-single .card-header > button:before {
     content: "\f054";
-    color: #1da1f2;
+    color: #fd3b82;
     font-family: "FontAwesome";
     line-height: 42px;
     position: absolute;
@@ -450,7 +461,7 @@ main {
     display: block;
     width: 100%;
     height: 5px;
-    background-color: #1da1f2;
+    background-color: #fd3b82;
     top: 0;
 }
 .stack-links .single-link .inner {
@@ -466,6 +477,14 @@ main {
 .stack-links .single-link .title a {
     color: #404040;
     font-weight: 600;
+    text-decoration: none;
+    transition: all 200ms ease-in-out;
+}
+.stack-links .single-link .title a:hover {
+    color: #1da1f2;
+}
+.stack-links .link-meta .col-md-10 {
+    color: #fd3b82;
 }
 .stack-links .single-link .divider {
     display: block;
