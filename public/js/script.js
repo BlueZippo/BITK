@@ -42,6 +42,37 @@ $(document).ready(function()
 	});
 
 
+	$('.panel-heading h3 a').click(function()
+	{
+		var par = $(this).parent().parent();
+
+		$('.add-link-form', par).show();
+	});
+
+	$('.cancel-btn').click(function()
+	{
+		$('.add-link-form').hide();
+	});
+
+	$('.continue-button').click(function()
+	{
+		$('.add-link-form .step1').hide();
+		$('.add-link-form .step2').show();
+		$('.add-link-form .submit-button').show();
+		$('.back-button').show();
+		$(this).hide();
+	});
+
+	$('.back-button').click(function()
+	{
+		$('.add-link-form .step1').show();
+		$('.add-link-form .step2').hide();
+		$('.add-link-form .submit-button').hide();
+		$('.add-link-form .continue-button').show();
+		$(this).hide();
+	});
+
+
 	$('button.set-reminder-link').click(function()
 	{
 		$.ajaxSetup({
@@ -143,6 +174,36 @@ $(document).ready(function()
 	mobile_menu($);
 	single_stack($);
 	equal_heights($);
+
+	$( ".stack-name" ).autocomplete({
+      	minLength: 0,
+      	source: STACKS,
+      	focus: function( event, ui ) 
+      	{
+        	$( ".stack-name" ).val( ui.item.label );
+        	return false;
+      },
+      select: function( event, ui ) 
+      {
+        $( ".stack-name" ).val( ui.item.label );
+        $( "input[name=stack_id]" ).val( ui.item.value );
+ 
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) 
+    {
+      return $( "<li>" )
+        .append( "<div>" + item.label +  "</div>" )
+        .appendTo( ul );
+    };
+  
+    $('.media-types input[type=checkbox]').click(function()
+    {
+    	$('.media-types input[type=checkbox]').prop('checked', false);    	
+    	$(this).prop('checked', true);
+    	$('input[name=media_id]').val($(this).val());
+    });
 
 });
 

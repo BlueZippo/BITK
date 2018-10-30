@@ -508,24 +508,37 @@ main {
     padding: 10px 0;
     margin-bottom: 15px;
 }
+
+.stack-panel .panel-heading h3 a,
 .dashboard .nav.nav-pills li a {
     font-size: 14px;
     color: #404040;
     font-weight: 500;
     position: relative;
+    padding: .5rem 1rem;
+    text-transform:none;
+    cursor:pointer;
 }
 .dashboard .nav.nav-pills li a:hover {
     color: #fd3b82;
 }
+
+.stack-panel .panel-heading h3 a,
 .dashboard .nav.nav-pills li a.create {
     background-color: #fd3b82;
     color: #ffffff;
     border-radius: 26px;
     padding-right: 32px;
 }
+
+.stack-panel .panel-heading h3 a:hover,
 .dashboard .nav.nav-pills li a.create:hover {
     background-color: #404040;
+    text-decoration:none;
+    color:#fff;
 }
+
+.stack-panel .panel-heading h3 a:after,
 .dashboard .nav.nav-pills li a.create:after {
     content: "\f055";
     font-family: 'FontAwesome';

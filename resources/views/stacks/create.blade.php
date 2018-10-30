@@ -2,8 +2,6 @@
 
 @section('style')
 
-
-
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
 <link href="{{ asset('css/create-stack.css') }}" rel="stylesheet">
 

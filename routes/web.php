@@ -55,6 +55,8 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::post('links/addreminder', ['as' => 'links.addreminder', 'uses' => 'LinksController@addreminder']);
 
+	Route::post('links/store', 'LinksController@store');	
+
 	Route::resource('links', 'LinksController');
 
 	Route::resource('admin/search', 'SearchController');
