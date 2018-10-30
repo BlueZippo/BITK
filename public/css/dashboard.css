@@ -201,3 +201,31 @@
 .tt-suggestion p {
   margin: 0;
 }
+
+
+.parking-container
+{
+	border-bottom:solid 1px #d1d1d1;
+}
+
+.parking-container .link-image
+{
+	padding:0 !important;
+}
+
+.parking-container .link-data
+{
+	padding:20px 40px;
+}
+
+.parking-container .link-data h3 a
+{
+	color:#000;
+	text-decoration:none;
+}
+
+.parking-container .link-data h3 a:hover
+{
+	text-decoration:none;
+	color:#1da1f2;
+}

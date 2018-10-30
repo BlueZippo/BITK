@@ -44,12 +44,12 @@ class LinksController extends Controller
     {
         $stacks = User::find(auth()->id())->stacks;
 
-        $data['stacks'] = $stacks; 
+        $data['stacks'] = $stacks;
         $data['categories'] = Category::get();
         $data['links'] = array();
 
         return view('links.create')->with($data);
-        
+
     }
 
     /**
@@ -64,7 +64,7 @@ class LinksController extends Controller
         	[
         	 'link_title' => 'required',
         	 'link_url' => 'required'
-        	] 
+        	]
         );
 
        $link = new Link;
@@ -80,7 +80,7 @@ class LinksController extends Controller
 
        $link->save();
 
-      
+
 
       return ["Success"];
 
@@ -109,9 +109,9 @@ class LinksController extends Controller
 
         $stacks = User::find(auth()->id())->stacks;
 
-        $data['stacks'] = $stacks; 
+        $data['stacks'] = $stacks;
 
-        $data['categories'] = Category::get();        
+        $data['categories'] = Category::get();
 
         $data['link'] = $link;
 
@@ -152,7 +152,7 @@ class LinksController extends Controller
             $category->save();
 
         }
-       } 
+       }
 
        if ($request->has('stack'))
        {
@@ -170,7 +170,7 @@ class LinksController extends Controller
             $stack->save();
 
         }
-       } 
+       }
 
 
         return redirect('/links/' . $id . '/edit')->with('success', 'Link updated');
@@ -211,7 +211,7 @@ class LinksController extends Controller
 
        $meta = $this->getUrlData($url);
 
-       $data = array('title' => '', 'description' => '', 'image' => '/images/no-available-image.png');
+       $data = array('title' => '', 'description' => '', 'image' => '/images/stack-no-image.jpg');
 
 
        if (isset($meta['title']))
@@ -226,7 +226,7 @@ class LinksController extends Controller
         $keys = explode(':', $key);
 
         if (count($keys) == 2)
-        {   
+        {
 
             if (preg_match('/title/', $key))
             {
@@ -236,7 +236,7 @@ class LinksController extends Controller
             if (preg_match('/description/', $key))
             {
                 $data['description'] = $value['value'];
-            }    
+            }
 
             if (preg_match('/image/', $key))
             {
@@ -244,8 +244,8 @@ class LinksController extends Controller
             }
 
          }
-            
-       } 
+
+       }
 
        return json_encode($data);
     }
@@ -270,19 +270,19 @@ class LinksController extends Controller
             $title = null;
             $metaTags = null;
             $metaProperties = null;
-           
+
             preg_match('/<title>([^>]*)<\/title>/si', $contents, $match );
 
             if (isset($match) && is_array($match) && count($match) > 0)
             {
                 $title = strip_tags($match[1]);
             }
-           
+
             $pattern = '~<\s*meta\s(?=[^>]*?\b(?:name|property|http-equiv)\s*=\s*(?|"\s*([^"]*?)\s*"|\'\s*([^\']*?)\s*\'|([^"\'>]*?)(?=\s*/?\s*>|\s\w+\s*=)))[^>]*?\bcontent\s*=\s*(?|"\s*([^"]*?)\s*"|\'\s*([^\']*?)\s*\'|([^"\'>]*?)(?=\s*/?\s*>|\s\w+\s*=))[^>]*>~ix';
 
             preg_match_all($pattern, $contents, $match);
 
-           
+
 
             if (isset($match) && is_array($match))
             {
@@ -300,7 +300,7 @@ class LinksController extends Controller
                         else
                              $flags = ENT_COMPAT | ENT_HTML401;
                     }
-                   
+
                     for ($i=0, $limiti=count($names); $i < $limiti; $i++)
                     {
                         if ($match[1][$i] == 'name')
@@ -320,7 +320,7 @@ class LinksController extends Controller
                     }
                 }
             }
-           
+
             $result = array (
                 'title' => $title,
                 'metaTags' => $metaTags,
@@ -332,28 +332,28 @@ class LinksController extends Controller
     }
 
 
-    
+
 
     function getUrlContents($url, $maximumRedirections = null, $currentRedirection = 0)
     {
         $result = false;
-       
+
         $contents = @file_get_contents($url);
 
 
         // Check if we need to go somewhere else
-       
+
         if (isset($contents) && is_string($contents))
         {
             preg_match_all('/<[\s]*meta[\s]*http-equiv="?REFRESH"?' . '[\s]*content="?[0-9]*;[\s]*URL[\s]*=[\s]*([^>"]*)"?' . '[\s]*[\/]?[\s]*>/si', $contents, $match);
-           
+
             if (isset($match) && is_array($match) && count($match) == 2 && count($match[1]) == 1)
             {
                 if (!isset($maximumRedirections) || $currentRedirection < $maximumRedirections)
                 {
                     return getUrlContents($match[1][0], $maximumRedirections, ++$currentRedirection);
                 }
-               
+
                 $result = false;
             }
             else
@@ -361,7 +361,7 @@ class LinksController extends Controller
                 $result = $contents;
             }
         }
-       
+
         return $contents;
     }
 

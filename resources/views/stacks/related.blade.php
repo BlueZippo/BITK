@@ -1,3 +1,5 @@
+@if ( !empty($related) )
+
 <div class="stack-panel">
 
 	<div class="panel-heading"><h3>Related <span>Stacks</span></h3></div>
@@ -23,3 +25,5 @@
 	</div>
 
 </div>
+
+@endif

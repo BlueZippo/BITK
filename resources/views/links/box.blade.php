@@ -20,9 +20,9 @@
 
 				<div class="col-md-2">
 
-					<i class="fa fa-comment"></i>
+					{{--<i class="fa fa-comment"></i>--}}
 
-				</div>	
+				</div>
 
 			</div>
 
