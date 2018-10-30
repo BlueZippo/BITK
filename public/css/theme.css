@@ -45,6 +45,14 @@ and (min-width: 1200px) {
     .transition a {
         transition: all 200ms ease-in-out;
     }
+    i.thumbsup,
+    i.thumbsdown {
+        display: block;
+        width: 21px;
+        height: 20px;
+    }
+    i.thumbsup {background-image: url(../images/icons/stack-like.svg);}
+    i.thumbsdown {background-image: url(../images/icons/stack-dislike.svg);}
 /*****************************
     #Header
 *****************************/
@@ -310,6 +318,24 @@ main {
 .stack-wrapper .content h2 {
     font-weight: 600;
 }
+.stack-meta {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.stack-meta .date,
+.stack-meta .comment-trigger,
+.stack-meta .language {
+    margin-right: 8px;
+}
+.stack-meta .comment-trigger,
+.stack-meta .follow-trigger {
+    font-size: 18px;
+}
+.stack-meta a {
+    color: #fd3b82 !important;
+}
 .stack-wrapper .content p {
     font-size: 1rem;
     font-weight: 300;
@@ -401,7 +427,7 @@ main {
     bottom: 0;
     margin: auto;
 }
-.accordion.stack-single .card-header > button.open:before 
+.accordion.stack-single .card-header > button.open:before
 {
     content: "\f078";
 }

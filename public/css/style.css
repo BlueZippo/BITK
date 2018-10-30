@@ -280,16 +280,6 @@
 	margin-top:5px;
 }
 
-.stack-title span
-{
-	float:right;
-	font-size:13px;
-	vertical-align:bottom;
-	display:inline-block;
-	line-height:3;
-	color:#666;
-}
-
 .stack-title i.fa-plus-circle
 {
 	color:#1da1f2;
@@ -548,6 +538,3 @@ a.downvote
 {
 	cursor:pointer;
 }
-
-
-
