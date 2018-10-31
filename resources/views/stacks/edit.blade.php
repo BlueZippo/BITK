@@ -77,7 +77,7 @@
                                 <div class="stack-meta col-md-6">    
 
 
-                                    <div class="switch"></div>
+                                    <div class="switch @if($stack->status_id == 1) switchOn @endif" ></div>
 
                                     <div class="meta-data text-right">Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a></div>
 

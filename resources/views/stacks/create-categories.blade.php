@@ -2,7 +2,16 @@
 	<ul>
 		@foreach($categories as $category)
 
-			<li>{{Form::checkbox('categories[]', $category->id, false, ['data-label' => $category->cat_name])}} <label>{{$category->cat_name}}</label></li>
+			<li>
+
+				@if (in_array($category->id, $stack_category_ids))
+				{{Form::checkbox('categories[]', $category->id, true , ['data-label' => $category->cat_name])}} 
+				@else
+				{{Form::checkbox('categories[]', $category->id, false , ['data-label' => $category->cat_name])}} 
+				@endif
+
+				<label>{{$category->cat_name}}</label>
+			</li>
 
 		@endforeach
 	</ul>
