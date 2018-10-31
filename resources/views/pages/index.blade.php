@@ -123,6 +123,29 @@ $('.submit-button').click(function()
 	$('.add-link-form').hide();
 });
 
+$( ".stack-name" ).autocomplete({
+        minLength: 0,
+        source: STACKS,
+        focus: function( event, ui ) 
+        {
+            $( ".stack-name" ).val( ui.item.label );
+            return false;
+      },
+      select: function( event, ui ) 
+      {
+        $( ".stack-name" ).val( ui.item.label );
+        $( "input[name=stack_id]" ).val( ui.item.value );
+ 
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) 
+    {
+      return $( "<li>" )
+        .append( "<div>" + item.label +  "</div>" )
+        .appendTo( ul );
+    };
+
 </script>	
 
 		

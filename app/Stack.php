@@ -30,5 +30,10 @@ class Stack extends Model {
         return $this->hasMany('App\StacksVote', 'stack_id');
     }
 
+    public function categories()
+    {
+        return $this->hasMany('App\StackCategory');
+    }
+
 
 }

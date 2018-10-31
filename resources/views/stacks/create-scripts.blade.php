@@ -11,18 +11,27 @@ $(document).ready(function()
     {
         var par = $(this).parent();
 
-        $('.content', par).each(function()
+        var field = $(par).data('field');
+
+        if (field == 'topics')
         {
-            $(this).attr('contenteditable', true);
-
-            if ($(this).html() == 'enter title...' || $(this).html() == 'enter description...')
+            $('.categories-popup').show();
+        }   
+        else
+        {    
+            $('.content', par).each(function()
             {
-                $(this).html('');
-            }
+                $(this).attr('contenteditable', true);
 
-            $(par).removeClass('error');
-            $(this).focus();
-        });
+                if ($(this).html() == 'enter title...' || $(this).html() == 'enter description...')
+                {
+                    $(this).html('');
+                }
+
+                $(par).removeClass('error');
+                $(this).focus();
+            });
+       }     
     });
 
     $('.switch').click(function()
@@ -263,6 +272,29 @@ $(document).ready(function()
         $('.links-container').show();
     });
 
+    $('.categories-popup a.btn-primary').click(function()
+    {
+        $('.categories-popup').hide();
+    });
+
+    $('.categories-popup input[type=checkbox]').click(function()
+    {
+        $('.categories-content').html('');
+
+        var topics = [];
+
+        $('.categories-popup input[type=checkbox]').each(function()
+        {
+            if ($(this).is(':checked'))
+            {
+                topics.push($(this).data('label'));
+            }    
+
+
+        });
+
+        $('.categories-content').html(topics.join(", "));
+    })
   
 }); 
 

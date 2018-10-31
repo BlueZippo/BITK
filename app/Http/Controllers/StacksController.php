@@ -17,6 +17,7 @@ use App\LinkCategory;
 use App\Search;
 use App\StacksVote;
 use App\MediaType;
+use App\StackCategory;
 use DB;
 use Auth;
 
@@ -39,6 +40,8 @@ class StacksController extends Controller {
         $data['user'] = User::find(auth()->id());
 
         $data['medias'] = MediaType::all();
+
+        $data['categories'] = Category::all();
 
         if ($request->old('links'))
         {
@@ -80,6 +83,21 @@ class StacksController extends Controller {
         $stack->status_id = request('status_id');
 
         $stack->save();
+
+        if ($request->has('categories'))
+        {
+            $categories = $request->input('categories');
+
+            foreach($categories as $category_id)
+            {
+                $x = new StackCategory;
+
+                $x->stack_id = $stack->id;
+                $x->category_id = $category_id;
+
+                $x->save();
+            }
+        }    
 
 
         if ($request->has('links'))
@@ -317,7 +335,7 @@ class StacksController extends Controller {
 
         $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
 
-        $sql .= " LEFT JOIN link_categories c ON c.link_id = s2.link_id";
+        $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
 
         $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
 
@@ -554,7 +572,7 @@ class StacksController extends Controller {
 
         $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
 
-        $sql .= " LEFT JOIN link_categories c ON c.link_id = s2.link_id";
+        $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
 
         $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
 
@@ -627,9 +645,20 @@ class StacksController extends Controller {
 
             $data['links'] = $stack->links;
 
+            $data['categories'] = Category::all();
+
+            $categories = array();
+
+            foreach($stack->categories as $category)
+            {
+                $categories[] = $category->category->cat_name;
+            }    
+
             $upvote = StacksVote::where('stack_id', '=', $id)->get();
 
             $data['upvote'] = count($upvote);
+
+            $data['stack_categories'] = $categories ? implode(', ', $categories) : 'enter a topic...';
 
             $data['last_updated'] = date("M d, Y", strtotime($stack->updated_at));
 
@@ -663,6 +692,24 @@ class StacksController extends Controller {
         $stack->status_id = request('status_id');
 
         $stack->save();
+
+        DB::table('stack_categories')->where('stack_id','=', $id)->delete();
+
+
+        if ($request->has('categories'))
+        {
+            $categories = $request->input('categories');
+
+            foreach($categories as $category_id)
+            {
+                $x = new StackCategory;
+
+                $x->stack_id = $stack->id;
+                $x->category_id = $category_id;
+
+                $x->save();
+            }
+        }    
 
         $links = Link::where('stack_id', '=', $id)->get();
 
@@ -739,9 +786,8 @@ class StacksController extends Controller {
         $categorySQL[] = "if ((
                 SELECT count(cc.id)
                 FROM categories cc
-                JOIN link_categories lc ON lc.category_id = cc.id
-                JOIN stack_links ls ON ls.link_id = lc.link_id
-                WHERE ls.stack_id = s.id
+                JOIN stack_categories lc ON lc.category_id = cc.id
+                WHERE lc.stack_id = s.id
                 AND cc.cat_name = '".$catData->cat_name."'
                             ) > 0,99,0)";
 
@@ -761,15 +807,13 @@ class StacksController extends Controller {
 
         $sql .= " JOIN users u ON u.id = s.user_id";
 
-        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
-
-        $sql .= " LEFT JOIN link_categories c ON c.link_id = s2.link_id";
+        $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
 
         $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
 
         $sql .= " GROUP BY s.id";
 
-        $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
+        $sql .= " ORDER BY relevance DESC, c.created_at DESC";
 
 
         $results = DB::select($sql);

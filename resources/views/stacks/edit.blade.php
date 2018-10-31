@@ -59,11 +59,29 @@
 
                             </div> 
 
-                            <div class="stack-meta">
+                            <div class="row">
 
-                                <div class="switch @if($stack->status_id == 1) switchOn @endif"></div>
+                                <div class="col-md-6">
 
-                                <div class="meta-data text-right">Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a></div>
+                                    <div class="dotted" data-field="topics">
+
+                                        <div class="content categories-content" contenteditable="false">{{$stack_categories}}</div>
+                                        <a class="fa fa-edit"></a>
+
+                                        @include('stacks.create-categories')
+
+                                    </div>    
+
+                                </div>
+                                
+                                <div class="stack-meta col-md-6">    
+
+
+                                    <div class="switch"></div>
+
+                                    <div class="meta-data text-right">Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a></div>
+
+                                </div>    
 
                             </div> 
 

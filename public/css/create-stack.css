@@ -415,3 +415,63 @@ div.links-container.left-position::after
 	color:#fff;
 }
 
+.categories-popup
+{
+	position:absolute;
+	padding:30px;
+	background:#fff;
+	border:solid 1px #d1d1d1;
+	z-index:9;
+	box-shadow:5px 5px 5px #ccc;
+	width:500px;
+	display:none;
+}
+
+.categories-popup:after
+{
+	content: "";
+  	position: absolute;
+  	width: 25px;
+  	height: 25px;
+  	background: #fff;
+  	transform: rotate(45deg); /* Prefixes... */
+  	top: -6%;
+  	right:41%;
+  	border-left:solid 1px #d1d1d1;
+  	border-top:solid 1px #d1d1d1;
+}
+
+.categories-popup ul
+{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.categories-popup li
+{
+	width:32%;
+	display:inline-block;
+	vertical-align: top;
+}
+
+.categories-popup input[type=checkbox]
+{
+	float:left;
+	margin-right:15px;
+	margin-bottom:15px;
+	margin-top:5px;
+}
+
+.categories-popup label
+{
+	display:inline;
+}
+
+.categories-popup a.btn-primary,
+.categories-popup a.btn-primary:hover
+{
+	color:#fff;
+	float:right;
+}
+

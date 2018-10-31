@@ -55,6 +55,8 @@ return array(
     'App\\Reminder' => $baseDir . '/app/Reminder.php',
     'App\\Search' => $baseDir . '/app/Search.php',
     'App\\Stack' => $baseDir . '/app/Stack.php',
+    'App\\StackCategory' => $baseDir . '/app/StackCategory.php',
+    'App\\StackComments' => $baseDir . '/app/StackComments.php',
     'App\\StackLink' => $baseDir . '/app/StackLink.php',
     'App\\StacksFollow' => $baseDir . '/app/StacksFollow.php',
     'App\\StacksVote' => $baseDir . '/app/StacksVote.php',
