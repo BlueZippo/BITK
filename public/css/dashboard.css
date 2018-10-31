@@ -234,3 +234,8 @@
 {
 	border-top:solid 1px #d1d1d1;
 }
+
+.link-comment-button
+{
+	cursor:pointer;
+}

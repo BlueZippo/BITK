@@ -440,6 +440,8 @@ class ComposerStaticInit09d0a8ab5cfd1496a7fcb458e7996b13
         'App\\Reminder' => __DIR__ . '/../..' . '/app/Reminder.php',
         'App\\Search' => __DIR__ . '/../..' . '/app/Search.php',
         'App\\Stack' => __DIR__ . '/../..' . '/app/Stack.php',
+        'App\\StackCategory' => __DIR__ . '/../..' . '/app/StackCategory.php',
+        'App\\StackComments' => __DIR__ . '/../..' . '/app/StackComments.php',
         'App\\StackLink' => __DIR__ . '/../..' . '/app/StackLink.php',
         'App\\StacksFollow' => __DIR__ . '/../..' . '/app/StacksFollow.php',
         'App\\StacksVote' => __DIR__ . '/../..' . '/app/StacksVote.php',

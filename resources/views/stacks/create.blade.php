@@ -51,17 +51,33 @@
                                 <div class="dotted" data-field="title">
                                     <div class="content" contenteditable="false">enter title...</div>
                                     <a class="fa fa-edit"></a>
-                                </div>
-
-                                
+                                </div>                                
 
                             </div> 
 
-                            <div class="stack-meta">
+                            <div class="row">
 
-                                <div class="switch"></div>
+                                <div class="col-md-6">
 
-                                <div class="meta-data text-right">Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a></div>
+                                    <div class="dotted" data-field="topics">
+
+                                        <div class="content categories-content" contenteditable="false">enter a topic...</div>
+                                        <a class="fa fa-edit"></a>
+
+                                        @include('stacks.create-categories')
+
+                                    </div>    
+
+                                </div>
+                                
+                                <div class="stack-meta col-md-6">    
+
+
+                                    <div class="switch"></div>
+
+                                    <div class="meta-data text-right">Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a></div>
+
+                                </div>    
 
                             </div> 
 

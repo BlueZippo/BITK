@@ -17,4 +17,10 @@ class Category extends Model
     	return $this->belongsTo('App\Link');
     }
 
+
+    public function StackCategory()
+    {
+    	return $this->hasMany('App\StackCategory');
+    }
+
 }

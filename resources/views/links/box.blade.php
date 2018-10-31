@@ -20,7 +20,7 @@
 
 				<div class="col-md-2">
 
-					{{--<i class="fa fa-comment"></i>--}}
+					<a class="link-comment-button" data-id="{{$link['id']}}"><i class="fa fa-comment"></i></a>
 
 				</div>
 

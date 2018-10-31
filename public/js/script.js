@@ -175,34 +175,22 @@ $(document).ready(function()
 	single_stack($);
 	equal_heights($);
 
-	$( ".stack-name" ).autocomplete({
-      	minLength: 0,
-      	source: STACKS,
-      	focus: function( event, ui ) 
-      	{
-        	$( ".stack-name" ).val( ui.item.label );
-        	return false;
-      },
-      select: function( event, ui ) 
-      {
-        $( ".stack-name" ).val( ui.item.label );
-        $( "input[name=stack_id]" ).val( ui.item.value );
- 
-        return false;
-      }
-    })
-    .autocomplete( "instance" )._renderItem = function( ul, item ) 
-    {
-      return $( "<li>" )
-        .append( "<div>" + item.label +  "</div>" )
-        .appendTo( ul );
-    };
+	
   
     $('.media-types input[type=checkbox]').click(function()
     {
     	$('.media-types input[type=checkbox]').prop('checked', false);    	
     	$(this).prop('checked', true);
     	$('input[name=media_id]').val($(this).val());
+    });
+
+    $('.link-comment-button').click(function()
+    {
+    	var id = $(this).data('id');
+
+    	$('#popupComments .modal-body').html(id)
+
+    	$('#popupComments').modal();
     });
 
 });
