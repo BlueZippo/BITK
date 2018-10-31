@@ -36,4 +36,10 @@ class Stack extends Model {
     }
 
 
+    public function comments()
+    {
+        return $this->hasMany('App\StackComments');
+    }
+
+
 }

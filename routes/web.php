@@ -105,6 +105,8 @@ Route::get('/tags/{id}/delete', 'TagsController@destroy');
 Route::get('stacks/{id}/follow', 'StacksController@follow');
 Route::get('stacks/{id}/unfollow', 'StacksController@unfollow');
 
+Route::get('stacks/{id}/comments', 'StacksController@comments');
+
 Route::get('stacks/{id}/dashboard', 'StacksController@dashboard');
 
 Route::get('stacks/{id}/category', 'StacksController@category');
@@ -114,5 +116,8 @@ Route::post('stacks/search', 'StacksController@search');
 Route::get('people/{id}/follow', 'PeopleController@follow');
 Route::get('people/{id}/unfollow', 'PeopleController@unfollow');
 Route::get('people/{id}/stacks', 'PeopleController@stacks');
+
+Route::post('stack_comments/store', 'StackCommentsController@store');
+Route::resource('stack_comments', 'StackCommentsController');
 
 
