@@ -42,4 +42,10 @@ class Link extends Model
 
         return $url['host'];
     }
+
+
+    public function comments()
+    {
+        return $this->hasMany('App\LinkComment');
+    }
 }

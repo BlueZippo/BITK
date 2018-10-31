@@ -29,7 +29,7 @@ $(document).on('click', 'a.follow-button', function()
 
 
 
-$(document).on('keydown', 'textarea[name=comment]', function(e)
+$(document).on('keydown', '.comment-form textarea[name=comment]', function(e)
 {
 	if (e.which == 13)
 	{
@@ -48,6 +48,39 @@ $(document).on('keydown', 'textarea[name=comment]', function(e)
 	    $.ajax(
 		{
 			url: "/stack_comments/store",
+			data: params,
+			type: 'post',
+			dataType: 'json',
+			success: function(data)
+			{
+				$('.modal-body .comment-list').html(data.html);
+
+				$('textarea[name=comment]').val('');
+			}
+		});	
+	}
+
+});
+
+$(document).on('keydown', '.link-comment-form textarea[name=comment]', function(e)
+{
+	if (e.which == 13)
+	{
+		var params = $('.link-comment-form form').serialize();
+
+		var stack_id = $('.link-comment-form input[name=link_id]').val();
+
+		e.preventDefault();
+
+		$.ajaxSetup({
+	        headers: {
+	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	        }
+	    });
+
+	    $.ajax(
+		{
+			url: "/link_comments/store",
 			data: params,
 			type: 'post',
 			dataType: 'json',
@@ -222,9 +255,20 @@ $(document).ready(function()
     {
     	var id = $(this).data('id');
 
-    	$('#popupComments .modal-body').html(id)
+    	$.ajax(
+    	{
+    		url: '/link_comments/' + id + '/comments',
+    		type: 'get',
+    		dataType: 'json',
+    		success: function(data)
+    		{
+    			$('#popupComments .modal-body').html(data.html)
 
-    	$('#popupComments').modal();
+    			$('#popupComments').modal();		
+    		}
+    	})
+
+    	
     });
 
     $('a.chats').click(function()
