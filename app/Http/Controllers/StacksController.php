@@ -876,4 +876,26 @@ class StacksController extends Controller {
         return json_encode(array('stack_id' => $id, 'vote' => count($vote)));
     }
 
+
+    function comments($id)
+    {
+        $json = array();
+
+        $stack = Stack::find($id);
+
+        $data['stack_id'] = $id;
+        $data['stack'] = $stack;
+
+        $comments = $stack->comments()->limit(5)->orderby('updated_at', 'desc')->get();
+
+        $data['comments'] = $comments;
+        $data['page'] = 1;
+
+        $html = view('stacks.comments')->with($data);
+
+        $json['html'] = (string)$html;
+
+        return ['html' => (string)$html];
+    }
+
 }

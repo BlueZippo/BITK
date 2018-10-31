@@ -25,8 +25,42 @@ $(document).on('click', 'a.follow-button', function()
 		}
 	});
 
-
 });
+
+
+
+$(document).on('keydown', 'textarea[name=comment]', function(e)
+{
+	if (e.which == 13)
+	{
+		var params = $('.comment-form form').serialize();
+
+		var stack_id = $('.comment-form input[name=stack_id]').val();
+
+		e.preventDefault();
+
+		$.ajaxSetup({
+	        headers: {
+	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	        }
+	    });
+
+	    $.ajax(
+		{
+			url: "/stack_comments/store",
+			data: params,
+			type: 'post',
+			dataType: 'json',
+			success: function(data)
+			{
+				$('.modal-body .comment-list').html(data.html);
+
+				$('textarea[name=comment]').val('');
+			}
+		});	
+	}
+
+})
 
 
 $(document).ready(function()
@@ -192,6 +226,27 @@ $(document).ready(function()
 
     	$('#popupComments').modal();
     });
+
+    $('a.chats').click(function()
+    {
+    	var id = $(this).data('id');
+
+    	$.ajax(
+    	{
+    		url: '/stacks/' + id + '/comments',
+    		type: 'get',
+    		dataType: 'json',
+    		success: function(data)
+    		{
+  				$('#popupComments .modal-body').html(data.html);
+
+  				$('#popupComments').modal();
+    		}
+
+    	});
+    });
+
+
 
 });
 

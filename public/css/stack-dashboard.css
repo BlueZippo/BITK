@@ -72,3 +72,23 @@ a.upvote:hover
 {
 	color:#fff;
 }
+
+.comment-form .col-md-1
+{
+	padding-left:0;
+	padding-right:0;
+}
+
+.comment-comments
+{
+	background:#ccc;
+	padding:10px;
+	margin-bottom:5px;
+	border-radius:5px;
+}
+
+.comment-date
+{
+	display:block;
+	margin-bottom:20px;
+}

@@ -11,7 +11,7 @@
 
 <div class="stack-sidebar">
 
-    <a class="chats"><i class="fa fa-comments"></i></a>
+    <a class="chats" data-id="{{$stack->id}}"><i class="fa fa-comments"></i></a>
 
     <a class="views"><i class="fa fa-bars"></i> Change View</a>
 
