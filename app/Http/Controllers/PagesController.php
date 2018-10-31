@@ -29,7 +29,6 @@ class PagesController extends Controller {
     				->stacks()
     				->limit(4)
     				->orderBy('created_at', 'desc')
-    				->where('status_id', '=', 1)
     				->get();
 
 		$mystacks = array();

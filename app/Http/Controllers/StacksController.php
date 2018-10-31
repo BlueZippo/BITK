@@ -43,6 +43,8 @@ class StacksController extends Controller {
 
         $data['categories'] = Category::all();
 
+        $data['stack_category_ids'] = array();
+
         if ($request->old('links'))
         {
             $data['links'] = $request->old('links');
@@ -648,10 +650,12 @@ class StacksController extends Controller {
             $data['categories'] = Category::all();
 
             $categories = array();
+            $category_ids = array();
 
             foreach($stack->categories as $category)
             {
                 $categories[] = $category->category->cat_name;
+                $category_ids[] = $category->category_id;
             }    
 
             $upvote = StacksVote::where('stack_id', '=', $id)->get();
@@ -659,6 +663,7 @@ class StacksController extends Controller {
             $data['upvote'] = count($upvote);
 
             $data['stack_categories'] = $categories ? implode(', ', $categories) : 'enter a topic...';
+            $data['stack_category_ids'] = $category_ids;
 
             $data['last_updated'] = date("M d, Y", strtotime($stack->updated_at));
 
