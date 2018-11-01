@@ -1,3 +1,8 @@
+/*****************************
+Table of Content:
+
+#Dashboard Tiles
+*****************************/
 .follow-button,
 .add-tag,
 .add-parking
@@ -140,41 +145,12 @@
 {
 	color:#fff;
 }
-
-.author .user-ctrl
-{
-	display:inline-block;
-}
-
-.user-ctrl .avatar
-{
-	float:left;
-	margin-top: 0px;
-}
-
-.avatar > img
-{
-	border-radius:30px;
-	width:39px;
-	height:39px;
-}
-
 .youtube .click-here
 {
 	display:block;
 	width:350px;
 	height:220px;
 	background:url(../images/youtube-video.png);
-}
-
-.inner-wrap {
-	box-shadow: 0px 2px 10px #ccc;
-	overflow:hidden;
-	margin-bottom:30px;
-	border-top:5px solid #fd3b82;
-	border-left: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	border-right: 1px solid #ccc;
 }
 
 .featured-image img
@@ -187,9 +163,8 @@
 {
 	padding:10px;
 }
-
 .stack-content .title h4 {
-	font-size: 14px;
+	font-size: 15px;
 	font-weight: 600;
 	text-decoration: none;
 	transition: all 200ms ease-in-out;
@@ -214,19 +189,14 @@
 	line-height:3;
 }
 
-.stack-content .author.user-ctrl
-{
+/*
+.stack-content .author.user-ctrl {
 	clear:both;
 	border-top:solid 1px #ccc;
 	border-bottom:solid 1px #ccc;
 	padding:20px 0;
 }
-
-.stack-footer
-{
-	padding:5px 0;
-}
-
+*/
 .stack-footer i
 {
 	color:#fff;
@@ -250,35 +220,9 @@
 {
 	float:right;
 }
-.dashboard .stack-content .author.user-ctrl
-{
-	border-top:solid 1px #efefef;
+.dashboard .stack-content .author.user-ctrl {
 	border-bottom:none;
 	font-weight:bold;
-}
-
-.dashboard .inner-wrap
-{
-	min-height:250px;
-	position:relative;
-}
-
-.dashboard .stack-footer
-{
-	position:absolute;
-	width:100%;
-	text-align:center;
-	bottom:5px;
-}
-
-.dashboard .stack-footer a
-{
-	text-transform: uppercase;
-	border-radius:0;
-	background-color:#1da1f2;
-	border-color:#1da1f2;
-	font-size:12px;
-	margin-top:5px;
 }
 
 .stack-title i.fa-plus-circle
@@ -538,4 +482,37 @@
 a.downvote
 {
 	cursor:pointer;
+}
+
+/*****************************
+    #Dashboard Tiles
+*****************************/
+.inner-wrap.dash-stack-tile {
+	box-shadow: 0px 2px 10px #ccc;
+	overflow:hidden;
+	border-top:5px solid #fd3b82;
+	border-left: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+.dash-stack-tile .author {
+	display: flex;
+	align-items: center;
+	margin: 10px 0;
+}
+.dash-stack-tile .avatar > img {
+	border-radius:30px;
+	width:39px;
+	height:39px;
+}
+.dash-stack-tile .stack-footer {
+	padding:5px 0;
+}
+.dash-stack-tile .stack-footer a {
+	text-transform: uppercase;
+	border-radius: .25rem;
+	background-color: #fd3b82;
+	border-color: #fd3b82;
+	font-size: 12px;
+	margin-top: 5px;
 }

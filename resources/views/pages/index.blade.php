@@ -2,7 +2,7 @@
 
 @section('style')
 
-<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 <link href="{{ asset('js/plugins/custom/jquery-ui.css') }}" rel="stylesheet">
 <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
@@ -12,7 +12,7 @@
 @section('content')
 
 	<div class="dashboard">
-	
+
 		@include('pages.nav')
 
 		@include('stacks.following')
@@ -27,7 +27,7 @@
 
 		@include('pages.parking')
 
-	</div>	
+	</div>
 
 
 <script>
@@ -39,7 +39,7 @@ $('input[name=link_url]').focusout(function()
     $('.continue-button').addClass('disabled');
 
     $('.solid .content').html('Fetching link information, please wait...')
-   
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -114,7 +114,7 @@ $('.submit-button').click(function()
 		dataType: 'json',
 		success: function(data)
 		{
-			
+
 		}
 
 	})
@@ -123,30 +123,30 @@ $('.submit-button').click(function()
 	$('.add-link-form').hide();
 });
 
+
 $( ".stack-name" ).autocomplete({
-        minLength: 0,
-        source: STACKS,
-        focus: function( event, ui ) 
-        {
-            $( ".stack-name" ).val( ui.item.label );
-            return false;
-      },
-      select: function( event, ui ) 
-      {
-        $( ".stack-name" ).val( ui.item.label );
-        $( "input[name=stack_id]" ).val( ui.item.value );
- 
-        return false;
-      }
-    })
-    .autocomplete( "instance" )._renderItem = function( ul, item ) 
-    {
-      return $( "<li>" )
-        .append( "<div>" + item.label +  "</div>" )
-        .appendTo( ul );
-    };
+    minLength: 0,
+    source: STACKS,
+    focus: function( event, ui )
+		{
+        	$( ".stack-name" ).val( ui.item.label );
+        	return false;
+		},
+	select: function( event, ui )
+		{
+        	$( ".stack-name" ).val( ui.item.label );
+        	$( "input[name=stack_id]" ).val( ui.item.value );
 
-</script>	
+			return false;
+		}
+})
+.autocomplete( "instance" )._renderItem = function( ul, item ) {
+	return $( "<li>" )
+	.append( "<div>" + item.label +  "</div>" )
+	.appendTo( ul );
+};
 
-		
+</script>
+
+
 @endsection
