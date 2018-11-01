@@ -8,6 +8,7 @@ Table of Content:
 #Footer
 #Single Stack
 #Dashboard
+#Edit Stack
 *****************************/
 /*****************************
     #Layout
@@ -587,4 +588,21 @@ main {
     right: 12px;
     bottom: 0;
     margin: auto;
+}
+/*****************************
+    #Edit Stack
+*****************************/
+.stack-author .user {
+    display: flex;
+    align-items: center;
+}
+.stack-author .user > div {
+    margin-right: 10px;
+}
+.stack-author .avatar {
+    width: 40px;
+}
+.stack-author .avatar > img {
+    border-radius: 30px;
+    width: 40px;
 }
