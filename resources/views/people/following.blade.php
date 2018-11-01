@@ -6,15 +6,23 @@
 
 		<div class="row">
 
-			@foreach($people as $person)
+			@if ( !$people )
 
-				<div class="col-md-2 people-{{$person->id}}" id="people-{{$person->id}}">
+				@foreach($people as $person)
 
-					@include('people.box')
+					<div class="col-md-2 people-{{$person->id}}" id="people-{{$person->id}}">
 
-				</div>
+						@include('people.box')
 
-			@endforeach
+					</div>
+
+				@endforeach
+
+			@else
+
+				<div class="no-stacks"><p>You're not following anybody, <a href="/people" target="_self">check our other People's</a> ideas to find something you like.</p></div>
+
+			@endif
 
 		</div>
 

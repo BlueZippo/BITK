@@ -44,6 +44,9 @@ and (min-width: 1200px) {
     a {
         color: #1da1f2;
     }
+    a:hover {
+        color: #fd438d;
+    }
     .transition a {
         transition: all 200ms ease-in-out;
     }
@@ -533,6 +536,13 @@ main {
     padding-left: 15px;
     padding-right: 15px;
 }
+.stack-panel .no-stacks p {
+    color: #6c6c6c;
+}
+.stack-panel .no-stacks p a {
+    transition: all 200ms linear;
+    text-decoration: none;
+}
 .stack-panel .stack-content .title {
     padding: 5px 0;
     border-bottom: 1px solid #d1d1d1;
@@ -545,7 +555,7 @@ main {
 *****************************/
 .dashboard .nav.nav-pills {
     padding: 10px 0;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .stack-panel .panel-heading h3 a,
