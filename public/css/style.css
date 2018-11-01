@@ -1,6 +1,7 @@
 /*****************************
 Table of Content:
 
+#Dashboard
 #Dashboard Tiles
 *****************************/
 .follow-button,
@@ -162,19 +163,6 @@ Table of Content:
 .stack-content
 {
 	padding:10px;
-}
-.stack-content .title h4 {
-	font-size: 15px;
-	font-weight: 600;
-	text-decoration: none;
-	transition: all 200ms ease-in-out;
-}
-.stack-content .title h4 a {
-	color: #404040;
-	text-decoration: none;
-}
-.stack-content .title h4 a:hover {
-	color: #1da1f2;
 }
 
 .stack-content .categories
@@ -483,7 +471,12 @@ a.downvote
 {
 	cursor:pointer;
 }
-
+/*****************************
+    #Dashboard
+*****************************/
+.dashboard .stack-panel {
+	margin-bottom: 30px;
+}
 /*****************************
     #Dashboard Tiles
 *****************************/
@@ -495,15 +488,34 @@ a.downvote
 	border-bottom: 1px solid #ccc;
 	border-right: 1px solid #ccc;
 }
+.dash-stack-tile .title h4 {
+	font-size: 15px;
+	font-weight: 600;
+	text-decoration: none;
+}
+.dash-stack-tile .title h4 a {
+	color: #404040;
+	text-decoration: none;
+	transition: all 200ms ease-in-out;
+}
+.dash-stack-tile .title h4 a:hover {
+	color: #1da1f2;
+}
 .dash-stack-tile .author {
 	display: flex;
 	align-items: center;
 	margin: 10px 0;
 }
+.dash-stack-tile .avatar {
+	margin-right: 6px;
+}
 .dash-stack-tile .avatar > img {
 	border-radius:30px;
 	width:39px;
 	height:39px;
+}
+.dash-stack-tile .name {
+	font-size: 13px;
 }
 .dash-stack-tile .stack-footer {
 	padding:5px 0;
@@ -514,5 +526,12 @@ a.downvote
 	background-color: #fd3b82;
 	border-color: #fd3b82;
 	font-size: 12px;
-	margin-top: 5px;
+	display: table;
+	margin: 5px auto 0;
+	transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+}
+.dash-stack-tile .stack-footer a:hover {
+	background-color: #1da1f2;
+	border-color: #1da1f2;
 }
