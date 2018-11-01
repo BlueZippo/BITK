@@ -167,12 +167,14 @@
 	background:url(../images/youtube-video.png);
 }
 
-.inner-wrap
-{
-	box-shadow:0px 3px 5px rgba(0,0,0,0.5);
+.inner-wrap {
+	box-shadow: 0px 2px 10px #ccc;
 	overflow:hidden;
 	margin-bottom:30px;
-	border-top:5px solid #1da1f2;
+	border-top:5px solid #fd3b82;
+	border-left: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
 }
 
 .featured-image img
@@ -186,10 +188,18 @@
 	padding:10px;
 }
 
-.stack-content .title a
-{
-	font-weight:bold;
-	color:#000;
+.stack-content .title h4 {
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: all 200ms ease-in-out;
+}
+.stack-content .title h4 a {
+	color: #404040;
+	text-decoration: none;
+}
+.stack-content .title h4 a:hover {
+	color: #1da1f2;
 }
 
 .stack-content .categories
@@ -240,15 +250,6 @@
 {
 	float:right;
 }
-
-.dashboard .stack-content .title
-{
-	font-weight:bold;
-	text-transform: uppercase;
-	margin-bottom:30px;
-	font-size:16px;
-}
-
 .dashboard .stack-content .author.user-ctrl
 {
 	border-top:solid 1px #efefef;
