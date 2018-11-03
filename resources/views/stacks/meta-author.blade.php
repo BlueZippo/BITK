@@ -2,9 +2,9 @@
 
 	<div class="row author">
 
-		<div class="col-md-6">
+		<div class="col-md-6 user">
 
-			Created by:
+			<div>Created by:</div>
 
 			<div class="user-ctrl">
 				<div class="avatar">
@@ -16,15 +16,15 @@
 						</div>
 					@endif
 				</div>
-			</div>	
+			</div>
 
 			<span class="author-name">{{$user->name}}</span>
-		
+
 		</div>
 
 		<div class="col-md-6 text-right">
 
-			<a class="upvote">Upvote | {{$upvote}}</a> 	
+			<a class="upvote">Upvote | {{$upvote}}</a>
 
 			<a class="downvote">Downvote</a>
 
@@ -34,17 +34,17 @@
 
 				<a class="fa fa-twitter"></a>
 
-				<a class="fa fa-google-plus-circle"></a>			
+				<a class="fa fa-google-plus-circle"></a>
 
-				<a class="fa fa-reddit-alien"></a>			
+				<a class="fa fa-reddit-alien"></a>
 
 				<a class="">...</a>
 
-			</div>	
+			</div>
 
 
-		</div>	
+		</div>
 
-	</div>	
+	</div>
 
 </div>

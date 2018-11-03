@@ -4,9 +4,9 @@
 
 	<div class="panel-body">
 
-		@if (count($follows) > 0)
+		<div class="row">
 
-			<div class="row">
+		@if (count($follows) > 0)
 
 			@foreach($follows as $stack)
 
@@ -18,9 +18,13 @@
 
 			@endforeach
 
-			</div>
+		@else
 
-	@endif
+			<div class="no-stacks"><p>You're not following any Stacks, <a href="/stacks/explore" target="_self">explore people's Stacks</a> to find something you'd like.</p></div>
+
+		@endif
+
+		</div>
 
 	</div>
 
