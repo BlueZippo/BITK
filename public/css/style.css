@@ -637,6 +637,11 @@ a.downvote
 	min-height:200px;
 }
 
+.compact .featured-image img
+{
+	max-height:50px;
+}
+
 .list > .single-stack-wrapper
 {
 	float:nonew;
