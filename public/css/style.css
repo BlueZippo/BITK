@@ -667,5 +667,6 @@ a.downvote
 .list .stack-content .date
 {
 	float:none;
+	line-height:normal;
 }
 
