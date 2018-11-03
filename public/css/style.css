@@ -658,3 +658,14 @@ a.downvote
 	margin-right:15px;
 	float:left;
 }
+
+.list .avatar
+{
+	display:none;
+}
+
+.list .stack-content .date
+{
+	float:none;
+}
+
