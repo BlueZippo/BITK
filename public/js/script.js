@@ -290,7 +290,16 @@ $(document).ready(function()
     	});
     });
 
+    $('.view-button a').click(function()
+    {
+    	var bClass = $(this).attr('class');
 
+    	$('.stack-list').removeClass('tile');
+    	$('.stack-list').removeClass('compact');
+    	$('.stack-list').removeClass('list');
+
+    	$('.stack-list').addClass(bClass);
+    });
 
 });
 

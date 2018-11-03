@@ -1,33 +1,47 @@
 @extends ('layouts.master')
 
+@section ('view')
+
+    <div class="view-button">
+
+        <a class="tile">
+            <span></span>
+            <span></span>
+        </a>
+
+        <a class="compact">
+            <span></span>
+            <span></span>            
+            <span></span>
+        </a>
+
+        <a class="list">            
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+
+    </div>
+
+@endsection
+
 @section('content')
 
-    @if (Auth::check())
+   
 
-        <h2><a href="/stacks/explore">Explore</a></h2>
-
-
-    @else
-
-        <h2><a href="/">Explore</a></h2>            
-
-    @endif    
-
-    <hr />
-
-    <div class="row">
+    <div class="stack-list tile">
 
         @foreach($stacks as $stack)
 
-            <div class="col-md-2">
+            <div class="single-stack-wrapper">
 
                     @include('stacks.box')
 
             </div>
 
 
-    @endforeach
-
+        @endforeach
         
         
     </div>    
