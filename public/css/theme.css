@@ -547,9 +547,6 @@ main {
     padding: 5px 0;
     border-bottom: 1px solid #d1d1d1;
 }
-.stack-panel .stack-content .stack-footer i {
-    padding: 8px 10px;
-}
 /*****************************
     #Dashboard
 *****************************/
@@ -557,7 +554,6 @@ main {
     padding: 10px 0;
     margin-bottom: 30px;
 }
-
 .stack-panel .panel-heading h3 a,
 .dashboard .nav.nav-pills li a {
     font-size: 14px;
@@ -598,6 +594,41 @@ main {
     right: 12px;
     bottom: 0;
     margin: auto;
+}
+.dash-stack-tile .stack-footer {
+    display: flex;
+    align-items: center;
+}
+.dash-stack-tile .author {
+    border-bottom: 1px solid #d1d1d1 !important;
+	display: flex;
+	align-items: center;
+	padding: 6px 0;
+    margin-bottom: 8px;
+}
+.dash-stack-tile .stack-footer .edit {
+    margin-left: 0;
+    margin-right: auto;
+}
+.dash-stack-tile .stack-footer .edit a {
+    text-decoration: none;
+}
+.dash-stack-tile .stack-footer .likes {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 0;
+}
+.dash-stack-tile .stack-footer .forward {
+    color: #1da1f2;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.dash-stack-tile .stack-footer .forward:hover {
+    color: #fd438d;
+}
+.dash-stack-tile .stack-footer .like {
+    margin-right: 5px;
 }
 /*****************************
     #Edit Stack
