@@ -525,12 +525,17 @@ main {
     padding: 0;
 }
 .stack-panel .panel-heading {
+    display: flex;
+    align-items: center;
     border-bottom: 1px solid #d1d1d1;
+    padding-bottom: 5px;
     margin-bottom: 24px;
 }
 .stack-panel .panel-heading h3 {
     font-size: 18px;
     text-transform: uppercase;
+    margin-right: 8px;
+    margin-bottom: 0;
 }
 .stack-panel .panel-heading h3 span {
     font-weight: 600;
@@ -557,37 +562,38 @@ main {
     padding: 10px 0;
     margin-bottom: 30px;
 }
-.stack-panel .panel-heading h3 a,
 .dashboard .nav.nav-pills li a {
     font-size: 14px;
     color: #404040;
     font-weight: 500;
     position: relative;
     padding: .5rem 1rem;
-    text-transform:none;
+    text-transform: none;
+    text-decoration: none;
     cursor:pointer;
 }
-.dashboard .nav.nav-pills li a:hover {
-    color: #fd3b82;
+.stack-panel .panel-heading > a {
+    color: #ffffff;
+    padding: .5rem 1rem;
 }
-
-.stack-panel .panel-heading h3 a,
-.dashboard .nav.nav-pills li a.create {
+.stack-panel .panel-heading > a,
+.dashboard .nav.nav-pills li a.add-link {
     background-color: #fd3b82;
     color: #ffffff;
+    cursor: pointer;
     border-radius: 26px;
     padding-right: 32px;
+    text-decoration: none;
+    transition: all 200ms ease-in-out;
+    position: relative;
 }
-
-.stack-panel .panel-heading h3 a:hover,
-.dashboard .nav.nav-pills li a.create:hover {
+.stack-panel .panel-heading > a:hover,
+.dashboard .nav.nav-pills li a.add-link:hover {
+    color: #ffffff;
     background-color: #404040;
-    text-decoration:none;
-    color:#fff;
 }
-
-.stack-panel .panel-heading h3 a:after,
-.dashboard .nav.nav-pills li a.create:after {
+.stack-panel .panel-heading > a:after,
+.dashboard .nav.nav-pills li a.add-link:after {
     content: "\f055";
     font-family: 'FontAwesome';
     font-size: 16px;

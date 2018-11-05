@@ -1,6 +1,9 @@
 <ul class="nav nav-pills transition">
 	<li class="nav-item">
-        <a class="nav-link create" href="/stacks/create">Create</a>
+        <a class="nav-link add-a-link-button add-link">Add a Link</a>
+	</li>
+	<li class="nav-item">
+        <a class="nav-link" href="/stacks/create">Create Stack</a>
 	</li>
 	<li class="nav-item">
         <a class="nav-link" href="/stacks/explore">Explore</a>

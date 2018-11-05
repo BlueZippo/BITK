@@ -109,7 +109,7 @@ $(document).ready(function()
 	});
 
 
-	$('.panel-heading h3 a').click(function()
+	$('.stack-panel .panel-heading > a').click(function()
 	{
 		var par = $(this).parent().parent();
 
