@@ -19,8 +19,6 @@
 
             @include('layouts.nav.topics')
 
-
-
             @include('layouts.nav.search')
 
 
@@ -30,7 +28,7 @@
 
                 @include('layouts.nav.mobile-menu')
 
-                <ul class="navbar-nav mr-auto justify-content-end user-menu">
+                <ul class="navbar-nav mr-auto justify-content-end desktop-user-menu user-menu">
 
                     @if (Auth::check())
 
@@ -68,7 +66,7 @@
 
                             <a class="dropdown-item" href="/admin/categories">Categories</a>
 
-                            <a class="dropdown-item" href="/admin/media_types">Media Types</a>                                
+                            <a class="dropdown-item" href="/admin/media_types">Media Types</a>
 
                             <a class="dropdown-item" href="/admin/users">Users</a>
 

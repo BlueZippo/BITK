@@ -79,6 +79,9 @@ header {
     background-color: #ffffff !important;
     height: 80px;
 }
+.desktop-user-menu .avatar img {
+    height: 50px;
+}
 .mobile-menu-wrapper > ul.justify-content-end {
     width: 100%;
 }
@@ -128,8 +131,8 @@ header {
     bottom: 0;
     margin: auto;
 }
-.user-ctrl .dropdown-menu {
-    top: 45px;
+.desktop-user-menu .user-ctrl .dropdown-menu {
+    top: 60px;
 }
 .topics-wrapper > .nav > .nav-item.dropdown > .dropdown-toggle {
     color: rgba(0,0,0,.5);
