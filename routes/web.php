@@ -33,6 +33,12 @@ Route::group(['middleware' => ['auth']], function()
 	
 	Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);	
 
+	Route::get('stacks/hot', 'StacksController@hot');
+	Route::get('stacks/new', 'StacksController@new');
+	Route::get('stacks/controversial', 'StacksController@controversial');
+	Route::get('stacks/top', 'StacksController@top');
+	Route::get('stacks/rising', 'StacksController@rising');
+
 	Route::get('stacks/explore', 'StacksController@explore');	
 
 	Route::get('stacks/view-all', 'StacksController@view_all');	
@@ -110,6 +116,9 @@ Route::get('stacks/{id}/comments', 'StacksController@comments');
 Route::get('stacks/{id}/dashboard', 'StacksController@dashboard');
 
 Route::get('stacks/{id}/category', 'StacksController@category');
+
+
+
 Route::post('stacks/search', 'StacksController@search');
 
 Route::get('link_comments/{id}/comments', 'LinkCommentsController@show');

@@ -16,6 +16,7 @@ use App\StackLink;
 use App\LinkCategory;
 use App\Search;
 use App\StacksVote;
+use App\StackComments;
 use App\MediaType;
 use App\StackCategory;
 use DB;
@@ -362,11 +363,19 @@ class StacksController extends Controller {
 
             $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();
+
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();;
+
+            $comments = StackComments::where('stack_id', '=', $result->id)->get();
 
             $stacks[] = array('title' => $result->title,
                               'image' => $result->video_id,
                               'author' => $author,
                               'id' => $result->id,
+                              'upvotes' => $this->number_format(count($upvotes)),
+                              'downvotes' => $this->number_format(count($downvotes)),
+                              'comments' => $this->number_format(count($comments)),
                               'follow' => $follow->isEmpty() ? false : true,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
@@ -374,6 +383,29 @@ class StacksController extends Controller {
         }
 
         return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
+    }
+
+
+    function number_format($num)
+    {
+        if($num > 1000) 
+        {
+
+            $x = round($num);
+            $x_number_format = number_format($x);
+            $x_array = explode(',', $x_number_format);
+            $x_parts = array('k', 'm', 'b', 't');
+            $x_count_parts = count($x_array) - 1;
+            $x_display = $x;
+            $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
+            $x_display .= $x_parts[$x_count_parts - 1];
+
+            return $x_display;
+
+        }
+
+        return $num;
+    
     }
 
     public function search(Request $request)
@@ -869,11 +901,11 @@ class StacksController extends Controller {
 
         $stack = Stack::find($id);
 
-
         $vote = $stack->votes()->where('vote','=', 1)->get();
 
+        $downvote = $stack->votes()->where('vote', '=', 0)->get();
 
-        return json_encode(array('stack_id' => $id, 'vote' => count($vote)));
+        return json_encode(array('stack_id' => $id, 'upvote' => count($vote), 'downvote' => count($downvote)));
     }
 
 
@@ -896,6 +928,496 @@ class StacksController extends Controller {
         $json['html'] = (string)$html;
 
         return ['html' => (string)$html];
+    }
+
+    public function hot()
+    {
+        $tags = User::find(auth()->id())->tags()->get();
+
+        $titleSQL = array();
+        $docSQL = array();
+        $userSQL = array();
+        $categorySQL = array();
+
+        if (!$tags->isEmpty())
+        {
+            foreach($tags as $tag)
+            {
+                list($tSQL, $dSQL, $uSQL, $cSQL) = $this->getSearchWeight($tag->tag);
+
+                $titleSQL = array_merge($titleSQL, $tSQL);
+                $docSQL = array_merge($docSQL, $cSQL);
+                $userSQL = array_merge($userSQL, $uSQL);
+                $categorySQL = array_merge($categorySQL, $cSQL);
+
+            }
+
+        }
+        else
+        {
+            $titleSQL[] = 0;
+            $docSQL[] = 0;
+            $userSQL[] = 0;
+            $categorySQL[] = 0;
+        }
+
+        $sql = "SELECT s.*, ";
+
+        $sql .= " u.name, u.photo, u.email,";
+
+        $sql .= " GROUP_CONCAT(DISTINCT c2.cat_name SEPARATOR ',') as cat_name, ";
+
+        $sql .= "(
+                    (".implode(" + ", $titleSQL)    .") +
+                    (".implode(" + ", $docSQL)      .") +
+                    (".implode(" + ", $userSQL)     .") +
+                    (".implode(" + ", $categorySQL) .")
+
+                ) as relevance";
+
+        $sql .= " FROM stacks s";
+
+        $sql .= " JOIN users u ON u.id = s.user_id";
+
+        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
+
+        $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
+
+        $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
+
+        $sql .= " GROUP BY s.id";
+
+        $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
+
+        $results = DB::select($sql);
+
+        $stacks = array();
+
+        $medias = Category::orderBy('cat_name')->get();
+
+        foreach($results as $result)
+        {
+            $author = array();
+
+            $author = array('name' => $result->name,
+                            'email' => $result->email,
+                            'photo' => $result->photo);
+
+
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();
+
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();;
+
+            $comments = StackComments::where('stack_id', '=', $result->id)->get();
+
+            $stacks[] = array('title' => $result->title,
+                              'image' => $result->video_id,
+                              'author' => $author,
+                              'id' => $result->id,
+                              'upvotes' => $this->number_format(count($upvotes)),
+                              'downvotes' => $this->number_format(count($downvotes)),
+                              'comments' => $this->number_format(count($comments)),
+                              'follow' => $follow->isEmpty() ? false : true,
+                              'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+                              'categories' => $result->cat_name
+                          );
+        }
+
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
+    }
+
+    public function new()
+    {
+        $tags = User::find(auth()->id())->tags()->get();
+
+        $titleSQL = array();
+        $docSQL = array();
+        $userSQL = array();
+        $categorySQL = array();
+
+        if (!$tags->isEmpty())
+        {
+            foreach($tags as $tag)
+            {
+                list($tSQL, $dSQL, $uSQL, $cSQL) = $this->getSearchWeight($tag->tag);
+
+                $titleSQL = array_merge($titleSQL, $tSQL);
+                $docSQL = array_merge($docSQL, $cSQL);
+                $userSQL = array_merge($userSQL, $uSQL);
+                $categorySQL = array_merge($categorySQL, $cSQL);
+
+            }
+
+        }
+        else
+        {
+            $titleSQL[] = 0;
+            $docSQL[] = 0;
+            $userSQL[] = 0;
+            $categorySQL[] = 0;
+        }
+
+        $sql = "SELECT s.*, ";
+
+        $sql .= " u.name, u.photo, u.email,";
+
+        $sql .= " GROUP_CONCAT(DISTINCT c2.cat_name SEPARATOR ',') as cat_name, ";
+
+        $sql .= "(
+                    (".implode(" + ", $titleSQL)    .") +
+                    (".implode(" + ", $docSQL)      .") +
+                    (".implode(" + ", $userSQL)     .") +
+                    (".implode(" + ", $categorySQL) .")
+
+                ) as relevance";
+
+        $sql .= " FROM stacks s";
+
+        $sql .= " JOIN users u ON u.id = s.user_id";
+
+        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
+
+        $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
+
+        $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
+
+        $sql .= " GROUP BY s.id";
+
+        $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
+
+        $results = DB::select($sql);
+
+        $stacks = array();
+
+        $medias = Category::orderBy('cat_name')->get();
+
+        foreach($results as $result)
+        {
+            $author = array();
+
+            $author = array('name' => $result->name,
+                            'email' => $result->email,
+                            'photo' => $result->photo);
+
+
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();
+
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();;
+
+            $comments = StackComments::where('stack_id', '=', $result->id)->get();
+
+            $stacks[] = array('title' => $result->title,
+                              'image' => $result->video_id,
+                              'author' => $author,
+                              'id' => $result->id,
+                              'upvotes' => $this->number_format(count($upvotes)),
+                              'downvotes' => $this->number_format(count($downvotes)),
+                              'comments' => $this->number_format(count($comments)),
+                              'follow' => $follow->isEmpty() ? false : true,
+                              'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+                              'categories' => $result->cat_name
+                          );
+        }
+
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);        
+    }
+
+    public function controversial()
+    {
+        $tags = User::find(auth()->id())->tags()->get();
+
+        $titleSQL = array();
+        $docSQL = array();
+        $userSQL = array();
+        $categorySQL = array();
+
+        if (!$tags->isEmpty())
+        {
+            foreach($tags as $tag)
+            {
+                list($tSQL, $dSQL, $uSQL, $cSQL) = $this->getSearchWeight($tag->tag);
+
+                $titleSQL = array_merge($titleSQL, $tSQL);
+                $docSQL = array_merge($docSQL, $cSQL);
+                $userSQL = array_merge($userSQL, $uSQL);
+                $categorySQL = array_merge($categorySQL, $cSQL);
+
+            }
+
+        }
+        else
+        {
+            $titleSQL[] = 0;
+            $docSQL[] = 0;
+            $userSQL[] = 0;
+            $categorySQL[] = 0;
+        }
+
+        $sql = "SELECT s.*, ";
+
+        $sql .= " u.name, u.photo, u.email,";
+
+        $sql .= " GROUP_CONCAT(DISTINCT c2.cat_name SEPARATOR ',') as cat_name, ";
+
+        $sql .= "(
+                    (".implode(" + ", $titleSQL)    .") +
+                    (".implode(" + ", $docSQL)      .") +
+                    (".implode(" + ", $userSQL)     .") +
+                    (".implode(" + ", $categorySQL) .")
+
+                ) as relevance";
+
+        $sql .= " FROM stacks s";
+
+        $sql .= " JOIN users u ON u.id = s.user_id";
+
+        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
+
+        $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
+
+        $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
+
+        $sql .= " GROUP BY s.id";
+
+        $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
+
+        $results = DB::select($sql);
+
+        $stacks = array();
+
+        $medias = Category::orderBy('cat_name')->get();
+
+        foreach($results as $result)
+        {
+            $author = array();
+
+            $author = array('name' => $result->name,
+                            'email' => $result->email,
+                            'photo' => $result->photo);
+
+
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();
+
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();;
+
+            $comments = StackComments::where('stack_id', '=', $result->id)->get();
+
+            $stacks[] = array('title' => $result->title,
+                              'image' => $result->video_id,
+                              'author' => $author,
+                              'id' => $result->id,
+                              'upvotes' => $this->number_format(count($upvotes)),
+                              'downvotes' => $this->number_format(count($downvotes)),
+                              'comments' => $this->number_format(count($comments)),
+                              'follow' => $follow->isEmpty() ? false : true,
+                              'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+                              'categories' => $result->cat_name
+                          );
+        }
+
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
+    }
+
+    public function top()
+    {
+        $tags = User::find(auth()->id())->tags()->get();
+
+        $titleSQL = array();
+        $docSQL = array();
+        $userSQL = array();
+        $categorySQL = array();
+
+        if (!$tags->isEmpty())
+        {
+            foreach($tags as $tag)
+            {
+                list($tSQL, $dSQL, $uSQL, $cSQL) = $this->getSearchWeight($tag->tag);
+
+                $titleSQL = array_merge($titleSQL, $tSQL);
+                $docSQL = array_merge($docSQL, $cSQL);
+                $userSQL = array_merge($userSQL, $uSQL);
+                $categorySQL = array_merge($categorySQL, $cSQL);
+
+            }
+
+        }
+        else
+        {
+            $titleSQL[] = 0;
+            $docSQL[] = 0;
+            $userSQL[] = 0;
+            $categorySQL[] = 0;
+        }
+
+        $sql = "SELECT s.*, ";
+
+        $sql .= " u.name, u.photo, u.email,";
+
+        $sql .= " GROUP_CONCAT(DISTINCT c2.cat_name SEPARATOR ',') as cat_name, ";
+
+        $sql .= "(
+                    (".implode(" + ", $titleSQL)    .") +
+                    (".implode(" + ", $docSQL)      .") +
+                    (".implode(" + ", $userSQL)     .") +
+                    (".implode(" + ", $categorySQL) .")
+
+                ) as relevance";
+
+        $sql .= " FROM stacks s";
+
+        $sql .= " JOIN users u ON u.id = s.user_id";
+
+        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
+
+        $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
+
+        $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
+
+        $sql .= " GROUP BY s.id";
+
+        $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
+
+        $results = DB::select($sql);
+
+        $stacks = array();
+
+        $medias = Category::orderBy('cat_name')->get();
+
+        foreach($results as $result)
+        {
+            $author = array();
+
+            $author = array('name' => $result->name,
+                            'email' => $result->email,
+                            'photo' => $result->photo);
+
+
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();
+
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();;
+
+            $comments = StackComments::where('stack_id', '=', $result->id)->get();
+
+            $stacks[] = array('title' => $result->title,
+                              'image' => $result->video_id,
+                              'author' => $author,
+                              'id' => $result->id,
+                              'upvotes' => $this->number_format(count($upvotes)),
+                              'downvotes' => $this->number_format(count($downvotes)),
+                              'comments' => $this->number_format(count($comments)),
+                              'follow' => $follow->isEmpty() ? false : true,
+                              'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+                              'categories' => $result->cat_name
+                          );
+        }
+
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
+    }
+
+    public function rising()
+    {
+        $tags = User::find(auth()->id())->tags()->get();
+
+        $titleSQL = array();
+        $docSQL = array();
+        $userSQL = array();
+        $categorySQL = array();
+
+        if (!$tags->isEmpty())
+        {
+            foreach($tags as $tag)
+            {
+                list($tSQL, $dSQL, $uSQL, $cSQL) = $this->getSearchWeight($tag->tag);
+
+                $titleSQL = array_merge($titleSQL, $tSQL);
+                $docSQL = array_merge($docSQL, $cSQL);
+                $userSQL = array_merge($userSQL, $uSQL);
+                $categorySQL = array_merge($categorySQL, $cSQL);
+
+            }
+
+        }
+        else
+        {
+            $titleSQL[] = 0;
+            $docSQL[] = 0;
+            $userSQL[] = 0;
+            $categorySQL[] = 0;
+        }
+
+        $sql = "SELECT s.*, ";
+
+        $sql .= " u.name, u.photo, u.email,";
+
+        $sql .= " GROUP_CONCAT(DISTINCT c2.cat_name SEPARATOR ',') as cat_name, ";
+
+        $sql .= "(
+                    (".implode(" + ", $titleSQL)    .") +
+                    (".implode(" + ", $docSQL)      .") +
+                    (".implode(" + ", $userSQL)     .") +
+                    (".implode(" + ", $categorySQL) .")
+
+                ) as relevance";
+
+        $sql .= " FROM stacks s";
+
+        $sql .= " JOIN users u ON u.id = s.user_id";
+
+        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
+
+        $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
+
+        $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
+
+        $sql .= " GROUP BY s.id";
+
+        $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
+
+        $results = DB::select($sql);
+
+        $stacks = array();
+
+        $medias = Category::orderBy('cat_name')->get();
+
+        foreach($results as $result)
+        {
+            $author = array();
+
+            $author = array('name' => $result->name,
+                            'email' => $result->email,
+                            'photo' => $result->photo);
+
+
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();
+
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();;
+
+            $comments = StackComments::where('stack_id', '=', $result->id)->get();
+
+            $stacks[] = array('title' => $result->title,
+                              'image' => $result->video_id,
+                              'author' => $author,
+                              'id' => $result->id,
+                              'upvotes' => $this->number_format(count($upvotes)),
+                              'downvotes' => $this->number_format(count($downvotes)),
+                              'comments' => $this->number_format(count($comments)),
+                              'follow' => $follow->isEmpty() ? false : true,
+                              'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+                              'categories' => $result->cat_name
+                          );
+        }
+
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
     }
 
 }

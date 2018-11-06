@@ -2,7 +2,7 @@
 
 	<div class="panel-heading">
 
-		<h3><span>Parking</span> Lot <a class="add-a-link-button">Add a Link</a></h3> 
+		<h3><span>Parking</span> Lot</h3> <a class="add-a-link-button">Add a Link</a>
 
 		@include('links.create')
 
@@ -32,12 +32,12 @@
 
 									{{$parking->get_host($parking->link)}}
 
-								</div>	
+								</div>
 
 								<div class="meta small">
 
 									<a class="edit-link" data-id={{$parking->id}}>Edit</a> | <a class="delete-link" data-id="{{$parking->id}}">Delete</a>
-									
+
 								</div>
 
 							</div>

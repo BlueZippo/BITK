@@ -18,7 +18,12 @@
 
 				@endforeach
 
+			@else
+
+			<div class="no-stacks"><p>Nothing recommended yet. Once you follow a Stack or a person, this section will show Stacks!</p></div>
+
 			@endif
+
 		</div>
 
 	</div>

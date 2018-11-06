@@ -8,6 +8,7 @@ Table of Content:
 #Footer
 #Single Stack
 #Dashboard
+#Edit Stack
 *****************************/
 /*****************************
     #Layout
@@ -43,6 +44,9 @@ and (min-width: 1200px) {
     a {
         color: #1da1f2;
     }
+    a:hover {
+        color: #fd438d;
+    }
     .transition a {
         transition: all 200ms ease-in-out;
     }
@@ -74,6 +78,9 @@ header {
 .main_nav.bg-light {
     background-color: #ffffff !important;
     height: 80px;
+}
+.desktop-user-menu .avatar img {
+    height: 50px;
 }
 .mobile-menu-wrapper > ul.justify-content-end {
     width: 100%;
@@ -124,8 +131,8 @@ header {
     bottom: 0;
     margin: auto;
 }
-.user-ctrl .dropdown-menu {
-    top: 45px;
+.desktop-user-menu .user-ctrl .dropdown-menu {
+    top: 60px;
 }
 .topics-wrapper > .nav > .nav-item.dropdown > .dropdown-toggle {
     color: rgba(0,0,0,.5);
@@ -518,12 +525,17 @@ main {
     padding: 0;
 }
 .stack-panel .panel-heading {
+    display: flex;
+    align-items: center;
     border-bottom: 1px solid #d1d1d1;
+    padding-bottom: 5px;
     margin-bottom: 24px;
 }
 .stack-panel .panel-heading h3 {
     font-size: 18px;
     text-transform: uppercase;
+    margin-right: 8px;
+    margin-bottom: 0;
 }
 .stack-panel .panel-heading h3 span {
     font-weight: 600;
@@ -532,52 +544,56 @@ main {
     padding-left: 15px;
     padding-right: 15px;
 }
+.stack-panel .no-stacks p {
+    color: #6c6c6c;
+}
+.stack-panel .no-stacks p a {
+    transition: all 200ms linear;
+    text-decoration: none;
+}
 .stack-panel .stack-content .title {
     padding: 5px 0;
     border-bottom: 1px solid #d1d1d1;
-}
-.stack-panel .stack-content .stack-footer i {
-    padding: 8px 10px;
 }
 /*****************************
     #Dashboard
 *****************************/
 .dashboard .nav.nav-pills {
     padding: 10px 0;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
-
-.stack-panel .panel-heading h3 a,
 .dashboard .nav.nav-pills li a {
     font-size: 14px;
     color: #404040;
     font-weight: 500;
     position: relative;
     padding: .5rem 1rem;
-    text-transform:none;
+    text-transform: none;
+    text-decoration: none;
     cursor:pointer;
 }
-.dashboard .nav.nav-pills li a:hover {
-    color: #fd3b82;
+.stack-panel .panel-heading > a {
+    color: #ffffff;
+    padding: .5rem 1rem;
 }
-
-.stack-panel .panel-heading h3 a,
-.dashboard .nav.nav-pills li a.create {
+.stack-panel .panel-heading > a,
+.dashboard .nav.nav-pills li a.add-link {
     background-color: #fd3b82;
     color: #ffffff;
+    cursor: pointer;
     border-radius: 26px;
     padding-right: 32px;
+    text-decoration: none;
+    transition: all 200ms ease-in-out;
+    position: relative;
 }
-
-.stack-panel .panel-heading h3 a:hover,
-.dashboard .nav.nav-pills li a.create:hover {
+.stack-panel .panel-heading > a:hover,
+.dashboard .nav.nav-pills li a.add-link:hover {
+    color: #ffffff;
     background-color: #404040;
-    text-decoration:none;
-    color:#fff;
 }
-
-.stack-panel .panel-heading h3 a:after,
-.dashboard .nav.nav-pills li a.create:after {
+.stack-panel .panel-heading > a:after,
+.dashboard .nav.nav-pills li a.add-link:after {
     content: "\f055";
     font-family: 'FontAwesome';
     font-size: 16px;
@@ -587,4 +603,56 @@ main {
     right: 12px;
     bottom: 0;
     margin: auto;
+}
+.dash-stack-tile .stack-footer {
+    display: flex;
+    align-items: center;
+}
+.dash-stack-tile .author {
+    border-bottom: 1px solid #d1d1d1 !important;
+	display: flex;
+	align-items: center;
+	padding: 6px 0;
+    margin-bottom: 8px;
+}
+.dash-stack-tile .stack-footer .edit {
+    margin-left: 0;
+    margin-right: auto;
+}
+.dash-stack-tile .stack-footer .edit a {
+    text-decoration: none;
+}
+.dash-stack-tile .stack-footer .likes {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 0;
+}
+.dash-stack-tile .stack-footer .forward {
+    color: #1da1f2;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.dash-stack-tile .stack-footer .forward:hover {
+    color: #fd438d;
+}
+.dash-stack-tile .stack-footer .like {
+    margin-right: 5px;
+}
+/*****************************
+    #Edit Stack
+*****************************/
+.stack-author .user {
+    display: flex;
+    align-items: center;
+}
+.stack-author .user > div {
+    margin-right: 10px;
+}
+.stack-author .avatar {
+    width: 40px;
+}
+.stack-author .avatar > img {
+    border-radius: 30px;
+    width: 40px;
 }

@@ -76,7 +76,7 @@ class PagesController extends Controller {
 					$user = User::find($stack->user_id);
 
 					if ($user)
-					{	
+					{
 
 						$author = array('name' => $user->name, 'email' => $user->email, 'photo' => $user->photo);
 
@@ -101,9 +101,9 @@ class PagesController extends Controller {
 								'categories' => implode(',', array_unique($categories))
 							);
 
-					}	
-					
-				}			
+					}
+
+				}
 
 
 
@@ -117,7 +117,7 @@ class PagesController extends Controller {
 
 					$author = User::find($stack->user_id);
 
-					
+
 					if ($author && $stack->status_id == 1)
 					{
 
@@ -141,8 +141,8 @@ class PagesController extends Controller {
 								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
 								'categories' => implode(',', array_unique($categories))
 							);
-					}	
-					
+					}
+
 				}
 
 
@@ -164,7 +164,7 @@ class PagesController extends Controller {
 
 
         $parking = User::find($user_id)
-                   ->links()                   
+                   ->links()
                    ->where('stack_id', '=', 0)
                    ->get();
 

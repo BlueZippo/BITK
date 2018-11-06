@@ -2,35 +2,42 @@
 
 @section('content')
 
-    @if (Auth::check())
 
-        <h2><a href="/stacks/explore">Explore</a></h2>
+    @include('stacks.explore-nav')
+   
 
-
-    @else
-
-        <h2><a href="/">Explore</a></h2>            
-
-    @endif    
-
-    <hr />
-
-    <div class="row">
+    <div class="stack-list tile">
 
         @foreach($stacks as $stack)
 
-            <div class="col-md-2">
+            <div class="single-stack-wrapper">
 
                     @include('stacks.box')
 
             </div>
 
 
-    @endforeach
+        @endforeach
+        
+        
+    </div>   
 
-        
-        
-    </div>    
+
+<div class="modal fade" id="popupComments" tabindex="-1" role="dialog" aria-labelledby="popupComments" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="popupComments">Comments</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+    </div>
+  </div>
+</div 
    
 
 @endsection
