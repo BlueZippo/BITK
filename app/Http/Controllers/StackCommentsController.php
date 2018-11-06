@@ -66,7 +66,7 @@ class StackCommentsController extends Controller
 
         $html = view('stacks.comments-list')->with($data)->render();
 
-        return ['html' => $html];
+        return ['html' => $html, 'comments' => count($comments), 'stack_id' => $stack_id];
 
     }
 

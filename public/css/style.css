@@ -4,6 +4,15 @@ Table of Content:
 #Dashboard
 #Dashboard Tiles
 *****************************/
+
+:root 
+{
+    --blue: #1da1f2; 
+    --pink: #fd3b82;
+    --light-gray: #b1b2b2;
+    --dark-gray: #949494;
+}
+
 .follow-button,
 .add-tag,
 .add-parking
@@ -502,88 +511,26 @@ a.downvote
 .dash-stack-tile .stack-footer {
 	padding:5px 0;
 }
-.view-button
-{
-	position:relative;
-	width:70px;
-	margin-right:5px;
-	margin-top:5px;
-}
-
-.view-button a
-{
-	position:relative;
-	display:inline-block;
-	width:20px;
-	height:20px;
-	cursor:pointer;
-}
-
-.view-button a span
-{
-	position:absolute;
-	width:20px;
-	height:4px;
-	background:#000;
-}
-
-.view-button a:hover span
-{
-	background:#ccc;
-}
-
-.view-button a > span:first-child
-{
-	top:0;
-}
-
-.view-button a > span:last-child
-{
-	bottom:0;
-}
-
-.view-button a.tile span
-{
-	height:9px;
-}
-
-.view-button a.compact span
-{
-	height:6px;
-}
-
-.view-button a.compact span:nth-child(2)
-{
-	top:7px;
-}
-
-.view-button a.list span:nth-child(2)
-{
-	top:5px;
-}
-
-.view-button a.list span:nth-child(3)
-{
-	top:10px;
-}
 
 
-.tile > .single-stack-wrapper
+.stack-list.tile > .single-stack-wrapper
 {
 	float:left;
 	width:19%;
 	margin-right:15px;
 	margin-bottom:15px;
 	min-height:200px;
+	border:solid 1px #ccc;
+	box-shadow:5px 5px 5px #ccc;
 }
 
-.tile > .single-stack-wrapper:nth-child(5n),
-.tile
+.stack-list.tile > .single-stack-wrapper:nth-child(5n),
+.stack-list.tile
 {
 	margin-right:0;
 }
 
-.tile::after
+.stack-list.tile::after
 {
 	content:"";
 	display:block;
@@ -591,7 +538,7 @@ a.downvote
 }
 
 
-.compact > .single-stack-wrapper
+.stack-list.compact > .single-stack-wrapper
 {
 	float:left;
 	width:9.5%;
@@ -600,21 +547,22 @@ a.downvote
 	min-height:200px;
 }
 
-.compact .featured-image img
+.stack-list.compact .featured-image img
 {
 	max-height:50px;
 }
 
-.list > .single-stack-wrapper
+.stack-list.list > .single-stack-wrapper
 {
-	float:nonew;
+	float:none;
 	width:width:100%;
 	margin-right:0;
 	margin-bottom:0;
 	min-height:100px;
+	border-bottom:solid 1px #ccc;
 }
 
-.list .featured-image
+.stack-list.list .featured-image
 {
 	max-width:100px;
 	width:100px;
@@ -622,13 +570,242 @@ a.downvote
 	float:left;
 }
 
-.list .avatar
+.stack-list.list .avatar
 {
 	display:none;
 }
 
-.list .stack-content .date
+.stack-list.list .stack-content .date
 {
 	float:none;
 	line-height:normal;
 }
+
+.view-button > a
+{
+	margin-left:5px;
+	cursor:pointer;
+}
+
+.single-stack-wrapper .meta-category
+{
+	border-top:solid 1px #ccc;
+	border-bottom:solid 1px #ccc;
+}
+
+.single-stack-wrapper .meta-category:after
+{
+	content:"";
+	display:block;
+	clear:both;
+}
+
+.single-stack-wrapper .avatar
+{
+	float:left;
+	margin-right:5px;
+}
+
+.single-stack-wrapper .author
+{
+	line-height:50px;
+}
+
+.single-stack-wrapper .author:after
+{
+	content:"";
+	display:block;
+	clear:both;
+}
+
+.single-stack-wrapper .stack-footer
+{
+	position:relative;
+}
+
+.single-stack-wrapper .stack-footer a 
+{
+	font-size:20px;
+	margin-right:11px;
+	cursor:pointer;
+}
+
+.single-stack-wrapper a.follow-button,
+.single-stack-wrapper a.more-button
+{
+	color:var(--blue);
+}
+
+.single-stack-wrapper a.more-button
+{
+	margin-right:0;
+}
+
+.single-stack-wrapper a.like-button
+{
+	color:var(--pink);
+}
+
+.single-stack-wrapper a.share-button
+{
+	color:var(--light-gray);
+}
+
+.single-stack-wrapper a.approve-button,
+.single-stack-wrapper a.disapprove-button,
+.single-stack-wrapper a.comments-button
+{
+	color:var(--dark-gray);
+}
+
+.more-button:hover .more-container
+{
+	display:block;
+}
+
+.more-container
+{
+	border:solid 1px var(--pink);
+	width:200px;
+	position:absolute;
+	background:#fff;
+	right:0;
+	display:none;
+	z-index:9;
+}
+
+.single-stack-wrapper .stack-footer .more-container > a,
+.single-stack-wrapper .compact-button .more-container > a
+{
+	display:block;
+	border-bottom:solid 1px var(--light-gray);
+	padding:5px 15px;
+	font-size:16px;
+	margin:0;
+}
+
+.more-container > a:hover
+{
+	color:var(--pink) !important;
+}
+
+.more-container:after
+{
+	content:"";
+	position:absolute;
+	width:20px;
+	height:20px;
+	top:-11px;
+	right:72px;
+	border-top:solid 1px var(--pink);
+	border-left:solid 1px var(--pink);
+	transform:rotate(45deg);
+	background:#fff;
+}
+
+.more-container > a > small
+{
+	display:block;
+	font-size:11px;
+	margin-left:22px;
+}
+
+.more-container > a:last-child
+{
+	border-bottom:solid 1px transparent;
+}
+
+.more-container > a > i
+{
+	margin:5px 10px 15px 0;
+	float:left;
+}
+
+
+.compact .meta-category,
+.compact .stack-footer,
+.compact .author,
+.list .stack-footer,
+.list .meta-category,
+.tile .compact-author,
+.tile .compact-button,
+.list .compact-button,
+.list .compact-author,
+.list .author,
+.tile .list-button,
+.compact .list-button
+{
+	display:none;
+}
+
+.compact-author
+{
+	padding:5px 5px 0;
+	margin-top:-26px;
+}
+
+.compact-author .avatar
+{
+	float:none;
+	font-weight:bold;
+}
+
+.compact-author .avatar > img
+{
+	border:solid 2px #fff;
+}
+
+.compact .stack-content
+{
+	padding:0px 5px 5px;
+}
+
+.compact-button
+{
+	float:right;
+	margin-top:5px;
+	position:relative;	
+}
+
+.compact-button .more-container
+{
+	right:-95%;
+	top:36px;
+}
+
+.compact-button a.follow-button
+{
+	border:solid 1px var(--blue);
+	border-radius:13px;
+	padding:2px 10px;
+}
+
+.compact-button span.more-button
+{
+	padding:0px 5px;
+}
+
+.compact-button
+{
+	z-index:10;
+}
+
+
+.list .list-button
+{
+	width:100px;
+	height:100px;
+	background:#f8f9fa;
+	text-align:center;
+	float:left;
+	font-size:22px;
+}
+
+.list .list-button > a
+{
+	margin-top:5px;
+	display:inline-block;
+	cursor:pointer;
+}
+
+

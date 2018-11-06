@@ -15,7 +15,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            @yield('view')
+           
 
             @include('layouts.nav.topics')
 

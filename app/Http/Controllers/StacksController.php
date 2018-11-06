@@ -16,6 +16,7 @@ use App\StackLink;
 use App\LinkCategory;
 use App\Search;
 use App\StacksVote;
+use App\StackComments;
 use App\MediaType;
 use App\StackCategory;
 use DB;
@@ -362,11 +363,19 @@ class StacksController extends Controller {
 
             $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();
+
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();;
+
+            $comments = StackComments::where('stack_id', '=', $result->id)->get();
 
             $stacks[] = array('title' => $result->title,
                               'image' => $result->video_id,
                               'author' => $author,
                               'id' => $result->id,
+                              'upvotes' => $this->number_format(count($upvotes)),
+                              'downvotes' => $this->number_format(count($downvotes)),
+                              'comments' => $this->number_format(count($comments)),
                               'follow' => $follow->isEmpty() ? false : true,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
@@ -374,6 +383,29 @@ class StacksController extends Controller {
         }
 
         return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
+    }
+
+
+    function number_format($num)
+    {
+        if($num > 1000) 
+        {
+
+            $x = round($num);
+            $x_number_format = number_format($x);
+            $x_array = explode(',', $x_number_format);
+            $x_parts = array('k', 'm', 'b', 't');
+            $x_count_parts = count($x_array) - 1;
+            $x_display = $x;
+            $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
+            $x_display .= $x_parts[$x_count_parts - 1];
+
+            return $x_display;
+
+        }
+
+        return $num;
+    
     }
 
     public function search(Request $request)
@@ -869,11 +901,11 @@ class StacksController extends Controller {
 
         $stack = Stack::find($id);
 
-
         $vote = $stack->votes()->where('vote','=', 1)->get();
 
+        $downvote = $stack->votes()->where('vote', '=', 0)->get();
 
-        return json_encode(array('stack_id' => $id, 'vote' => count($vote)));
+        return json_encode(array('stack_id' => $id, 'upvote' => count($vote), 'downvote' => count($downvote)));
     }
 
 

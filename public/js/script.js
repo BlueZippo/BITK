@@ -55,6 +55,8 @@ $(document).on('keydown', '.comment-form textarea[name=comment]', function(e)
 			{
 				$('.modal-body .comment-list').html(data.html);
 
+				$('#stack' + data.stack_id + ' .comments-button').html('<i class="fa fa-comments"></i>' + data.comments)
+
 				$('textarea[name=comment]').val('');
 			}
 		});
@@ -193,6 +195,62 @@ $(document).ready(function()
 		})
 	});
 
+	$('.approve-button').on('click', function()
+	{
+		var stack_id = $(this).data('id');
+
+		var params = 'stack_id=' + stack_id + '&vote=1';
+
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+		$.ajax(
+		{
+			url: '/stacks/' + stack_id + '/vote',
+			data: params,
+			type: 'post',
+			dataType: 'json',
+			success: function(data)
+			{
+				$('#stack' + stack_id + ' .stack-footer .approve-button').html('<i class="fa fa-thumbs-up"></i> ' + data.upvote);
+				$('#stack' + stack_id + ' .stack-footer .disapprove-button').html('<i class="fa fa-thumbs-down"></i> ' + data.downvote);
+
+				$('#stack' + stack_id + ' .list-button .upvotes').html(data.upvote);
+			}
+		})
+	});
+
+	$('.disapprove-button').on('click', function()
+	{
+		var stack_id = $(this).data('id');
+
+		var params = 'stack_id=' + stack_id + '&vote=0';
+
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+		$.ajax(
+		{
+			url: '/stacks/' + stack_id + '/vote',
+			data: params,
+			type: 'post',
+			dataType: 'json',
+			success: function(data)
+			{
+				$('#stack' + stack_id + ' .stack-footer .approve-button').html('<i class="fa fa-thumbs-up"></i> ' + data.upvote);
+				$('#stack' + stack_id + ' .stack-footer .disapprove-button').html('<i class="fa fa-thumbs-down"></i> ' + data.downvote);
+
+				$('#stack' + stack_id + ' .list-button .upvotes').html(data.upvote);
+			}
+		})
+	});
+
 
 	$('.follow-people-button').click(function()
 	{
@@ -271,7 +329,7 @@ $(document).ready(function()
 
     });
 
-    $('a.chats').click(function()
+    $('a.chats, a.comments-button').click(function()
     {
     	var id = $(this).data('id');
 
