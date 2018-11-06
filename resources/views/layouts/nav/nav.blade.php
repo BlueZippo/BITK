@@ -1,7 +1,7 @@
 <header>
     <!-- Fixed navbar -->
     <nav class="navbar main_nav navbar-expand-md navbar-light fixed-top bg-light">
-        <div class="inner container">
+        <div class="inner container-fluid">
 
             @if (Auth::check())
                 <a class="navbar-brand" href="/dashboard">
