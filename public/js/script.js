@@ -296,12 +296,6 @@ $(document).ready(function()
 
 	})
 
-	mobile_menu($);
-	single_stack($);
-	equal_heights($);
-
-
-
     $('.media-types input[type=checkbox]').click(function()
     {
     	$('.media-types input[type=checkbox]').prop('checked', false);
@@ -361,6 +355,11 @@ $(document).ready(function()
     	$.totalStorage('display', bClass);
     });
 
+	mobile_menu($);
+	single_stack($);
+	equal_heights($);
+	dashboard_controls($);
+
 });
 
 function mobile_menu($) {
@@ -411,6 +410,16 @@ function equal_heights($) {
 	$('.dash-stack-tile > .stack-content > .title').matchHeight({
 		byRow: false,
 	    property: 'height'
+	});
+
+}
+
+function dashboard_controls($) {
+
+	// Dashboard Layout Controls
+	$('.layout-control > .btn-control').on('click', function() {
+		$('.layout-control > .btn-control').removeClass('active');
+		$(this).addClass('active');
 	});
 
 }

@@ -13,6 +13,10 @@ Table of Content:
 /*****************************
     #Layout
 *****************************/
+:root {
+    --ps-bg-gray-color: #d1d1d1;
+    --ps-border-color: #d1d1d1;
+}
 body {
     font-family: "Lato", sans-serif;
 }
@@ -232,8 +236,24 @@ header {
     margin-bottom: 30px;
 }
 .layout-control {
+    display: flex;
+    align-items: center;
+    background-color: var(--ps-bg-gray-color);
+    border-radius: .25rem;
     margin-right: 0;
     margin-left: auto;
+}
+.layout-control > .btn-control {
+    cursor: pointer;
+    padding: .375rem .75rem;
+    border: 1px solid var(--ps-border-color);
+    border-radius: .25rem;
+    transition: all 200ms linear;
+    -webkit-transition: all 200ms linear;
+}
+.layout-control > .btn-control.active,
+.layout-control > .btn-control:hover {
+    background-color: #ffffff;
 }
 /*** Media Queries ***/
 @media screen and (max-width: 1599px) {
