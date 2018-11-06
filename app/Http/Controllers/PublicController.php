@@ -10,6 +10,8 @@ use App\Stack;
 use App\LinksFollow;
 use App\StacksFollow;
 use App\Category;
+use App\StacksVote;
+use App\StackComments;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -79,12 +81,18 @@ class PublicController extends Controller {
                             'email' => $result->email,
                             'photo' => $result->photo);
 
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=', 1)->get();
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=', 0)->get();
+            $comments = StackComments::where('stack_id', '=', $result->id)->get();
 
             
             $stacks[] = array('title' => $result->title,
                               'image' => $result->video_id,
                               'author' => $author,
                               'id' => $result->id,
+                              'upvotes' => count($upvotes),
+                              'downvotes' => count($downvotes),
+                              'comments' => count($comments),
                               'follow' => false,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
@@ -116,11 +124,17 @@ class PublicController extends Controller {
 
             $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=', 1)->get();
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=', 0)->get();
+
 
             $stacks[] = array('title' => $result->title,
                               'image' => $result->video_id,
                               'author' => $author,
                               'id' => $result->id,
+                              'upvotes' => count($upvotes),
+                              'downvotes' => count($downvotes),
+
                               'follow' => $follow->isEmpty() ? false : true,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
