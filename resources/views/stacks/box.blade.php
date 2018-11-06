@@ -24,7 +24,7 @@
           <i class="fa fa-ellipsis-v"></i>
           <div class="more-container">   
 
-            <a title="Add to favorites" class="like-button" data-action="like" data-id={{$stack['id']}}><i class="fa fa-heart"></i> Like</a>
+            <a title="Add to favorites" class="like-button" data-action="like" data-id={{$stack['id']}}><i class="fa fa-heart"></i> Add to favorites</a>
             <a title="Send stack" class="share-button" data-action="share" data-id={{$stack['id']}}><i class="fa fa-share"></i> Send</a>
             <a title="Like stack" class="approve-button" data-action="approve" data-id={{$stack['id']}}><i class="fa fa-thumbs-up"></i> {{$stack['upvotes']}}</a>
             <a title="Unlike stack" class="disapprove-button" data-action="disapporve" data-id={{$stack['id']}}><i class="fa fa-thumbs-down"></i> {{$stack['downvotes']}}</a>

@@ -357,6 +357,8 @@ $(document).ready(function()
     	$('.stack-list').removeClass('list');
 
     	$('.stack-list').addClass(bClass);
+
+    	$.totalStorage('display', bClass);
     });
 
 });
