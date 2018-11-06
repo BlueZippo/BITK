@@ -4,7 +4,7 @@
 	<a class="list"><i class="fa fa-bars"></i></a>
 </label>
 
-<label class="view-button">Sort: 
+<label class="sort-button">Sort: 
 	<a title="Hot" href="/stacks/hot" class="hot"><i class="fa fa-fire"></i> Hot</a>  
 	<a title="New" href="/stacks/new"><i class="fa fa-certificate"></i> New</a> 
 	<a title="Controversial" href="/stacks/controversial"><i class="fa fa-bolt"></i> Controversial</a>

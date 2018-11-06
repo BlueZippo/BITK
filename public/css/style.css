@@ -808,4 +808,23 @@ a.downvote
 	cursor:pointer;
 }
 
+.view-button,
+.sort-button
+{
+	text-transform:uppercase;
+	padding:10px;
+	font-size:18px;
+	position:relative;
+}
 
+.view-button:after
+{
+	content:"";
+	display:block;
+	background:#ccc;
+	width:2px;
+	height:20px;
+	top:32%;
+	right:0;
+	position:absolute;
+}
