@@ -13,7 +13,11 @@
 
 	<div class="dashboard">
 
-		@include('pages.nav')
+		<div class="nav-wrapper">
+			@include('pages.nav')
+
+			@include('pages.layout-control')
+		</div>
 
 		@include('stacks.following')
 

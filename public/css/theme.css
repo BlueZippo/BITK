@@ -226,6 +226,15 @@ header {
 .mobile-nav .avatar > img {
     border-radius: 30px;
 }
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.layout-control {
+    margin-right: 0;
+    margin-left: auto;
+}
 /*** Media Queries ***/
 @media screen and (max-width: 1599px) {
     .topics-wrapper {
@@ -560,7 +569,6 @@ main {
 *****************************/
 .dashboard .nav.nav-pills {
     padding: 10px 0;
-    margin-bottom: 30px;
 }
 .dashboard .nav.nav-pills li a {
     font-size: 14px;
