@@ -14,6 +14,9 @@ Table of Content:
     #Layout
 *****************************/
 :root {
+    --ps-pink-color: #fd3b82;
+    --ps-blue-color: #1da1f2;
+    --ps-text-color: #404040;
     --ps-bg-gray-color: #d1d1d1;
     --ps-border-color: #d1d1d1;
 }
@@ -631,6 +634,42 @@ main {
     right: 12px;
     bottom: 0;
     margin: auto;
+}
+.dash-stack-tile {
+    margin-bottom: 30px;
+}
+.dash-stack-tile.create-stack {
+    box-shadow: none;
+    border-left: 1px dashed #d1d1d1;
+    border-bottom: 1px dashed #d1d1d1;
+    border-right: 1px dashed #d1d1d1;
+}
+.dash-stack-tile.create-stack > .stack-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dash-stack-tile.create-stack > .stack-content a {
+    color: var(--ps-pink-color);
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+}
+.dash-stack-tile.create-stack > .stack-content a:hover {
+    color: var(--ps-blue-color);
+}
+.dash-stack-tile.create-stack > .stack-content a i {
+    display: block;
+    font-size: 70px;
+    height: 70px;
+    margin: 0 auto 5px;
+}
+.dash-stack-tile.create-stack.reminder > .stack-content a p {
+    font-size: 80%;
 }
 .dash-stack-tile .stack-footer {
     display: flex;

@@ -407,6 +407,12 @@ function equal_heights($) {
 	    property: 'height'
 	});
 
+	// Dashboard Tiles
+	$('.dash-stack-tile > .stack-content').matchHeight({
+		byRow: false,
+	    property: 'height'
+	});
+
 	$('.dash-stack-tile > .stack-content > .title').matchHeight({
 		byRow: false,
 	    property: 'height'
