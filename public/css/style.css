@@ -5,9 +5,9 @@ Table of Content:
 #Dashboard Tiles
 *****************************/
 
-:root 
+:root
 {
-    --blue: #1da1f2; 
+    --blue: #1da1f2;
     --pink: #fd3b82;
     --light-gray: #b1b2b2;
     --dark-gray: #949494;
@@ -278,7 +278,6 @@ Table of Content:
 
 .people-box
 {
-	min-height:250px;
 	background:#fff;
 	border:solid 1px #ccc;
 	box-shadow:3px 3px 3px #ccc;
@@ -623,7 +622,7 @@ a.downvote
 	position:relative;
 }
 
-.single-stack-wrapper .stack-footer a 
+.single-stack-wrapper .stack-footer a
 {
 	font-size:20px;
 	margin-right:11px;
@@ -764,7 +763,7 @@ a.downvote
 {
 	float:right;
 	margin-top:5px;
-	position:relative;	
+	position:relative;
 }
 
 .compact-button .more-container
@@ -834,4 +833,3 @@ a.downvote
 {
 	cursor:pointer;
 }
-

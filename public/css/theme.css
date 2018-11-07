@@ -14,9 +14,7 @@ Table of Content:
     #Layout
 *****************************/
 :root {
-    --ps-pink-color: #fd3b82;
-    --ps-blue-color: #1da1f2;
-    --ps-text-color: #404040;
+    --text-color: #404040;
     --ps-bg-gray-color: #d1d1d1;
     --ps-border-color: #d1d1d1;
 }
@@ -650,7 +648,7 @@ main {
     justify-content: center;
 }
 .dash-stack-tile.create-stack > .stack-content a {
-    color: var(--ps-pink-color);
+    color: var(--pink);
     font-size: 16px;
     text-align: center;
     text-transform: uppercase;
@@ -660,7 +658,7 @@ main {
     -webkit-transition: all 200ms ease-in-out;
 }
 .dash-stack-tile.create-stack > .stack-content a:hover {
-    color: var(--ps-blue-color);
+    color: var(--blue);
 }
 .dash-stack-tile.create-stack > .stack-content a i {
     display: block;
