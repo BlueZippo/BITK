@@ -828,3 +828,10 @@ a.downvote
 	right:0;
 	position:absolute;
 }
+
+.likes .like,
+.likes .dislike
+{
+	cursor:pointer;
+}
+

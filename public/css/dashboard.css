@@ -14,11 +14,9 @@
 	width:500px;
 	padding:20px;
 	border:solid 1px #d1d1d1;	
-	position:absolute;
-	top:-75px;
+	position:absolute;	
 	display:none;
-	background:#fff;
-	left:255px;
+	background:#fff;	
 	box-shadow:-5px 5px 5px #ccc;
 	z-index:9;
 }
@@ -31,15 +29,12 @@
   	height: 25px;
   	background: #fff;
   	transform: rotate(45deg); /* Prefixes... */
-  	top: 23%;
+  	top: 35px;
   	left:-11px;
   	box-shadow: -5px 5px 5px  #ccc;
 }
 
-.add-link-form div[class^='step']
-{
-	display:none;
-}
+
 
 .add-link-form div.step1
 {
@@ -47,17 +42,15 @@
 }
 
 
-.add-link-form .back-button,
-.add-link-form .submit-button
-{
-	display:none;
-}
+
 
 .add-link-form .media-types
 {
 	list-style:none;
-	padding:0;
+	padding:5px 0;
 	margin:0;
+	border-top:solid 1px #ccc;
+	border-bottom:solid 1px #ccc;
 }
 
 .add-link-form .media-types li
@@ -238,5 +231,12 @@
 .link-comment-button
 {
 	cursor:pointer;
+}
+
+.add-link-form label
+{
+	text-transform:uppercase;
+	line-height:2;
+	font-weight:bold;
 }
 

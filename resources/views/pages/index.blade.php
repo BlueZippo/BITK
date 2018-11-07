@@ -17,6 +17,7 @@
 			@include('pages.nav')
 
 			@include('pages.layout-control')
+
 		</div>
 
 		@include('stacks.following')
@@ -31,7 +32,13 @@
 
 		@include('pages.parking')
 
+        @include('links.create')
+
 	</div>
+
+@endsection
+
+@section('scripts')
 
 
 <script>
@@ -39,7 +46,7 @@
 var STACKS = {!!$MyStacks!!};
 
 $('input[name=link_url]').focusout(function()
-	{
+    {
     $('.continue-button').addClass('disabled');
 
     $('.solid .content').html('Fetching link information, please wait...')
@@ -102,29 +109,29 @@ $('a.fa-edit').click(function()
 
 $('.submit-button').click(function()
 {
-	var par = $('.add-link-form form').serialize();
+    var par = $('.add-link-form form').serialize();
 
-	 $.ajaxSetup({
+     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
-	$.ajax(
-	{
-		url: '/links/store',
-		data: par,
-		type: 'post',
-		dataType: 'json',
-		success: function(data)
-		{
+    $.ajax(
+    {
+        url: '/links/store',
+        data: par,
+        type: 'post',
+        dataType: 'json',
+        success: function(data)
+        {
 
-		}
+        }
 
-	})
+    })
 
 
-	$('.add-link-form').hide();
+    $('.add-link-form').hide();
 });
 
 
@@ -132,25 +139,24 @@ $( ".stack-name" ).autocomplete({
     minLength: 0,
     source: STACKS,
     focus: function( event, ui )
-		{
-        	$( ".stack-name" ).val( ui.item.label );
-        	return false;
-		},
-	select: function( event, ui )
-		{
-        	$( ".stack-name" ).val( ui.item.label );
-        	$( "input[name=stack_id]" ).val( ui.item.value );
+        {
+            $( ".stack-name" ).val( ui.item.label );
+            return false;
+        },
+    select: function( event, ui )
+        {
+            $( ".stack-name" ).val( ui.item.label );
+            $( "input[name=stack_id]" ).val( ui.item.value );
 
-			return false;
-		}
+            return false;
+        }
 })
 .autocomplete( "instance" )._renderItem = function( ul, item ) {
-	return $( "<li>" )
-	.append( "<div>" + item.label +  "</div>" )
-	.appendTo( ul );
+    return $( "<li>" )
+    .append( "<div>" + item.label +  "</div>" )
+    .appendTo( ul );
 };
 
 </script>
-
 
 @endsection

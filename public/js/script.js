@@ -111,11 +111,23 @@ $(document).ready(function()
 	});
 
 
-	$('.stack-panel .panel-heading > a').click(function()
+	$('.add-a-link-button').click(function()
 	{
-		var par = $(this).parent().parent();
+		var offset = $(this).offset();
+		console.log( "left: " + offset.left + ", top: " + offset.top );
 
-		$('.add-link-form', par).show();
+		if (offset.top > 110)
+		{
+			$('.add-link-form').css('top', (offset.top - 35) + 'px');
+		}	
+		else
+		{	
+			$('.add-link-form').css('top', '80px');
+		}
+			
+		$('.add-link-form').css('left', (offset.left + 130) + 'px');
+
+		$('.add-link-form').show();
 	});
 
 	$('.cancel-btn').click(function()
@@ -247,6 +259,58 @@ $(document).ready(function()
 				$('#stack' + stack_id + ' .stack-footer .disapprove-button').html('<i class="fa fa-thumbs-down"></i> ' + data.downvote);
 
 				$('#stack' + stack_id + ' .list-button .upvotes').html(data.upvote);
+			}
+		})
+	});
+
+	$('.likes .like').on('click', function()
+	{
+		var stack_id = $(this).data('id');
+
+		var params = 'stack_id=' + stack_id + '&vote=1';
+
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+		$.ajax(
+		{
+			url: '/stacks/' + stack_id + '/vote',
+			data: params,
+			type: 'post',
+			dataType: 'json',
+			success: function(data)
+			{
+				$('#stack' + stack_id + ' .like').html('<i class="fas fa-thumbs-up"></i> ' + data.upvote);				
+				$('#stack' + stack_id + ' .dislike').html('<i class="fas fa-thumbs-down"></i> ' + data.downvote);				
+			}
+		})
+	});
+
+	$('.likes .dislike').on('click', function()
+	{
+		var stack_id = $(this).data('id');
+
+		var params = 'stack_id=' + stack_id + '&vote=0';
+
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+		$.ajax(
+		{
+			url: '/stacks/' + stack_id + '/vote',
+			data: params,
+			type: 'post',
+			dataType: 'json',
+			success: function(data)
+			{
+				$('#stack' + stack_id + ' .like').html('<i class="fas fa-thumbs-up"></i> ' + data.upvote);				
+				$('#stack' + stack_id + ' .dislike').html('<i class="fas fa-thumbs-down"></i> ' + data.downvote);				
 			}
 		})
 	});

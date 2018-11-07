@@ -3,7 +3,7 @@
               
                 <div class="form-group">
 
-                    {{Form::label('link_url', 'Pasted Link Here:')}}
+                    {{Form::label('link_url', 'Step 1: Paste Link Here:')}}
                     {{Form::text('link_url', '', ['class' => 'form-control', 'placeholder' => 'Enter the link here....'])}}
 
                     {{Form::hidden('link_image', '')}}
@@ -17,7 +17,7 @@
 
                     <div class="col-md-5">
 
-                        Link Image:
+                        {{Form::label('link-image', 'Link Image:')}}
 
                         <div class="link-image solid" data-field="image">
 
@@ -33,7 +33,7 @@
 
                         <div class="form-group">
 
-                            {{Form::label('link_title', 'Link Title')}}
+                            {{Form::label('link_title', 'Link Title:')}}
                             <div class="solid" data-field="link_title">
 
                               <div class="content" editablecontent="false">
@@ -48,7 +48,7 @@
 
                         <div class="form-group">
 
-                            {{Form::label('link_description', 'Link Description')}}
+                            {{Form::label('link_description', 'Link Description:')}}
                             <div class="solid" data-field="link_description">
 
                               <div class="content" editablecontent="false">
