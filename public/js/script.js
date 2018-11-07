@@ -119,12 +119,12 @@ $(document).ready(function()
 		if (offset.top > 110)
 		{
 			$('.add-link-form').css('top', (offset.top - 35) + 'px');
-		}	
+		}
 		else
-		{	
+		{
 			$('.add-link-form').css('top', '80px');
 		}
-			
+
 		$('.add-link-form').css('left', (offset.left + 130) + 'px');
 
 		$('.add-link-form').show();
@@ -283,8 +283,8 @@ $(document).ready(function()
 			dataType: 'json',
 			success: function(data)
 			{
-				$('#stack' + stack_id + ' .like').html('<i class="fas fa-thumbs-up"></i> ' + data.upvote);				
-				$('#stack' + stack_id + ' .dislike').html('<i class="fas fa-thumbs-down"></i> ' + data.downvote);				
+				$('#stack' + stack_id + ' .like').html('<i class="fas fa-thumbs-up"></i> ' + data.upvote);
+				$('#stack' + stack_id + ' .dislike').html('<i class="fas fa-thumbs-down"></i> ' + data.downvote);
 			}
 		})
 	});
@@ -309,8 +309,8 @@ $(document).ready(function()
 			dataType: 'json',
 			success: function(data)
 			{
-				$('#stack' + stack_id + ' .like').html('<i class="fas fa-thumbs-up"></i> ' + data.upvote);				
-				$('#stack' + stack_id + ' .dislike').html('<i class="fas fa-thumbs-down"></i> ' + data.downvote);				
+				$('#stack' + stack_id + ' .like').html('<i class="fas fa-thumbs-up"></i> ' + data.upvote);
+				$('#stack' + stack_id + ' .dislike').html('<i class="fas fa-thumbs-down"></i> ' + data.downvote);
 			}
 		})
 	});
@@ -478,6 +478,12 @@ function equal_heights($) {
 	});
 
 	$('.dash-stack-tile > .stack-content > .title').matchHeight({
+		byRow: false,
+	    property: 'height'
+	});
+
+	//Dashboard People
+	$('.stack-panel-people .people-box').matchHeight({
 		byRow: false,
 	    property: 'height'
 	});

@@ -16,7 +16,7 @@
 		<div class="nav-wrapper">
 			@include('pages.nav')
 
-			@include('pages.layout-control')
+			{{--@include('pages.layout-control')--}}
 
 		</div>
 

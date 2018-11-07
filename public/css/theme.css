@@ -15,8 +15,9 @@ Table of Content:
 *****************************/
 :root {
     --text-color: #404040;
+    --darker-gray: #313131;
     --ps-bg-gray-color: #d1d1d1;
-    --ps-border-color: #d1d1d1;
+    --border-color: #d1d1d1;
 }
 body {
     font-family: "Lato", sans-serif;
@@ -239,7 +240,7 @@ header {
 .layout-control {
     display: flex;
     align-items: center;
-    background-color: var(--ps-bg-gray-color);
+    background-color: var(--border-color);
     border-radius: .25rem;
     margin-right: 0;
     margin-left: auto;
@@ -247,7 +248,7 @@ header {
 .layout-control > .btn-control {
     cursor: pointer;
     padding: .375rem .75rem;
-    border: 1px solid var(--ps-border-color);
+    border: 1px solid var(--border-color);
     border-radius: .25rem;
     transition: all 200ms linear;
     -webkit-transition: all 200ms linear;
@@ -703,6 +704,65 @@ main {
 }
 .dash-stack-tile .stack-footer .like {
     margin-right: 5px;
+}
+.stack-panel-people .people-box {
+    border: 1px solid var(--border-color);
+    box-shadow: 0px 2px 10px #ccc;
+    margin-bottom: 30px;
+}
+.people-box > .user-image-follow-wrapper {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 10px;
+    margin-top: -20px;
+    margin-bottom: 10px;
+}
+.people-box > .user-image-follow-wrapper > .user-image img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    border: 2px solid #ffffff;
+}
+.people-box > .user-image-follow-wrapper > .user-image > a {
+    text-decoration: none;
+}
+.people-box > .user-image-follow-wrapper > .user-image > a > .avatar {
+    color: var(--darker-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ffffff;
+    background-color: #f2f2f2;
+    border-radius: 30px;
+}
+.people-box > .user-image-follow-wrapper > .follow {
+    margin-left: auto;
+    margin-right: 0;
+}
+.people-box > .user-name-wrapper {
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+.people-box > .user-name-wrapper h3 {
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.people-box > .user-name-wrapper h4 {
+    color: var(--light-gray);
+    font-size: 0.85em;
+    margin-bottom: 0;
+}
+.people-box > .user-profile-wrapper {
+    padding: 0 10px;
+    margin-bottom: 15px;
+}
+.people-box > .user-profile-wrapper p {
+    font-size: 0.85em;
+    line-height: normal;
+    margin-bottom: 0;
 }
 /*****************************
     #Edit Stack
