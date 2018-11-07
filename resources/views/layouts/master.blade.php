@@ -49,7 +49,11 @@
     @include('layouts.nav.nav')
 
     <!-- Begin page content -->
-    <main role="main" class="container-fluid">
+        @if (Request::is('stacks/explore'))
+            <main role="main" class="container-fluid">
+        @else
+            <main role="main" class="container">
+        @endif
 
         @include('inc.messages')
 
@@ -57,7 +61,7 @@
 
         @yield('content')
     </main>
-    
+
 
     @include('layouts.footer')
 

@@ -4,7 +4,7 @@
 
 		<h3><span>Parking</span> Lot</h3> <a class="add-a-link-button">Add a Link</a>
 
-		@include('links.create')
+		
 
 	</div>
 

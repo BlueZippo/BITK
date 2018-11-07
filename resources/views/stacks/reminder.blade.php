@@ -1,6 +1,4 @@
-
-  <a href="" class="set-link-reminder"  data-toggle="modal" data-target="#reminderModal"><i class="fa fa-clock"></i> Set a reminder on a link</a>
-
+<a href="" class="set-link-reminder"  data-toggle="modal" data-target="#reminderModal"><i class="fa fa-clock"></i><p>Set a reminder on a link</p></a>
 
 <div class="modal fade" id="reminderModal" tabindex="-1" role="dialog" aria-labelledby="reminderModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -12,18 +10,18 @@
         </button>
       </div>
       <div class="modal-body">
-          {!! Form::open(['action' => 'LinksController@addreminder', 'method' => 'POST']) !!}  
+          {!! Form::open(['action' => 'LinksController@addreminder', 'method' => 'POST']) !!}
             <div class="row">
               <div class="col-md-12">
-                {{Form::text('link', '', ['class' => 'form-control', 'placeholder' => 'Enter URL'])}} 
+                {{Form::text('link', '', ['class' => 'form-control', 'placeholder' => 'Enter URL'])}}
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                {{Form::text('day', '', ['class' => 'form-control', 'placeholder' => 'Number Of Day'])}} 
+                {{Form::text('day', '', ['class' => 'form-control', 'placeholder' => 'Number Of Day'])}}
               </div>
               <div class="col-md-6">
-                {{Form::select('options', ['Day(s)', 'Week(s)', 'Month(s)'], 0, ['class' => 'form-control', 'placeholder' => 'Options'])}} 
+                {{Form::select('options', ['Day(s)', 'Week(s)', 'Month(s)'], 0, ['class' => 'form-control', 'placeholder' => 'Options'])}}
               </div>
             </div>
            {!! Form::close() !!}

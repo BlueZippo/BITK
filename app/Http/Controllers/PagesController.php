@@ -9,6 +9,7 @@ use App\Link;
 use App\Stack;
 use App\LinksFollow;
 use App\StacksFollow;
+use App\StacksVote;
 use App\MediaType;
 
 use Spatie\Permission\Models\Role;
@@ -48,12 +49,18 @@ class PagesController extends Controller {
 
 			$follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
+			$upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=', 1)->get();
+
+			$downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=', 0)->get();
+
 			$mystacks[] = array(
 				    'id' => $result->id,
 					'title' => $result->title,
 					'content' => $result->content,
 				    'image' => $result->video_id,
 					'author' => $author,
+					'upvotes' => $this->number_format(count($upvotes)),
+					'downvotes' => $this->number_format(count($downvotes)),
 					'user_id' => $result->user_id,
 					'follow' => $follow->isEmpty() ? false : true,
 					'updated_at' => date("F d, Y", strtotime($result->updated_at)),
@@ -89,6 +96,10 @@ class PagesController extends Controller {
 
 						$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
 
+						$upvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 1)->get();
+
+						$downvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 0)->get();
+
 						$stacks[] = array(
 							    'id' => $stack->id,
 								'title' => $stack->title,
@@ -96,6 +107,8 @@ class PagesController extends Controller {
 							    'image' => $stack->video_id,
 								'author' => $author,
 								'user_id' => $stack->user_id,
+								'upvotes' => $this->number_format(count($upvotes)),
+								'downvotes' => $this->number_format(count($downvotes)),
 								'follow' => $follow->isEmpty() ? false : true,
 								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
 								'categories' => implode(',', array_unique($categories))
@@ -130,6 +143,10 @@ class PagesController extends Controller {
 
 						$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
 
+						$upvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 1)->get();
+
+						$downvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 0)->get();
+
 						$follows[] = array(
 							    'id' => $stack->id,
 								'title' => $stack->title,
@@ -137,6 +154,8 @@ class PagesController extends Controller {
 							    'image' => $stack->video_id,
 								'author' => $author,
 								'user_id' => $stack->user_id,
+								'upvotes' => $this->number_format(count($upvotes)),
+								'downvotes' => $this->number_format(count($downvotes)),
 								'follow' => $follow->isEmpty() ? false : true,
 								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
 								'categories' => implode(',', array_unique($categories))
@@ -158,10 +177,10 @@ class PagesController extends Controller {
         $people = User::find($user_id)
                   ->peopleFollow()
                   ->get()
-                  ->pluck('people_id');
+                  ->pluck('people_id')
+                  ->toArray();
 
         $people = User::whereIn('id', $people)->get();
-
 
         $parking = User::find($user_id)
                    ->links()
@@ -186,6 +205,27 @@ class PagesController extends Controller {
     }
 
 
+    function number_format($num)
+    {
+        if($num > 1000) 
+        {
+
+            $x = round($num);
+            $x_number_format = number_format($x);
+            $x_array = explode(',', $x_number_format);
+            $x_parts = array('k', 'm', 'b', 't');
+            $x_count_parts = count($x_array) - 1;
+            $x_display = $x;
+            $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
+            $x_display .= $x_parts[$x_count_parts - 1];
+
+            return $x_display;
+
+        }
+
+        return $num;
+    
+    }
 
 
 }

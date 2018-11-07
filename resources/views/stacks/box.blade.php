@@ -96,7 +96,7 @@
               <i class="fa fa-ellipsis-h"></i>
               <div class="more-container">            
                 <a class="Send stack"><i class="fa fa-upload"></i> Send</a>
-                <a class="Download images"><i class="fa fa-download"></i> Download images</a>
+                <a class="Add to favorites"><i class="fa fa-heart"></i> Add to favorites</a>
                 <a class="Set reminder"><i class="fa fa-clock-o"></i> Set a reminder</a>
                 <a class="Hide"><i class="fa fa-times"></i> Hide<small>See fewer stacks like this</small></a>
                 <a class="Report"><i class="fa fa-ban"></i> Report<small>This goes agains Platstack's community guidelines</small></a>

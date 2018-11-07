@@ -6,44 +6,37 @@
 
 		<div class="row my-links">
 
-			<div class="col-md-2 text-center">
-
-				<a href="/stacks/create" class="btn btn-primary btn-circle btn-xl create-stack-button"><i class="fa fa-plus"></i></a>
-
-
-			</div>
-
-			<div class="col-md-8">
-
-				@if (count($mystacks) > 0)
-
-
-					<div class="row">
-						@foreach($mystacks as $stack)
-							<div class="col-md-3">
-
-								@include('stacks.dashboard-box')
-
-							</div>
-						@endforeach
+			<div class="col-md-2">
+		        <div class="inner-wrap dash-stack-tile create-stack">
+					<div class="stack-content">
+						<a href="/stacks/create" target="_self"><i class="fas fa-plus-circle"></i><p>Create a Stack</p></a>
 					</div>
+		        </div>
+		    </div>
 
-				@endif
+			@if (count($mystacks) > 0)
 
-			</div>
+		        @foreach($mystacks as $stack)
+
+		            <div class="col-md-2">
+
+		                @include('stacks.dashboard-box')
+
+		            </div>
+
+
+
+		        @endforeach
+
+		    @endif
 
 			<div class="col-md-2">
-
-
-				@include('stacks.reminder')
-
+				<div class="inner-wrap dash-stack-tile create-stack reminder">
+					<div class="stack-content">
+						@include('stacks.reminder')
+					</div>
+				</div>
 			</div>
-
-
-
-
-
-
 
 		</div>
 

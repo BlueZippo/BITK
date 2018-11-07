@@ -6,7 +6,7 @@
 
 		<div class="row">
 
-			@if ( !$people )
+			@if ( $people )
 
 				@foreach($people as $person)
 

@@ -17,7 +17,7 @@
                   <div class="col-md-12 text-right">
 
 
-                    <a class="back-button">Go Back</a> <a class="cancel-btn">Cancel</a> <a class="btn btn-primary continue-button">Continue</a> <a class="btn btn-primary submit-button">Save</a>
+                    <a class="cancel-btn">Cancel</a> <a class="btn btn-primary submit-button">Save</a>
 
 
                   </div>  
