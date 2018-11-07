@@ -1,4 +1,4 @@
-<div class="stack-panel">
+<div class="stack-panel stack-panel-people">
 
 	<div class="panel-heading"><h3><span>People</span> I'm Following</h3></div>
 
