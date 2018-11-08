@@ -192,9 +192,10 @@ class PagesController extends Controller {
         $medias = MediaType::all();
 
          $options = array(
-        			'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),        			  
+         		    'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),
         			'parking' => 'Parking Lot',
-        			'new' => 'Create New Stack'
+        			'new' => 'Create New Stack',
+        			'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
         			);
 
     	$data = ['mystacks' => $mystacks ,
