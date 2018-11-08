@@ -49,7 +49,7 @@
                             <div class="form-group">
 
                                 <div class="dotted" data-field="title">
-                                    <div class="content" contenteditable="false">enter title...</div>
+                                    <div class="content" contenteditable="true">enter title...</div>
                                     <a class="fa fa-edit"></a>
                                 </div>                                
 
@@ -61,7 +61,7 @@
 
                                     <div class="dotted" data-field="topics">
 
-                                        <div class="content categories-content" contenteditable="false">enter a topic...</div>
+                                        <div class="content categories-content" contenteditable="true">enter a topic...</div>
                                         <a class="fa fa-edit"></a>
 
                                         @include('stacks.create-categories')
@@ -86,7 +86,7 @@
                             <div class="form-group">
 
                                 <div class="dotted" data-field="content">
-                                    <div class="content" contenteditable="false">enter description...</div>
+                                    <div class="content" contenteditable="true">enter description...</div>
                                     <a class="fa fa-edit"></a>
                                 </div>
 
