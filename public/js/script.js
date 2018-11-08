@@ -118,14 +118,16 @@ $(document).ready(function()
 
 		if (offset.top > 110)
 		{
+			$('.add-link-form').removeClass('top');
 			$('.add-link-form').css('top', (offset.top - 35) + 'px');
+			$('.add-link-form').css('left', (offset.left + 140) + 'px');
 		}
 		else
 		{
-			$('.add-link-form').css('top', '80px');
+			$('.add-link-form').addClass('top');
+			$('.add-link-form').css('top', '100px');
+			$('.add-link-form').css('left', (offset.left) + 'px');
 		}
-
-		$('.add-link-form').css('left', (offset.left + 130) + 'px');
 
 		$('.add-link-form').show();
 	});
