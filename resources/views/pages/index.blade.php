@@ -16,7 +16,7 @@
 		<div class="nav-wrapper">
 			@include('pages.nav')
 
-			{{--@include('pages.layout-control')--}}
+			@include('pages.layout-control')
 
 		</div>
 
@@ -52,7 +52,10 @@ var STACKS = {!!$MyStacks!!};
 
 $(document).ready(function()
 {
-    $('select[name=stack_id]').chosen();
+    $('select[name=stack_id]').chosen(
+        {
+
+     });
 });
 
 $('input[name=link_url]').focusout(function()
@@ -135,7 +138,10 @@ $('.submit-button').click(function()
         dataType: 'json',
         success: function(data)
         {
-
+            if (data.redirect)
+            {
+                window.location = data.redirect
+            }
         }
 
     })
