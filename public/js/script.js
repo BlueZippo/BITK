@@ -202,7 +202,8 @@ $(document).ready(function()
 			dataType: 'json',
 			success: function(data)
 			{
-				$('.upvote').html('<i class="thumbsup"></i> ' + data.vote);
+				$('.upvote').html('<i class="thumbsup"></i> ' + data.upvote);
+				$('.downvote').html('<i class="thumbsdown"></i> ' + data.downvote);
 			}
 		})
 	});
