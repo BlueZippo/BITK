@@ -8,6 +8,7 @@ use App\PeopleFollow;
 use App\Stack;
 use App\StacksFollow;
 use App\StacksVote;
+use App\StackComments;
 
 class PeopleController extends Controller
 {
@@ -157,7 +158,7 @@ class PeopleController extends Controller
                     'author' => $author,
                     'follow' => $follow->isEmpty() ? false : true,
                     'upvotes' => count($upvotes),
-                    'donwvotes' => count($downvotes),
+                    'downvotes' => count($downvotes),
                     'comments' => count($comments),
                     'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                     'categories' => implode(',', array_unique($categories))
