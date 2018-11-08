@@ -649,6 +649,12 @@ class StacksController extends Controller {
 
 			$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
 
+            $downvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=',0)->get();;
+
+            $upvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=',1)->get();;
+
+            $comments = StackComments::where('stack_id', '=', $stack->id)->get();
+
 			$stacks[] = array(
 				    'id' => $stack->id,
 						'title' => $stack->title,
@@ -656,6 +662,9 @@ class StacksController extends Controller {
 				    'image' => $stack->video_id,
 						'author' => $author,
 						'follow' => $follow->isEmpty() ? false : true,
+                        'upvotes' => count($upvotes),
+                        'downvotes' => count($downvotes),
+                        'comments' => count($comments),
 						'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
 						'categories' => implode(',', array_unique($categories))
 				);

@@ -5,9 +5,9 @@ Table of Content:
 #Dashboard Tiles
 *****************************/
 
-:root 
+:root
 {
-    --blue: #1da1f2; 
+    --blue: #1da1f2;
     --pink: #fd3b82;
     --light-gray: #b1b2b2;
     --dark-gray: #949494;
@@ -276,14 +276,6 @@ Table of Content:
 	white-space:nowrap;
 }
 
-.people-box
-{
-	min-height:250px;
-	background:#fff;
-	border:solid 1px #ccc;
-	box-shadow:3px 3px 3px #ccc;
-}
-
 .people-box .header
 {
 	min-height:65px;
@@ -328,7 +320,6 @@ Table of Content:
 	font-weight:bold;
 	border:solid 1px #1da1f2;
 	border-radius:20px;
-	margin-top:20px;
 	display:inline-block;
 	padding:2px 10px;
 	font-size:11px;
@@ -623,7 +614,7 @@ a.downvote
 	position:relative;
 }
 
-.single-stack-wrapper .stack-footer a 
+.single-stack-wrapper .stack-footer a
 {
 	font-size:20px;
 	margin-right:11px;
@@ -764,7 +755,7 @@ a.downvote
 {
 	float:right;
 	margin-top:5px;
-	position:relative;	
+	position:relative;
 }
 
 .compact-button .more-container
@@ -834,4 +825,3 @@ a.downvote
 {
 	cursor:pointer;
 }
-

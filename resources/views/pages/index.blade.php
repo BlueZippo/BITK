@@ -16,7 +16,7 @@
 		<div class="nav-wrapper">
 			@include('pages.nav')
 
-			@include('pages.layout-control')
+			{{--@include('pages.layout-control')--}}
 
 		</div>
 
@@ -40,10 +40,20 @@
 
 @section('scripts')
 
+<script src="{{ asset('js/plugins/chosen/chosen.jquery.min.js') }}"></script>
+
+<link href="{{ asset('js/plugins/chosen/chosen.css') }}" rel="stylesheet">
 
 <script>
 
+
+
 var STACKS = {!!$MyStacks!!};
+
+$(document).ready(function()
+{
+    $('select[name=stack_id]').chosen();
+});
 
 $('input[name=link_url]').focusout(function()
     {
@@ -134,28 +144,71 @@ $('.submit-button').click(function()
     $('.add-link-form').hide();
 });
 
+$.widget( "custom.catcomplete", $.ui.autocomplete, 
+{
+  _create: function() {
+    this._super();
+    this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+  },
+  _renderMenu: function( ul, items ) {
+    var that = this,
+      currentCategory = "";
+    $.each( items, function( index, item ) {
+        var li;
+        
+        li = that._renderItemData( ul, item );
+        
+    });
+  },
+  focus: function( event, ui )
+  {
+    $( ".stack-name" ).val( ui.item.label );
+        return false;
+  },
+  select: function( event, ui )
+  {
+        $( ".stack-name" ).val( ui.item.label );
+        $( "input[name=stack_id]" ).val( ui.item.value );
 
+        return false;
+   }
+});
+
+$('.stack-name').catcomplete(
+{
+    delay:0,
+    source:STACKS
+})
+
+/*
 $( ".stack-name" ).autocomplete({
     minLength: 0,
     source: STACKS,
     focus: function( event, ui )
-        {
-            $( ".stack-name" ).val( ui.item.label );
+    {
+        $( ".stack-name" ).val( ui.item.label );
             return false;
-        },
+    },
     select: function( event, ui )
-        {
-            $( ".stack-name" ).val( ui.item.label );
-            $( "input[name=stack_id]" ).val( ui.item.value );
+    {
+        $( ".stack-name" ).val( ui.item.label );
+        $( "input[name=stack_id]" ).val( ui.item.value );
 
-            return false;
-        }
+        return false;
+    }
 })
+.autocomplete("instance")._renderMenu = function( ul, items ) {
+    var that = this;
+    $.each( items, function( index, item ) {
+        console.log(item);
+    });
+  }
 .autocomplete( "instance" )._renderItem = function( ul, item ) {
     return $( "<li>" )
     .append( "<div>" + item.label +  "</div>" )
     .appendTo( ul );
 };
+*/
 
 </script>
 
