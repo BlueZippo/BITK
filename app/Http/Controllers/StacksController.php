@@ -215,7 +215,7 @@ class StacksController extends Controller {
 
         }
 
-        $medias = MediaType::whereIn('id', $medias)->get();
+        $medias = MediaType::whereIn('id', $medias)->orderby('media_type')->get();
 
         $votes = $stack->votes()->where('vote','=', 1)->get();
 
