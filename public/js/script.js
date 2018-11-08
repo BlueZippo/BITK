@@ -116,17 +116,18 @@ $(document).ready(function()
 		var offset = $(this).offset();
 		console.log( "left: " + offset.left + ", top: " + offset.top );
 
-		if (offset.top > 110)
-		{
-			$('.add-link-form').removeClass('top');
-			$('.add-link-form').css('top', (offset.top - 35) + 'px');
-			$('.add-link-form').css('left', (offset.left + 140) + 'px');
-		}
-		else
+		//if (offset.top > 110)
+		if( $(this).hasClass('main-nav') )
 		{
 			$('.add-link-form').addClass('top');
 			$('.add-link-form').css('top', '100px');
 			$('.add-link-form').css('left', (offset.left) + 'px');
+		}
+		else
+		{
+			$('.add-link-form').removeClass('top');
+			$('.add-link-form').css('top', (offset.top - 35) + 'px');
+			$('.add-link-form').css('left', (offset.left + 140) + 'px');
 		}
 
 		$('.add-link-form').show();

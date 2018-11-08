@@ -34,7 +34,9 @@
 	border-left: 1px solid #d1d1d1;
     border-bottom: 1px solid #d1d1d1;
 }
-
+.add-link-form.top {
+	position: fixed;
+}
 .add-link-form.top:after {
     top: -14px;
 	left: 42px;
