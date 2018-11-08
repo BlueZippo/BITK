@@ -51,7 +51,7 @@
                             <div class="form-group">
 
                                 <div class="dotted" data-field="title">
-                                    <div class="content" contenteditable="false">{{$stack->title}}</div>
+                                    <div class="content" contenteditable="true">{{$stack->title}}</div>
                                     <a class="fa fa-edit"></a>
                                 </div>
 
@@ -65,7 +65,7 @@
 
                                     <div class="dotted" data-field="topics">
 
-                                        <div class="content categories-content" contenteditable="false">{{$stack_categories}}</div>
+                                        <div class="content categories-content" contenteditable="true">{{$stack_categories}}</div>
                                         <a class="fa fa-edit"></a>
 
                                         @include('stacks.create-categories')
@@ -90,7 +90,7 @@
                             <div class="form-group">
 
                                 <div class="dotted" data-field="content">
-                                    <div class="content" contenteditable="false">{{$stack->content}}</div>
+                                    <div class="content" contenteditable="true">{{$stack->content}}</div>
                                     <a class="fa fa-edit"></a>
                                 </div>
 
