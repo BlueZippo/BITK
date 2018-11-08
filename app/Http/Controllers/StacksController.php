@@ -336,17 +336,19 @@ class StacksController extends Controller {
 
         $sql .= " JOIN users u ON u.id = s.user_id";
 
-        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
+        $sql .= " LEFT JOIN stack_links s2 ON s2.stack_id = s.id";
 
         $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
 
         $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
 
+        $sql .= " WHERE s.status_id = 1";
+
         $sql .= " GROUP BY s.id";
 
         $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
 
-        echo $sql;
+
 
         $results = DB::select($sql);
 
