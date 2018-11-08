@@ -346,6 +346,8 @@ class StacksController extends Controller {
 
         $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
 
+        echo $sql;
+
         $results = DB::select($sql);
 
         $stacks = array();
