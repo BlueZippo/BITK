@@ -15,9 +15,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-           
+
 
             @include('layouts.nav.topics')
+
+            <div class="add-link-wrapper"><div class="add-a-link-button main-nav">Add a Link</div></div>
 
             @include('layouts.nav.search')
 
@@ -28,7 +30,7 @@
 
                 @include('layouts.nav.mobile-menu')
 
-                <ul class="navbar-nav mr-auto justify-content-end desktop-user-menu user-menu">
+                <ul class="navbar-nav justify-content-end desktop-user-menu user-menu">
 
                     @if (Auth::check())
 
