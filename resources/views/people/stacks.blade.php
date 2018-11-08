@@ -6,11 +6,11 @@
 
     <hr />
 
-    <div class="row">
+    <div class="stack-list tile">
 
         @foreach($stacks as $stack)
 
-        <div class="col-md-3">
+        <div class="single-stack-wrapper">
 
             @include('stacks.box')
 
