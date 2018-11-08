@@ -7,6 +7,7 @@ use App\User;
 use App\PeopleFollow;
 use App\Stack;
 use App\StacksFollow;
+use App\StacksVote;
 
 class PeopleController extends Controller
 {
