@@ -142,6 +142,12 @@ class PeopleController extends Controller
 
             $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();;
+
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();;
+
+            $comments = StackComments::where('stack_id', '=', $result->id)->get();
+
             $stacks[] = array(
                     'id' => $result->id,
                     'title' => $result->title,
@@ -149,6 +155,9 @@ class PeopleController extends Controller
                     'image' => $result->video_id,
                     'author' => $author,
                     'follow' => $follow->isEmpty() ? false : true,
+                    'upvotes' => count($upvotes),
+                    'donwvotes' => count($downvotes),
+                    'comments' => count($comments),
                     'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                     'categories' => implode(',', array_unique($categories))
                 );
