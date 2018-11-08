@@ -5,6 +5,7 @@ Table of Content:
 #Typography
 #Common Styles
 #Header
+    #Add a Link - Main Nav
 #Footer
 #Single Stack
 #Dashboard
@@ -81,25 +82,44 @@ header {
     min-height: 80px;
     background-color: #ffffff;
 }
-.main_nav.bg-light {
+nav.main_nav.bg-light {
     background-color: #ffffff !important;
     height: 80px;
 }
+.navbar-brand {
+    margin-right: 2rem;
+}
+
+nav.main_nav > .inner {
+    align-items: unset;
+    justify-content: unset;
+}
+.navbar-brand,
+.topics-wrapper,
+.add-link-wrapper,
+.search-wrapper,
+.mobile-menu-wrapper {
+    align-self: center;
+}
+/* User menu fix */
+.navbar-expand-md .mobile-menu-wrapper.navbar-collapse {
+    display: inline-block !important;
+    flex-grow: unset;
+}
+
+.navbar-brand {width: 3%;}
+.topics-wrapper {width: 5%;}
+.add-link-wrapper {width: 7.5%;}
+.search-wrapper {width: 74%;}
+.mobile-menu-wrapper {width: 10%;}
+
+
 .desktop-user-menu .avatar img {
     height: 50px;
-}
-.mobile-menu-wrapper > ul.justify-content-end {
-    width: 100%;
-}
-.navbar-brand {
-    margin-right: 1.3rem;
 }
 .navbar-brand > img {
     height: 55px;
     margin-top: -10px;
-}
-.topics-wrapper {
-    width: 8%;
 }
 .user-ctrl > a,
 .mobile-nav > ul.menu > li.user > a {
@@ -257,30 +277,20 @@ header {
 .layout-control > .btn-control:hover {
     background-color: #ffffff;
 }
+.mobile-menu-wrapper {
+    margin-left: auto;
+    margin-right: 0;
+    justify-content: flex-end;
+}
 /*** Media Queries ***/
 @media screen and (max-width: 1599px) {
-    .topics-wrapper {
-        width: 10%;
-    }
-    .search-wrapper {
-        width: 68%;
-    }
+
 }
 @media screen and (max-width: 1279px) {
-    .topics-wrapper {
-        width: 16%;
-    }
-    .search-wrapper {
-        width: 62%;
-    }
+
 }
 @media screen and (max-width: 991px) {
-    .topics-wrapper {
-        width: 14%;
-    }
-    .search-wrapper {
-        width: 50%;
-    }
+
 }
 @media screen and (min-width: 768px) {
     .main_nav li.list-divider {
@@ -607,7 +617,8 @@ main {
     padding: .5rem 1rem;
 }
 .stack-panel .panel-heading > a,
-.dashboard .nav.nav-pills li a.add-link {
+.dashboard .nav.nav-pills li a.add-link,
+.add-a-link-button.main-nav {
     background-color: #fd3b82;
     color: #ffffff;
     cursor: pointer;
@@ -618,12 +629,14 @@ main {
     position: relative;
 }
 .stack-panel .panel-heading > a:hover,
-.dashboard .nav.nav-pills li a.add-link:hover {
+.dashboard .nav.nav-pills li a.add-link:hover,
+.add-a-link-button.main-nav {
     color: #ffffff;
     background-color: #404040;
 }
 .stack-panel .panel-heading > a:after,
-.dashboard .nav.nav-pills li a.add-link:after {
+.dashboard .nav.nav-pills li a.add-link:after,
+.add-a-link-button.main-nav:after {
     content: "\f055";
     font-family: 'FontAwesome';
     font-size: 16px;
@@ -780,4 +793,16 @@ main {
 .stack-author .avatar > img {
     border-radius: 30px;
     width: 40px;
+}
+/*****************************
+    #Add a Link - Main Nav
+*****************************/
+.add-a-link-button.main-nav {
+    display: inline-block;
+    background-color: var(--pink);
+    padding: 8px 32px 8px 16px;
+    margin-right: 1.2rem;
+}
+.add-a-link-button.main-nav:hover {
+    background-color: var(--text-color);
 }

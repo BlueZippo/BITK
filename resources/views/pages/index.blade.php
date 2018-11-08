@@ -16,7 +16,7 @@
 		<div class="nav-wrapper">
 			@include('pages.nav')
 
-			@include('pages.layout-control')
+			{{--@include('pages.layout-control')--}}
 
 		</div>
 
@@ -150,7 +150,7 @@ $('.submit-button').click(function()
     $('.add-link-form').hide();
 });
 
-$.widget( "custom.catcomplete", $.ui.autocomplete, 
+$.widget( "custom.catcomplete", $.ui.autocomplete,
 {
   _create: function() {
     this._super();
@@ -161,9 +161,9 @@ $.widget( "custom.catcomplete", $.ui.autocomplete,
       currentCategory = "";
     $.each( items, function( index, item ) {
         var li;
-        
+
         li = that._renderItemData( ul, item );
-        
+
     });
   },
   focus: function( event, ui )
