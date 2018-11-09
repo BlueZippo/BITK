@@ -68,10 +68,21 @@
          $('select.chosen').chosen();
 
 
+         @if (Auth::check())
+
          $('.sort-button select.chosen').change(function()
          {
             location = '/stacks/' + $(this).val();
          });
+
+         @else
+
+         $('.sort-button select.chosen').change(function()
+         {
+            location = '/s/' + $(this).val();
+         });
+
+         @endif
 
     });
 
