@@ -13,11 +13,11 @@
 	max-width:500px;
 	width:500px;
 	padding:20px;
-	border:solid 1px #d1d1d1;	
-	position:absolute;	
+	border:solid 1px #d1d1d1;
+	position:absolute;
 	display:none;
-	background:#fff;	
-	box-shadow:-5px 5px 5px #ccc;
+	background:#fff;
+	box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
 	z-index:9;
 }
 
@@ -29,12 +29,21 @@
   	height: 25px;
   	background: #fff;
   	transform: rotate(45deg); /* Prefixes... */
-  	top: 35px;
-  	left:-11px;
-  	box-shadow: -5px 5px 5px  #ccc;
+  	top: 40px;
+  	left:-14px;
+	border-left: 1px solid #d1d1d1;
+    border-bottom: 1px solid #d1d1d1;
 }
-
-
+.add-link-form.top {
+	position: fixed;
+}
+.add-link-form.top:after {
+    top: -14px;
+	left: 42px;
+    border-left: 1px solid #d1d1d1;
+    border-top: 1px solid #d1d1d1;
+	border-bottom: 0;
+}
 
 .add-link-form div.step1
 {
@@ -131,11 +140,11 @@
 	position:relative;
 }
 
- 
+
 .add-link div.link-image.solid
 {
 	padding:10px 0;
-} 	
+}
 
 .add-link .image-container
 {
@@ -239,4 +248,3 @@
 	line-height:2;
 	font-weight:bold;
 }
-
