@@ -47,14 +47,14 @@ class PublicController extends Controller {
                                   'trending' => 'Trending',
                                   'top-voted' => 'Top Voted',
                                   'top-thread' => 'Top Threads',
-                                  'following' => 'Following',
-                                  'my' => 'My Stacks'),
+                                  'following' => 'Following'
+                              ),
 
                 'People' => array('new-people' => 'New', 
                                   'trending-people' => 'Trending',
                                   'top-people' => 'Top Followed',
-                                  'following-people' => 'Following',
-                                  'my-profile' => 'My Profile')
+                                  'following-people' => 'Following'
+                              )
 
             );
 
@@ -166,6 +166,65 @@ class PublicController extends Controller {
     }
 
 
+    public function popular()
+    {
+        return $this->index('popular');
+    }
+
+    public function new()
+    {
+       return $this->index('new');
+    }
+
+    public function trending()
+    {
+        return $this->index('trending');
+    }
+
+    public function top()
+    {
+        return $this->index('top-voted');
+    }
+
+    public function thread()
+    {
+        return $this->index('top-thread');
+    }
+
+    public function following()
+    {
+        return $this->index('following');
+    }
+
+    public function my()
+    {
+        return $this->index('my');
+    }
+
+    public function myprofile()
+    {
+        return $this->index('my-profile');
+    }
+
+    public function people_following()
+    {
+        return $this->index('following-people');
+    }
+
+    public function people_top()
+    {
+        return $this->index('top-people');
+    }
+
+    public function people_trending()
+    {
+        return $this->index('trending-people');
+    }
+
+    public function people()
+    {
+        return $this->index('new-people');
+    }
 
 
 }

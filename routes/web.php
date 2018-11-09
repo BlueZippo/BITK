@@ -142,3 +142,15 @@ Route::post('stack_comments/store', 'StackCommentsController@store');
 Route::resource('stack_comments', 'StackCommentsController');
 
 
+Route::get('s/popular', 'PublicController@popular');
+Route::get('s/new', 'PublicController@new');
+Route::get('s/trending', 'PublicController@trending');
+Route::get('s/top-voted', 'PublicController@top');
+Route::get('s/top-thread', 'PublicController@thread');
+Route::get('s/following', 'PublicController@following');
+Route::get('s/new-people', 'PublicController@people');
+Route::get('s/trending-people', 'PublicController@people_trending');
+Route::get('s/top-people', 'PublicController@people_top');
+Route::get('s/following-people', 'PublicController@people_following');
+
+
