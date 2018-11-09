@@ -25,7 +25,7 @@ class PublicController extends Controller {
 	
 	}
 
-    public function index() {
+    public function index($sort = false) {
 
         
 
@@ -38,6 +38,25 @@ class PublicController extends Controller {
         $docSQL[] = 0;
         $userSQL[] = 0;
         $categorySQL[] = 0;
+
+
+        $navSort = array(
+
+                'Stacks' => array('popular' => 'Popular', 
+                                  'new' => 'New', 
+                                  'trending' => 'Trending',
+                                  'top-voted' => 'Top Voted',
+                                  'top-thread' => 'Top Threads',
+                                  'following' => 'Following',
+                                  'my' => 'My Stacks'),
+
+                'People' => array('new-people' => 'New', 
+                                  'trending-people' => 'Trending',
+                                  'top-people' => 'Top Followed',
+                                  'following-people' => 'Following',
+                                  'my-profile' => 'My Profile')
+
+            );
 
         $sql = "SELECT s.*, ";
 
@@ -99,7 +118,7 @@ class PublicController extends Controller {
                           );
         }
 
-        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias, 'navSort' => $navSort, 'sort' => $sort]);
     }
 
     public function search(Request $request)
