@@ -33,11 +33,19 @@ Route::group(['middleware' => ['auth']], function()
 	
 	Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);	
 
-	Route::get('stacks/hot', 'StacksController@hot');
+	Route::get('stacks/popular', 'StacksController@popular');
 	Route::get('stacks/new', 'StacksController@new');
-	Route::get('stacks/controversial', 'StacksController@controversial');
-	Route::get('stacks/top', 'StacksController@top');
-	Route::get('stacks/rising', 'StacksController@rising');
+	Route::get('stacks/trending', 'StacksController@trending');
+	Route::get('stacks/top-voted', 'StacksController@top');
+	Route::get('stacks/top-thread', 'StacksController@thread');
+	Route::get('stacks/following', 'StacksController@following');
+	Route::get('stacks/my', 'StacksController@my');
+	Route::get('stacks/new-people', 'StacksController@people');
+	Route::get('stacks/trending-people', 'StacksController@people_trending');
+	Route::get('stacks/top-people', 'StacksController@people_top');
+	Route::get('stacks/following-people', 'StacksController@people_following');
+	Route::get('stacks/my-profile', 'StacksController@myprofile');
+
 
 	Route::get('stacks/explore', 'StacksController@explore');	
 

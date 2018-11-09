@@ -45,6 +45,11 @@
 @endsection
 
 @section('scripts')
+
+<script src="{{ asset('js/plugins/chosen/chosen.jquery.min.js') }}"></script>
+
+<link href="{{ asset('js/plugins/chosen/chosen.css') }}" rel="stylesheet">
+
 <script>
 
     var display = $.totalStorage('display');
@@ -57,6 +62,18 @@
 
         $('.stack-list').addClass(display);
     }
+
+    $(document).ready(function()
+    {
+         $('select.chosen').chosen();
+
+
+         $('.sort-button select.chosen').change(function()
+         {
+            location = '/stacks/' + $(this).val();
+         });
+
+    });
 
 
 </script>

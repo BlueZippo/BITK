@@ -802,6 +802,7 @@ main {
     background-color: var(--pink);
     padding: 8px 32px 8px 16px;
     margin-right: 1.2rem;
+    min-width:112px;
 }
 .add-a-link-button.main-nav:hover {
     background-color: var(--text-color);
