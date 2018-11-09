@@ -807,6 +807,22 @@ a.downvote
 	position:relative;
 }
 
+.sort-button
+{
+	width:300px;
+}
+
+.sort-button span
+{
+	display:inline-block;
+}
+
+.sort-button .chosen-container
+{
+	display:inline-block;
+	width:200px !important;
+}
+
 .view-button:after
 {
 	content:"";

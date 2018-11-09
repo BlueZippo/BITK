@@ -49,7 +49,20 @@
     @include('layouts.nav.nav')
 
     <!-- Begin page content -->
-        @if (Request::is('stacks/explore'))
+        @if (Request::is('stacks/explore') || 
+             Request::is('stacks/popular') ||
+             Request::is('stacks/new') ||
+             Request::is('stacks/trending') ||
+             Request::is('stacks/top-voted') ||
+             Request::is('stacks/top-thread') ||
+             Request::is('stacks/following') ||
+             Request::is('stacks/my') ||
+             Request::is('stacks/new-people') ||
+             Request::is('stacks/trending-people') ||
+             Request::is('stacks/top-people') ||
+             Request::is('stacks/following-people') ||
+             Request::is('stacks/my-profile')
+             )
             <main role="main" class="container-fluid">
         @else
             <main role="main" class="container">

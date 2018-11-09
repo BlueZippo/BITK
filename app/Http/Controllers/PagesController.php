@@ -130,8 +130,14 @@ class PagesController extends Controller {
 
 					$author = User::find($stack->user_id);
 
+					$valid = true;
 
-					if ($author && $stack->status_id == 1)
+					if ($stack->user_id == auth()->id())
+					{
+						$valid = false;
+					}	
+
+					if ($valid && $author && $stack->status_id == 1)
 					{
 
 						$categories = array();
