@@ -13,7 +13,7 @@
       <div class="featured-image">
         @if ($stack['image'])
 
-          @if ($stack['media_type'] == 'yotube')
+          @if ($stack['media_type'] == 'youtube')
             <img src="http://img.youtube.com/vi/{{$stack['image']}}/hqdefault.jpg">
           @else
             <img src="{{$stack['image']}}">
