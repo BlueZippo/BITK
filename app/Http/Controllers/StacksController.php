@@ -38,6 +38,8 @@ class StacksController extends Controller {
     {
         $data['links'] = array();
 
+        $data['media_id'] = MediaType::first()->id;
+
         $data['user'] = User::find(auth()->id());
 
         $data['medias'] = MediaType::all();
@@ -84,6 +86,10 @@ class StacksController extends Controller {
         $stack->video_id = request('video_id');
 
         $stack->status_id = request('status_id');
+
+        $stack->private = request('private');
+
+        $stack->media_type = request('media_type');
 
         $stack->save();
 
@@ -745,9 +751,14 @@ class StacksController extends Controller {
     }
 
 
-    public function edit($id)
+    public function edit($id, $media_id = 0)
     {
         $stack = Stack::find($id);
+
+        if ($media_id == 0)
+        {
+            $media_id = MediaType::first()->id;
+        }    
 
         if (auth()->id() == $stack->user_id)
         {        
@@ -780,6 +791,8 @@ class StacksController extends Controller {
 
             $data['medias'] = MediaType::all();
 
+            $data['media_id'] = $media_id;
+
             return view('stacks.edit')->with($data);
 
         }
@@ -805,7 +818,11 @@ class StacksController extends Controller {
 
         $stack->video_id = request('video_id');
 
+        $stack->media_type = request('media_type');
+
         $stack->status_id = request('status_id');
+
+        $stack->private = request('private');
 
         $stack->save();
 
@@ -1067,6 +1084,28 @@ class StacksController extends Controller {
     public function people()
     {
         return $this->explore('new-people');
+    }
+
+
+    public function upload(Request $request)
+    {
+        $this->validate($request, [
+
+            'upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+
+        $image = $request->file('upload');
+
+        $user_id = auth()->id();
+
+        $photo = sprintf("stacks-%s-%s.%s", $user_id, time(), $image->getClientOriginalExtension());
+
+        $destinationPath = public_path('/upload');
+
+        $image->move($destinationPath, $photo);        
+
+        return json_encode(array('message'=> 'Image uploaded successfully', 'photo' => '/upload/' . $photo));
     }
 
 }

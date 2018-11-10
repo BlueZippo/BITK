@@ -1,12 +1,12 @@
 <div class="links-nav" role="tablist">
 
-    <a class="all active">All</a>
+    <a class="all">All</a>
     
     <a class="top-three">Top Three</a>
 
     @foreach($medias as $media)
 
-       <a class="category-button" data-category="{{$media->id}}" data-toggle="tab" role="tab">{{$media->media_type}}</a>
+       <a class="category-button @if($media->id == $media_id) active @endif" data-category="{{$media->id}}"  data-toggle="tab" role="tab">{{$media->media_type}}</a>
 
     @endforeach
 </div>

@@ -7,6 +7,20 @@ var linkCounter = {{count($links)}};
 $(document).ready(function()
 {
 
+    $('.modal-body select[name=media_type]').change(function()
+    {
+        var inp = $(this).val();
+
+        $('.media-field').removeClass('active');
+
+        $('.modal-body input[name='+inp+']').addClass('active');
+
+    });
+
+
+
+
+
     $('a.fa-edit').click(function()
     {
         var par = $(this).parent();
@@ -36,15 +50,30 @@ $(document).ready(function()
 
     $('.switch').click(function()
     {  
+        var fld = 'status_id';
+        var lblOff = 'Draft';
+        var lblOn = 'Published';
+
+        if ($(this).hasClass('public'))
+        {
+            fld = 'private';
+            lblOff = 'Public';
+            lblOn = 'Private';
+        }    
+
         $(this).toggleClass("switchOn");  
+
+
 
         if ($(this).hasClass("switchOn"))
         {
-            $('input[name=status_id]').val(1)
+            $('input[name='+fld+']').val(1);
+            $(this).html(lblOn);
         }   
         else
         {
-            $('input[name=status_id]').val(0);
+            $('input[name='+fld+']').val(0);
+            $(this).html(lblOff);
         }
     }); 
 
@@ -79,6 +108,8 @@ $(document).ready(function()
         }
 
     });
+
+    $('.links-nav a.active').trigger('click');
 
     $('.content').click(function()
     {
@@ -226,22 +257,80 @@ $(document).ready(function()
     });
 
 
+    $('#youtubeModal #uploadForm').on('submit', function(e) 
+    {
+
+        e.preventDefault();       
+
+        $.ajax({
+          headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')  },
+          url: "/stacks/upload",
+          type: "POST",
+          dataType:'json',
+          data: new FormData(this),
+          contentType: false,
+          cache: false,
+          processData: false,
+          success: function(data)
+          { 
+            var img = '<img src="'+data.photo+'" width="100%" height="315"><br /><a data-toggle="modal" data-target="#youtubeModal">New Video</a>'
+
+            $('input[name=video_id]').val(data.photo);
+
+            $('.youtube').html(img);
+          }
+    });
+
+  });
+
+
     $('#youtubeModal .btn-primary').click(function()
     {
-        var url = $('#youtubeModal input[name=youtube]').val();
 
-        url = url.split('=');
+        var mediaType = $('#youtubeModal select[name=media_type]').val();
 
-        if (url[1])
+        $('input[name=media_type]').val(mediaType);
+
+        if (mediaType == 'youtube')
+        {    
+            var url = $('#youtubeModal input[name=youtube]').val();
+
+            url = url.split('=');
+
+            if (url[1])
+            {
+                var iframe  = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/'+url[1]+'?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><br /><a data-toggle="modal" data-target="#youtubeModal">New Image/Video</a>';
+
+                $('.youtube').html(iframe);                
+
+                $('input[name=video_id]').val(url[1]);
+
+                $('#youtubeModal').modal('hide');
+            }
+        }
+        else if (mediaType == 'image')
         {
-            var iframe  = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/'+url[1]+'?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><br /><a data-toggle="modal" data-target="#youtubeModal">New Video</a>';
+            var url = $('#youtubeModal input[name=image]').val();
+            var img = '<img src="'+url+'" width="100%" height="315"><br /><a data-toggle="modal" data-target="#youtubeModal">New Image/Video</a>'
 
-            $('.youtube').html(iframe);
+            $('.youtube').html(img);
+
+            $('input[name=video_id]').val(url);
 
             $('#youtubeModal').modal('hide');
 
-            $('input[name=video_id]').val(url[1]);
+        }   
+        else if (mediaType == 'upload') 
+        {
+            $('#youtubeModal .btn-primary').val('Uploading, please wait...');
+
+            $('#youtubeModal #uploadForm').submit();
+
+            $('#youtubeModal').modal('hide');
         }    
+
+
+        
 
     });
 

@@ -309,20 +309,27 @@ div.links-container.left-position::after
 	background:#1da1f2;
 }
 
+.edit-stack .stack-meta
+{
+	display:inline-block;
+}
+
 .switch
 {  
-    width:60px;  
+    width:45px;  
     height:30px;  
     background:#E5E5E5;  
     z-index:0;  
-    margin:0;  
+    margin:10px 70px 0 0;  
     padding:0;  
     appearance:none;  
     border:none;  
     cursor:pointer;  
     position:relative;  
-    float:left;
+    display:inline-block;
     border-radius:30px;  
+    text-indent:50px;
+    line-height:2;
 } 
 
 .switch:before
@@ -359,7 +366,7 @@ div.links-container.left-position::after
 
 .switchOn:after
 {  
-    left:30px;   
+    left:16px;   
 } 
 
 
@@ -473,5 +480,20 @@ div.links-container.left-position::after
 {
 	color:#fff;
 	float:right;
+}
+
+.media-field
+{
+	display:none;
+}
+
+.media-field.active
+{
+	display:block;
+}
+
+select[name=media_type]
+{
+	margin-bottom:10px;
 }
 

@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('stacks/following-people', 'StacksController@people_following');
 	Route::get('stacks/my-profile', 'StacksController@myprofile');
 
+	Route::post('stacks/upload', 'StacksController@upload');
 
 	Route::get('stacks/explore', 'StacksController@explore');	
 
@@ -58,6 +59,8 @@ Route::group(['middleware' => ['auth']], function()
 	Route::resource('admin/users', 'UserController');
 
 	Route::post('stacks/{id}', 'StacksController@update');
+
+	Route::get('stacks/{id}/edit/{media}', 'StacksController@edit');
 
 	Route::resource('stacks', 'StacksController');
 

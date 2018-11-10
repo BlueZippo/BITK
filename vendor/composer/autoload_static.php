@@ -403,7 +403,7 @@ class ComposerStaticInit09d0a8ab5cfd1496a7fcb458e7996b13
         'App\\Http\\Controllers\\CategoriesController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoriesController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
-        'App\\Http\\Controllers\\LinkComments' => __DIR__ . '/../..' . '/app/Http/Controllers/LinkComments.php',
+        'App\\Http\\Controllers\\LinkCommentsController' => __DIR__ . '/../..' . '/app/Http/Controllers/LinkComments.php',
         'App\\Http\\Controllers\\LinksController' => __DIR__ . '/../..' . '/app/Http/Controllers/LinksController.php',
         'App\\Http\\Controllers\\MediaTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/MediaTypeController.php',
         'App\\Http\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagesController.php',
