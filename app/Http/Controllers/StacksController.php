@@ -453,6 +453,7 @@ class StacksController extends Controller {
                               'downvotes' => $this->number_format(count($downvotes)),
                               'comments' => $this->number_format(count($comments)),
                               'follow' => $follow->isEmpty() ? false : true,
+                              'media_type' => $result->media_type,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
                           );
