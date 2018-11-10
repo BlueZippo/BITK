@@ -113,6 +113,7 @@ class PublicController extends Controller {
                               'downvotes' => count($downvotes),
                               'comments' => count($comments),
                               'follow' => false,
+                              'media_type' => $result->media_type,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
                           );
