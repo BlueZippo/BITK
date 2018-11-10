@@ -362,9 +362,9 @@ class LinksController extends Controller
     {
         $result = false;
 
-        //$contents = @file_get_contents($url);
+        $contents = @file_get_contents($url);
 
-        $contents = $this->get_remote_data($url);
+        //$contents = $this->get_remote_data($url);
 
         //echo $contents;
 

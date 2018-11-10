@@ -21,6 +21,7 @@
 
              <div class="col-md-3 category{{$link['media_id']}}" id="link{{$linkCounter}}">
                 <div class="single-link">
+                    <input type="hidden" name="links[{{$linkCounter}}][id]" value="{{$link['id']}}">
                     <input type="hidden" name="links[{{$linkCounter}}][url]" value="{{$link['link']}}">
                     <input type="hidden" name="links[{{$linkCounter}}][title]" value="{{$link['title']}}">
                     <input type="hidden" name="links[{{$linkCounter}}][description]" value="{{$link['description']}}">

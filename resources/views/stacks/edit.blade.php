@@ -43,6 +43,7 @@
                 {{Form::hidden('private', $stack->private)}}
                 {{Form::hidden('content', $stack->content)}}
                 {{Form::hidden('status_id', $stack->status_id)}}
+                {{Form::hidden('id', $stack->id)}}
 
                 <div class="dotted">
 
