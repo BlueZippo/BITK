@@ -18,7 +18,7 @@ return array(
     'App\\Http\\Controllers\\CategoriesController' => $baseDir . '/app/Http/Controllers/CategoriesController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
-    'App\\Http\\Controllers\\LinkComments' => $baseDir . '/app/Http/Controllers/LinkComments.php',
+    'App\\Http\\Controllers\\LinkCommentsController' => $baseDir . '/app/Http/Controllers/LinkComments.php',
     'App\\Http\\Controllers\\LinksController' => $baseDir . '/app/Http/Controllers/LinksController.php',
     'App\\Http\\Controllers\\MediaTypeController' => $baseDir . '/app/Http/Controllers/MediaTypeController.php',
     'App\\Http\\Controllers\\PagesController' => $baseDir . '/app/Http/Controllers/PagesController.php',

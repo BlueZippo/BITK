@@ -102,7 +102,7 @@ class LinksController extends Controller
 
        if ($stack_id)
        {
-             return ['message' => "Success", 'redirect' => '/stacks/' . $stack_id . '/edit'];
+             return ['message' => "Success", 'redirect' => '/stacks/' . $stack_id . '/edit/' . $link->media_id];
        } 
        else
        { 

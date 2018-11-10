@@ -27,7 +27,7 @@
 
 @section('content')
 
-    <div class="row">
+    <div class="row edit-stack">
         
         <div class="col-sm-12">
             
@@ -37,8 +37,10 @@
 
             {!! Form::open(['action' => ['StacksController@update', $stack->id],  'method' => 'POST']) !!}               
 
-                {{Form::hidden('video_id', 0)}}
+                {{Form::hidden('video_id', $stack->video_id)}}
+                {{Form::hidden('media_type',$stack->media_type)}}
                 {{Form::hidden('title', $stack->title)}}
+                {{Form::hidden('private', $stack->private)}}
                 {{Form::hidden('content', $stack->content)}}
                 {{Form::hidden('status_id', $stack->status_id)}}
 
@@ -76,10 +78,15 @@
                                 
                                 <div class="stack-meta col-md-6">    
 
-
-                                    <div class="switch @if($stack->status_id == 1) switchOn @endif" ></div>
-
                                     <div class="meta-data text-right">Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a></div>
+
+                                    <div class="switcher text-right">
+
+                                        <div class="switch status @if($stack->status_id == 1) switchOn @endif" >@if($stack->status_id == 1) Published @else Draft @endif</div>
+                                        <div class="switch public @if($stack->private == 1) switchOn @endif" >@if($stack->private == 1) Private @else Public @endif</div>
+
+                                    </div>    
+                                    
 
                                 </div>    
 
@@ -123,6 +130,40 @@
                 
 
             {!! Form::close() !!}
+
+
+            <div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Image / Video</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+
+                    <form id="uploadForm"  enctype="multipart/form-data">
+                    
+                        {{Form::select('media_type', ['youtube' => 'Youtube', 'image' => 'Image', 'upload' => 'Upload Image'], 0, ['class' => 'form-control'])}}
+                        
+                        {{Form::text('image', '', ['class' => 'media-field form-control', 'placeholder' => 'Enter Image URL'])}}   
+                        
+                        {{Form::text('youtube', '', ['class' => 'media-field form-control active', 'placeholder' => 'Enter Youtube URL'])}}   
+
+                        {{ Form::file('upload', array('class' => 'media-field form-control', 'id' => 'upload')) }}
+                    
+
+                    </form>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-submit">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
         </div>
         
