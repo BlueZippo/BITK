@@ -39,9 +39,9 @@
                 {{Form::hidden('title', '')}}
                 {{Form::hidden('content', '')}}
                 {{Form::hidden('status_id', 0)}}
-                {{Form::hidden('media_type','')}}                
+                {{Form::hidden('media_type','youtube')}}                
                 {{Form::hidden('private', 0)}}
-                
+                {{Form::hidden('id', 0)}}
                 
 
                 <div class="dotted">

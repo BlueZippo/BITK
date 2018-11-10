@@ -75,7 +75,16 @@ class StacksController extends Controller {
                         ->withErrors($validator);
         }
 
-        $stack = new Stack;
+        if (request('id'))
+        {
+            $stack = Stack::find(request('id'));
+        }    
+        else
+        {
+            $stack = new Stack;    
+        } 
+
+        
 
         $stack->title = strip_tags(request('title'));
 
@@ -92,6 +101,9 @@ class StacksController extends Controller {
         $stack->media_type = request('media_type');
 
         $stack->save();
+
+        DB::table('stack_categories')->where('stack_id','=', $stack->id)->delete();
+        DB::table('links')->where('stack_id', '=', $stack->id)->delete();
 
         if ($request->has('categories'))
         {
@@ -127,30 +139,7 @@ class StacksController extends Controller {
 
                 $x->save();
 
-                /*
-                $xy = StackLink::where('stack_id', '=', $stack->id)->where('link_id', '=', $x->id);
-
-                $xy->delete();
-
-                $xy = new StackLink;
-
-                $xy->link_id = $x->id;
-                $xy->stack_id = $stack->id;
-
-                $xy->save();
-
-                $xy = LinkCategory::where('link_id', '=', $x->id)->where('category_id', '=', $link['category']);
-
-                $xy->delete();
-
-                $xy = new LinkCategory;
-
-                $xy->link_id = $x->id;
-                $xy->category_id = $link['category'];
-
-                $xy->save();
-
-                */
+               
 
             }
         }
@@ -875,29 +864,7 @@ class StacksController extends Controller {
 
                 $x->save();
 
-                /*
-                $xy = StackLink::where('stack_id', '=', $stack->id)->where('link_id', '=', $x->id);
-
-                $xy->delete();
-
-                $xy = new StackLink;
-
-                $xy->link_id = $x->id;
-                $xy->stack_id = $stack->id;
-
-                $xy->save();
-
-                $xy = LinkCategory::where('link_id', '=', $x->id)->where('category_id', '=', $link['category']);
-
-                $xy->delete();
-
-                $xy = new LinkCategory;
-
-                $xy->link_id = $x->id;
-                $xy->category_id = $link['category'];
-
-                $xy->save();
-                */
+                
 
             }
         }
@@ -1107,6 +1074,104 @@ class StacksController extends Controller {
         $image->move($destinationPath, $photo);        
 
         return json_encode(array('message'=> 'Image uploaded successfully', 'photo' => '/upload/' . $photo));
+    }
+
+    public function autosave(Request $request)
+    {
+        if (request('id'))
+        {
+            $id = request('id');
+
+            $stack = Stack::find($id);
+
+            $stack->title = request('title');
+
+            $stack->content = request('content');
+
+            $stack->subtitle = request('subtitle');
+
+            $stack->user_id = auth()->id();
+
+            $stack->video_id = request('video_id');
+
+            $stack->media_type = request('media_type');
+
+            $stack->status_id = request('status_id');
+
+            $stack->private = request('private');
+
+            $stack->save();
+
+
+        }
+        else
+        {
+            $stack = new Stack;
+
+            $stack->title = request('title');
+
+            $stack->content = request('content');
+
+            $stack->subtitle = request('subtitle');
+
+            $stack->user_id = auth()->id();
+
+            $stack->video_id = request('video_id');
+
+            $stack->media_type = request('media_type');
+
+            $stack->status_id = request('status_id');
+
+            $stack->private = request('private');
+
+            $stack->save();
+
+            $id = $stack->id;
+        }    
+
+
+        DB::table('stack_categories')->where('stack_id','=', $id)->delete();
+        DB::table('links')->where('stack_id', '=', $id)->delete();
+
+        if ($request->has('categories'))
+        {
+            $categories = $request->input('categories');
+
+            foreach($categories as $category_id)
+            {
+                $x = new StackCategory;
+
+                $x->stack_id = $stack->id;
+                $x->category_id = $category_id;
+
+                $x->save();
+            }
+        }    
+
+
+        if ($request->has('links'))
+        {
+            $links = $request->input('links');
+
+            foreach($links as $link)
+            {
+                $x = new Link;    
+
+                $x->title = $link['title'];
+                $x->id  = $link['id'];
+                $x->link = $link['url'];
+                $x->description = $link['description'];
+                $x->image = $link['image'];
+                $x->media_id = $link['media_id'];
+                $x->stack_id = $stack->id;
+                $x->user_id = auth()->id();
+
+                $x->save();               
+
+            }
+        }
+
+        return json_encode(array('id' => $id));
     }
 
 }

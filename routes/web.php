@@ -52,6 +52,8 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::get('stacks/view-all', 'StacksController@view_all');	
 
+	Route::post('stacks/autosave', 'StacksController@autosave');
+
 	Route::post('stacks/{id}/update', 'StacksController@update');
 
 	Route::post('stacks/{id}/vote',   'StacksController@vote');

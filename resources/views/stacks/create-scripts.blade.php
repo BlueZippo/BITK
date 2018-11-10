@@ -4,8 +4,52 @@
 
 var linkCounter = {{count($links)}};
 
+function stack_autosave()
+{    
+
+    $('main.container').append('<div class="autosave">Saving...</div>');
+
+    $('.dotted').each(function()
+    {
+        var field = $(this).data('field');
+
+        var content = $('.content', this).html();           
+
+        switch (field)
+        {
+            case 'title':
+
+                $('input[name=title]').val(content);          
+
+            break;
+
+            case 'content':
+
+                $('input[name=content]').val(content);
+
+            break;
+            
+        }           
+    });
+
+    $.ajax(
+    {
+        url: '/stacks/autosave',
+        data: data = $('.edit-stack form').serialize(),
+        method: 'post',
+        dataType: 'json',
+        success: function(data)
+        {
+            $('main.container .autosave').remove();
+            $('input[name=id]').val(data.id);
+        }
+    })
+}
+
 $(document).ready(function()
 {
+
+    var autoSve = setInterval(stack_autosave, 60 * 1000);
 
     $('.modal-body select[name=media_type]').change(function()
     {
@@ -16,10 +60,6 @@ $(document).ready(function()
         $('.modal-body input[name='+inp+']').addClass('active');
 
     });
-
-
-
-
 
     $('a.fa-edit').click(function()
     {
@@ -48,6 +88,8 @@ $(document).ready(function()
        }     
     });
 
+    $('.dotted .content').focusout(stack_autosave)
+
     $('.switch').click(function()
     {  
         var fld = 'status_id';
@@ -61,9 +103,7 @@ $(document).ready(function()
             lblOn = 'Private';
         }    
 
-        $(this).toggleClass("switchOn");  
-
-
+        $(this).toggleClass("switchOn");
 
         if ($(this).hasClass("switchOn"))
         {
@@ -75,6 +115,9 @@ $(document).ready(function()
             $('input[name='+fld+']').val(0);
             $(this).html(lblOff);
         }
+
+        stack_autosave();
+
     }); 
 
 
@@ -230,7 +273,7 @@ $(document).ready(function()
         var html = '<div class="col-md-3 category' +category+ '" id="link'+linkCounter+'">';        
 
         html += '<div class="single-link">'
-
+        html += '<input type="hidden" name="links['+linkCounter+'][id]" value="0">'
         html += '<input type="hidden" name="links['+linkCounter+'][url]" value="'+url+'">'
         html += '<input type="hidden" name="links['+linkCounter+'][title]" value="'+title+'">'
         html += '<input type="hidden" name="links['+linkCounter+'][description]" value="'+desc+'">'
@@ -254,6 +297,8 @@ $(document).ready(function()
         $('.image-container').html('');
 
         $('.links-container').hide();
+
+        stack_autosave();
     });
 
 
@@ -278,6 +323,8 @@ $(document).ready(function()
             $('input[name=video_id]').val(data.photo);
 
             $('.youtube').html(img);
+
+            stack_autosave();
           }
     });
 
@@ -306,6 +353,8 @@ $(document).ready(function()
                 $('input[name=video_id]').val(url[1]);
 
                 $('#youtubeModal').modal('hide');
+
+                stack_autosave();
             }
         }
         else if (mediaType == 'image')
@@ -319,6 +368,8 @@ $(document).ready(function()
 
             $('#youtubeModal').modal('hide');
 
+            stack_autosave();
+
         }   
         else if (mediaType == 'upload') 
         {
@@ -327,10 +378,7 @@ $(document).ready(function()
             $('#youtubeModal #uploadForm').submit();
 
             $('#youtubeModal').modal('hide');
-        }    
-
-
-        
+        }
 
     });
 
@@ -383,6 +431,8 @@ $(document).ready(function()
         });
 
         $('.categories-content').html(topics.join(", "));
+
+        stack_autosave();
     })
   
 }); 
