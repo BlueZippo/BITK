@@ -92,7 +92,11 @@
             @else
               <a  title="Follow stack" class="follow-button" data-action="follow" data-id="{{$stack['id']}}"><i class="fa fa-plus-circle"></i></a>
             @endif
-            <a title="Add to favorites" class="like-button" data-action="like" data-id={{$stack['id']}}><i class="fa fa-heart"></i></a>
+            @if ($stack['favorite'])
+              <a title="Add to favorites" class="like-button favorite" data-action="unlike" data-id={{$stack['id']}}><i class="fa fa-heart"></i></a>
+            @else
+              <a title="Add to favorites" class="like-button" data-action="like" data-id={{$stack['id']}}><i class="fa fa-heart"></i></a>
+            @endif
             <a title="Send stack" class="share-button" data-action="share" data-id={{$stack['id']}}><i class="fa fa-share"></i></a>
             <a title="Like stack" class="approve-button" data-action="approve" data-id={{$stack['id']}}><i class="fa fa-thumbs-up"></i> {{$stack['upvotes']}}</a>
             <a title="Unlike stack" class="disapprove-button" data-action="disapporve" data-id={{$stack['id']}}><i class="fa fa-thumbs-down"></i> {{$stack['downvotes']}}</a>

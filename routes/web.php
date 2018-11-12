@@ -82,7 +82,9 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::resource('admin/search', 'SearchController');
 
+	Route::get('admin/links/parser', 'AdminLinksController@parser');
 
+	Route::resource('admin/links', 'AdminLinksController');
 });
 
 Route::resource('permissions', 'PermissionController');
@@ -125,6 +127,10 @@ Route::get('/tags/{id}/delete', 'TagsController@destroy');
 
 Route::get('stacks/{id}/follow', 'StacksController@follow');
 Route::get('stacks/{id}/unfollow', 'StacksController@unfollow');
+
+Route::get('stacks/{id}/like', 'StacksController@like');
+Route::get('stacks/{id}/unlike', 'StacksController@unlike');
+
 
 Route::get('stacks/{id}/comments', 'StacksController@comments');
 
