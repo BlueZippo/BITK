@@ -88,7 +88,7 @@
         <div class="stack-footer">
           @if (Auth::check())
             @if ($stack['follow'])
-              <a title="Follow stack" class="follow-button" data-action="unfollow" data-id="{{$stack['id']}}"><i class="fa fa-plus-circle"></i></a>
+              <a title="Follow stack" class="follow-button followed" data-action="unfollow" data-id="{{$stack['id']}}"><i class="fa fa-plus-circle"></i></a>
             @else
               <a  title="Follow stack" class="follow-button" data-action="follow" data-id="{{$stack['id']}}"><i class="fa fa-plus-circle"></i></a>
             @endif

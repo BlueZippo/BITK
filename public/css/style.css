@@ -840,3 +840,8 @@ a.downvote
 {
 	cursor:pointer;
 }
+
+.single-stack-wrapper a.follow-button.followed
+{
+	color:#ccc;
+}

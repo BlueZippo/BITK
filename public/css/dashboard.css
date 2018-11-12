@@ -248,3 +248,9 @@
 	line-height:2;
 	font-weight:bold;
 }
+
+a.show-more
+{
+	color:#fff !important;
+	cursor:pointer;
+}
