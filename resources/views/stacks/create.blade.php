@@ -38,7 +38,12 @@
 			<div class="page-title-row">
                 <h1>Create A <span>Stack</span></h1>
                 <div class="stack-controls">
-
+                    <div class="stack-ctrl-item switch-box">
+                        <div class="switch status" >Draft</div>
+                    </div>
+                    <div class="stack-ctrl-item switch-box">
+                        <div class="switch public" >Public</div>
+                    </div>
                     <div class="stack-ctrl-item back">
                         <svg width="29" height="19" xmlns="http://www.w3.org/2000/svg">
                           <path id="back" d="M27.47 18.785a.598.598 0 0 1-.557-.364c-.07-.164-1.806-4.059-8.297-4.83-1.353-.164-2.972-.248-4.939-.263v4.854a.604.604 0 0 1-.32.535.607.607 0 0 1-.618-.035L.267 10.287a.603.603 0 0 1 0-1.003L12.744.888a.593.593 0 0 1 .619-.03c.2.107.318.31.318.528v4.517c2.713.354 14.39 2.452 14.39 12.284a.604.604 0 0 1-.484.592c-.039.006-.08.006-.118.006z" fill="#20AAF4" fill-rule="nonzero"/>

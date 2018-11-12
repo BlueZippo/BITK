@@ -840,6 +840,10 @@ main {
     display: flex;
     align-items: center;
 }
+.stack-controls > .stack-ctrl-item.switch-box .switch {
+    color: var(--text-color);
+    margin: 0 50px 0 0;
+}
 .stack-controls > .stack-ctrl-item svg,
 .stack-controls > .stack-ctrl-item > i {
     margin-right: 5px;
