@@ -2,7 +2,7 @@
 
 @section('style')
 
-<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 <link href="{{ asset('css/create-stack.css') }}" rel="stylesheet">
 
 @endsection
@@ -15,9 +15,9 @@
 
     <a class="views"><i class="fa fa-bars"></i> change view</a>
 
-    <a class="cancel" href="/dashboard/"><i class="fa fa-times-circle"></i> cancel</a>    
+    <a class="cancel" href="/dashboard/"><i class="fa fa-times-circle"></i> cancel</a>
 
-    <a class="save"><i class="fa fa-edit"></i> save</a>    
+    <a class="save"><i class="fa fa-edit"></i> save</a>
 
 </div>
 
@@ -25,24 +25,30 @@
 
 @section('content')
 
+    <div class="dashboard">
+        <div class="nav-wrapper">
+            @include('pages.nav')
+        </div>
+    </div>
+
 	<div class="row edit-stack">
-        
+
 		<div class="col-sm-12">
-            
+
 			<h1>Create A Stack</h1>
-            
+
             <hr />
 
-            {!! Form::open(['action' => 'StacksController@store', 'method' => 'POST']) !!}               
+            {!! Form::open(['action' => 'StacksController@store', 'method' => 'POST']) !!}
 
                 {{Form::hidden('video_id', 0)}}
                 {{Form::hidden('title', '')}}
                 {{Form::hidden('content', '')}}
                 {{Form::hidden('status_id', 0)}}
-                {{Form::hidden('media_type','youtube')}}                
+                {{Form::hidden('media_type','youtube')}}
                 {{Form::hidden('private', 0)}}
                 {{Form::hidden('id', 0)}}
-                
+
 
                 <div class="dotted">
 
@@ -55,9 +61,9 @@
                                 <div class="dotted" data-field="title">
                                     <div class="content" contenteditable="true">enter title...</div>
                                     <a class="fa fa-edit"></a>
-                                </div>                                
+                                </div>
 
-                            </div> 
+                            </div>
 
                             <div class="row">
 
@@ -70,11 +76,11 @@
 
                                         @include('stacks.create-categories')
 
-                                    </div>    
+                                    </div>
 
                                 </div>
-                                
-                                <div class="stack-meta col-md-6">    
+
+                                <div class="stack-meta col-md-6">
 
                                     <div class="meta-data text-right">Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a></div>
 
@@ -83,13 +89,13 @@
                                         <div class="switch status" >Draft</div>
                                         <div class="switch public" >Public</div>
 
-                                    </div>    
-                                    
-
-                                </div>    
+                                    </div>
 
 
-                            </div> 
+                                </div>
+
+
+                            </div>
 
                             <hr />
 
@@ -100,33 +106,33 @@
                                     <a class="fa fa-edit"></a>
                                 </div>
 
-                                
 
-                            </div>  
 
-                            @include('stacks.meta-author')   
+                            </div>
+
+                            @include('stacks.meta-author')
 
                         </div>
-                        
-                        <div class="col-md-5">    
+
+                        <div class="col-md-5">
 
                              @include('stacks.youtube')
 
                         </div>
-                        
+
                     </div>
 
-                </div>    
+                </div>
 
-                @php $linkCounter = 0; @endphp    
+                @php $linkCounter = 0; @endphp
 
-                
 
-                @include('stacks.links')  
 
-                
+                @include('stacks.links')
 
-              
+
+
+
 
             {!! Form::close() !!}
 
@@ -143,15 +149,15 @@
                   <div class="modal-body">
 
                     <form id="uploadForm"  enctype="multipart/form-data">
-                    
+
                         {{Form::select('media_type', ['youtube' => 'Youtube', 'image' => 'Image', 'upload' => 'Upload Image'], 0, ['class' => 'form-control'])}}
-                        
-                        {{Form::text('image', '', ['class' => 'media-field form-control', 'placeholder' => 'Enter Image URL'])}}   
-                        
-                        {{Form::text('youtube', '', ['class' => 'media-field form-control active', 'placeholder' => 'Enter Youtube URL'])}}   
+
+                        {{Form::text('image', '', ['class' => 'media-field form-control', 'placeholder' => 'Enter Image URL'])}}
+
+                        {{Form::text('youtube', '', ['class' => 'media-field form-control active', 'placeholder' => 'Enter Youtube URL'])}}
 
                         {{ Form::file('upload', array('class' => 'media-field form-control', 'id' => 'upload')) }}
-                    
+
 
                     </form>
 
@@ -165,7 +171,7 @@
             </div>
 
 		</div>
-        
+
 	</div>
 
 @endsection
