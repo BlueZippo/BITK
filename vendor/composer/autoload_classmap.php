@@ -65,6 +65,7 @@ return array(
     'App\\StackLink' => $baseDir . '/app/StackLink.php',
     'App\\StacksFavorite' => $baseDir . '/app/StacksFavorite.php',
     'App\\StacksFollow' => $baseDir . '/app/StacksFollow.php',
+    'App\\StacksHidden' => $baseDir . '/app/StacksHidden.php',
     'App\\StacksVote' => $baseDir . '/app/StacksVote.php',
     'App\\Tag' => $baseDir . '/app/Tag.php',
     'App\\User' => $baseDir . '/app/User.php',

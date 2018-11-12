@@ -10,7 +10,7 @@
 
         @foreach($stacks as $stack)
 
-            <div class="single-stack-wrapper">
+            <div class="single-stack-wrapper stack{{$stack['id']}}">
 
                     @include('stacks.box')
 
