@@ -880,12 +880,36 @@ main {
 .edit-stack .stack-author .author .user {
     color: var(--text-color);
 }
+.edit-stack .stack-author .author .user .created {
+    font-style: italic;
+}
 .edit-stack .stack-author .author .user > .created p {
     margin-bottom: 0;
     font-weight: 300;
 }
 .edit-stack .stack-author .author .author-name {
     font-weight: 400;
+}
+.edit-stack .stack-author .author .text-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.edit-stack .stack-author .author .text-right a {
+    color: var(--text-color);
+    font-style: normal;
+    padding: 0 3px;
+}
+.edit-stack .stack-author .author .text-right a.downvote {
+    vertical-align: sub;
+}
+.edit-stack .stack-author .author .text-right a i {
+    font-size: 20px;
+    vertical-align: middle;
+}
+.edit-stack .stack-author .author .text-right > .likes {
+    border-right: 1px solid var(--border-color);
+    padding-right: 10px;
 }
 /*****************************
     #Add a Link - Main Nav

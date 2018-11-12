@@ -24,9 +24,13 @@
 
 		<div class="col-md-6 text-right">
 
-			<a class="upvote"><i class="fas fa-thumbs-up"></i> {{$upvote}}</a>
+			<div class="likes">
 
-			<a class="downvote"><i class="fas fa-thumbs-down"></i></a>
+				<a class="upvote"><i class="fas fa-thumbs-up"></i> {{$upvote}}</a>
+
+				<a class="downvote"><i class="fas fa-thumbs-down"></i></a>
+
+			</div>
 
 			<div class="social">
 

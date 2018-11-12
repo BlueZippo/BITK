@@ -65,13 +65,6 @@
 {
 	color:#969696;
 }
-
-.stack-author .author
-{
-	font-style:italic;
-	line-height:3;
-}
-
 .stack-author .author .author-name
 {
 	font-weight:bold;
@@ -82,18 +75,6 @@
 {
 	float:none;
 	text-align:center;
-}
-
-.stack-author .social
-{
-	font-size:20px;
-	line-height: 1.5;
-	text-align:right;
-	float:right;
-	padding-left:10px;
-	margin-left:10px;
-	margin-top:5px;
-	border-left:solid 1px #d1d1d1;
 }
 
 .stack-author .social a,
