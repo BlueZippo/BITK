@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Stack;
 use App\StacksFollow;
+use App\StacksHidden;
 use App\StacksFavorite;
 use App\Category;
 use App\User;
@@ -212,6 +213,21 @@ class StacksController extends Controller {
         return json_encode(array('user_id' => $user_id, 'stack_id' => $id, 'action' => 'unlike'));
     }
 
+
+    public function hide($id)
+    {
+        $user_id = auth()->id();
+
+        $stack = new StacksHidden;
+
+        $stack->user_id = $user_id;
+        $stack->stack_id = $id;
+
+        $stack->save();
+
+        return json_encode(array('user_id' => $user_id, 'stack_id' => $id));
+    }
+
     public function dashboard($id)
     {
         $stack = Stack::find($id);
@@ -323,6 +339,8 @@ class StacksController extends Controller {
         $userSQL = array();
         $categorySQL = array();
 
+        $hidden = StacksHidden::where('user_id', '=', auth()->id())->get()->pluck('stack_id')->toArray();
+
         if (!$tags->isEmpty())
         {
             foreach($tags as $tag)
@@ -386,6 +404,11 @@ class StacksController extends Controller {
         $sql .= " LEFT JOIN stack_comments co ON co.stack_id = s.id";
 
         $sql .= " WHERE s.status_id = 1";
+
+        if ($hidden)
+        {
+            $sql .= " AND s.id NOT IN (".implode(',', $hidden).")";
+        }
 
         $sql .= " GROUP BY s.id";
 

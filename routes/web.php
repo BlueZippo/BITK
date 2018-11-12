@@ -130,6 +130,7 @@ Route::get('stacks/{id}/unfollow', 'StacksController@unfollow');
 
 Route::get('stacks/{id}/like', 'StacksController@like');
 Route::get('stacks/{id}/unlike', 'StacksController@unlike');
+Route::get('stacks/{id}/hide', 'StacksController@hide');
 
 
 Route::get('stacks/{id}/comments', 'StacksController@comments');

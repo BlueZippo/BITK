@@ -55,6 +55,26 @@ $(document).on('click', 'a.like-button', function()
 });
 
 
+$(document).on('click', '.hide-button', function()
+{
+	var stack_id = $(this).data('id');
+
+	if (confirm("Are you sure you want to hide this stack?"))
+	{
+		$.ajax(
+		{
+			url: '/stacks/' + stack_id + '/hide',
+			type: 'get',
+			dataType: 'json',
+			success: function()
+			{
+				$('.stack' + stack_id).hide();
+			}
+		});
+	}
+})
+
+
 
 $(document).on('keydown', '.comment-form textarea[name=comment]', function(e)
 {
