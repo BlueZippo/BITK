@@ -14,12 +14,12 @@ $(document).on('click', 'a.follow-button', function()
 
 			if (action == 'follow')
 			{
-				$('#stack' + stack_id + ' .follow-button').html('<i class="fa fa-plus"></i> Saved');
+				$('#stack' + stack_id + ' .follow-button').addClass('followed');
 				$('#stack' + stack_id + ' .follow-button').attr('data-action', 'unfollow')
 			}
 			else
 			{
-				$('#stack' + stack_id + ' .follow-button').html('<i class="fa fa-plus"></i> Save');
+				$('#stack' + stack_id + ' .follow-button').removeClass('followed');
 				$('#stack' + stack_id + ' .follow-button').attr('data-action', 'follow')
 			}
 		}
@@ -108,6 +108,28 @@ $(document).ready(function()
 		{
 			$('.search-wrapper form').submit();
 		}
+	});
+
+	$('.show-more').click(function()
+	{	
+		var page = $(this).attr('data-page');
+
+		$.ajax(
+		{
+			url: '/stacks/' + page + '/more',
+			dataType: 'json',
+			success: function(data)
+			{
+				$('.show-more').attr('data-page', parseInt(page) + 1);
+
+				if (data.more == 0)
+				{
+					$('.show-more').hide();
+				}
+
+				$('.my-links').append(data.html);
+			}
+		})
 	});
 
 

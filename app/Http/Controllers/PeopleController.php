@@ -155,6 +155,7 @@ class PeopleController extends Controller
                     'title' => $result->title,
                     'content' => $result->content,
                     'image' => $result->video_id,
+                    'media_type' => $result->media_type,
                     'author' => $author,
                     'follow' => $follow->isEmpty() ? false : true,
                     'upvotes' => count($upvotes),

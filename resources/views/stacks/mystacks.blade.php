@@ -44,7 +44,7 @@
 
 			<div class="col-md-12 text-center">
 
-					<a class="view-all btn btn-primary" href="/stacks/view-all">View All</a>
+					<a class="view-all btn btn-primary show-more" data-page="1">Show More</a>
 
 			</div>
 

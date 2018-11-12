@@ -1174,4 +1174,66 @@ class StacksController extends Controller {
         return json_encode(array('id' => $id));
     }
 
+    public function more($page)
+    {
+        $limit = 6;
+        $more = 1;
+        $offset = ($limit * ($page - 1)) + 4;
+            
+
+        $results = Stack::where('user_id', '=', auth()->id())
+                    ->offset($offset)
+                    ->limit($limit)
+                    ->orderby('created_at', 'desc')
+                    ->get();
+
+        $mystacks = array(); 
+
+        foreach($results as $result)
+        {
+            $author = User::find($result->user_id);
+
+            $categories = array();
+
+            foreach($result->links as $link)
+            {
+                $categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+            }
+
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=', 1)->get();
+
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=', 0)->get();
+
+            $mystacks[] = array(
+                    'id' => $result->id,
+                    'title' => $result->title,
+                    'content' => $result->content,
+                    'image' => $result->video_id,
+                    'author' => $author,
+                    'upvotes' => $this->number_format(count($upvotes)),
+                    'downvotes' => $this->number_format(count($downvotes)),
+                    'user_id' => $result->user_id,
+                    'follow' => $follow->isEmpty() ? false : true,
+                    'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+                    'categories' => implode(',', array_unique($categories))
+                );
+        }  
+
+        if (count($mystacks) < $limit)
+        {
+            $more = 0;
+        }   
+
+
+        $data['mystacks'] = $mystacks;
+
+        $json['more'] = $more;
+
+        $json['html'] = view('stacks.mystacks-more')->with($data)->render();
+
+        return json_encode($json);
+    }
+
 }
