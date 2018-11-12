@@ -84,21 +84,6 @@
 	text-align:center;
 }
 
-.stack-author a.upvote
-{
-	font-style:normal;
-	display:inline-block;
-	line-height:2;
-	padding:0px 15px !important;
-	border:solid 1px #969696;
-	border-radius:5px;
-}
-
-.stack-author a.downvote
-{
-	font-style:normal;
-}
-
 .stack-author .social
 {
 	font-size:20px;

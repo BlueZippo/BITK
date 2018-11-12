@@ -882,9 +882,10 @@ main {
 }
 .edit-stack .stack-author .author .user > .created p {
     margin-bottom: 0;
-}
-.edit-stack .stack-author .author .user > .created p span {
     font-weight: 300;
+}
+.edit-stack .stack-author .author .author-name {
+    font-weight: 400;
 }
 /*****************************
     #Add a Link - Main Nav
