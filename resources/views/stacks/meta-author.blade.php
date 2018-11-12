@@ -4,7 +4,7 @@
 
 		<div class="col-md-6 user">
 
-			<div>Created by:</div>
+			<div class="created"><p><span>Created by:</span></p></div>
 
 			<div class="user-ctrl">
 				<div class="avatar">

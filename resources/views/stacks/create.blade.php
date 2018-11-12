@@ -93,7 +93,7 @@
 
                             <div class="form-group">
 
-                                <div class="dotted" data-field="title">
+                                <div class="dotted title" data-field="title">
                                     <div class="content" contenteditable="true">enter title...</div>
                                     <a class="fa fa-edit"></a>
                                 </div>
@@ -117,15 +117,10 @@
 
                                 <div class="stack-meta col-md-6">
 
-                                    <div class="meta-data text-right">Last updated: {{$last_updated}} <a class="fa fa-comment"></a> English <a class="fa fa-plus-circle"></a></div>
-
-                                    <div class="switcher text-right">
-
-                                        <div class="switch status" >Draft</div>
-                                        <div class="switch public" >Public</div>
-
+                                    <div class="meta-data text-right">
+                                        <p>Updated: {{$last_updated}}</p>
+                                        <p class="comments"><i class="fas fa-comment-dots"></i> 0 Comments</p>
                                     </div>
-
 
                                 </div>
 

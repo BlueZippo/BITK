@@ -858,7 +858,34 @@ main {
     color: var(--pink);
     fill: var(--pink);
 }
-
+.edit-stack .dotted.title[data-field="title"] {
+    font-size: 28px;
+}
+.edit-stack .stack-meta {
+    display: flex !important;
+    align-items: center;
+}
+.edit-stack .stack-meta > .meta-data p {
+    color: var(--text-color);
+    margin-bottom: 0;
+}
+.edit-stack .stack-meta > .meta-data p.comments {
+    cursor: pointer;
+}
+.edit-stack .stack-meta > .meta-data p i {
+    color: var(--blue);
+    font-size: 20px;
+    vertical-align: middle;
+}
+.edit-stack .stack-author .author .user {
+    color: var(--text-color);
+}
+.edit-stack .stack-author .author .user > .created p {
+    margin-bottom: 0;
+}
+.edit-stack .stack-author .author .user > .created p span {
+    font-weight: 300;
+}
 /*****************************
     #Add a Link - Main Nav
 *****************************/
