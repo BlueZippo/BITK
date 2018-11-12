@@ -911,6 +911,37 @@ main {
     border-right: 1px solid var(--border-color);
     padding-right: 10px;
 }
+.edit-stack .dotted .youtube a.click-here {
+    display: block;
+    position: relative;
+    background: rgb(93,93,93);
+    background: -moz-radial-gradient(circle, rgba(93,93,93,1) 0%, rgba(49,49,49,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(93,93,93,1) 0%, rgba(49,49,49,1) 100%);
+    background: radial-gradient(circle, rgba(93,93,93,1) 0%, rgba(49,49,49,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5d5d5d",endColorstr="#313131",GradientType=1);
+}
+.edit-stack .dotted .youtube a.click-here:before {
+    content: "\f03e";
+    color: #cccccc;
+    font-family: "FontAwesome";
+    position: absolute;
+    font-size: 100px;
+    line-height: 100px;
+    text-align: center;
+    top: 30%;
+    left: 0;
+    right: 0;
+}
+.edit-stack .dotted .youtube a.click-here:after {
+    content: "Click to enter a Youtube URL or upload an image.";
+    color: #cccccc;
+    position: absolute;
+    top: calc(40% + 80px);
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
 /*****************************
     #Add a Link - Main Nav
 *****************************/
