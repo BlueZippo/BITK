@@ -815,6 +815,46 @@ main {
     border-radius: 30px;
     width: 40px;
 }
+.edit-stack .page-title-row h1 {
+    font-size: 26px;
+    text-transform: uppercase;
+    margin: 0 20px 0 0;
+}
+.edit-stack .page-title-row h1 span {
+    font-weight: 600;
+}
+.page-title-row {
+    display: flex;
+    align-items: center;
+}
+.stack-controls {
+    border: 1px dashed var(--border-color);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 0px 6px;
+}
+.stack-controls > .stack-ctrl-item {
+    padding: 8px 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.stack-controls > .stack-ctrl-item svg,
+.stack-controls > .stack-ctrl-item > i {
+    margin-right: 5px;
+}
+.stack-controls > .stack-ctrl-item > i {
+    color: var(--blue);
+    font-size: 18px;
+}
+.stack-controls > .stack-ctrl-item:hover > i,
+.stack-controls > .stack-ctrl-item:hover svg #back,
+.stack-controls > .stack-ctrl-item:hover svg #clone {
+    color: var(--pink);
+    fill: var(--pink);
+}
+
 /*****************************
     #Add a Link - Main Nav
 *****************************/

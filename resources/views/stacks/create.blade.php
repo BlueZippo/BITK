@@ -7,8 +7,8 @@
 
 @endsection
 
-@section('sidebar')
-
+{{--@section('sidebar')--}}
+<!--
 <div class="stack-sidebar">
 
     <a class="chats"><i class="fa fa-comments"></i></a>
@@ -20,8 +20,8 @@
     <a class="save"><i class="fa fa-edit"></i> save</a>
 
 </div>
-
-@endsection
+-->
+{{--@endsection--}}
 
 @section('content')
 
@@ -35,7 +35,38 @@
 
 		<div class="col-sm-12">
 
-			<h1>Create A Stack</h1>
+			<div class="page-title-row">
+                <h1>Create A <span>Stack</span></h1>
+                <div class="stack-controls">
+
+                    <div class="stack-ctrl-item back">
+                        <svg width="29" height="19" xmlns="http://www.w3.org/2000/svg">
+                          <path id="back" d="M27.47 18.785a.598.598 0 0 1-.557-.364c-.07-.164-1.806-4.059-8.297-4.83-1.353-.164-2.972-.248-4.939-.263v4.854a.604.604 0 0 1-.32.535.607.607 0 0 1-.618-.035L.267 10.287a.603.603 0 0 1 0-1.003L12.744.888a.593.593 0 0 1 .619-.03c.2.107.318.31.318.528v4.517c2.713.354 14.39 2.452 14.39 12.284a.604.604 0 0 1-.484.592c-.039.006-.08.006-.118.006z" fill="#20AAF4" fill-rule="nonzero"/>
+                        </svg>
+                        <span>Back</span>
+                    </div>
+                    <div class="stack-ctrl-item clone">
+                        <svg width="38" height="18" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path id="clone" d="M7.875 4.781V0H.844A.842.842 0 0 0 0 .844v16.312c0 .468.376.844.844.844h11.812a.842.842 0 0 0 .844-.844V5.625H8.719a.846.846 0 0 1-.844-.844zm2.25 8.297c0 .232-.19.422-.422.422H3.797a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.25c0 .232-.19.422-.422.422H3.797a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.531v.281c0 .232-.19.422-.422.422H3.797a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422zM13.5 4.286V4.5H9V0h.214c.225 0 .44.088.598.246l3.442 3.445a.841.841 0 0 1 .246.595zM31.746 4.781V0h-7.031a.842.842 0 0 0-.844.844v16.312c0 .468.376.844.844.844h11.812a.842.842 0 0 0 .844-.844V5.625H32.59a.846.846 0 0 1-.844-.844zm2.25 8.297c0 .232-.19.422-.422.422h-5.906a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.25c0 .232-.19.422-.422.422h-5.906a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.531v.281c0 .232-.19.422-.422.422h-5.906a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422zm3.375-4.011V4.5h-4.5V0h.215c.225 0 .439.088.597.246l3.442 3.445a.841.841 0 0 1 .246.595zM21.34 9l-4.852 4.184V4.816z" fill="#1DA1F2" fill-rule="nonzero" />
+                          </g>
+                        </svg>
+                        <span>Clone</span>
+                    </div>
+                    <div class="stack-ctrl-item">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Trash</span>
+                    </div>
+                    <div class="stack-ctrl-item">
+                        <i class="fas fa-save"></i>
+                        <span>Save</span>
+                    </div>
+                    <div class="stack-ctrl-item save">
+                        <i class="fas fa-eye"></i>
+                        <span>Preview</span>
+                    </div>
+                </div>
+            </div>
 
             <hr />
 
@@ -48,7 +79,6 @@
                 {{Form::hidden('media_type','youtube')}}
                 {{Form::hidden('private', 0)}}
                 {{Form::hidden('id', 0)}}
-
 
                 <div class="dotted">
 
