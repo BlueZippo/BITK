@@ -11,9 +11,9 @@
 	<li class="nav-item">
         <a class="nav-link" href="/users/profile">Profile</a>
 	</li>
-	<li class="nav-item">
+	<!--<li class="nav-item">
         <a class="nav-link" href="/skills-and-topics">Skills & Topics</a>
-	</li>
+	</li>-->
 	<li class="nav-item">
         <a class="nav-link" href="/people/">People</a>
 	</li>
