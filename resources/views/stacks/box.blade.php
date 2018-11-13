@@ -10,7 +10,7 @@
 
       </div>
 
-      <div class="featured-image">
+      <div class="featured-image @if(!$stack['image']) no-image @endif">
         @if ($stack['image'])
 
           @if ($stack['media_type'] == 'youtube')

@@ -537,9 +537,15 @@ a.downvote
 	min-height:200px;
 }
 
-.stack-list.compact .featured-image img
+.stack-list.compact .featured-image.no-image img
+{
+	margin-top:-50px;
+}
+
+.stack-list.compact .featured-image
 {
 	max-height:50px;
+	overflow:hidden;
 }
 
 .stack-list.list > .single-stack-wrapper
