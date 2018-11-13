@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('stacks/my-profile', 'StacksController@myprofile');
 
 	Route::post('stacks/upload', 'StacksController@upload');
+	Route::post('stacks/trash', 'StacksController@trash');
 
 	Route::get('stacks/explore', 'StacksController@explore');	
 

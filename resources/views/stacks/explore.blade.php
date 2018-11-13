@@ -40,6 +40,35 @@
     </div>
   </div>
 </div>
+
+<div class="send-container">
+
+    <div class="share-this">
+
+        <a class="whatsapp"><i class="fab fa-whatsapp-square"></i></a>
+
+        <a class="facebook"><i class="fab fa-facebook-square"></i></a>
+
+        <a class="twitter"><i class="fab fa-twitter-square"></i></a>
+
+        <a class="messenger"><i class="fab fa-facebook-messenger"></i></a>
+
+        <a class="link"><i class="fas fa-link"></i></a>
+
+        <a class="mail"><i class="fas fa-envelope"></i></a>
+
+    </div>
+
+    <div class="send-this">
+
+        Or send to
+
+        {{Form::text('send', '', ['class' => 'form-control'])}}
+
+
+    </div>
+
+</div>
    
 
 @endsection

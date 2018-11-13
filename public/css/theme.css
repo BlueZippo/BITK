@@ -844,6 +844,9 @@ main {
     color: var(--text-color);
     margin: 0 50px 0 0;
 }
+.stack-controls > .stack-ctrl-item.switch-box .switch.switchOn {
+    margin: 0 60px 0 0;
+}
 .stack-controls > .stack-ctrl-item svg,
 .stack-controls > .stack-ctrl-item > i {
     margin-right: 5px;
@@ -941,6 +944,57 @@ main {
     right: 0;
     margin: auto;
     text-align: center;
+}
+.edit-stack-layout-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+.edit-stack-layout-controls > nav {
+    display: inline-block;
+    background-color: var(--border-color);
+    border-radius: 3px;
+}
+.edit-stack-layout-controls > nav > .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+}
+.edit-stack-layout-controls > nav > .nav-tabs .nav-link:hover,
+.edit-stack-layout-controls > nav > .nav-tabs .nav-link.active {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+}
+.edit-stack-layout-controls > nav > .nav-tabs > a > i {
+    color: var(--text-color);
+    font-size: 18px;
+}
+.featured-image-upload {
+    position: relative;
+    height: 315px;
+    overflow: hidden;
+}
+.featured-image-upload > img {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.featured-upload-btn {
+    color: var(--text-color);
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.featured-upload-btn > a > i {
+    color: var(--blue);
+    font-size: 18px;
 }
 /*****************************
     #Add a Link - Main Nav
