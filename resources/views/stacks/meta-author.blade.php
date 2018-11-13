@@ -4,7 +4,7 @@
 
 		<div class="col-md-6 user">
 
-			<div>Created by:</div>
+			<div class="created"><p>Created By:</p></div>
 
 			<div class="user-ctrl">
 				<div class="avatar">
@@ -24,24 +24,29 @@
 
 		<div class="col-md-6 text-right">
 
-			<a class="upvote">Upvote | {{$upvote}}</a>
+			<div class="likes">
 
-			<a class="downvote">Downvote</a>
+				<a class="upvote"><i class="fas fa-thumbs-up"></i> {{$upvote}}</a>
 
-			<div class="social">
-
-				<a class="fa fa-facebook-square"></a>
-
-				<a class="fa fa-twitter"></a>
-
-				<a class="fa fa-google-plus-circle"></a>
-
-				<a class="fa fa-reddit-alien"></a>
-
-				<a class="">...</a>
+				<a class="downvote"><i class="fas fa-thumbs-down"></i></a>
 
 			</div>
 
+			<div class="social">
+
+				<a href="#"><i class="fab fa-facebook-square"></i></a>
+
+				<a href="#"><i class="fab fa-twitter"></i></a>
+
+				<a href="#"><i class="fab fa-linkedin"></i></a>
+
+				<a href="#"><i class="fab fa-instagram"></i></a>
+
+				<a href="#"><i class="fab fa-reddit-square"></i></a>
+
+				<a href="#"><i class="fas fa-ellipsis-h"></i></a>
+
+			</div>
 
 		</div>
 

@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 use App\Stack;
 use App\StacksFollow;
+use App\StacksHidden;
+use App\StacksFavorite;
 use App\Category;
 use App\User;
 use App\Link;
@@ -180,6 +182,52 @@ class StacksController extends Controller {
         return json_encode(array('user_id' => $user_id, 'stack_id' => $id, 'action' => 'unfollow'));
     }
 
+    public function like($id)
+    {
+        $user_id = auth()->id();
+
+        $stack = StacksFavorite::where('user_id', '=', $user_id)
+                 ->where('stack_id', '=', $id);
+
+        $stack->delete();
+
+        $favorite = new StacksFavorite;
+
+        $favorite->user_id = $user_id;
+        $favorite->stack_id = $id;
+
+        $favorite->save();
+
+        return json_encode(array('user_id' => $user_id, 'stack_id' => $id, 'action' => 'like'));
+    }
+
+    public function unlike($id)
+    {
+        $user_id = auth()->id();
+
+        $stack = StacksFavorite::where('user_id', '=', $user_id)
+                 ->where('stack_id', '=', $id);
+
+        $stack->delete();
+
+        return json_encode(array('user_id' => $user_id, 'stack_id' => $id, 'action' => 'unlike'));
+    }
+
+
+    public function hide($id)
+    {
+        $user_id = auth()->id();
+
+        $stack = new StacksHidden;
+
+        $stack->user_id = $user_id;
+        $stack->stack_id = $id;
+
+        $stack->save();
+
+        return json_encode(array('user_id' => $user_id, 'stack_id' => $id));
+    }
+
     public function dashboard($id)
     {
         $stack = Stack::find($id);
@@ -291,6 +339,8 @@ class StacksController extends Controller {
         $userSQL = array();
         $categorySQL = array();
 
+        $hidden = StacksHidden::where('user_id', '=', auth()->id())->get()->pluck('stack_id')->toArray();
+
         if (!$tags->isEmpty())
         {
             foreach($tags as $tag)
@@ -354,6 +404,11 @@ class StacksController extends Controller {
         $sql .= " LEFT JOIN stack_comments co ON co.stack_id = s.id";
 
         $sql .= " WHERE s.status_id = 1";
+
+        if ($hidden)
+        {
+            $sql .= " AND s.id NOT IN (".implode(',', $hidden).")";
+        }
 
         $sql .= " GROUP BY s.id";
 
@@ -428,6 +483,8 @@ class StacksController extends Controller {
 
             $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
+            $favorite = StacksFavorite::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
             $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();
 
             $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();;
@@ -442,6 +499,7 @@ class StacksController extends Controller {
                               'downvotes' => $this->number_format(count($downvotes)),
                               'comments' => $this->number_format(count($comments)),
                               'follow' => $follow->isEmpty() ? false : true,
+                              'favorite' => $favorite->isEmpty() ? false : true,
                               'media_type' => $result->media_type,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name

@@ -27,6 +27,53 @@ $(document).on('click', 'a.follow-button', function()
 
 });
 
+$(document).on('click', 'a.like-button', function()
+{
+	stack_id = $(this).data('id');
+	action = $(this).attr('data-action');
+
+	$.ajax(
+	{
+		url: '/stacks/' + stack_id + '/' + action,
+		type: 'get',
+		dataType: 'json',
+		success: function(data)
+		{
+			var action = data.action;
+
+			if (action == 'like')
+			{
+				$('#stack' + stack_id + ' .like-button').addClass('favorite').attr('data-action', 'unlike');
+			}
+			else
+			{
+				$('#stack' + stack_id + ' .like-button').removeClass('favorite').attr('data-action', 'like')
+			}
+		}
+	});
+
+});
+
+
+$(document).on('click', '.hide-button', function()
+{
+	var stack_id = $(this).data('id');
+
+	if (confirm("Are you sure you want to hide this stack?"))
+	{
+		$.ajax(
+		{
+			url: '/stacks/' + stack_id + '/hide',
+			type: 'get',
+			dataType: 'json',
+			success: function()
+			{
+				$('.stack' + stack_id).hide();
+			}
+		});
+	}
+})
+
 
 
 $(document).on('keydown', '.comment-form textarea[name=comment]', function(e)

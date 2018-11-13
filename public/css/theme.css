@@ -815,6 +815,133 @@ main {
     border-radius: 30px;
     width: 40px;
 }
+.edit-stack .page-title-row h1 {
+    font-size: 26px;
+    text-transform: uppercase;
+    margin: 0 20px 0 0;
+}
+.edit-stack .page-title-row h1 span {
+    font-weight: 600;
+}
+.page-title-row {
+    display: flex;
+    align-items: center;
+}
+.stack-controls {
+    border: 1px dashed var(--border-color);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 0px 6px;
+}
+.stack-controls > .stack-ctrl-item {
+    padding: 8px 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.stack-controls > .stack-ctrl-item.switch-box .switch {
+    color: var(--text-color);
+    margin: 0 50px 0 0;
+}
+.stack-controls > .stack-ctrl-item svg,
+.stack-controls > .stack-ctrl-item > i {
+    margin-right: 5px;
+}
+.stack-controls > .stack-ctrl-item > i {
+    color: var(--blue);
+    font-size: 18px;
+}
+.stack-controls > .stack-ctrl-item:hover > i,
+.stack-controls > .stack-ctrl-item:hover svg #back,
+.stack-controls > .stack-ctrl-item:hover svg #clone {
+    color: var(--pink);
+    fill: var(--pink);
+}
+.edit-stack .dotted.title[data-field="title"] {
+    font-size: 28px;
+}
+.edit-stack .stack-meta {
+    display: flex !important;
+    align-items: center;
+}
+.edit-stack .stack-meta > .meta-data p {
+    color: var(--text-color);
+    margin-bottom: 0;
+}
+.edit-stack .stack-meta > .meta-data p.comments {
+    cursor: pointer;
+}
+.edit-stack .stack-meta > .meta-data p i {
+    color: var(--blue);
+    font-size: 20px;
+    vertical-align: middle;
+}
+.edit-stack .stack-author .author .user {
+    color: var(--text-color);
+}
+.edit-stack .stack-author .author .user .created {
+    font-style: italic;
+}
+.edit-stack .stack-author .author .user > .created p {
+    margin-bottom: 0;
+    font-weight: 300;
+}
+.edit-stack .stack-author .author .author-name {
+    font-weight: 400;
+}
+.edit-stack .stack-author .author .text-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.edit-stack .stack-author .author .text-right a {
+    color: var(--text-color);
+    font-style: normal;
+    padding: 0 3px;
+}
+.edit-stack .stack-author .author .text-right a.downvote {
+    vertical-align: sub;
+}
+.edit-stack .stack-author .author .text-right a i {
+    font-size: 20px;
+    vertical-align: middle;
+}
+.edit-stack .stack-author .author .text-right > .likes {
+    border-right: 1px solid var(--border-color);
+    padding-right: 10px;
+}
+.edit-stack .dotted .youtube a.click-here {
+    display: block;
+    position: relative;
+    background: rgb(93,93,93);
+    background: -moz-radial-gradient(circle, rgba(93,93,93,1) 0%, rgba(49,49,49,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(93,93,93,1) 0%, rgba(49,49,49,1) 100%);
+    background: radial-gradient(circle, rgba(93,93,93,1) 0%, rgba(49,49,49,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5d5d5d",endColorstr="#313131",GradientType=1);
+}
+.edit-stack .dotted .youtube a.click-here:before {
+    content: "\f03e";
+    color: #cccccc;
+    font-family: "FontAwesome";
+    position: absolute;
+    font-size: 100px;
+    line-height: 100px;
+    text-align: center;
+    top: 30%;
+    left: 0;
+    right: 0;
+}
+.edit-stack .dotted .youtube a.click-here:after {
+    content: "Click to enter a Youtube URL or upload an image.";
+    color: #cccccc;
+    position: absolute;
+    top: calc(40% + 80px);
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
 /*****************************
     #Add a Link - Main Nav
 *****************************/
