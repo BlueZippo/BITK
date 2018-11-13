@@ -661,7 +661,7 @@ a.downvote
 	background:#fff;
 	right:0;
 	display:none;
-	z-index:9;
+	z-index:11;
 }
 
 .single-stack-wrapper .stack-footer .more-container > a,
@@ -722,9 +722,18 @@ a.downvote
 .list .compact-author,
 .list .author,
 .tile .list-button,
-.compact .list-button
+.compact .list-button,
+.single-stack-wrapper .stack-footer .more-container > a.follow-button,
+.list .single-stack-wrapper .stack-footer a.follow-button,
+.list .single-stack-wrapper .stack-footer a.like-button
 {
 	display:none;
+}
+
+.list .single-stack-wrapper .stack-footer .more-container > a.follow-button,
+.list .single-stack-wrapper .stack-footer .more-container a.like-button
+{
+	display:block;
 }
 
 .list .title
@@ -786,7 +795,7 @@ a.downvote
 
 .compact-button
 {
-	z-index:10;
+	/*z-index:10;*/
 }
 
 
@@ -818,15 +827,26 @@ a.downvote
 
 .list .more-container
 {
-	right:28px;
-	top:-20px;
+	right:26px;
+	top:-7px;
 }
 
 .list .more-container::after
 {
 	transform:rotate(133deg);
-	top:23px;
-	right:-12px;
+	top:7px;
+	right:-11px;
+}
+
+.list .single-stack-wrapper .stack-footer a
+{
+	font-size:14px;
+}
+
+.list .more-container > a > i
+{
+	margin:5px 10px 8px 0;
+	float:none;
 }
 
 .sort-button
