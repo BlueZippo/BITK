@@ -715,7 +715,6 @@ a.downvote
 .compact .meta-category,
 .compact .stack-footer,
 .compact .author,
-.list .stack-footer,
 .list .meta-category,
 .tile .compact-author,
 .tile .compact-button,
@@ -726,6 +725,16 @@ a.downvote
 .compact .list-button
 {
 	display:none;
+}
+
+.list .title
+{
+	float:left;
+}
+
+.list .stack-footer
+{
+	float:right;
 }
 
 .compact-author
@@ -805,6 +814,19 @@ a.downvote
 	padding:10px;
 	font-size:18px;
 	position:relative;
+}
+
+.list .more-container
+{
+	right:28px;
+	top:-20px;
+}
+
+.list .more-container::after
+{
+	transform:rotate(133deg);
+	top:23px;
+	right:-12px;
 }
 
 .sort-button
