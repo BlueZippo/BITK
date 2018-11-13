@@ -966,6 +966,9 @@ main {
     border: 1px solid var(--border-color);
     border-radius: 3px;
 }
+.edit-stack-layout-controls > nav > .nav-tabs .nav-link#nav-layout-tabbed {
+    margin-right: -1px;
+}
 .edit-stack-layout-controls > nav > .nav-tabs > a > i {
     color: var(--text-color);
     font-size: 18px;
