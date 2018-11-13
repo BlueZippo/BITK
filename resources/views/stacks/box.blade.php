@@ -10,7 +10,7 @@
 
       </div>
 
-      <div class="featured-image">
+      <div class="featured-image @if(!$stack['image']) no-image @endif">
         @if ($stack['image'])
 
           @if ($stack['media_type'] == 'youtube')
@@ -34,8 +34,8 @@
             <a title="Like stack" class="approve-button" data-action="approve" data-id={{$stack['id']}}><i class="fa fa-thumbs-up"></i> {{$stack['upvotes']}}</a>
             <a title="Unlike stack" class="disapprove-button" data-action="disapporve" data-id={{$stack['id']}}><i class="fa fa-thumbs-down"></i> {{$stack['downvotes']}}</a>
             <a title="Add comments" class="comments-button" data-action="comments" data-id={{$stack['id']}}><i class="fa fa-comments"></i> {{$stack['comments']}}</a>
-                <a class="Send stack"><i class="fa fa-upload"></i> Send</a>
-                <a class="Download images"><i class="fa fa-download"></i> Download images</a>
+           
+           
                 <a class="Set reminder"><i class="fa fa-clock-o"></i> Set a reminder</a>
                 <a class="Hide hide-button" data-id="{{$stack['id']}}"><i class="fa fa-times"></i> Hide<small>See fewer stacks like this</small></a>
                 <a class="Report"><i class="fa fa-ban"></i> Report<small>This goes agains Platstack's community guidelines</small></a>
@@ -105,7 +105,15 @@
               <i class="fa fa-ellipsis-h"></i>
               <div class="more-container">            
                 <a class="Send stack"><i class="fa fa-upload"></i> Send</a>
+
                 @if ($stack['follow'])
+                  <a title="Follow stack" class="follow-button followed" data-action="unfollow" data-id="{{$stack['id']}}"><i class="fa fa-plus-circle"></i> Followed</a>
+                @else
+                  <a  title="Follow stack" class="follow-button" data-action="follow" data-id="{{$stack['id']}}"><i class="fa fa-plus-circle"></i> Follow</a>
+                @endif
+
+
+                @if ($stack['favorite'])
                   <a class="Add to favorites like-button favorite"><i class="fa fa-heart"></i> Added to favorites</a>
                 @else
                   <a class="Add to favorites like-button"><i class="fa fa-heart"></i> Add to favorites</a>
