@@ -942,6 +942,31 @@ main {
     margin: auto;
     text-align: center;
 }
+.edit-stack-layout-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+.edit-stack-layout-controls > nav {
+    display: inline-block;
+    background-color: var(--border-color);
+    border-radius: 3px;
+}
+.edit-stack-layout-controls > nav > .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+}
+.edit-stack-layout-controls > nav > .nav-tabs .nav-link:hover,
+.edit-stack-layout-controls > nav > .nav-tabs .nav-link.active {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+}
+.edit-stack-layout-controls > nav > .nav-tabs > a > i {
+    color: var(--text-color);
+    font-size: 18px;
+}
 /*****************************
     #Add a Link - Main Nav
 *****************************/

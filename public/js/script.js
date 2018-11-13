@@ -158,7 +158,7 @@ $(document).ready(function()
 	});
 
 	$('.show-more').click(function()
-	{	
+	{
 		var page = $(this).attr('data-page');
 
 		$.ajax(
