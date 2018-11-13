@@ -1294,4 +1294,13 @@ class StacksController extends Controller {
         return json_encode($json);
     }
 
+    public function trash(Request $request)
+    {
+        $id = request('id');
+
+        $stack = Stack::find($id)->delete();
+
+        return ['id' => $id];
+    }
+
 }

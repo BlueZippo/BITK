@@ -32,10 +32,14 @@ function stack_autosave()
         }
     });
 
+    var params = $('.edit-stack form').serialize();
+
+    console.log(params);
+
     $.ajax(
     {
         url: '/stacks/autosave',
-        data: data = $('.edit-stack form').serialize(),
+        data: params,
         method: 'post',
         dataType: 'json',
         success: function(data)
@@ -60,6 +64,41 @@ $(document).ready(function()
         $('.modal-body input[name='+inp+']').addClass('active');
 
     });
+
+    $('.edit-stack .back').click(function()
+    {
+        location = '/dashboard';
+    });
+
+    $('.edit-stack .trash').click(function()
+    {
+        var id = $('input[name=id]').val();
+
+        if (id > 0)
+        {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax(
+            {
+                url: '/stacks/trash',
+                type: 'post',
+                data: 'id=' + id,
+                success:function()
+                {
+                    location = '/dashboard';
+                }
+            })
+        }   
+        else
+        {
+            location = '/dashboard';
+        } 
+    })
 
     $('a.fa-edit').click(function()
     {
@@ -165,7 +204,7 @@ $(document).ready(function()
         }
     });
 
-    $('a.save').click(function()
+    $('a.save, .edit-stack .save').click(function()
     {
         $('form').submit();
     });
