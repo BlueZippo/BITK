@@ -232,6 +232,12 @@ class StacksController extends Controller {
     {
         $stack = Stack::find($id);
 
+        $view = $stack->view;
+
+        $stack->view = $view + 1;
+
+        $stack->save();
+
         $medias = array();
 
         $related = array();
@@ -330,7 +336,7 @@ class StacksController extends Controller {
         return view('stacks.dashboard')->with($data);
     }
 
-    public function explore($sort = false)
+    public function explore($sort = 'popular')
     {
         $tags = User::find(auth()->id())->tags()->get();
 
@@ -375,6 +381,8 @@ class StacksController extends Controller {
             $sql .= ", count(f.stack_id) as follows";
             $sql .= ", count(v.stack_id) as votes";
             $sql .= ", count(co.stack_id) as comments";
+
+            $sql .= ", count(f.stack_id) + count(v.stack_id) + s.view as popular";
         }
         else
         {
@@ -418,7 +426,7 @@ class StacksController extends Controller {
             {
                 case 'popular':
 
-                    $sql .= " ORDER BY follows DESC, s2.created_at DESC";
+                    $sql .= " ORDER BY popular DESC, s2.created_at DESC";
 
                 break;
 
@@ -436,14 +444,16 @@ class StacksController extends Controller {
 
                 default:
 
-                    $sql .= " ORDER BY s2.created_at DESC";
+                    $sql .= " ORDER BY s.created_at DESC";
 
             }
         }
         else
         {    
-            $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
+            $sql .= " ORDER BY relevance DESC, s.created_at DESC";
         }
+
+        //echo $sql;
             
         $navSort = array(
 
@@ -463,8 +473,6 @@ class StacksController extends Controller {
 
             );
 
-
-        //echo $sql;
 
         $results = DB::select($sql);
 
