@@ -408,6 +408,19 @@ main {
 .stack-wrapper .content h2 {
     font-weight: 600;
 }
+.stack-controls.single-stack {
+    margin-top: -30px;
+    margin-bottom: 20px;
+}
+.stack-controls > p.edit-ctrl {
+    color: var(--dark);
+    font-weight: 600;
+    margin-bottom: 0;
+    border-right: 1px dashed var(--border-color);
+    padding-right: 10px;
+    margin-right: 8px;
+    padding-left: 8px;
+}
 .stack-meta {
     font-size: 14px;
     display: flex;
@@ -420,7 +433,8 @@ main {
     font-weight: 400;
     margin-bottom: 0;
 }
-.stack-wrapper .content p {
+.stack-wrapper .content p,
+.stack-wrapper .content .content-body {
     font-size: 1rem;
     font-weight: 300;
 }
@@ -982,6 +996,9 @@ main {
     position: relative;
     height: 315px;
     overflow: hidden;
+}
+.featured-image-upload.stack {
+    height: 350px;
 }
 .featured-image-upload > img {
     position: absolute;

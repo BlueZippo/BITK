@@ -7,24 +7,6 @@
 
 @endsection
 
-@section('sidebar')
-
-<div class="stack-sidebar">
-
-    <a class="chats" data-id="{{$stack->id}}"><i class="fa fa-comments"></i></a>
-
-    <a class="views"><i class="fa fa-bars"></i> Change View</a>
-
-    @if (auth::check() && auth::user()->id == $stack->user_id)
-
-    <a class="edit" href="/stacks/{{$stack->id}}/edit"><i class="fa fa-edit"></i> Edit Stack</a>
-
-    @endif
-
-</div>
-
-@endsection
-
 @section('content')
 
     <div class="dashboard">
@@ -32,6 +14,49 @@
             @include('pages.nav')
         </div>
     </div>
+
+
+    @if (Auth::user()->id == $stack['user_id'])
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="page-title-row">
+
+                <div class="stack-controls single-stack">
+                    <p class="edit-ctrl">Edit Options:</p>
+                    <div class="stack-ctrl-item clone">
+                        <svg width="38" height="18" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path id="clone" d="M7.875 4.781V0H.844A.842.842 0 0 0 0 .844v16.312c0 .468.376.844.844.844h11.812a.842.842 0 0 0 .844-.844V5.625H8.719a.846.846 0 0 1-.844-.844zm2.25 8.297c0 .232-.19.422-.422.422H3.797a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.25c0 .232-.19.422-.422.422H3.797a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.531v.281c0 .232-.19.422-.422.422H3.797a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422zM13.5 4.286V4.5H9V0h.214c.225 0 .44.088.598.246l3.442 3.445a.841.841 0 0 1 .246.595zM31.746 4.781V0h-7.031a.842.842 0 0 0-.844.844v16.312c0 .468.376.844.844.844h11.812a.842.842 0 0 0 .844-.844V5.625H32.59a.846.846 0 0 1-.844-.844zm2.25 8.297c0 .232-.19.422-.422.422h-5.906a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.25c0 .232-.19.422-.422.422h-5.906a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.531v.281c0 .232-.19.422-.422.422h-5.906a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422zm3.375-4.011V4.5h-4.5V0h.215c.225 0 .439.088.597.246l3.442 3.445a.841.841 0 0 1 .246.595zM21.34 9l-4.852 4.184V4.816z" fill="#1DA1F2" fill-rule="nonzero" />
+                          </g>
+                        </svg>
+                        <span>Clone</span>
+                    </div>
+                    <div class="stack-ctrl-item">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Trash</span>
+                    </div>
+                    <div class="stack-ctrl-item" onclick="editRedirect()">
+                        <i class="fas fa-pen-square"></i>
+                        <span>Edit</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function editRedirect() {
+            window.location = "/stacks/{{$stack->id}}/edit";
+        }
+    </script>
+
+    @endif
 
 
     <div class="stack-wrapper">
@@ -53,7 +78,7 @@
 
                 <hr />
 
-                {!! html_entity_decode($stack->content) !!}
+                <div class="content-body">{!! html_entity_decode($stack->content) !!}</div>
 
 
                 <div class="meta row">
