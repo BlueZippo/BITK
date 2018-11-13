@@ -844,6 +844,9 @@ main {
     color: var(--text-color);
     margin: 0 50px 0 0;
 }
+.stack-controls > .stack-ctrl-item.switch-box .switch.switchOn {
+    margin: 0 60px 0 0;
+}
 .stack-controls > .stack-ctrl-item svg,
 .stack-controls > .stack-ctrl-item > i {
     margin-right: 5px;
@@ -965,6 +968,32 @@ main {
 }
 .edit-stack-layout-controls > nav > .nav-tabs > a > i {
     color: var(--text-color);
+    font-size: 18px;
+}
+.featured-image-upload {
+    position: relative;
+    height: 315px;
+    overflow: hidden;
+}
+.featured-image-upload > img {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.featured-upload-btn {
+    color: var(--text-color);
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.featured-upload-btn > a > i {
+    color: var(--blue);
     font-size: 18px;
 }
 /*****************************
