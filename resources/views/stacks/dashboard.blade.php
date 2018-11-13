@@ -27,6 +27,12 @@
 
 @section('content')
 
+    <div class="dashboard">
+        <div class="nav-wrapper">
+            @include('pages.nav')
+        </div>
+    </div>
+
 
     <div class="stack-wrapper">
 
@@ -36,10 +42,13 @@
 
                 <h2 class="stack-title">{{$stack->title}}</h2>
                 <div class="stack-meta">
-                    <div class="date">Last updated: {{date("M d, Y", strtotime($stack->updated_at))}}</div>
-                    <div class="comment-trigger"><i class="fa fa-comment"></i></div>
-                    <div class="language">English</div>
-                    <div class="follow-trigger"><a><i class="fa fa-plus-circle"></i></a></div>
+                    <div class="meta-topics">
+                        <p><strong>Under Topic:</strong> <span>Business, Customer Experience, Strategy</span></p>
+                    </div>
+                    <div class="meta-date-comments">
+                        <div class="date"><p>Updated: {{date("M d, Y", strtotime($stack->updated_at))}}</p></div>
+                        <div class="comments"><p><i class="fas fa-comment-dots"></i> 0 Comments</p></div>
+                    </div>
                 </div>
 
                 <hr />
@@ -47,9 +56,9 @@
                 {!! html_entity_decode($stack->content) !!}
 
 
-                <div class="meta">
+                <div class="meta row">
 
-                    <div class="author user-ctrl">
+                    <div class="author user-ctrl col-md-6">
 
                         <p><span>Created By:</span></p>
 
@@ -78,23 +87,29 @@
                     </div>
 
 
-                    <div class="stack-rate">
+                    <div class="stack-rate col-md-6">
 
-                        <a class="upvote" data-id="{{$stack->id}}"><i class="thumbsup"></i>{{$upvote}}</a>
+                        <div class="likes">
 
-                        <a class="downvote" data-id="{{$stack->id}}"><i class="thumbsdown"></i></a>
+                            <a class="upvote" data-id="{{$stack->id}}"><i class="fas fa-thumbs-up"></i> {{$upvote}}</a>
+
+                            <a class="downvote" data-id="{{$stack->id}}"><i class="fas fa-thumbs-down"></i></a>
+
+                        </div>
 
                         <div class="social">
 
-                            <a class="fa fa-facebook-square"></a>
+                            <a href="#"><i class="fab fa-facebook-square"></i></a>
 
-                            <a class="fa fa-twitter"></a>
+            				<a href="#"><i class="fab fa-twitter"></i></a>
 
-                            <a class="fa fa-google-plus-circle"></a>
+            				<a href="#"><i class="fab fa-linkedin"></i></a>
 
-                            <a class="fa fa-reddit-alien"></a>
+            				<a href="#"><i class="fab fa-instagram"></i></a>
 
-                            <a class="">...</a>
+            				<a href="#"><i class="fab fa-reddit-square"></i></a>
+
+            				<a href="#"><i class="fas fa-ellipsis-h"></i></a>
 
                         </div>
 

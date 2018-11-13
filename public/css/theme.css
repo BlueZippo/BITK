@@ -414,24 +414,42 @@ main {
     align-items: center;
     justify-content: flex-end;
 }
-.stack-meta .date,
-.stack-meta .comment-trigger,
-.stack-meta .language {
-    margin-right: 8px;
-}
-.stack-meta .comment-trigger,
-.stack-meta .follow-trigger {
-    font-size: 18px;
-}
-.stack-meta a {
-    color: #fd3b82 !important;
+.stack-wrapper .content .stack-meta P {
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
 }
 .stack-wrapper .content p {
     font-size: 1rem;
     font-weight: 300;
 }
 .stack-wrapper .content .meta {
-    margin-top: 20px;
+    margin-top: 30px;
+}
+.stack-wrapper .stack-meta .meta-date-comments {
+    display: flex;
+    align-items: center;
+}
+.stack-wrapper .stack-meta > .meta-date-comments i {
+    color: var(--blue);
+    font-size: 20px;
+    vertical-align: middle;
+}
+.stack-wrapper .stack-meta > .meta-date-comments > .date {
+    padding-right: 8px;
+    border-right: 1px solid var(--border-color);
+}
+.stack-wrapper .stack-meta > .meta-date-comments > .comments {
+    padding-left: 8px;
+}
+.stack-wrapper .stack-meta>.meta-topics {
+    margin-left: 0;
+    margin-right: auto;
+}
+.stack-wrapper .stack-meta>.meta-topics span {
+    color: var(--dark-gray);
+    font-style: italic;
 }
 .stack-wrapper .content .author.user-ctrl {
     display: flex;
@@ -457,27 +475,6 @@ main {
     border-radius: 30px;
     width: 50px;
 }
-.stack-wrapper .meta .stack-rate {
-    float: right;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-.stack-wrapper .meta .stack-rate a {
-    font-size: 12px;
-    margin-left: 6px;
-    margin-right: 6px;
-}
-.stack-wrapper .meta .stack-rate a.upvote,
-.stack-wrapper .meta .stack-rate a.downvote {
-    font-weight: 600;
-}
-.stack-wrapper .meta .stack-rate a:first-child {
-    margin-left: 0;
-}
-.stack-wrapper .meta .stack-rate a:last-child {
-    margin-right: 0;
-}
 .stack-wrapper .meta .divider {
     display: block;
     width: 1px;
@@ -489,6 +486,13 @@ main {
 .stack-wrapper .stack-rate a.icon-social {
     font-size: 20px;
     color: #969696;
+}
+.stack-wrapper .content .meta>.stack-rate a:not(.upvote):not(.downvote) {
+    padding: 0 3px;
+    margin-right: 5px;
+}
+.stack-wrapper .content .meta>.stack-rate>.social {
+    padding-left: 10px;
 }
 .accordion.stack-single .card {
     border: 0;
@@ -508,13 +512,10 @@ main {
     padding-right: 20px;
     position: relative;
 }
-
-.accordion.stack-single .card-header > button > i
-{
+.accordion.stack-single .card-header > button > i {
     color:#1da1f2;
     font-size:22px;
 }
-
 .accordion.stack-single .card-header > button:before {
     content: "\f054";
     color: #fd3b82;
@@ -526,8 +527,7 @@ main {
     bottom: 0;
     margin: auto;
 }
-.accordion.stack-single .card-header > button.open:before
-{
+.accordion.stack-single .card-header > button.open:before {
     content: "\f078";
 }
 .accordion.stack-single .card-header > button:hover,
@@ -893,23 +893,28 @@ main {
 .edit-stack .stack-author .author .author-name {
     font-weight: 400;
 }
+.stack-wrapper .content .meta>.stack-rate,
 .edit-stack .stack-author .author .text-right {
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
+.stack-wrapper .content .meta>.stack-rate a,
 .edit-stack .stack-author .author .text-right a {
     color: var(--text-color);
     font-style: normal;
     padding: 0 3px;
 }
+.stack-wrapper .content .meta>.stack-rate a.downvote,
 .edit-stack .stack-author .author .text-right a.downvote {
     vertical-align: sub;
 }
+.stack-wrapper .content .meta>.stack-rate a i,
 .edit-stack .stack-author .author .text-right a i {
     font-size: 20px;
     vertical-align: middle;
 }
+.stack-wrapper .content .meta>.stack-rate>.likes,
 .edit-stack .stack-author .author .text-right > .likes {
     border-right: 1px solid var(--border-color);
     padding-right: 10px;
