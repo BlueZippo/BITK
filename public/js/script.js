@@ -57,7 +57,7 @@ $(document).on('click', 'a.share-button', function(e)
 
 });
 
-$('.send-container').click(function(e)
+$('.send-container, .add-link-form').click(function(e)
 {
 	e.stopPropagation();
 });
