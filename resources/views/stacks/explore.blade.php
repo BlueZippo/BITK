@@ -65,7 +65,14 @@
 
         Or send to
 
-        {{Form::text('send', '', ['class' => 'form-control'])}}
+       
+
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-search"></i></div>
+            </div>
+            {{Form::text('send', '', ['class' => 'form-control', 'placeholder' => 'Name or Email'])}}
+        </div>
 
 
     </div>

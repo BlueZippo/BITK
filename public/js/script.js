@@ -38,9 +38,18 @@ $(document).on('click', 'a.share-button', function(e)
 
     e.stopPropagation();
 
-	stack_id = $(this).data('id');
+	var stack_id = $(this).data('id');
 
 	var offset = $(this).offset();
+
+	var par = $(this).parent();
+
+	if ($(par).hasClass('more-container'))
+	{
+		offset = $('.share-button', $(par).parent().parent()).offset();
+	}
+
+	console.log(offset);
 
 	$('.send-container').css('top', (offset.top + 40) + 'px');
 	$('.send-container').css('left', (offset.left - 90)+ 'px');
