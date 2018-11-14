@@ -650,11 +650,11 @@ main {
     text-decoration: none;
     cursor:pointer;
 }
-.stack-panel .panel-heading > a {
+.stack-panel .panel-heading > a:not(.set-link-reminder) {
     color: #ffffff;
     padding: .5rem 1rem;
 }
-.stack-panel .panel-heading > a,
+.stack-panel .panel-heading > a:not(.set-link-reminder),
 .dashboard .nav.nav-pills li a.add-link,
 .add-a-link-button.main-nav {
     background-color: #fd3b82;
@@ -666,13 +666,13 @@ main {
     transition: all 200ms ease-in-out;
     position: relative;
 }
-.stack-panel .panel-heading > a:hover,
+.stack-panel .panel-heading > a:not(.set-link-reminder):hover,
 .dashboard .nav.nav-pills li a.add-link:hover,
 .add-a-link-button.main-nav {
     color: #ffffff;
     background-color: #404040;
 }
-.stack-panel .panel-heading > a:after,
+.stack-panel .panel-heading > a:not(.set-link-reminder):after,
 .dashboard .nav.nav-pills li a.add-link:after,
 .add-a-link-button.main-nav:after {
     content: "\f055";
@@ -684,6 +684,27 @@ main {
     right: 12px;
     bottom: 0;
     margin: auto;
+}
+.stack-panel .panel-heading > a:not(.set-link-reminder) {
+    margin-right: 8px;
+}
+.stack-panel.parking-lot-container .panel-heading a.set-link-reminder {
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+}
+.stack-panel.parking-lot-container .panel-heading a.set-link-reminder:hover {
+    color: var(--text-color);
+    text-decoration: none;
+}
+.stack-panel.parking-lot-container .panel-heading a.set-link-reminder i {
+    font-size: 18px;
+    margin-right: 3px;
+}
+.stack-panel.parking-lot-container .panel-heading a.set-link-reminder p {
+    margin: 0;
 }
 .dash-stack-tile {
     margin-bottom: 30px;
