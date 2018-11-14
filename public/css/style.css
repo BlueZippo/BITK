@@ -583,6 +583,12 @@ a.downvote
 	cursor:pointer;
 }
 
+.single-stack-wrapper .title
+{
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
 .single-stack-wrapper .meta-category
 {
 	border-top:solid 1px #ccc;
