@@ -2,9 +2,7 @@
 
 	<div class="panel-heading">
 
-		<h3><span>Parking</span> Lot</h3> <a class="add-a-link-button">Add a Link</a>
-
-		
+		<h3><span>Parking</span> Lot</h3> <a class="add-a-link-button">Add a Link</a> @include('stacks.reminder')
 
 	</div>
 

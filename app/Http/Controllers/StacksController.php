@@ -29,7 +29,7 @@ class StacksController extends Controller {
 
     var $links = array();
 
-    public function __construct() 
+    public function __construct()
     {
 
        //$this->middleware('auth');
@@ -95,13 +95,13 @@ class StacksController extends Controller {
         if (request('id'))
         {
             $stack = Stack::find(request('id'));
-        }    
+        }
         else
         {
-            $stack = new Stack;    
-        } 
+            $stack = new Stack;
+        }
 
-        
+
 
         $stack->title = strip_tags(request('title'));
 
@@ -135,7 +135,7 @@ class StacksController extends Controller {
 
                 $x->save();
             }
-        }    
+        }
 
 
         if ($request->has('links'))
@@ -156,7 +156,7 @@ class StacksController extends Controller {
 
                 $x->save();
 
-               
+
 
             }
         }
@@ -267,15 +267,15 @@ class StacksController extends Controller {
 
             if ($link->media_id > 0)
             {
-                $media_type = $link->media->media_type;                
-            }    
+                $media_type = $link->media->media_type;
+            }
 
             $url = parse_url($link->link);
 
             $links[$i]['domain'] = $url['host'];
             $links[$i]['media_type'] = $media_type;
-            $links[$i]['date'] = date("F d, Y", strtotime($link->created_at)); 
-           
+            $links[$i]['date'] = date("F d, Y", strtotime($link->created_at));
+
 
         }
 
@@ -284,7 +284,7 @@ class StacksController extends Controller {
         $votes = $stack->votes()->where('vote','=', 1)->get();
 
         if (Auth::check())
-        {    
+        {
             $follows = User::find(auth()->id())
                        ->stacksFollow()
                        ->pluck('stack_id')
@@ -293,7 +293,7 @@ class StacksController extends Controller {
         else
         {
             $follows = [];
-        }               
+        }
 
         $mystack = User::find($stack->user_id)
                    ->stacks()
@@ -312,8 +312,8 @@ class StacksController extends Controller {
         foreach($results as $result)
         {
             $follow = StacksFollow::where('stack_id', '=', $result->id)
-                                  ->where('user_id', '=', $stack->user_id)                                 
-                                  ->get();            
+                                  ->where('user_id', '=', $stack->user_id)
+                                  ->get();
 
             $related[] = array(
                             'id' => $result->id,
@@ -321,10 +321,10 @@ class StacksController extends Controller {
                             'content' => $result->content,
                             'image' => $result->video_id,
                             'follow' => $follow->isEmpty() ? false : true,
-                            'updated_at' => date("F d, Y", strtotime($result->updated_at)),                            
+                            'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                         );
-        }    
-         
+        }
+
 
 
         $data['links'] = $links;
@@ -395,7 +395,7 @@ class StacksController extends Controller {
             $userSQL[] = 0;
             $categorySQL[] = 0;
         }
-       
+
 
         $sql = "SELECT s.*, ";
 
@@ -404,7 +404,7 @@ class StacksController extends Controller {
         $sql .= " GROUP_CONCAT(DISTINCT c2.cat_name SEPARATOR ',') as cat_name";
 
         if ($sort)
-        {    
+        {
             $sql .= ", count(f.stack_id) as follows";
             $sql .= ", count(v.stack_id) as votes";
             $sql .= ", count(co.stack_id) as comments";
@@ -419,7 +419,7 @@ class StacksController extends Controller {
                         (".implode(" + ", $userSQL)     .") +
                         (".implode(" + ", $categorySQL) .")
 
-                    ) as relevance";    
+                    ) as relevance";
         }
 
         $sql .= " FROM stacks s";
@@ -476,23 +476,23 @@ class StacksController extends Controller {
             }
         }
         else
-        {    
+        {
             $sql .= " ORDER BY relevance DESC, s.created_at DESC";
         }
 
         //echo $sql;
-            
+
         $navSort = array(
 
-                'Stacks' => array('popular' => 'Popular', 
-                                  'new' => 'New', 
+                'Stacks' => array('popular' => 'Popular',
+                                  'new' => 'New',
                                   'trending' => 'Trending',
                                   'top-voted' => 'Top Voted',
                                   'top-thread' => 'Top Threads',
                                   'following' => 'Following',
                                   'my' => 'My Stacks'),
 
-                'People' => array('new-people' => 'New', 
+                'People' => array('new-people' => 'New',
                                   'trending-people' => 'Trending',
                                   'top-people' => 'Top Followed',
                                   'following-people' => 'Following',
@@ -553,9 +553,9 @@ class StacksController extends Controller {
                     'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
                     );
 
-        return view('stacks.explore')->with(['stacks' => $stacks, 
-                                             'medias' => $medias, 
-                                             'navSort' => $navSort, 
+        return view('stacks.explore')->with(['stacks' => $stacks,
+                                             'medias' => $medias,
+                                             'navSort' => $navSort,
                                              'sort' => $sort,
                                              'options' => $options,
                                              'friends' => $friends
@@ -565,7 +565,7 @@ class StacksController extends Controller {
 
     function number_format($num)
     {
-        if($num > 1000) 
+        if($num > 1000)
         {
 
             $x = round($num);
@@ -582,7 +582,7 @@ class StacksController extends Controller {
         }
 
         return $num;
-    
+
     }
 
     public function search(Request $request)
@@ -632,15 +632,15 @@ class StacksController extends Controller {
 
         $navSort = array(
 
-                'Stacks' => array('popular' => 'Popular', 
-                                  'new' => 'New', 
+                'Stacks' => array('popular' => 'Popular',
+                                  'new' => 'New',
                                   'trending' => 'Trending',
                                   'top-voted' => 'Top Voted',
                                   'top-thread' => 'Top Threads',
                                   'following' => 'Following',
                                   'my' => 'My Stacks'),
 
-                'People' => array('new-people' => 'New', 
+                'People' => array('new-people' => 'New',
                                   'trending-people' => 'Trending',
                                   'top-people' => 'Top Followed',
                                   'following-people' => 'Following',
@@ -651,10 +651,10 @@ class StacksController extends Controller {
         $friends = User::where('id', '!=', auth()->id())->limit(5)->orderby('name')->get();
 
 
-        return view('stacks.explore')->with(['stacks' => $stacks, 
-                                             'medias' => $medias, 
-                                             'navSort' => $navSort, 
-                                             'sort' => 'popular', 
+        return view('stacks.explore')->with(['stacks' => $stacks,
+                                             'medias' => $medias,
+                                             'navSort' => $navSort,
+                                             'sort' => 'popular',
                                              'friends' => $friends]);
 
     }
@@ -895,10 +895,10 @@ class StacksController extends Controller {
         if ($media_id == 0)
         {
             $media_id = MediaType::first()->id;
-        }    
+        }
 
         if (auth()->id() == $stack->user_id)
-        {        
+        {
 
             $data['stack'] = $stack;
 
@@ -915,7 +915,7 @@ class StacksController extends Controller {
             {
                 $categories[] = $category->category->cat_name;
                 $category_ids[] = $category->category_id;
-            }    
+            }
 
             $upvote = StacksVote::where('stack_id', '=', $id)->where('vote','=',1)->get();
             $downvote = StacksVote::where('stack_id', '=', $id)->where('vote','=', 0)->get();
@@ -943,7 +943,7 @@ class StacksController extends Controller {
                     'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
                     );
 
-       
+
         $data['recents'] = $recents;
         $data['options'] = $options;
 
@@ -953,7 +953,7 @@ class StacksController extends Controller {
         else
         {
             return redirect('/stacks/' . $id . '/dashboard');
-        }    
+        }
     }
 
 
@@ -996,7 +996,7 @@ class StacksController extends Controller {
 
                 $x->save();
             }
-        }    
+        }
 
         $links = Link::where('stack_id', '=', $id)->get();
 
@@ -1024,9 +1024,9 @@ class StacksController extends Controller {
                 $x->image = $link['image'];
                 $x->media_id = $link['media_id'];
                 $x->stack_id = $id;
-                $x->user_id = auth()->id();
+                $x->user_id = auth()->id();          
 
-                $x->save();                
+                $x->save();
 
             }
         }
@@ -1114,7 +1114,7 @@ class StacksController extends Controller {
 
         StacksVote::where('stack_id', '=', $id)->where('user_id', '=', auth()->id())->delete();
 
-        
+
         $stack = new StacksVote;
 
         $stack->user_id = auth()->id();
@@ -1233,7 +1233,7 @@ class StacksController extends Controller {
 
         $destinationPath = public_path('/upload');
 
-        $image->move($destinationPath, $photo);        
+        $image->move($destinationPath, $photo);
 
         return json_encode(array('message'=> 'Image uploaded successfully', 'photo' => '/upload/' . $photo));
     }
@@ -1289,7 +1289,7 @@ class StacksController extends Controller {
             $stack->save();
 
             $id = $stack->id;
-        }    
+        }
 
 
         DB::table('stack_categories')->where('stack_id','=', $id)->delete();
@@ -1308,7 +1308,7 @@ class StacksController extends Controller {
 
                 $x->save();
             }
-        }    
+        }
 
 
         if ($request->has('links'))
@@ -1317,7 +1317,7 @@ class StacksController extends Controller {
 
             foreach($links as $link)
             {
-                $x = new Link;    
+                $x = new Link;
 
                 $x->title = $link['title'];
                 $x->id  = $link['id'];
@@ -1328,7 +1328,7 @@ class StacksController extends Controller {
                 $x->stack_id = $stack->id;
                 $x->user_id = auth()->id();
 
-                $x->save();               
+                $x->save();
 
             }
         }
@@ -1341,7 +1341,7 @@ class StacksController extends Controller {
         $limit = 6;
         $more = 1;
         $offset = ($limit * ($page - 1)) + 4;
-            
+
 
         $results = Stack::where('user_id', '=', auth()->id())
                     ->offset($offset)
@@ -1349,7 +1349,7 @@ class StacksController extends Controller {
                     ->orderby('created_at', 'desc')
                     ->get();
 
-        $mystacks = array(); 
+        $mystacks = array();
 
         foreach($results as $result)
         {
@@ -1381,12 +1381,12 @@ class StacksController extends Controller {
                     'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                     'categories' => implode(',', array_unique($categories))
                 );
-        }  
+        }
 
         if (count($mystacks) < $limit)
         {
             $more = 0;
-        }   
+        }
 
 
         $data['mystacks'] = $mystacks;
@@ -1405,7 +1405,7 @@ class StacksController extends Controller {
         $stack = Stack::find($id);
 
         if ($stack->user_id == auth()->id())
-        {           
+        {
 
             StacksFollow::where('stack_id', '=', $id)->delete();
 
@@ -1422,7 +1422,7 @@ class StacksController extends Controller {
             StackComments::where('stack_id', '=', $id)->delete();
 
             $stack->delete();
-        }        
+        }
 
         return ['id' => $id];
     }
@@ -1432,7 +1432,7 @@ class StacksController extends Controller {
         $stack = Stack::find($id);
 
         if ($stack->user_id == auth()->id())
-        {    
+        {
 
             $new = new Stack;
 
@@ -1465,7 +1465,7 @@ class StacksController extends Controller {
 
             foreach($stack->links as $link)
             {
-                $x = new Link;    
+                $x = new Link;
 
                 $x->title = $link->title;
                 $x->link = $link->link;
@@ -1475,7 +1475,7 @@ class StacksController extends Controller {
                 $x->stack_id = $new->id;
                 $x->user_id = auth()->id();
 
-                $x->save();               
+                $x->save();
 
             }
 
@@ -1487,7 +1487,7 @@ class StacksController extends Controller {
             return ['success' => false];
         }
 
-        
+
     }
 
 }
