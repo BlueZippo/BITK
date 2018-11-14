@@ -587,6 +587,8 @@ a.downvote
 {
 	text-overflow:ellipsis;
 	white-space:nowrap;
+	width:100%;
+	overflow:hidden;
 }
 
 .single-stack-wrapper .meta-category
