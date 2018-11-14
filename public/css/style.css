@@ -977,3 +977,19 @@ a.downvote
 	font-size:17px;
 	margin:0;
 }
+
+.friend-info .avatar
+{
+	float:left;
+	margin-right:15px;
+}
+
+.friend-info
+{
+	line-height:30px;
+}
+
+.friend-info a.btn
+{
+	float:right;
+}
