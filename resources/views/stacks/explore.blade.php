@@ -78,7 +78,7 @@
 
             @foreach($friends as $friend)
 
-                <div class="friend-info">
+                <div class="friend-info user-ctrl">
 
                     <div class="avatar">
 
