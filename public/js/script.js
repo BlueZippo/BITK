@@ -531,6 +531,67 @@ $(document).ready(function()
 	equal_heights($);
 	dashboard_controls($);
 
+
+	$('.stack-controls .trash').click(function()
+    {
+        var id = $(this).data('id');
+
+        if (id > 0)
+        {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax(
+            {
+                url: '/stacks/trash',
+                type: 'post',
+                data: 'id=' + id,
+                success:function()
+                {
+                    location = '/dashboard';
+                }
+            })
+        }
+        
+    });
+
+    $('.stack-controls .clone').click(function()
+    {
+        var id = $(this).data('id');
+
+        if (id > 0)
+        {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax(
+            {
+                url: '/stacks/' + id + '/clone',
+                type: 'get',
+                success:function(data)
+                {
+                	if (data.success)
+                	{
+                		location = '/stacks/' + data.id + '/edit';
+                	}	
+                	else
+                	{
+                    	location = '/dashboard';
+                    }
+                }
+            })
+        }
+        
+    });
+
 });
 
 function mobile_menu($) {
