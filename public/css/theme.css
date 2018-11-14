@@ -508,6 +508,17 @@ main {
 .stack-wrapper .content .meta>.stack-rate>.social {
     padding-left: 10px;
 }
+.stack-wrapper .featured-image {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+}
+.stack-wrapper .featured-image>img {
+    position: absolute;
+    width: auto;
+    height: 350px;
+}
 .accordion.stack-single .card {
     border: 0;
 }
