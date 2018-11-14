@@ -1026,9 +1026,7 @@ class StacksController extends Controller {
                 $x->stack_id = $id;
                 $x->user_id = auth()->id();
 
-                $x->save();
-
-                
+                $x->save();                
 
             }
         }

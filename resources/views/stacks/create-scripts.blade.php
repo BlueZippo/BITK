@@ -320,10 +320,10 @@ $(document).ready(function()
         });
     });
 
-    $('.add-link .submit-button').click(function()
+    $('.links-container .submit-button').click(function()
     {
         var title = $('*[data-field="link_title"] .content').html();
-        var url = $('input[name=link_url]').val();
+        var url = $('.links-container input[name=link_url]').val();
         var desc = $('*[data-field="link_description"] .content').html();
         var img = $('.image-container img').attr('src');
 

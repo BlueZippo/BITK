@@ -8,7 +8,7 @@
 
       <ul class="media-types">
 
-        @foreach($medias as $media)
+        @foreach($mediaTypes as $media)
 
           <li>{{Form::checkbox('', $media->id)}} {{$media->media_type}}</li>
 

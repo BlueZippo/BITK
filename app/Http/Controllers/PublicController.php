@@ -120,7 +120,12 @@ class PublicController extends Controller {
                           );
         }
 
-        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias, 'navSort' => $navSort, 'sort' => $sort, 'friends' => array()]);
+        return view('stacks.explore')->with(['stacks' => $stacks, 
+                                             'medias' => $medias, 
+                                             'navSort' => $navSort, 
+                                             'sort' => $sort, 
+                                             'options' => array(),
+                                             'friends' => array()]);
     }
 
     public function search(Request $request)

@@ -106,7 +106,10 @@ class LinksController extends Controller
        } 
        else
        { 
-            return ["Success"];
+
+            $html = view('links.link')->with(['link' => $link])->render();
+
+            return ['message' => "Success", 'html' => $html];
         }    
 
     }

@@ -1,34 +1,37 @@
 <div class="add-link-form">
 
-<form>
-  
+  @if (Auth::check())
 
-        <div class="links-container">
+  <form>  
 
-            <div class="add-link">             
-              
+    <div class="add-links-container">
 
-              @include('links.create-step1')
+        <div class="add-link">
 
-              @include('links.create-step2')   
+          @include('links.create-step1')
 
-                <div class="row">               
+          @include('links.create-step2')   
 
-                  <div class="col-md-12 text-right">
+          <div class="row">               
 
+            <div class="col-md-12 text-right">
 
-                    <a class="cancel-btn">Cancel</a> <a class="btn btn-primary submit-button">Save</a>
-
-
-                  </div>  
-
-
-                </div> 
+              <a class="cancel-btn">Cancel</a> <a class="btn btn-primary submit-button">Save</a>
 
             </div>
 
-        </div>            
+          </div> 
+
+        </div>
+
+    </div>            
 
  </form> 
+
+ @else
+
+ Please <a href="/login">login</a> or <a href="/register">register</a> to add link
+
+ @endif
 
 </div>
