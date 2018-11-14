@@ -561,7 +561,7 @@ $(document).ready(function()
                 }
             })
         }
-        
+
     });
 
     $('.stack-controls .clone').click(function()
@@ -586,7 +586,7 @@ $(document).ready(function()
                 	if (data.success)
                 	{
                 		location = '/stacks/' + data.id + '/edit';
-                	}	
+                	}
                 	else
                 	{
                     	location = '/dashboard';
@@ -594,7 +594,7 @@ $(document).ready(function()
                 }
             })
         }
-        
+
     });
 
 });
@@ -634,6 +634,20 @@ function single_stack($) {
 		});
 
 	}
+
+	var view_control = $('.edit-stack-layout-controls.stack-layout-controls');
+	var view_ctrl_btn = $('.stack-layout-controls > nav > .nav-tabs > a');
+
+	if( view_control.length ) {
+
+        view_ctrl_btn.on('click', function() {
+            view_ctrl_btn.removeClass('active show');
+            view_ctrl_btn.attr('aria-selected', false);
+            $(this).addClass('show');
+            $(this).attr('aria-selected', true);
+        });
+
+    }
 
 }
 
