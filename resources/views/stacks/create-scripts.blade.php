@@ -400,23 +400,42 @@ $(document).ready(function()
         $('input[name=media_type]').val(mediaType);
 
         if (mediaType == 'youtube')
-        {
+        {            
+
             var url = $('#youtubeModal input[name=youtube]').val();
 
-            url = url.split('=');
-
-            if (url[1])
+            if (url.indexOf('youtu.be') > 0)
             {
-                var iframe  = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/'+url[1]+'?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><p class="featured-upload-btn"><a data-toggle="modal" data-target="#youtubeModal"><i class="fas fa-file-upload"></i> New Image/Video</a></p>';
+                url = url.split('/');
 
-                $('.youtube').html(iframe);
+                youtubeID = url[3];
+            }   
+            else
+            { 
+                url = url.split('=');
 
-                $('input[name=video_id]').val(url[1]);
-
-                $('#youtubeModal').modal('hide');
-
-                stack_autosave();
+                if (url[1])
+                {
+                    youtubeID = url[1];        
+                }
+                else
+                {
+                    youtubeID = url[0];
+                }
             }
+
+            console.log(youtubeID);
+
+
+            var iframe  = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/'+youtubeID+'?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><p class="featured-upload-btn"><a data-toggle="modal" data-target="#youtubeModal"><i class="fas fa-file-upload"></i> New Image/Video</a></p>';
+
+            $('.youtube').html(iframe);
+
+            $('input[name=video_id]').val(youtubeID);
+
+            $('#youtubeModal').modal('hide');
+
+            stack_autosave();
         }
         else if (mediaType == 'image')
         {
