@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::resource('admin/users', 'UserController');
 
-	Route::post('stacks/{id}', 'StacksController@update');
+	//Route::post('stacks/{id}', 'StacksController@update');
 
 	Route::get('/stacks/{id}/clone', 'StacksController@clone');
 
@@ -141,8 +141,6 @@ Route::get('stacks/{id}/comments', 'StacksController@comments');
 Route::get('stacks/{id}/dashboard', 'StacksController@dashboard');
 
 Route::get('stacks/{id}/category', 'StacksController@category');
-
-
 
 Route::post('stacks/search', 'StacksController@search');
 

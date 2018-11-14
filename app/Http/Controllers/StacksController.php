@@ -570,19 +570,51 @@ class StacksController extends Controller {
 
             $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();
+
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();
+
+            $favorite = StacksFavorite::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+            $comments = StackComments::where('stack_id', '=', $result->id)->get();
 
             $stacks[] = array('title' => $result->title,
                               'image' => $result->video_id,
                               'author' => $author,
                               'id' => $result->id,
+                              'upvotes' => $this->number_format(count($upvotes)),
+                              'downvotes' => $this->number_format(count($downvotes)),
+                              'comments' => $this->number_format(count($comments)),
                               'follow' => $follow->isEmpty() ? false : true,
+                              'favorite' => $favorite->isEmpty() ? false : true,
+                              'media_type' => $result->media_type,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
                           );
         }
 
+        $navSort = array(
 
-        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias]);
+                'Stacks' => array('popular' => 'Popular', 
+                                  'new' => 'New', 
+                                  'trending' => 'Trending',
+                                  'top-voted' => 'Top Voted',
+                                  'top-thread' => 'Top Threads',
+                                  'following' => 'Following',
+                                  'my' => 'My Stacks'),
+
+                'People' => array('new-people' => 'New', 
+                                  'trending-people' => 'Trending',
+                                  'top-people' => 'Top Followed',
+                                  'following-people' => 'Following',
+                                  'my-profile' => 'My Profile')
+
+            );
+
+        $friends = User::where('id', '!=', auth()->id())->limit(5)->orderby('name')->get();
+
+
+        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias, 'navSort' => $navSort, 'sort' => 'popular', 'friends' => $friends]);
 
     }
 
