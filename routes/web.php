@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::post('stacks/{id}', 'StacksController@update');
 
+	Route::get('/stacks/{id}/clone', 'StacksController@clone');
+
 	Route::get('stacks/{id}/edit/{media}', 'StacksController@edit');
 
 	Route::get('stacks/{page}/more', 'StacksController@more');

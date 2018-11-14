@@ -685,7 +685,8 @@ a.downvote
 	color:var(--pink) !important;
 }
 
-.more-container:after
+.more-container:after,
+.send-container:after
 {
 	content:"";
 	position:absolute;
@@ -897,5 +898,88 @@ a.downvote
 
 .send-container
 {
-	display:none;
+	/*display:none;*/
+}
+
+.send-container i
+{
+	font-size:44px;
+	margin:0 5px 5px 0;
+}
+
+.whatsapp i
+{
+	color:#25d366;
+}
+
+.send-container .facebook i
+{
+	color:#3b5998;
+}
+
+.send-container .twitter i
+{
+	color:#0dc2ff;
+}
+
+.send-container .messenger i
+{
+	color:#0084ff;
+}
+
+.send-container .link i,
+.send-container .mail i
+{
+	background:#efefef;
+	color:#8e8e8e;
+	font-size:22px;
+	width:44px;
+	line-height:44px;
+	text-align:center;
+	vertical-align:top;
+	border-radius:5px;
+}
+
+.send-container
+{
+	padding:15px 0;
+	width:400px;
+	border:solid 1px var(--pink);
+	position:absolute;
+	background:#fff;
+	z-index:11;
+}
+
+.send-container .share-this
+{
+	padding:15px;
+	border-bottom:solid 1px #ccc;
+}
+
+.send-container .send-this
+{
+	padding:10px 15px;
+	position:relative;
+}
+
+.send-container:after
+{
+	right:288px;
+}
+
+.send-this input[type=text]::after
+{	
+	display:block;
+	content:"xxx";
+	font-size:14px;
+	color:#ccc;
+	width:30px;
+	height:30px;
+	background:#000;
+	/*
+	font-family: "FontAwesome";
+	top:0;
+	left:0;
+	position:absolute;
+	*/
 }
