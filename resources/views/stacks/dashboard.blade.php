@@ -7,25 +7,56 @@
 
 @endsection
 
-@section('sidebar')
+@section('content')
 
-<div class="stack-sidebar">
+    <div class="dashboard">
+        <div class="nav-wrapper">
+            @include('pages.nav')
+        </div>
+    </div>
 
-    <a class="chats" data-id="{{$stack->id}}"><i class="fa fa-comments"></i></a>
 
-    <a class="views"><i class="fa fa-bars"></i> Change View</a>
+    @if (Auth::user()->id == $stack['user_id'])
 
-    @if (auth::check() && auth::user()->id == $stack->user_id)
+    <div class="row">
 
-    <a class="edit" href="/stacks/{{$stack->id}}/edit"><i class="fa fa-edit"></i> Edit Stack</a>
+        <div class="col-md-12">
+
+            <div class="page-title-row">
+
+                <div class="stack-controls single-stack">
+                    <p class="edit-ctrl">Edit Options:</p>
+                    <div class="stack-ctrl-item clone">
+                        <svg width="38" height="18" xmlns="http://www.w3.org/2000/svg">
+                          <g>
+                            <path id="clone" d="M7.875 4.781V0H.844A.842.842 0 0 0 0 .844v16.312c0 .468.376.844.844.844h11.812a.842.842 0 0 0 .844-.844V5.625H8.719a.846.846 0 0 1-.844-.844zm2.25 8.297c0 .232-.19.422-.422.422H3.797a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.25c0 .232-.19.422-.422.422H3.797a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.531v.281c0 .232-.19.422-.422.422H3.797a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422zM13.5 4.286V4.5H9V0h.214c.225 0 .44.088.598.246l3.442 3.445a.841.841 0 0 1 .246.595zM31.746 4.781V0h-7.031a.842.842 0 0 0-.844.844v16.312c0 .468.376.844.844.844h11.812a.842.842 0 0 0 .844-.844V5.625H32.59a.846.846 0 0 1-.844-.844zm2.25 8.297c0 .232-.19.422-.422.422h-5.906a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.25c0 .232-.19.422-.422.422h-5.906a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422v.281zm0-2.531v.281c0 .232-.19.422-.422.422h-5.906a.423.423 0 0 1-.422-.422v-.281c0-.232.19-.422.422-.422h5.906c.232 0 .422.19.422.422zm3.375-4.011V4.5h-4.5V0h.215c.225 0 .439.088.597.246l3.442 3.445a.841.841 0 0 1 .246.595zM21.34 9l-4.852 4.184V4.816z" fill="#1DA1F2" fill-rule="nonzero" />
+                          </g>
+                        </svg>
+                        <span>Clone</span>
+                    </div>
+                    <div class="stack-ctrl-item">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Trash</span>
+                    </div>
+                    <div class="stack-ctrl-item" onclick="editRedirect()">
+                        <i class="fas fa-pen-square"></i>
+                        <span>Edit</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function editRedirect() {
+            window.location = "/stacks/{{$stack->id}}/edit";
+        }
+    </script>
 
     @endif
-
-</div>
-
-@endsection
-
-@section('content')
 
 
     <div class="stack-wrapper">
@@ -36,20 +67,23 @@
 
                 <h2 class="stack-title">{{$stack->title}}</h2>
                 <div class="stack-meta">
-                    <div class="date">Last updated: {{date("M d, Y", strtotime($stack->updated_at))}}</div>
-                    <div class="comment-trigger"><i class="fa fa-comment"></i></div>
-                    <div class="language">English</div>
-                    <div class="follow-trigger"><a><i class="fa fa-plus-circle"></i></a></div>
+                    <div class="meta-topics">
+                        <p><strong>Under Topic:</strong> <span>Business, Customer Experience, Strategy</span></p>
+                    </div>
+                    <div class="meta-date-comments">
+                        <div class="date"><p>Updated: {{date("M d, Y", strtotime($stack->updated_at))}}</p></div>
+                        <div class="comments"><p><i class="fas fa-comment-dots"></i> 0 Comments</p></div>
+                    </div>
                 </div>
 
                 <hr />
 
-                {!! html_entity_decode($stack->content) !!}
+                <div class="content-body">{!! html_entity_decode($stack->content) !!}</div>
 
 
-                <div class="meta">
+                <div class="meta row">
 
-                    <div class="author user-ctrl">
+                    <div class="author user-ctrl col-md-6">
 
                         <p><span>Created By:</span></p>
 
@@ -78,23 +112,29 @@
                     </div>
 
 
-                    <div class="stack-rate">
+                    <div class="stack-rate col-md-6">
 
-                        <a class="upvote" data-id="{{$stack->id}}"><i class="thumbsup"></i>{{$upvote}}</a>
+                        <div class="likes">
 
-                        <a class="downvote" data-id="{{$stack->id}}"><i class="thumbsdown"></i></a>
+                            <a class="upvote" data-id="{{$stack->id}}"><i class="fas fa-thumbs-up"></i> {{$upvote}}</a>
+
+                            <a class="downvote" data-id="{{$stack->id}}"><i class="fas fa-thumbs-down"></i></a>
+
+                        </div>
 
                         <div class="social">
 
-                            <a class="fa fa-facebook-square"></a>
+                            <a href="#"><i class="fab fa-facebook-square"></i></a>
 
-                            <a class="fa fa-twitter"></a>
+            				<a href="#"><i class="fab fa-twitter"></i></a>
 
-                            <a class="fa fa-google-plus-circle"></a>
+            				<a href="#"><i class="fab fa-linkedin"></i></a>
 
-                            <a class="fa fa-reddit-alien"></a>
+            				<a href="#"><i class="fab fa-instagram"></i></a>
 
-                            <a class="">...</a>
+            				<a href="#"><i class="fab fa-reddit-square"></i></a>
+
+            				<a href="#"><i class="fas fa-ellipsis-h"></i></a>
 
                         </div>
 

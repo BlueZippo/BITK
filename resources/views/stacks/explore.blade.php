@@ -45,6 +45,8 @@
 
     <div class="share-this">
 
+        Share this Stack<br />
+
         <a class="whatsapp"><i class="fab fa-whatsapp-square"></i></a>
 
         <a class="facebook"><i class="fab fa-facebook-square"></i></a>

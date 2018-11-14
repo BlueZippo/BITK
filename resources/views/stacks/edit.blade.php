@@ -62,15 +62,15 @@
                         </svg>
                         <span>Clone</span>
                     </div>
-                    <div class="stack-ctrl-item">
+                    <div class="stack-ctrl-item trash">
                         <i class="fas fa-trash-alt"></i>
                         <span>Trash</span>
                     </div>
-                    <div class="stack-ctrl-item">
+                    <div class="stack-ctrl-item save">
                         <i class="fas fa-save"></i>
                         <span>Save</span>
                     </div>
-                    <div class="stack-ctrl-item save">
+                    <div class="stack-ctrl-item preview">
                         <i class="fas fa-eye"></i>
                         <span>Preview</span>
                     </div>

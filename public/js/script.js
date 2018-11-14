@@ -1,3 +1,8 @@
+$(document).click(function()
+{
+	$('.send-container').hide();
+});
+
 $(document).on('click', 'a.follow-button', function()
 {
 	stack_id = $(this).data('id');
@@ -25,6 +30,27 @@ $(document).on('click', 'a.follow-button', function()
 		}
 	});
 
+});
+
+$(document).on('click', 'a.share-button', function(e)
+{
+	e.preventDefault();
+
+    e.stopPropagation();
+
+	stack_id = $(this).data('id');
+
+	var offset = $(this).offset();
+
+	$('.send-container').css('top', (offset.top + 40) + 'px');
+	$('.send-container').css('left', (offset.left - 90)+ 'px');
+	$('.send-container').show();
+
+});
+
+$('.send-container').click(function(e)
+{
+	e.stopPropagation();
 });
 
 $(document).on('click', 'a.like-button', function()

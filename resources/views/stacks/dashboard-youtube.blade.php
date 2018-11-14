@@ -4,6 +4,6 @@
 
 @else
 
-<img width="100%" height="350" src="{{$stack->video_id}}">
+<div class="featured-image-upload stack"><img width="100%" height="350" src="{{$stack->video_id}}" /></div>
 
 @endif

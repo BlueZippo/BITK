@@ -209,6 +209,20 @@ $(document).ready(function()
         $('form').submit();
     });
 
+    $('.edit-stack .clone').click(function()
+    {
+        $.ajax(
+        {
+            url: '/stacks/' + $('input[name=id]').val() + '/clone',
+            type: 'get',
+            dataType: 'json',
+            success: function(data)
+            {
+                location = '/stacks/' + data.id + '/edit';
+            }
+        });
+    });
+
     $('form').submit(function()
     {
         var error = false;

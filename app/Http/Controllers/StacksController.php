@@ -1311,4 +1311,57 @@ class StacksController extends Controller {
         return ['id' => $id];
     }
 
+    public function clone($id)
+    {
+        $stack = Stack::find($id);
+
+        $new = new Stack;
+
+        $new->title = sprintf("%s (cloned)", $stack->title);
+
+        $new->content = $stack->content;
+
+        $new->user_id = auth()->id();
+
+        $new->video_id = $stack->video_id;
+
+        $new->media_type = $stack->media_type;
+
+        $new->status_id = 0;
+
+        $new->private = 0;
+
+        $new->save();
+
+
+        foreach($stack->categories as $category)
+        {
+            $x = new StackCategory;
+
+            $x->stack_id = $new->id;
+            $x->category_id = $category->category_id;
+
+            $x->save();
+        }
+
+        foreach($stack->links as $link)
+        {
+            $x = new Link;    
+
+            $x->title = $link->title;
+            $x->link = $link->link;
+            $x->description = $link->description;
+            $x->image = $link->image;
+            $x->media_id = $link->media_id;
+            $x->stack_id = $new->id;
+            $x->user_id = auth()->id();
+
+            $x->save();               
+
+        }
+
+
+        return ['id' => $new->id];
+    }
+
 }
