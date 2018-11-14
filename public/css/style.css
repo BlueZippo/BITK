@@ -591,6 +591,12 @@ a.downvote
 	overflow:hidden;
 }
 
+.stack-list.list .single-stack-wrapper .title
+{
+	width:auto;
+	white-space:normal;
+}
+
 .single-stack-wrapper .meta-category
 {
 	border-top:solid 1px #ccc;
