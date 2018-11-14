@@ -183,6 +183,8 @@ return [
 
         Unisharp\Ckeditor\ServiceProvider::class,
 
+        App\Providers\ComposerServiceProvider::class,
+
     ],
 
     /*

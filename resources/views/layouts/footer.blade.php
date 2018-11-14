@@ -26,5 +26,9 @@
 
     <script src="{{ asset('js/upload-image.js') }}"></script>
 
+    @if (Auth::check())
+    @include('pages.add-link-scripts')
+    @endif
+
 
     

@@ -170,75 +170,105 @@
 
     </div>
 
-   <div class="accordion stack-single">
+    <div class="edit-stack-layout-controls stack-layout-controls"> <!-- https://getbootstrap.com/docs/4.1/components/navs/ -->
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
-    @php $showPanel = 'show'; @endphp
+                <a class="nav-item nav-link" id="nav-layout-tabbed" data-toggle="tab" href="#layout-tabbed" role="tab" aria-controls="nav-tabbed" aria-selected="false"><i class="far fa-folder"></i></a>
 
-    @php $showPanelBtn = 'open'; @endphp
-
-    @foreach($medias as $media)
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <button class="btn btn-link {{$showPanelBtn}}" type="button" data-toggle="collapse" data-target="#category{{$media->id}}" aria-expanded="true" aria-controls="collapseOne">
-
-                    @if($media->icon)
-
-                    <i class="fa {{$media->icon}}"></i>
-
-                    @endif
-
-                    {{$media->media_type}}
-                </button>
-                <div class="divider"></div>
+                <a class="nav-item nav-link active" id="nav-layout-accordion" data-toggle="tab" href="#layout-accordion" role="tab" aria-controls="nav-accordion" aria-selected="true"><i class="fas fa-list-ul"></i></a>
 
             </div>
+        </nav>
+    </div>
 
-            <div class="collapse {{$showPanel}}" id="category{{$media->id}}" data-category="{{$media->id}}">
+    <div class="tab-content" id="nav-create-layout">
 
-                <div class="container">
+        <!-- Tabbed View -->
+        <div class="tab-pane fade" id="layout-tabbed" role="tabpanel" aria-labelledby="nav-layout-tabbed">
 
-                    <div class="row stack-links">
+            <hr>
+            <p><em>Place tabbed view here.</em></p>
+            <hr>
 
-                        @if (count($links))
+        </div>
 
-                            @php $linkCounter = 0; @endphp
+        <!-- Accordion View -->
+        <div class="tab-pane fade show active" id="layout-accordion" role="tabpanel" aria-labelledby="nav-layout-accordion">
 
-                            @foreach($links as $link)
+            <div class="accordion stack-single">
 
-                                @if ($link->media_id == $media->id)
+            @php $showPanel = 'show'; @endphp
 
-                                     <div class="col-md-3" id="link{{$linkCounter}}">
-                                        @include('links.box')
-                                    </div>
+            @php $showPanelBtn = 'open'; @endphp
 
-                                    @php $linkCounter++ @endphp
+            @foreach($medias as $media)
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <button class="btn btn-link {{$showPanelBtn}}" type="button" data-toggle="collapse" data-target="#category{{$media->id}}" aria-expanded="true" aria-controls="collapseOne">
+
+                            @if($media->icon)
+
+                            <i class="fa {{$media->icon}}"></i>
+
+                            @endif
+
+                            {{$media->media_type}}
+                        </button>
+                        <div class="divider"></div>
+
+                    </div>
+
+                    <div class="collapse {{$showPanel}}" id="category{{$media->id}}" data-category="{{$media->id}}">
+
+                        <div class="container">
+
+                            <div class="row stack-links">
+
+                                @if (count($links))
+
+                                    @php $linkCounter = 0; @endphp
+
+                                    @foreach($links as $link)
+
+                                        @if ($link->media_id == $media->id)
+
+                                             <div class="col-md-3" id="link{{$linkCounter}}">
+                                                @include('links.box')
+                                            </div>
+
+                                            @php $linkCounter++ @endphp
+
+                                        @endif
+
+
+                                    @endforeach
 
                                 @endif
 
 
-                            @endforeach
+                            </div>
 
-                        @endif
 
+                        </div>
 
                     </div>
 
 
                 </div>
 
+                @php $showPanel = ''; @endphp
+
+                @php $showPanelBtn = ''; @endphp
+
+            @endforeach
+
             </div>
 
-
         </div>
-
-        @php $showPanel = ''; @endphp
-
-        @php $showPanelBtn = ''; @endphp
-
-    @endforeach
 
     </div>
 

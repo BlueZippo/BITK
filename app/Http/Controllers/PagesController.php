@@ -175,10 +175,7 @@ class PagesController extends Controller {
 				}
 
 
-		$user_stacks = Stack::select('id as value', 'title as label')->where('user_id', '=', auth()->id())->get();
-
-
-		$recents = Stack::select('id', 'title')->where('user_id', '=', auth()->id())->orderby('updated_at', 'desc')->limit(5)->get();
+		
 
 
         $tags = User::find($user_id)
@@ -201,12 +198,7 @@ class PagesController extends Controller {
 
         $medias = MediaType::all();
 
-         $options = array(
-         		    'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),
-        			'parking' => 'Parking Lot',
-        			'new' => 'Create New Stack',
-        			'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
-        			);
+       
 
     	$data = ['mystacks' => $mystacks ,
                  'stacks' => $stacks,
@@ -215,9 +207,8 @@ class PagesController extends Controller {
                  'people' => $people,
                  'peopleFollows' => $people,
                  'user_id' => $user_id,
-                 'medias' => $medias,
-                 'options' => $options,
-                 'MyStacks' => $user_stacks,
+                 
+                 
                  'parking' => $parking];
 
        

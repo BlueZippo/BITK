@@ -80,7 +80,7 @@
 
             <hr />
 
-            {!! Form::open(['action' => ['StacksController@update', $stack->id],  'method' => 'POST']) !!}
+            <form method="POST" action="/stacks/{{$stack->id}}/update">
 
                 {{Form::hidden('video_id', $stack->video_id)}}
                 {{Form::hidden('media_type',$stack->media_type)}}
@@ -89,6 +89,8 @@
                 {{Form::hidden('content', $stack->content)}}
                 {{Form::hidden('status_id', $stack->status_id)}}
                 {{Form::hidden('id', $stack->id)}}
+
+                 {{ csrf_field() }}
 
                 <div class="dotted">
 
@@ -168,7 +170,7 @@
 
 
 
-            {!! Form::close() !!}
+            </form>
 
 
             <div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
