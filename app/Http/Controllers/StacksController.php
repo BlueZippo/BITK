@@ -1314,7 +1314,27 @@ class StacksController extends Controller {
     {
         $id = request('id');
 
-        $stack = Stack::find($id)->delete();
+        $stack = Stack::find($id);
+
+        if ($stack->user_id == auth()->id())
+        {           
+
+            StacksFollow::where('stack_id', '=', $id)->delete();
+
+            Link::where('stack_id', '=', $id)->delete();
+
+            StacksFavorite::where('stack_id', '=', $id)->delete();
+
+            StacksHidden::where('stack_id', '=', $id)->delete();
+
+            StacksVote::where('stack_id', '=', $id)->delete();
+
+            StackCategory::where('stack_id', '=', $id)->delete();
+
+            StackComments::where('stack_id', '=', $id)->delete();
+
+            $stack->delete();
+        }        
 
         return ['id' => $id];
     }
@@ -1323,53 +1343,63 @@ class StacksController extends Controller {
     {
         $stack = Stack::find($id);
 
-        $new = new Stack;
+        if ($stack->user_id == auth()->id())
+        {    
 
-        $new->title = sprintf("%s (cloned)", $stack->title);
+            $new = new Stack;
 
-        $new->content = $stack->content;
+            $new->title = sprintf("%s (cloned)", $stack->title);
 
-        $new->user_id = auth()->id();
+            $new->content = $stack->content;
 
-        $new->video_id = $stack->video_id;
+            $new->user_id = auth()->id();
 
-        $new->media_type = $stack->media_type;
+            $new->video_id = $stack->video_id;
 
-        $new->status_id = 0;
+            $new->media_type = $stack->media_type;
 
-        $new->private = 0;
+            $new->status_id = 0;
 
-        $new->save();
+            $new->private = 0;
+
+            $new->save();
 
 
-        foreach($stack->categories as $category)
+            foreach($stack->categories as $category)
+            {
+                $x = new StackCategory;
+
+                $x->stack_id = $new->id;
+                $x->category_id = $category->category_id;
+
+                $x->save();
+            }
+
+            foreach($stack->links as $link)
+            {
+                $x = new Link;    
+
+                $x->title = $link->title;
+                $x->link = $link->link;
+                $x->description = $link->description;
+                $x->image = $link->image;
+                $x->media_id = $link->media_id;
+                $x->stack_id = $new->id;
+                $x->user_id = auth()->id();
+
+                $x->save();               
+
+            }
+
+            return ['id' => $new->id, 'success' => true];
+
+        }
+        else
         {
-            $x = new StackCategory;
-
-            $x->stack_id = $new->id;
-            $x->category_id = $category->category_id;
-
-            $x->save();
+            return ['success' => false];
         }
 
-        foreach($stack->links as $link)
-        {
-            $x = new Link;    
-
-            $x->title = $link->title;
-            $x->link = $link->link;
-            $x->description = $link->description;
-            $x->image = $link->image;
-            $x->media_id = $link->media_id;
-            $x->stack_id = $new->id;
-            $x->user_id = auth()->id();
-
-            $x->save();               
-
-        }
-
-
-        return ['id' => $new->id];
+        
     }
 
 }

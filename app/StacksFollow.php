@@ -16,6 +16,11 @@ class StacksFollow extends Model
     	$this->belongsToMany('App\User');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function stack()
     {
     	return $this->belongsTo('App\Stack');
