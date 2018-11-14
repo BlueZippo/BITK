@@ -2,6 +2,10 @@
 
 @section('content')
 
+<div class="nav-wrapper">
+    @include('pages.nav')
+</div>
+
     <h2>People</h2>            
 
     <hr />

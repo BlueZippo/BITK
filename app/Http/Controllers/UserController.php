@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\MediaType;
+use App\Stack;
 
 use Spatie\Permission\Models\Role;
 
@@ -246,7 +248,18 @@ class UserController extends Controller
     {
         $user = User::find(auth()->id());
 
-        return view('users.profile')->with('user', $user);
+        $medias = MediaType::all();
+
+        $recents = Stack::select('id', 'title')->where('user_id', '=', auth()->id())->orderby('updated_at', 'desc')->limit(5)->get();
+
+        $options = array(
+                    'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),
+                    'parking' => 'Parking Lot',
+                    'new' => 'Create New Stack',
+                    'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
+                    );
+
+        return view('users.profile')->with(['user' => $user, 'medias' => $medias, 'options' => $options]);
     }
 
 

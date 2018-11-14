@@ -637,7 +637,10 @@ main {
 .dashboard .nav.nav-pills {
     padding: 10px 0;
 }
-.dashboard .nav.nav-pills li a {
+.dashboard .nav.nav-pills li a,
+.explorer-nav .nav.nav-pills li a,
+.nav.nav-pills li a
+{
     font-size: 14px;
     color: #404040;
     font-weight: 500;

@@ -517,10 +517,20 @@ class StacksController extends Controller {
 
         $friends = User::where('id', '!=', auth()->id())->limit(5)->orderby('name')->get();
 
+        $recents = Stack::select('id', 'title')->where('user_id', '=', auth()->id())->orderby('updated_at', 'desc')->limit(5)->get();
+
+        $options = array(
+                    'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),
+                    'parking' => 'Parking Lot',
+                    'new' => 'Create New Stack',
+                    'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
+                    );
+
         return view('stacks.explore')->with(['stacks' => $stacks, 
                                              'medias' => $medias, 
                                              'navSort' => $navSort, 
                                              'sort' => $sort,
+                                             'options' => $options,
                                              'friends' => $friends
                                             ]);
     }
@@ -614,7 +624,11 @@ class StacksController extends Controller {
         $friends = User::where('id', '!=', auth()->id())->limit(5)->orderby('name')->get();
 
 
-        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias, 'navSort' => $navSort, 'sort' => 'popular', 'friends' => $friends]);
+        return view('stacks.explore')->with(['stacks' => $stacks, 
+                                             'medias' => $medias, 
+                                             'navSort' => $navSort, 
+                                             'sort' => 'popular', 
+                                             'friends' => $friends]);
 
     }
 
