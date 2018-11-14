@@ -906,7 +906,7 @@ a.downvote
 
 .send-container
 {
-	/*display:none;*/
+	display:none;
 }
 
 .send-container i
