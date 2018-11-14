@@ -6,7 +6,7 @@
 
         <span class="upvotes">{{$stack['upvotes']}}</span>
 
-        <a class="disapprove-button" data-id="{{$stack['id']}}"><i class="fa fa-arrow-down"></i></a>        
+        <a class="disapprove-button" data-id="{{$stack['id']}}"><i class="fa fa-arrow-down"></i></a>
 
       </div>
 
@@ -19,7 +19,7 @@
             <img src="{{$stack['image']}}">
           @endif
         @else
-            <img src="/images/intheknow.png">
+            <img src="{{ asset('images/stack-placeholder.png') }}">
         @endif
       </div>
 
@@ -27,15 +27,15 @@
         <a class="follow-button">Follow</a>
         <span class="more-button">
           <i class="fa fa-ellipsis-v"></i>
-          <div class="more-container">   
+          <div class="more-container">
 
             <a title="Add to favorites" class="like-button" data-action="like" data-id={{$stack['id']}}><i class="fa fa-heart"></i> Add to favorites</a>
             <a title="Send stack" class="share-button" data-action="share" data-id={{$stack['id']}}><i class="fa fa-share"></i> Send</a>
             <a title="Like stack" class="approve-button" data-action="approve" data-id={{$stack['id']}}><i class="fa fa-thumbs-up"></i> {{$stack['upvotes']}}</a>
             <a title="Unlike stack" class="disapprove-button" data-action="disapporve" data-id={{$stack['id']}}><i class="fa fa-thumbs-down"></i> {{$stack['downvotes']}}</a>
             <a title="Add comments" class="comments-button" data-action="comments" data-id={{$stack['id']}}><i class="fa fa-comments"></i> {{$stack['comments']}}</a>
-           
-           
+
+
                 <a class="Set reminder"><i class="fa fa-clock-o"></i> Set a reminder</a>
                 <a class="Hide hide-button" data-id="{{$stack['id']}}"><i class="fa fa-times"></i> Hide<small>See fewer stacks like this</small></a>
                 <a class="Report"><i class="fa fa-ban"></i> Report<small>This goes agains Platstack's community guidelines</small></a>
@@ -65,7 +65,7 @@
 
         <div class="meta-category">
           <div class="categories">
-            {{$stack['categories']}}  
+            {{$stack['categories']}}
           </div>
           <div class="date">
             {{$stack['updated_at']}}
@@ -103,7 +103,7 @@
             <a title="Add comments" class="comments-button" data-action="comments" data-id={{$stack['id']}}><i class="fa fa-comments"></i> {{$stack['comments']}}</a>
             <span title="More action" class="more-button" data-action="more" data-id={{$stack['id']}}>
               <i class="fa fa-ellipsis-h"></i>
-              <div class="more-container">            
+              <div class="more-container">
                 <a class="Send stack share-button"><i class="fa fa-upload"></i> Send</a>
 
                 @if ($stack['follow'])
