@@ -49,7 +49,6 @@ $(document).on('click', 'a.share-button', function(e)
 		offset = $('.share-button', $(par).parent().parent()).offset();
 	}
 
-	console.log(offset);
 
 	$('.send-container').css('top', (offset.top + 40) + 'px');
 	$('.send-container').css('left', (offset.left - 90)+ 'px');

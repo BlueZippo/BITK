@@ -514,7 +514,15 @@ class StacksController extends Controller {
                           );
         }
 
-        return view('stacks.explore')->with(['stacks' => $stacks, 'medias' => $medias, 'navSort' => $navSort, 'sort' => $sort]);
+
+        $friends = User::where('id', '!=', auth()->id())->limit(5)->orderby('name')->get();
+
+        return view('stacks.explore')->with(['stacks' => $stacks, 
+                                             'medias' => $medias, 
+                                             'navSort' => $navSort, 
+                                             'sort' => $sort,
+                                             'friends' => $friends
+                                            ]);
     }
 
 

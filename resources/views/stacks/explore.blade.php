@@ -74,6 +74,35 @@
             {{Form::text('send', '', ['class' => 'form-control', 'placeholder' => 'Name or Email'])}}
         </div>
 
+        <div class="friends-list">
+
+            @foreach($friends as $friend)
+
+                <div class="friend-info">
+
+                    <div class="avatar">
+
+                        @if ($friend->photo)
+                            <img class="author-photo" src="{{$friend->photo}}">
+                        @else
+                            <div class="inner">
+                                {{ render_initials( isset($friend->name) ? $friend->name : $friend->email) }}
+                            </div>
+                        @endif
+
+
+                    </div>
+
+                    {{$friend->name}}
+
+                    <a class="btn btn-send">Send</a>
+
+                </div>
+
+            @endforeach
+
+        </div>
+
 
     </div>
 
