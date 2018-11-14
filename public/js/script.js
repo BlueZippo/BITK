@@ -1,6 +1,7 @@
 $(document).click(function()
 {
 	$('.send-container').hide();
+	$('.add-link-form').hide();
 });
 
 $(document).on('click', 'a.follow-button', function()
@@ -214,8 +215,12 @@ $(document).ready(function()
 	});
 
 
-	$('.add-a-link-button').click(function()
+	$('.add-a-link-button').click(function(e)
 	{
+		e.preventDefault();
+
+    	e.stopPropagation();
+
 		var offset = $(this).offset();
 		console.log( "left: " + offset.left + ", top: " + offset.top );
 

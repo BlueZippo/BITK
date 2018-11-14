@@ -23,6 +23,8 @@
 
             @include('layouts.nav.search')
 
+            @include('links.create')
+
 
             <div class="mobile-menu-wrapper collapse navbar-collapse" id="navbarCollapse">
 

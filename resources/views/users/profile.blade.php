@@ -3,6 +3,10 @@
 
 @section('content')
 
+<div class="nav-wrapper">
+    @include('pages.nav')
+</div>
+
 <div class="row">
 
     <div class="col-lg-12 margin-tb">

@@ -9,6 +9,7 @@ use App\Stack;
 use App\StacksFollow;
 use App\StacksVote;
 use App\StackComments;
+use App\MediaType;
 
 class PeopleController extends Controller
 {
@@ -23,9 +24,23 @@ class PeopleController extends Controller
 
         $follows = User::find(auth()->id())
                     ->peopleFollow()
-                    ->pluck('people_id');            
+                    ->pluck('people_id');  
 
-        return view('people.index')->with(['users' => $users, 'peopleFollows' => $follows]);
+        $medias = MediaType::all();
+
+        $recents = Stack::select('id', 'title')->where('user_id', '=', auth()->id())->orderby('updated_at', 'desc')->limit(5)->get();
+
+        $options = array(
+                    'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),
+                    'parking' => 'Parking Lot',
+                    'new' => 'Create New Stack',
+                    'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
+                    );          
+
+        return view('people.index')->with(['users' => $users, 
+                                           'peopleFollows' => $follows,
+                                           'medias' => $medias,
+                                           'options' => $options]);
     }
 
     /**
