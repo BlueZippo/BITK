@@ -745,7 +745,8 @@ main {
     margin-left: auto;
     margin-right: 0;
 }
-.dash-stack-tile .stack-footer .forward {
+.dash-stack-tile .stack-footer .forward,
+.dash-stack-tile .stack-footer .trash {
     color: #1da1f2;
     cursor: pointer;
     margin-right: 10px;
