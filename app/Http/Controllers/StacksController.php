@@ -57,7 +57,7 @@ class StacksController extends Controller {
 
         $data['last_updated'] = date("M d, Y");
         $data['upvote'] = 0;
-
+        $data['downvote'] = 0;
 
         return view('stacks.create')->with($data);
     }
@@ -844,9 +844,11 @@ class StacksController extends Controller {
                 $category_ids[] = $category->category_id;
             }    
 
-            $upvote = StacksVote::where('stack_id', '=', $id)->get();
+            $upvote = StacksVote::where('stack_id', '=', $id)->where('vote','=',1)->get();
+            $downvote = StacksVote::where('stack_id', '=', $id)->where('vote','=', 0)->get();
 
             $data['upvote'] = count($upvote);
+            $data['downvote'] = count($downvote);
 
             $data['stack_categories'] = $categories ? implode(', ', $categories) : 'enter a topic...';
             $data['stack_category_ids'] = $category_ids;
