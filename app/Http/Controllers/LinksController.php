@@ -92,7 +92,7 @@ class LinksController extends Controller
        $link->title = $request->input('link_title');
        $link->description = $request->input('link_description');
        $link->link = $request->input('link_url');
-       $link->stack_id = $stack_id;
+       $link->stack_id = (int)$stack_id;
        $link->media_id = $request->input('media_id');
        $link->image = $request->input('link_image');
 
