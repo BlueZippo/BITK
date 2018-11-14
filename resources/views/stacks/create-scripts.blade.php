@@ -6,8 +6,7 @@ var linkCounter = {{count($links)}};
 
 function stack_autosave()
 {
-
-    $('main.container').append('<div class="autosave">Saving...</div>');
+    var error = false;
 
     $('.dotted').each(function()
     {
@@ -20,6 +19,11 @@ function stack_autosave()
             case 'title':
 
                 $('input[name=title]').val(content);
+
+                if (content == 'enter title...' || content == '')
+                {
+                    error = true;                
+                }
 
             break;
 
@@ -34,20 +38,24 @@ function stack_autosave()
 
     var params = $('.edit-stack form').serialize();
 
-    console.log(params);
+    if (!error)
+    {   
 
-    $.ajax(
-    {
-        url: '/stacks/autosave',
-        data: params,
-        method: 'post',
-        dataType: 'json',
-        success: function(data)
+        $('main.container').append('<div class="autosave">Saving...</div>'); 
+
+        $.ajax(
         {
-            $('main.container .autosave').remove();
-            $('input[name=id]').val(data.id);
-        }
-    })
+            url: '/stacks/autosave',
+            data: params,
+            method: 'post',
+            dataType: 'json',
+            success: function(data)
+            {
+                $('main.container .autosave').remove();
+                $('input[name=id]').val(data.id);
+            }
+        });
+    }
 }
 
 $(document).ready(function()

@@ -104,7 +104,7 @@
             <span title="More action" class="more-button" data-action="more" data-id={{$stack['id']}}>
               <i class="fa fa-ellipsis-h"></i>
               <div class="more-container">            
-                <a class="Send stack"><i class="fa fa-upload"></i> Send</a>
+                <a class="Send stack share-button"><i class="fa fa-upload"></i> Send</a>
 
                 @if ($stack['follow'])
                   <a title="Follow stack" class="follow-button followed" data-action="unfollow" data-id="{{$stack['id']}}"><i class="fa fa-plus-circle"></i> Followed</a>
