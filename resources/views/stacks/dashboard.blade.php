@@ -15,7 +15,7 @@
         </div>
     </div>
 
-
+    @if (Auth::check())
     @if (Auth::user()->id == $stack['user_id'])
 
     <div class="row">
@@ -56,6 +56,7 @@
         }
     </script>
 
+    @endif
     @endif
 
 
@@ -219,7 +220,7 @@
       </div>
     </div>
   </div>
-</div
+</div>
 
 
 

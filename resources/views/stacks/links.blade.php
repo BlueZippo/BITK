@@ -12,7 +12,7 @@
 
 <div class="tab-content" id="nav-create-layout">
 
-    <div class="tab-pane fade show active" id="layout-tabbed" role="tabpanel" aria-labelledby="nav-layout-tabbed">
+    <div class="tab-pane fade show active tabbed-panel" id="layout-tabbed" role="tabpanel" aria-labelledby="nav-layout-tabbed">
 
         <div class="links-nav" role="tablist">
 
@@ -97,9 +97,102 @@
 
     </div><!-- #layout-tabbed -->
 
-    <div class="tab-pane fade" id="layout-accordion" role="tabpanel" aria-labelledby="nav-layout-accordion">
+    <div class="tab-pane fade accordion-panel" id="layout-accordion" role="tabpanel" aria-labelledby="nav-layout-accordion">
 
-        <p><em>Place in the accordion Stack list here.</em></p>
+        <div class="accordion stack-single">
+
+            @php $showPanel = 'show'; @endphp
+
+            @php $showPanelBtn = 'open'; @endphp
+
+            @foreach($medias as $media)
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <button class="btn btn-link {{$showPanelBtn}}" type="button" data-toggle="collapse" data-target="#category{{$media->id}}" aria-expanded="true" aria-controls="collapseOne">
+
+                            @if($media->icon)
+
+                            <i class="fa {{$media->icon}}"></i>
+
+                            @endif
+
+                            {{$media->media_type}}
+
+
+                            @php $counter = 0; @endphp
+
+                            @foreach($links as $link)
+
+                                @if ($link->media_id == $media->id)
+
+                                @php $counter++; @endphp
+
+                                @endif
+
+                            @endforeach
+
+                            @if ($counter > 0)
+
+                                <span>{{$counter}}</span>
+
+                            @endif
+
+                        </button>
+                        <div class="divider"></div>
+
+                    </div>
+
+                    <div class="collapse {{$showPanel}}" id="category{{$media->id}}" data-category="{{$media->id}}">
+
+                        <div class="container">
+
+                            <div class="row stack-links">
+
+                                @if (count($links))
+
+                                    @foreach($links as $link)
+
+                                        @if ($link->media_id == $media->id)
+
+                                             <div class="col-md-3" id="link{{$linkCounter}}">
+                                                @include('links.box')
+                                            </div>                                    
+
+                                        @endif
+
+                                    @endforeach
+
+                                @endif
+
+                                <div class="col-md-3 add-link-button-wrapper">
+
+                                    <a class="add-link-modal"><i class="fa fa-plus-circle"></i></a>
+
+                                   
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                @php $showPanel = ''; @endphp
+
+                @php $showPanelBtn = ''; @endphp
+
+            @endforeach
+
+            </div>
 
     </div>
 
