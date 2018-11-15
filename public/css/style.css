@@ -1200,3 +1200,23 @@ a.downvote
 	margin:0px 5px;
 	vertical-align:middle;
 }
+
+.links-nav {
+    margin: 20px 0;
+    border-bottom: solid 1px #d1d1d1;
+    border-top: solid 1px #d1d1d1;
+}
+
+.links-nav a {
+    padding: 5px 15px;
+    margin: 10px 0;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.links-nav a.active, .links-nav a.active:hover {
+    color: #fff;
+    line-height: 1.8;
+    background: #1da1f2;
+}
