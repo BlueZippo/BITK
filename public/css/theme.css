@@ -772,6 +772,12 @@ main {
 .dash-stack-tile .stack-footer .edit a {
     text-decoration: none;
 }
+.dash-stack-tile .stack-footer .edit a:hover {
+    color: var(--pink);
+}
+.dash-stack-tile .stack-footer .edit a.edit-dash-trigger {
+    margin-right: 5px;
+}
 .dash-stack-tile .stack-footer .likes {
     display: flex;
     align-items: center;
