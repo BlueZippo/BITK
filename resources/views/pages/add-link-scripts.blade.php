@@ -14,7 +14,24 @@ $(document).ready(function()
      });
 });
 
-$('input[name=link_url]').focusout(function()
+$('input[name=link_url]').on('paste', function(e)
+{
+    var clipboardData, pastedData;
+
+    e.stopPropagation();
+    e.preventDefault();
+
+    clipboardData = e.clipboardData || window.clipboardData || e.originalEvent.clipboardData;
+    
+    pastedData = clipboardData.getData('Text');    
+
+    $(this).val(pastedData);    
+
+    $(this).trigger('change');
+
+});
+
+$('input[name=link_url]').on('change', function()
 {
     $('.continue-button').addClass('disabled');
 
