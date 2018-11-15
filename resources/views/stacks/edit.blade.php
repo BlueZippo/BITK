@@ -46,7 +46,7 @@
                         <div class="switch status @if($stack->status_id == 1) switchOn @endif" >@if($stack->status_id == 1) Published @else Draft @endif</div>
                     </div>
                     <div class="stack-ctrl-item switch-box">
-                        <div class="switch public @if($stack->private == 1) switchOn @endif" >@if($stack->private == 1) Private @else Public @endif</div>
+                        <div class="switch public @if($stack->private == 0) switchOn @endif" >@if($stack->private == 1) Private @else Public @endif</div>
                     </div>
                     <div class="stack-ctrl-item back">
                         <svg width="29" height="19" xmlns="http://www.w3.org/2000/svg">

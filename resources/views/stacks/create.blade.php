@@ -42,7 +42,7 @@
                         <div class="switch status" >Draft</div>
                     </div>
                     <div class="stack-ctrl-item switch-box">
-                        <div class="switch public" >Public</div>
+                        <div class="switch public" >Private</div>
                     </div>
                     <div class="stack-ctrl-item back">
                         <svg width="29" height="19" xmlns="http://www.w3.org/2000/svg">
@@ -88,7 +88,7 @@
                 {{Form::hidden('content', '')}}
                 {{Form::hidden('status_id', 0)}}
                 {{Form::hidden('media_type','youtube')}}
-                {{Form::hidden('private', 0)}}
+                {{Form::hidden('private', 1)}}
                 {{Form::hidden('id', 0)}}
 
                 <div class="dotted">

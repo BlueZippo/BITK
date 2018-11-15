@@ -142,24 +142,42 @@ $(document).ready(function()
         var fld = 'status_id';
         var lblOff = 'Draft';
         var lblOn = 'Published';
+        var isPublic = false;
 
         if ($(this).hasClass('public'))
         {
             fld = 'private';
-            lblOff = 'Public';
-            lblOn = 'Private';
+            lblOff = 'Private';
+            lblOn = 'Public';
+            isPublic = true;
         }
 
         $(this).toggleClass("switchOn");
 
         if ($(this).hasClass("switchOn"))
         {
-            $('input[name='+fld+']').val(1);
+            if (isPublic)
+            {
+                $('input[name='+fld+']').val(0);
+            }   
+            else
+            { 
+                $('input[name='+fld+']').val(1);
+            }
+                
             $(this).html(lblOn);
         }
         else
         {
-            $('input[name='+fld+']').val(0);
+            if (isPublic)
+            {
+                $('input[name='+fld+']').val(1);
+            }   
+            else
+            { 
+                $('input[name='+fld+']').val(0);
+            }
+
             $(this).html(lblOff);
         }
 
