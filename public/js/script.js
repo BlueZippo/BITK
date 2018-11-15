@@ -1,4 +1,4 @@
-0$(document).click(function()
+$(document).click(function()
 {
 	$('.send-container').hide();
 	$('.add-link-form').hide();
