@@ -249,6 +249,18 @@ $(document).ready(function()
         });
     });
 
+    $('.edit-stack .preview').click(function()
+    {
+        stack_autosave();
+
+        var id = $('input[name=id]').val();
+
+        var win = window.open('/stacks/' + id + '/preview', 'previewn', 'scrollbars, resizable, width=1500, height=1000');
+
+        win.focus();
+
+    });
+
     $('form').submit(function()
     {
         var error = false;
