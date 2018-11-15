@@ -53,7 +53,7 @@
               </div>
             @endif
           </div>
-          {{$stack['author']['name']}}
+          <span>{{$stack['author']['name']}}</span>
       </div>
 
 
