@@ -1170,3 +1170,33 @@ a.downvote
 	top:10px;
 	z-index:9;
 }
+
+.category-button
+{
+	position:relative;
+}
+
+.category-button span
+{
+	background-color:var(--pink);
+	display:inline-block;
+	font-size:9px;
+	padding:1px 7px;
+	border-radius:50%;
+	top:-5px;
+	right:-5px;
+	position:absolute;
+	color:#fff;
+}
+
+.card-header .btn span
+{
+	background-color:var(--pink);
+	display:inline-block;
+	font-size:9px;
+	padding:1px 7px;
+	border-radius:50%;	
+	color:#fff;
+	margin:0px 5px;
+	vertical-align:middle;
+}
