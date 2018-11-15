@@ -553,8 +553,8 @@ a.downvote
 
 .stack-list.list .featured-image
 {
-	max-width:100px;
 	width:100px;
+    height:100px;
 	margin-right:15px;
 	float:left;
 }
