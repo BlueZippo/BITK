@@ -1,6 +1,6 @@
 <div class="people-box">
 
-	<div class="header" @if($person->background) style="background-image:url({{$person->background}})"@endif ></div>
+	<div class="header" @if($person->background) style="background-image:url({{$person->background}})" @else  style="background-image:url( {{asset('images/stack-placeholder.png')}} )" @endif ></div>
 
 	<div class="user-image-follow-wrapper">
 		<div class="user-image">
