@@ -25,7 +25,7 @@ class GlobalComposer {
 
             $user_stacks = Stack::select('id as value', 'title as label')->where('user_id', '=', $userid)->get();
 
-            $medias = MediaType::all();
+            $medias = MediaType::orderby('media_type')->get();
 
             $recents = Stack::select('id', 'title')->where('user_id', '=', $userid)->orderby('updated_at', 'desc')->limit(5)->get();
 
