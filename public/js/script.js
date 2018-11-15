@@ -597,6 +597,32 @@ $(document).ready(function()
 
     });
 
+    $('.links-nav a').click(function()
+    {
+        $('.links-nav a').removeClass('active');
+
+        $(this).addClass('active');       
+
+        $('.tabbed-view .stack-links > div').hide();
+
+        if ($(this).hasClass('category-button'))
+        {
+            var category = $(this).data('category'); 
+            $('.tabbed-view .stack-links > div.category' + category).show();
+        }
+        else if ($(this).hasClass('top-three'))
+        {
+            $('.tabbed-view .stack-links #link0').show();
+            $('.tabbed-view .stack-links #link1').show();
+            $('.tabbed-view .stack-links #link2').show();
+        }
+        else
+        {
+            $('.tabbed-view .stack-links > div[class*=category').show();
+        }
+
+    });
+
 });
 
 function mobile_menu($) {

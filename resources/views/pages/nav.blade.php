@@ -1,4 +1,10 @@
 <ul class="nav nav-pills transition">
+
+	{{--@if (!Request::is('dashboard'))--}}
+	<li class="nav-item">
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+	</li>
+	{{--@endif--}}
 	<li class="nav-item">
         <a class="nav-link" href="/stacks/create">Create a Stack</a>
 	</li>
