@@ -217,6 +217,26 @@
                             @endif
 
                             {{$media->media_type}}
+
+
+                            @php $counter = 0; @endphp
+
+                            @foreach($links as $link)
+
+                                @if ($link->media_id == $media->id)
+
+                                @php $counter++; @endphp
+
+                                @endif
+
+                            @endforeach
+
+                            @if ($counter > 0)
+
+                                <span>{{$counter}}</span>
+
+                            @endif
+
                         </button>
                         <div class="divider"></div>
 
