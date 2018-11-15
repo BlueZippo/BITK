@@ -1,4 +1,4 @@
-    
+
     <div class="tab-pane fade show active" id="layout-tabbed" role="tabpanel" aria-labelledby="nav-layout-tabbed">
 
         <div class="links-nav" role="tablist">
@@ -49,6 +49,8 @@
 
                 @foreach($links as $link)
 
+                    {{--@php var_dump($link) @endphp--}}
+
                      <div class="col-md-3 category{{$link['media_id']}}" id="link{{$linkCounter}}">
                         <div class="single-link">
                             <input type="hidden" name="links[{{$linkCounter}}][id]" value="{{$link['id']}}">
@@ -65,7 +67,7 @@
 
                     @php $linkCounter++ @endphp
 
-                @endforeach               
+                @endforeach
 
 
             </div>
