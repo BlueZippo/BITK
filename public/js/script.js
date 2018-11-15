@@ -217,6 +217,8 @@ $(document).ready(function()
 
 	$('.add-a-link-button').click(function(e)
 	{
+		console.log('xxxx');
+
 		e.preventDefault();
 
     	e.stopPropagation();

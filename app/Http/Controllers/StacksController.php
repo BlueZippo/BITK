@@ -277,7 +277,7 @@ class StacksController extends Controller {
 
             $url = parse_url($link->link);
 
-            $links[$i]['domain'] = $url['host'];
+            $links[$i]['domain'] = isset($url['host']) ? $url['host'] : "";
             $links[$i]['media_type'] = $media_type;
             $links[$i]['date'] = date("F d, Y", strtotime($link->created_at));
 
