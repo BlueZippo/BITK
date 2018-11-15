@@ -1095,7 +1095,7 @@ main {
     display: table;
 }
 .stack-list.list > .single-stack-wrapper > .inner-wrap > .featured-image > img {
-    width: 100px;
+    width: 120px;
     height: 100px;
     object-fit: cover;
 }
