@@ -22,7 +22,34 @@
 
             @foreach($medias as $media)
 
-               <a class="category-button @if($media->id == $media_id) active @endif" data-category="{{$media->id}}"  data-toggle="tab" role="tab">{{$media->media_type}}</a>
+                @php
+
+                $counter = 0;
+
+                @endphp
+
+                @foreach($links as $link)
+
+                    @if ($media->id == $link['media_id'])
+
+                        @php $counter++ @endphp
+
+
+                    @endif
+
+                @endforeach
+
+               <a class="category-button @if($media->id == $media_id) active @endif" data-category="{{$media->id}}"  data-toggle="tab" role="tab">
+
+                    {{$media->media_type}}
+
+                    @if ($counter > 0)
+
+                    <span>{{$counter}}</span>
+
+                    @endif
+
+               </a>
 
             @endforeach
         </div>

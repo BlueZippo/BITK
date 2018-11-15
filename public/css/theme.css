@@ -1074,12 +1074,12 @@ main {
 /*****************************
     #Explore
 *****************************/
-.stack-list.tile > .single-stack-wrapper > .inner-wrap > .featured-image {
+.stack-list:not(.list) > .single-stack-wrapper > .inner-wrap > .featured-image {
     height: 222px;
     position: relative;
     overflow: hidden;
 }
-.stack-list.tile > .single-stack-wrapper > .inner-wrap > .featured-image > img {
+.stack-list:not(.list) > .single-stack-wrapper > .inner-wrap > .featured-image > img {
     position: absolute;
     width: 100%;
     height: auto;
@@ -1088,4 +1088,14 @@ main {
     bottom: 0;
     left: 0;
     margin: auto;
+}
+.stack-list.list > .single-stack-wrapper > .inner-wrap:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.stack-list.list > .single-stack-wrapper > .inner-wrap > .featured-image > img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
 }

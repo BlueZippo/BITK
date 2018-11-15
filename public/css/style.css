@@ -553,8 +553,8 @@ a.downvote
 
 .stack-list.list .featured-image
 {
-	max-width:100px;
 	width:100px;
+    height:100px;
 	margin-right:15px;
 	float:left;
 }
@@ -1169,4 +1169,22 @@ a.downvote
 	right:10px;
 	top:10px;
 	z-index:9;
+}
+
+.category-button
+{
+	position:relative;
+}
+
+.category-button span
+{
+	background-color:var(--pink);
+	display:inline-block;
+	font-size:9px;
+	padding:1px 7px;
+	border-radius:50%;
+	top:-5px;
+	right:-5px;
+	position:absolute;
+	color:#fff;
 }
