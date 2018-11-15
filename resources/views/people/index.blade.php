@@ -6,24 +6,28 @@
     @include('pages.nav')
 </div>
 
-    <h2>People</h2>            
+    <div class="people-page">
 
-    <hr />
+        <div class="page-title-row">
+            <h2>People</h2>
+        </div>
 
-    <div class="row">
-        
-        @foreach($users as $person)
+        <div class="row">
 
-        <div class="col-md-2 text-center people-{{$person->id}}">
+            @foreach($users as $person)
 
-            @include('people.box')
+            <div class="col-md-2 people-{{$person->id}}">
 
-        </div>   
+                @include('people.box')
+
+            </div>
 
 
-        @endforeach
-        
-    </div>    
-   
+            @endforeach
+
+        </div>
+
+    </div>
+
 
 @endsection

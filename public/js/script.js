@@ -536,7 +536,6 @@ $(document).ready(function()
 	equal_heights($);
 	dashboard_controls($);
 
-
 	$('.stack-controls .trash').click(function()
     {
         var id = $(this).data('id');
@@ -699,6 +698,12 @@ function equal_heights($) {
 
 	//Dashboard People
 	$('.stack-panel-people .people-box').matchHeight({
+		byRow: false,
+	    property: 'height'
+	});
+
+	//People Page
+	$('.people-page .people-box').matchHeight({
 		byRow: false,
 	    property: 'height'
 	});
