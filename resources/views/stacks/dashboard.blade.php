@@ -155,7 +155,7 @@
 
                    <div class="featured-image">
 
-                        <img src="/images/youtube-image.png">
+                        <img src="{{ asset('images/stack-placeholder.png') }}">
 
                     </div>
 

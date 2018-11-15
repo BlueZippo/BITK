@@ -1,9 +1,13 @@
     <div class="inner-wrap" id="stack{{$stack['id']}}">
       <div class="featured-image">
         @if ($stack['image'])
-            <img src="http://img.youtube.com/vi/{{$stack['image']}}/hqdefault.jpg">
+            @if ( is_image($stack['image']) )
+                <img src="{{$stack['image']}}" />
+            @else
+                <img src="http://img.youtube.com/vi/{{$stack['image']}}/hqdefault.jpg">
+            @endif
         @else
-            <img src="/images/intheknow.png">
+            <img src="{{ asset('images/stack-placeholder.png') }}">
         @endif
       </div>
 
@@ -12,7 +16,7 @@
             <a href="/stacks/{{$stack['id']}}/dashboard">{{$stack['title']}}</a>
         </div>
 
-       
+
 
 
         <div class="stack-footer">

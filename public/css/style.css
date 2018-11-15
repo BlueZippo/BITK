@@ -162,13 +162,6 @@ Table of Content:
 	height:220px;
 	background:url(../images/youtube-video.png);
 }
-
-.featured-image img
-{
-	width:100%;
-	max-height:222px;
-}
-
 .stack-content
 {
 	padding:10px;
@@ -987,7 +980,7 @@ a.downvote
 }
 
 .send-container .send-this i
-{	
+{
 	font-size:17px;
 	margin:0;
 }

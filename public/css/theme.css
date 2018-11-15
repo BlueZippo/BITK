@@ -10,6 +10,7 @@ Table of Content:
 #Single Stack
 #Dashboard
 #Edit Stack
+#Explore
 *****************************/
 /*****************************
     #Layout
@@ -507,6 +508,17 @@ main {
 }
 .stack-wrapper .content .meta>.stack-rate>.social {
     padding-left: 10px;
+}
+.stack-wrapper .featured-image {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+}
+.stack-wrapper .featured-image>img {
+    position: absolute;
+    width: auto;
+    height: 350px;
 }
 .accordion.stack-single .card {
     border: 0;
@@ -1058,4 +1070,22 @@ main {
 }
 .add-a-link-button.main-nav:hover {
     background-color: var(--text-color);
+}
+/*****************************
+    #Explore
+*****************************/
+.stack-list.tile > .single-stack-wrapper > .inner-wrap > .featured-image {
+    height: 222px;
+    position: relative;
+    overflow: hidden;
+}
+.stack-list.tile > .single-stack-wrapper > .inner-wrap > .featured-image > img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
 }

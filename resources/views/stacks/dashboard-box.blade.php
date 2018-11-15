@@ -31,7 +31,9 @@
             </div>
             <div class="likes">
                 <div class="forward forward-trigger"><i class="fas fa-share-square"></i></div>
+                @if (Auth::user()->id == $stack['user_id'])
                 <div class="trash trash-trigger"><i class="fas fa-trash-alt"></i></div>
+                @endif
                 <div class="like" data-id="{{$stack['id']}}"><i class="fas fa-thumbs-up"></i> {{$stack['upvotes']}}</div>
                 <div class="dislike" data-id="{{$stack['id']}}"><i class="fas fa-thumbs-down"></i> {{$stack['downvotes']}}</div>
             </div>
