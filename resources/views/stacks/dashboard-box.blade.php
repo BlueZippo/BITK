@@ -1,8 +1,32 @@
+
+@php
+
+//var_dump($stack);
+
+@endphp
 <div class="inner-wrap dash-stack-tile" id="stack{{$stack['id']}}">
+
+    <div class="featured-image">
+        <div class="gradient"></div>
+        @if ($stack['image'])
+            @if ( is_image($stack['image']) )
+                <img src="{{$stack['image']}}" />
+            @else
+                <img src="http://img.youtube.com/vi/{{$stack['image']}}/hqdefault.jpg" />
+            @endif
+        @else
+            <img src="{{ asset('images/stack-placeholder.png') }}" />
+        @endif
+
+        <div class="title">
+            <h4><a href="/stacks/{{$stack['id']}}/dashboard">{{$stack['title']}}</a></h4>
+        </div>
+
+    </div>
 
     <div class="stack-content">
 
-        <div class="title">
+        <div class="title" style="display: none;">
             <h4><a href="/stacks/{{$stack['id']}}/dashboard">{{$stack['title']}}</a></h4>
         </div>
 
