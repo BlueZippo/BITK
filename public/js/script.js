@@ -536,7 +536,6 @@ $(document).ready(function()
 	equal_heights($);
 	dashboard_controls($);
 
-
 	$('.stack-controls .trash').click(function()
     {
         var id = $(this).data('id');
@@ -601,13 +600,13 @@ $(document).ready(function()
     {
         $('.links-nav a').removeClass('active');
 
-        $(this).addClass('active');       
+        $(this).addClass('active');
 
         $('.tabbed-view .stack-links > div').hide();
 
         if ($(this).hasClass('category-button'))
         {
-            var category = $(this).data('category'); 
+            var category = $(this).data('category');
             $('.tabbed-view .stack-links > div.category' + category).show();
         }
         else if ($(this).hasClass('top-three'))
@@ -685,18 +684,26 @@ function equal_heights($) {
 	});
 
 	// Dashboard Tiles
-	$('.dash-stack-tile > .stack-content').matchHeight({
+	$('.dash-stack-tile').matchHeight({
 		byRow: false,
 	    property: 'height'
 	});
 
+	/*
 	$('.dash-stack-tile > .stack-content > .title').matchHeight({
 		byRow: false,
 	    property: 'height'
 	});
+	*/
 
 	//Dashboard People
 	$('.stack-panel-people .people-box').matchHeight({
+		byRow: false,
+	    property: 'height'
+	});
+
+	//People Page
+	$('.people-page .people-box').matchHeight({
 		byRow: false,
 	    property: 'height'
 	});
