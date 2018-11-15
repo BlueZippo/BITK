@@ -4,7 +4,7 @@
 
 
     @include('stacks.explore-nav')
-   
+
 
     <div class="stack-list tile">
 
@@ -18,9 +18,9 @@
 
 
         @endforeach
-        
-        
-    </div>   
+
+
+    </div>
 
 
 
@@ -65,7 +65,7 @@
 
         Or send to
 
-       
+
 
         <div class="input-group mb-2">
             <div class="input-group-prepend">
@@ -107,7 +107,7 @@
     </div>
 
 </div>
-   
+
 
 @endsection
 

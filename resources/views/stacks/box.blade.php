@@ -14,12 +14,12 @@
         @if ($stack['image'])
 
           @if ($stack['media_type'] == 'youtube')
-            <img src="http://img.youtube.com/vi/{{$stack['image']}}/hqdefault.jpg">
+            <img src="http://img.youtube.com/vi/{{$stack['image']}}/hqdefault.jpg" />
           @else
-            <img src="{{$stack['image']}}">
+            <img src="{{$stack['image']}}" />
           @endif
         @else
-            <img src="{{ asset('images/stack-placeholder.png') }}">
+            <img src="{{ asset('images/stack-placeholder.png') }}" />
         @endif
       </div>
 
