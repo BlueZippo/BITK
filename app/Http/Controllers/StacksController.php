@@ -243,7 +243,12 @@ class StacksController extends Controller {
         return json_encode(array('user_id' => $user_id, 'stack_id' => $id));
     }
 
-    public function dashboard($id)
+    public function preview($id)
+    {
+        return $this->dashboard($id, 'preview');
+    }
+
+    public function dashboard($id, $mode = 'normal')
     {
         $stack = Stack::find($id);
 
@@ -359,8 +364,14 @@ class StacksController extends Controller {
                     );
 
 
-
-        return view('stacks.dashboard')->with($data);
+        if ($mode == 'preview')
+        {
+            return view('stacks.preview')->with($data);
+        }   
+        else
+        {
+            return view('stacks.dashboard')->with($data);
+        }    
     }
 
     public function explore($sort = 'popular')
