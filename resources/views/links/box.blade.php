@@ -20,7 +20,7 @@
 
 				<div class="col-md-3 text-right">
 
-					<a class="link-comment-button" data-id="{{$link['id']}}"><i class="fa fa-comment"></i> {{$link['comments']}}</a>
+					<a class="link-comment-button" data-id="{{$link['id']}}"><i class="fa fa-comment"></i> @if($link['comments'] > 0) {{$link['comments']}} @endif</a>
 
 				</div>
 
