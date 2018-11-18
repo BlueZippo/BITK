@@ -112,7 +112,19 @@ trait HasRoles
             ->map->id
             ->all();
 
-        $this->roles()->sync($roles, false);
+        $model = $this->getModel();
+
+        if ($model->exists) {
+            $this->roles()->sync($roles, false);
+            $model->load('roles');
+        } else {
+            $class = \get_class($model);
+
+            $class::saved(
+                function ($model) use ($roles) {
+                    $model->roles()->sync($roles, false);
+                });
+        }
 
         $this->forgetCachedPermissions();
 
@@ -127,6 +139,8 @@ trait HasRoles
     public function removeRole($role)
     {
         $this->roles()->detach($this->getStoredRole($role));
+
+        $this->load('roles');
     }
 
     /**
@@ -146,7 +160,7 @@ trait HasRoles
     /**
      * Determine if the model has (one of) the given role(s).
      *
-     * @param string|array|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection $roles
+     * @param string|int|array|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection $roles
      *
      * @return bool
      */
@@ -158,6 +172,10 @@ trait HasRoles
 
         if (is_string($roles)) {
             return $this->roles->contains('name', $roles);
+        }
+
+        if (is_int($roles)) {
+            return $this->roles->contains('id', $roles);
         }
 
         if ($roles instanceof Role) {

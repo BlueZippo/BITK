@@ -10,6 +10,7 @@ use App\StacksFollow;
 use App\StacksVote;
 use App\StackComments;
 use App\MediaType;
+use App\StacksFavorite;
 
 class PeopleController extends Controller
 {
@@ -159,6 +160,8 @@ class PeopleController extends Controller
 
             $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
+            $favorite = StacksFavorite::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
             $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();;
 
             $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();;
@@ -173,6 +176,7 @@ class PeopleController extends Controller
                     'media_type' => $result->media_type,
                     'author' => $author,
                     'follow' => $follow->isEmpty() ? false : true,
+                    'favorite' => $favorite->isEmpty() ? false : true,
                     'upvotes' => count($upvotes),
                     'downvotes' => count($downvotes),
                     'comments' => count($comments),

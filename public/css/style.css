@@ -1220,3 +1220,9 @@ a.downvote
     line-height: 1.8;
     background: #1da1f2;
 }
+
+.stack-meta .comments,
+.link-comment-button
+{
+	cursor:pointer;
+}

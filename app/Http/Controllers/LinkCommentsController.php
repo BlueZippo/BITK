@@ -18,7 +18,7 @@ class LinkCommentsController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -51,6 +51,8 @@ class LinkCommentsController extends Controller
 
         $link = Link::find($link_id);
 
+        $allComments = $link->comments()->get();
+
         $comments = $link->comments()->limit(5)->orderby('updated_at', 'desc')->get();
 
         $data['link_id'] = $link_id;
@@ -60,7 +62,7 @@ class LinkCommentsController extends Controller
 
         $html = view('links.comments-list')->with($data)->render();
 
-        return ['html' => $html];
+        return ['html' => $html, 'comments' => count($allComments)];
     }
 
     /**
@@ -71,6 +73,7 @@ class LinkCommentsController extends Controller
      */
     public function show($id)
     {
+        
         $data['link_id'] = $id;
 
         $link = Link::find($id);
@@ -82,6 +85,7 @@ class LinkCommentsController extends Controller
         $html = view('links.comments')->with($data)->render();
 
         return ['html' => $html];
+        
     }
 
     /**

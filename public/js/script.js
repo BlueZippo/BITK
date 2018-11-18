@@ -2,6 +2,7 @@ $(document).click(function()
 {
 	$('.send-container').hide();
 	$('.add-link-form').hide();
+	$('.categories-popup').hide();
 });
 
 $(document).on('click', 'a.follow-button', function()
@@ -139,6 +140,8 @@ $(document).on('keydown', '.comment-form textarea[name=comment]', function(e)
 
 				$('#stack' + data.stack_id + ' .comments-button').html('<i class="fa fa-comments"></i>' + data.comments)
 
+				$('.stack-meta .comments').html('<p><i class="fas fa-comment-dots"></i> '+ data.comments + ' Comments</p>');
+
 				$('textarea[name=comment]').val('');
 			}
 		});
@@ -173,6 +176,8 @@ $(document).on('keydown', '.link-comment-form textarea[name=comment]', function(
 				$('.modal-body .comment-list').html(data.html);
 
 				$('textarea[name=comment]').val('');
+
+				$('.link-comment-button').html('<i class="fa fa-comment"></i> ' + data.comments)
 			}
 		});
 	}
@@ -217,8 +222,6 @@ $(document).ready(function()
 
 	$('.add-a-link-button').click(function(e)
 	{
-		console.log('xxxx');
-
 		e.preventDefault();
 
     	e.stopPropagation();
@@ -501,7 +504,7 @@ $(document).ready(function()
 
     });
 
-    $('a.chats, a.comments-button').click(function()
+    $('a.chats, a.comments-button, .stack-meta .comments').click(function()
     {
     	var id = $(this).data('id');
 

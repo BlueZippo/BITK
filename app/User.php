@@ -56,7 +56,7 @@ class User extends Authenticatable
 
     public function stacksFollow()
     {
-         return $this->hasManyThrough('App\StacksFollow', 'App\Stack', 'id', 'user_id');
+         return $this->hasManyThrough('App\StacksFollow', 'App\Stack', 'stacks_follows.user_id', 'stack_id');
     }
 
     public function peopleFollow()

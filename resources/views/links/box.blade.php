@@ -12,15 +12,15 @@
 
 			<div class="row">
 
-				<div class="col-md-10">
+				<div class="col-md-9">
 
 					{{$link['media_type']}}
 
 				</div>
 
-				<div class="col-md-2">
+				<div class="col-md-3 text-right">
 
-					<a class="link-comment-button" data-id="{{$link['id']}}"><i class="fa fa-comment"></i></a>
+					<a class="link-comment-button" data-id="{{$link['id']}}"><i class="fa fa-comment"></i> {{$link['comments']}}</a>
 
 				</div>
 
