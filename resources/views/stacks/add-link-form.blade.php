@@ -70,7 +70,7 @@
                   <div class="col-md-12 text-right">
 
 
-                    <a class="cancel-btn">Cancel</a> <a class="btn btn-primary submit-button">Submit</a>
+                    <a class="cancel-btn" onclick="$('.links-container').hide();">Cancel</a> <a class="btn btn-primary submit-button">Submit</a>
 
 
                   </div>  

@@ -142,6 +142,16 @@ div.links-container.left-position::after
 	box-shadow: 5px -5px 5px  #ccc;
 }
 
+div.links-container.middle-position
+{
+	top:-120px;
+}
+
+div.links-container.middle-position::after
+{
+	top:50%;
+}
+
 
 .add-link label
 {

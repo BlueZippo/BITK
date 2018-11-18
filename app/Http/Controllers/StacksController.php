@@ -19,6 +19,7 @@ use App\LinkCategory;
 use App\Search;
 use App\StacksVote;
 use App\StackComments;
+use App\LinkComment;
 use App\MediaType;
 use App\StackCategory;
 use DB;
@@ -262,6 +263,8 @@ class StacksController extends Controller {
 
         $related = array();
 
+        $comments = StackComments::where('stack_id', '=', $id)->get();
+
         $links = $stack->links;
 
         foreach($links as $i => $link)
@@ -277,9 +280,12 @@ class StacksController extends Controller {
 
             $url = parse_url($link->link);
 
+            $linkComments = LinkComment::where('link_id', '=', $link->id)->get();
+
             $links[$i]['domain'] = isset($url['host']) ? $url['host'] : "";
             $links[$i]['media_type'] = $media_type;
             $links[$i]['date'] = date("F d, Y", strtotime($link->created_at));
+            $links[$i]['comments'] = count($linkComments);
 
 
         }
@@ -343,6 +349,8 @@ class StacksController extends Controller {
         $data['related'] = $related;
 
         $data['upvote'] = count($votes);
+
+        $data['comments'] = count($comments);
 
         if (in_array($id, $follows))
         {
@@ -449,7 +457,7 @@ class StacksController extends Controller {
 
         $sql .= " LEFT JOIN stack_comments co ON co.stack_id = s.id";
 
-        $sql .= " WHERE s.status_id = 1";
+        $sql .= " WHERE s.status_id = 1 AND s.private = 0";
 
         if ($hidden)
         {

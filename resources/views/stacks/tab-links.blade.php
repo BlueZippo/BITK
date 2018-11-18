@@ -52,17 +52,7 @@
                     {{--@php var_dump($link) @endphp--}}
 
                      <div class="col-md-3 category{{$link['media_id']}}" id="link{{$linkCounter}}">
-                        <div class="single-link">
-                            <input type="hidden" name="links[{{$linkCounter}}][id]" value="{{$link['id']}}">
-                            <input type="hidden" name="links[{{$linkCounter}}][url]" value="{{$link['link']}}">
-                            <input type="hidden" name="links[{{$linkCounter}}][title]" value="{{$link['title']}}">
-                            <input type="hidden" name="links[{{$linkCounter}}][description]" value="{{$link['description']}}">
-                            <input type="hidden" name="links[{{$linkCounter}}][image]" value="{{$link['image']}}">
-                            <input type="hidden" name="links[{{$linkCounter}}][media_id]" value="{{$link['media_id']}}">
-                            <div class="image"><img src="{{$link['image']}}"></div>
-                            <div class="title">{{$link['title']}}</div>
-                            
-                        </div>
+                        @include('links.box')
                     </div>
 
                     @php $linkCounter++ @endphp

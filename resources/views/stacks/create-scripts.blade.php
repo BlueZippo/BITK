@@ -135,7 +135,9 @@ $(document).ready(function()
        }
     });
 
-    $('.dotted .content').focusout(stack_autosave)
+    $('.dotted .content').focusout(stack_autosave);
+
+
 
     $('.switch').click(function()
     {
@@ -219,16 +221,39 @@ $(document).ready(function()
 
     $('.links-nav a.active').trigger('click');
 
-    $('.content').click(function()
+    $('.content').click(function(e)
     {
+        e.preventDefault();
+
+        e.stopPropagation();
+
+        $('.categories-popup').hide();
+
         var isEditable = $(this).attr('contenteditable');
+        var content = $(this).html();
 
         if (isEditable == "true")
         {
             $(this).focus();
             $(this).removeClass('error');
         }
+
+        if ($(this).hasClass('categories-content'))
+        {
+            $('.categories-popup').show();
+        }
+
+        if (content == 'enter title...' || content == 'enter description...')
+        {
+            $(this).html('');
+        }
     });
+
+
+    $('.categories-popup').click(function(e)
+    {
+        e.stopPropagation();
+    })
 
     $('a.save, .edit-stack .save').click(function()
     {
@@ -496,14 +521,32 @@ $(document).ready(function()
     $('.add-link-modal').click(function()
     {
         var offset = $(this).offset();
+        var body = document.body;
+        var html = document.documentElement;
+        var modalHeight = $('.links-container').height();
+
+        var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.offsetHeight);
+        
 
         $('.links-container').removeClass('right-position');
         $('.links-container').removeClass('left-position');
+        $('.links-container').removeClass('middle-position');
 
         $('.links-container').css('right', 'auto');
         $('.links-container').css('left', 'auto');
 
-        console.log(offset);
+        
+        
+
+        console.log(offset.top);
+        console.log(modalHeight);
+        console.log(docHeight);
+
+        if ((offset.top + modalHeight) > docHeight)
+        {
+            $('.links-container').addClass('middle-position');
+        }    
+        
 
         if (offset.left < 650)
         {

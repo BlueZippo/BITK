@@ -73,7 +73,7 @@
                     </div>
                     <div class="meta-date-comments">
                         <div class="date"><p>Updated: {{date("M d, Y", strtotime($stack->updated_at))}}</p></div>
-                        <div class="comments"><p><i class="fas fa-comment-dots"></i> 0 Comments</p></div>
+                        <div class="comments" data-id="{{$stack['id']}}"><p><i class="fas fa-comment-dots"></i> {{$comments}} Comments</p></div>
                     </div>
                 </div>
 

@@ -82,6 +82,8 @@ class PublicController extends Controller {
 
         $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
 
+        $sql .= " WHERE s.status_id = 1 AND s.private = 0";
+
         $sql .= " GROUP BY s.id";
 
         $sql .= " ORDER BY relevance DESC, s2.created_at DESC";

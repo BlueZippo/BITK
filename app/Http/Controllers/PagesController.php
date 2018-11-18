@@ -15,6 +15,8 @@ use App\MediaType;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
+use DB;
+
 class PagesController extends Controller {
 
 	public function __construct()
@@ -72,6 +74,7 @@ class PagesController extends Controller {
     		$results = Stack::orderBy('created_at', 'desc')
     			 ->where('user_id', '!=' , $user_id)
     			 ->where('status_id', '=', 1)
+    			 ->where('private', '=', 0)
     			 ->get();
 
 
@@ -117,12 +120,17 @@ class PagesController extends Controller {
 					}
 
 				}
+			
 
+			
 
-
-    		$results = 	User::find($user_id)
-                    ->stacksFollow()
+    		$results = User::find($user_id)
+    				->stacksFollow()    			    
+                    ->where('status_id', '=', 1)
+                    ->where('private', '=', 0)
                     ->get();
+
+
 
 				foreach($results as $result)
 				{
@@ -137,7 +145,7 @@ class PagesController extends Controller {
 
 						if ($stack->user_id == auth()->id())
 						{
-							$valid = false;
+							//$valid = false;
 						}	
 
 						if ($valid && $author && $stack->status_id == 1)
