@@ -10,7 +10,7 @@
 
 							<div class="link-data">
 
-								<h3><a href="{{$link->link}}" target="_blank">{{$link->title}}</a></h3>
+								<h3><a href="@if(strlen($link->code) > 0) {{config('APP_URL') . '/x/' . $link->code}} @else {{$link->link}} @endif" target="_blank">{{$link->title}}</a></h3>
 
 								<div class="host">
 
