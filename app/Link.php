@@ -48,4 +48,42 @@ class Link extends Model
     {
         return $this->hasMany('App\LinkComment');
     }
+
+    protected static $chars = "123456789bcdfghjkmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+
+    public function convertIntToShortCode() 
+    {
+        $random_string = "";
+
+        $numeric = false;
+
+        $not_exists = true;
+
+        while ($not_exists)
+        {
+            $length = 10;
+
+            while(strlen($random_string) < $length && $length > 0) 
+            {
+                if($numeric === false) 
+                {
+                    $randnum = mt_rand(0,61);
+
+                    $random_string .= ($randnum < 10) ? chr($randnum+48) : ($randnum < 36 ?  chr($randnum+55) : $randnum+61);
+                } 
+                else 
+                {
+                    $randnum = mt_rand(0,9);
+                    $random_string .= chr($randnum+48);
+                }
+            }
+            
+            $not_exists = $this->where('code', '=', $random_string)->get()->toArray();    
+
+            
+        }
+
+        return $random_string;
+        
+    }
 }

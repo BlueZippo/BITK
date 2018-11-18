@@ -29,3 +29,5 @@ function is_image($link) {
     }
 
 }
+
+
