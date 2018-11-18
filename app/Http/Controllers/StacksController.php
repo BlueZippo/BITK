@@ -155,6 +155,16 @@ class StacksController extends Controller {
                 $x->stack_id = $stack->id;
                 $x->user_id = auth()->id();
 
+                if (empty($link['code']))
+                {    
+                    $x->code =  $x->convertIntToShortCode();
+                }    
+                else
+                {
+                    $x->code = $link['code'];
+                }  
+
+
                 $x->save();
 
 
@@ -281,6 +291,11 @@ class StacksController extends Controller {
             $url = parse_url($link->link);
 
             $linkComments = LinkComment::where('link_id', '=', $link->id)->get();
+
+            if (strlen($link->code) > 0)
+            {    
+                $links[$i]['link'] = config('APP_URL') . '/x/' . $link->code;
+            }    
 
             $links[$i]['domain'] = isset($url['host']) ? $url['host'] : "";
             $links[$i]['media_type'] = $media_type;
@@ -1043,7 +1058,18 @@ class StacksController extends Controller {
                 $x->image = $link['image'];
                 $x->media_id = $link['media_id'];
                 $x->stack_id = $id;
-                $x->user_id = auth()->id();          
+                $x->user_id = auth()->id();     
+
+                if (empty($link['code']))
+                {    
+                    $x->code =  $x->convertIntToShortCode();
+                }    
+                else
+                {
+                    $x->code = $link['code'];
+                }
+
+     
 
                 $x->save();
 
@@ -1346,6 +1372,15 @@ class StacksController extends Controller {
                 $x->media_id = $link['media_id'];
                 $x->stack_id = $stack->id;
                 $x->user_id = auth()->id();
+
+                if (empty($link['code']))
+                {    
+                    $x->code =  $x->convertIntToShortCode();
+                }    
+                else
+                {
+                    $x->code = $link['code'];
+                }   
 
                 $x->save();
 

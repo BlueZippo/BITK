@@ -169,4 +169,4 @@ Route::get('s/trending-people', 'PublicController@people_trending');
 Route::get('s/top-people', 'PublicController@people_top');
 Route::get('s/following-people', 'PublicController@people_following');
 
-
+Route::get('/x/{code}', 'LinksController@long_code');

@@ -1,9 +1,3 @@
-
-@php
-
-//var_dump($stack);
-
-@endphp
 <div class="inner-wrap dash-stack-tile" id="stack{{$stack['id']}}">
 
     <div class="featured-image">
