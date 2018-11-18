@@ -106,6 +106,8 @@ class LinksController extends Controller
        $link->media_id = $request->input('media_id');
        $link->image = $request->input('link_image');
 
+       $link->code = $link->convertIntToShortCode();
+
        $link->user_id = auth()->id();
 
        $link->save();

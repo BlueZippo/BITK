@@ -24,7 +24,7 @@
 
 							<div class="link-data">
 
-								<h3><a href="{{$parking->link}}" target="_blank">{{$parking->title}}</a></h3>
+								<h3><a href="@if($parking->code) {{config('APP_URL') . '/x/' . $parking->code}} @else {{$parking->link}} @endif" target="_blank">{{$parking->title}}</a></h3>
 
 								<div class="host">
 
