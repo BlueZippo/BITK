@@ -99,7 +99,7 @@
 
     <div class="tab-pane fade accordion-panel" id="layout-accordion" role="tabpanel" aria-labelledby="nav-layout-accordion">
 
-        <div class="accordion stack-single" style="display:none">
+        <div class="accordion stack-single">
 
             @php $showPanel = 'show'; @endphp
 
@@ -157,8 +157,18 @@
 
                                         @if ($link->media_id == $media->id)
 
-                                             <div class="col-md-3" id="link{{$linkCounter}}">
-                                                @include('links.box')
+                                             <div class="col-md-3 category{{$link['media_id']}}" id="link{{$linkCounter}}">
+                                                <div class="single-link">
+                                                    <input type="hidden" name="links[{{$linkCounter}}][id]" value="{{$link['id']}}">
+                                                    <input type="hidden" name="links[{{$linkCounter}}][url]" value="{{$link['link']}}">
+                                                    <input type="hidden" name="links[{{$linkCounter}}][title]" value="{{$link['title']}}">
+                                                    <input type="hidden" name="links[{{$linkCounter}}][description]" value="{{$link['description']}}">
+                                                    <input type="hidden" name="links[{{$linkCounter}}][image]" value="{{$link['image']}}">
+                                                    <input type="hidden" name="links[{{$linkCounter}}][media_id]" value="{{$link['media_id']}}">
+                                                    <div class="image"><img src="{{$link['image']}}"></div>
+                                                    <div class="title">{{$link['title']}}</div>
+                                                    <div class="link-hover"><a data-id={{$linkCounter}} onClick="$('#link{{$linkCounter}}').remove()" class="btn btn-primary link-delete-button"><i class="fa fa-minus"></i></a></div>
+                                                </div>
                                             </div>                                    
 
                                         @endif
