@@ -60,7 +60,7 @@ class StacksController extends Controller {
         $data['upvote'] = 0;
         $data['downvote'] = 0;
 
-        $medias = MediaType::all();
+        $medias = MediaType::orderby('media_type')->get();
 
         $recents = Stack::select('id', 'title')->where('user_id', '=', auth()->id())->orderby('updated_at', 'desc')->limit(5)->get();
 
@@ -962,7 +962,7 @@ class StacksController extends Controller {
 
             $data['last_updated'] = date("M d, Y", strtotime($stack->updated_at));
 
-            $data['medias'] = MediaType::all();
+            $data['medias'] = MediaType::orderby('media_type')->get();
 
             $data['media_id'] = $media_id;
 
