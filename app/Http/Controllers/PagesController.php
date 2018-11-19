@@ -75,6 +75,7 @@ class PagesController extends Controller {
     			 ->where('user_id', '!=' , $user_id)
     			 ->where('status_id', '=', 1)
     			 ->where('private', '=', 0)
+    			 ->limit(12)
     			 ->get();
 
 
