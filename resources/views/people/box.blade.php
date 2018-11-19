@@ -14,7 +14,7 @@
 		</div>
 		<div class="follow">
 			@if ($peopleFollows->contains($person->id))
-				<a data-action="unfollow" data-id="{{$person->id}}" class="follow-people-button">Unfollow</a>
+				<a data-action="unfollow" data-id="{{$person->id}}" class="follow-people-button unfollow">Following</a>
 			@else
 				<a data-action="follow" data-id="{{$person->id}}" class="follow-people-button">Follow</a>
 			@endif
