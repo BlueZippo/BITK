@@ -111,6 +111,7 @@ class PagesController extends Controller {
 							    'image' => $stack->video_id,
 								'author' => $author,
 								'user_id' => $stack->user_id,
+								'media_type' => $stack->media_type,
 								'upvotes' => $this->number_format(count($upvotes)),
 								'downvotes' => $this->number_format(count($downvotes)),
 								'follow' => $follow->isEmpty() ? false : true,
