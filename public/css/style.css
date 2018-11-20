@@ -308,20 +308,40 @@ Table of Content:
 
 .people-box a.follow-people-button
 {
-	color:#1da1f2;
+	color:#ffffff;
 	font-weight:bold;
+    background-color: #1da1f2;
 	border:solid 1px #1da1f2;
 	border-radius:20px;
 	display:inline-block;
 	padding:2px 10px;
 	font-size:11px;
 	cursor:pointer;
+    position:relative;
+    transition: all 200ms ease-in-out;
 }
 
 .people-box a.follow-people-button:hover
 {
-	background:#1da1f2;
-	color:#fff;
+	background:#ffffff;
+	color:#1da1f2;
+}
+
+.people-box a.follow-people-button.unfollow:hover {
+    color: #bf3f34;
+    background-color: #bf3f34;
+    border-color: #bf3f34;
+}
+
+.people-box a.follow-people-button.unfollow:hover:after {
+    content: "Unfollow";
+    color: #ffffff;
+    position: absolute;
+    margin: 2px 12px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
 .people-box .fullname

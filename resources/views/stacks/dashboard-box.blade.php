@@ -3,10 +3,10 @@
     <div class="featured-image">
         <div class="gradient"></div>
         @if ($stack['image'])
-            @if ( is_image($stack['image']) )
-                <img src="{{$stack['image']}}" />
-            @else
+            @if ($stack['media_type'] == 'youtube')
                 <img src="http://img.youtube.com/vi/{{$stack['image']}}/hqdefault.jpg" />
+            @else
+                <img src="{{$stack['image']}}" />                
             @endif
         @else
             <img src="{{ asset('images/stack-placeholder.png') }}" />
