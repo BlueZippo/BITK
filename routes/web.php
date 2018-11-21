@@ -86,9 +86,17 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::resource('admin/search', 'SearchController');
 
-	Route::get('admin/links/parser', 'AdminLinksController@parser');
+	Route::get('admin/links/parser', ['as' => 'admin.links.parser', 'uses' => 'AdminLinksController@parser']);
+	
+	Route::post('admin/links/store', ['as' => 'admin.links.store', 'uses' => 'AdminLinksController@store']);
+
+	Route::patch('admin/links/{id}/update',['as' => 'admin.links.update', 'uses' => 'AdminLinksController@update']);
 
 	Route::resource('admin/links', 'AdminLinksController');
+
+	Route::get('admin/links/create', ['as' => 'admin.links.create', 'uses' => 'AdminLinksController@create']);
+
+	
 });
 
 Route::resource('permissions', 'PermissionController');

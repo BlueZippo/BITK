@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+
+
 use Illuminate\Http\Request;
 
 use App\LinkParser;
@@ -25,7 +28,7 @@ class AdminLinksController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.links.create');
     }
 
     /**
@@ -36,7 +39,33 @@ class AdminLinksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [
+             'domain' => 'required',
+             'image' => 'required',
+             'title' => 'required',
+             'description' => 'required'
+            ]
+        );
+
+        if ($validator->fails())
+        {
+            return redirect('admin/links/create')
+                        ->withInput($request->all())
+                        ->withErrors($validator);
+        }
+
+
+        $parser = new LinkParser;
+
+        $parser->domain = request('domain');
+        $parser->title = request('title');
+        $parser->description = request('description');
+        $parser->image = request('image');
+
+        $parser->save();
+        
+        return redirect('admin/links/parser');
     }
 
     /**
@@ -58,7 +87,9 @@ class AdminLinksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['link'] = LinkParser::find($id);
+
+        return view('admin.links.edit')->with($data);
     }
 
     /**
@@ -70,7 +101,33 @@ class AdminLinksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [
+             'domain' => 'required',
+             'image' => 'required',
+             'title' => 'required',
+             'description' => 'required'
+            ]
+        );
+
+        if ($validator->fails())
+        {
+            return redirect('admin/links/'.$id.'edit')
+                        ->withInput($request->all())
+                        ->withErrors($validator);
+        }
+
+
+        $parser = LinkParser::find($id);
+
+        $parser->domain = request('domain');
+        $parser->title = request('title');
+        $parser->description = request('description');
+        $parser->image = request('image');
+
+        $parser->save();
+        
+        return redirect('admin/links/parser');
     }
 
     /**
@@ -87,7 +144,7 @@ class AdminLinksController extends Controller
 
     public function parser()
     {
-        $links = LinkParser::all();
+        $links = LinkParser::orderby('domain')->get();
 
         $data['links'] = $links;
 
