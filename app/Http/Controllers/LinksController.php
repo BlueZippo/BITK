@@ -1033,6 +1033,8 @@ class LinksController extends Controller
             {
                 print_r($error);
             }
+
+            return 
             
             return ($parsed_xml === False) ? False : $parsed_xml;
         }
