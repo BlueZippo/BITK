@@ -917,9 +917,6 @@ class LinksController extends Controller
     {
         $data = array('title' => '', 'description' => '', 'image' => '', 'media_types' => array());
 
-        echo $url; return;
-
-     
         $url = explode('/dp/', $url);
 
         if (isset($url[1]))
@@ -959,6 +956,8 @@ class LinksController extends Controller
         $public_key = Config::get('amazon.public_key');
         $secret_key = Config::get('amazon.secret_key');
         $associate_tag = Config::get('amazon.associate_tag');
+
+        echo sprintf("public: %s secret: %s tag: %s", $public_key, $secret_key, $associate_tag); return;
 
         return $this->aws_signed_request("com", $parameters, $public_key, $secret_key, $associate_tag);
     }
