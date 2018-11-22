@@ -250,11 +250,7 @@ class LinksController extends Controller
 
        $uri = parse_url($url);
 
-       if ($uri && isset($uri['host']))
-       {
-        $parser = LinkParser::where('domain', '=', $uri['host'])->first();
-       }
-
+       
        $metaTitle = false;
        $metaDescription  = false;
        $metaImage = false;
@@ -267,7 +263,13 @@ class LinksController extends Controller
 
         break;
 
-        default:       
+        default:   
+
+           if ($uri && isset($uri['host']))
+           {
+            $parser = LinkParser::where('domain', '=', $uri['host'])->first();
+           }
+    
 
            if ($parser)
            {
@@ -915,6 +917,10 @@ class LinksController extends Controller
     private function get_amazon_data($url)
     {
         $data = array('title' => '', 'description' => '', 'image' => '', 'media_types' => array());
+
+        echo $url;
+
+        return;
 
         $url = explode('/dp/', $url);
 
