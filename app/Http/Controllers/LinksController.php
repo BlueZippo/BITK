@@ -1027,9 +1027,9 @@ class LinksController extends Controller
         {
             /* parse XML */
 
-            print_r($xml_response)
+            echo "xxxx";
 
-            return ;
+            die() ;
 
             /*
             $parsed_xml = @simplexml_load_string($xml_response);
