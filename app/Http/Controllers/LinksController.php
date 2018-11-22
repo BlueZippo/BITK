@@ -1025,7 +1025,13 @@ class LinksController extends Controller
         }
         else
         {
-            $parsed_xml = @simplexml_load_string((string)$xml_response);
+            $temp = rand() . '.xml';
+
+            $tempLocalPath = storage_path('xml/' .$temp);
+            
+            file_put_contents($tempLocalPath, $xml_response);
+
+            $parsed_xml = @simplexml_load_file($tempLocalPath);
 
             return ($parsed_xml === False) ? False : $parsed_xml;
         }
