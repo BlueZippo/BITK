@@ -82,6 +82,8 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::post('links/store', 'LinksController@store');
 
+	Route::post('links/delete', 'LinksController@destroy');
+
 	Route::resource('links', 'LinksController');
 
 	Route::resource('admin/search', 'SearchController');

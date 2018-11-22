@@ -225,9 +225,13 @@ class LinksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->get('id');
+
+        Link::find($id)->delete();
+
+        return ['id' => $id];
     }
 
     public function follow($id)
@@ -262,6 +266,12 @@ class LinksController extends Controller
 
         break;
 
+        case 'twitter.com':
+
+            $data = $this->get_twitter_data($url);
+
+        break;
+
         default:   
 
            if ($uri && isset($uri['host']))
@@ -289,6 +299,12 @@ class LinksController extends Controller
                 $metaTitle = true;
                }
 
+               if (isset($meta['metaProperties']['description']))
+               {
+                $data['description'] = $meta['metaProperties']['description']['value'];
+                $metaDescription = true;
+               }
+
                foreach($meta['metaProperties'] as $key => $value)
                {
 
@@ -302,7 +318,7 @@ class LinksController extends Controller
                         $data['title'] = $value['value'];
                     }
 
-                    if (preg_match('/description/', $key))
+                    if (!$metaDescription && preg_match('/description/', $key))
                     {
                         $data['description'] = $value['value'];
                     }
@@ -313,6 +329,7 @@ class LinksController extends Controller
                     }
 
                  }
+
 
                }
 
@@ -397,6 +414,8 @@ class LinksController extends Controller
                 'metaTags' => $metaTags,
                 'metaProperties' => $metaProperties,
             );
+
+
         }
 
         return $result;
@@ -411,12 +430,6 @@ class LinksController extends Controller
 
         $contents = @file_get_contents($url);
 
-        //$contents = $this->get_remote_data($url);
-
-        //echo $contents;
-
-        // Check if we need to go somewhere else
-
         if (isset($contents) && is_string($contents))
         {
             preg_match_all('/<[\s]*meta[\s]*http-equiv="?REFRESH"?' . '[\s]*content="?[0-9]*;[\s]*URL[\s]*=[\s]*([^>"]*)"?' . '[\s]*[\/]?[\s]*>/si', $contents, $match);
@@ -425,7 +438,7 @@ class LinksController extends Controller
             {
                 if (!isset($maximumRedirections) || $currentRedirection < $maximumRedirections)
                 {
-                    return getUrlContents($match[1][0], $maximumRedirections, ++$currentRedirection);
+                    return $this->getUrlContents($match[1][0], $maximumRedirections, ++$currentRedirection);
                 }
 
                 $result = false;
@@ -1035,5 +1048,80 @@ class LinksController extends Controller
             
         }
     }
+
+
+    private function get_twitter_data($url)
+    {
+        $title = "";
+        $description = "";
+        $image = '/images/stack-placeholder.png';
+
+        $contents = $this->getUrlContents($url);
+
+        preg_match('/<title>([^>]*)<\/title>/si', $contents, $match );
+
+        if (isset($match) && is_array($match) && count($match) > 0)
+        {
+            $title = strip_tags($match[1]);
+        }
+
+        $pattern = '~<\s*meta\s(?=[^>]*?\b(?:name|property|http-equiv)\s*=\s*(?|"\s*([^"]*?)\s*"|\'\s*([^\']*?)\s*\'|([^"\'>]*?)(?=\s*/?\s*>|\s\w+\s*=)))[^>]*?\bcontent\s*=\s*(?|"\s*([^"]*?)\s*"|\'\s*([^\']*?)\s*\'|([^"\'>]*?)(?=\s*/?\s*>|\s\w+\s*=))[^>]*>~ix';
+
+        preg_match_all($pattern, $contents, $match);
+
+        if (isset($match) && is_array($match))
+        {
+            
+            $originals = $match[0];
+            $names = $match[1];
+            $values = $match[2];           
+
+            foreach($names as $key => $value)
+            {
+                if ($value == 'description')        
+                {
+                    $description = $values[$key];
+                }    
+            }    
+            
+        }
+
+        header('Content-Type: text/html; charset=utf-8');
+
+$doc = new \DOMDocument();
+
+libxml_use_internal_errors(true);
+
+$doc->loadHTMLFile($url);
+
+$xpath = new \DOMXpath($doc);
+
+$elements = $xpath->query("//*/div");
+
+  foreach ($elements as $element) 
+  {
+
+    print_r($element);
+
+    
+  }
+
+
+
+        
+        
+        $data = array(
+                'title' => $title,
+                'description' => $description,
+                'image' => $image
+            );
+
+
+        return $data;
+    }
+
+    
+
+
 
 }

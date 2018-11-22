@@ -12,7 +12,7 @@
 
 				@foreach($parking as $parking)
 
-					<div class="row parking-container">
+					<div class="row parking-container" id="link{{$parking->id}}">
 
 						<div class="col-md-2 link-image">
 

@@ -335,7 +335,7 @@ $(document).ready(function()
          }
     })
 
-    $('input[name=link_url]').focusout(function()
+    $('.stack-links input[name=link_url]').focusout(function()
     {
         $('.submit-button').addClass('disabled');
 

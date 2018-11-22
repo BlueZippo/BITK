@@ -629,6 +629,31 @@ $(document).ready(function()
 
     });
 
+
+    $('a.delete-link').click(function()
+    {
+    	if (confirm("Are you sure you want to delete this link?"))
+    	{
+    		$.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax(
+    		{
+    			url: '/links/delete',
+    			type: 'post',
+    			dataType: 'json',
+    			data: 'id=' + $(this).data('id'),
+    			success: function(data)
+    			{
+    				$('#link' + data.id).remove();
+    			}
+    		})
+    	}	
+    })
+
 });
 
 function mobile_menu($) {
