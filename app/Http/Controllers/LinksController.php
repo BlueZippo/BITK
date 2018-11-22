@@ -1015,8 +1015,6 @@ class LinksController extends Controller
 
         $xml_response = curl_exec($ch);
 
-        print_r($xml_response);
-        
         /* If cURL doesn't work for you, then use the 'file_get_contents'
            function as given below.
         */
@@ -1027,6 +1025,7 @@ class LinksController extends Controller
         }
         else
         {
+            echo "xxxx";
             /* parse XML */
             $parsed_xml = @simplexml_load_string($xml_response);
             return ($parsed_xml === False) ? False : $parsed_xml;
