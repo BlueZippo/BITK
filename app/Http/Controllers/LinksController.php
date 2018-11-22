@@ -15,8 +15,9 @@ use App\User;
 use App\Reminder;
 use App\LinkParser;
 use App\phpQuery\phpQuery;
-
+use App\MediaType;
 use DB;
+use Config;
 
 class LinksController extends Controller
 {
@@ -258,51 +259,63 @@ class LinksController extends Controller
        $metaDescription  = false;
        $metaImage = false;
 
-       if ($parser)
+       switch ($uri['host'])
        {
-        $content = $this->get_remote_data($url, $parser);
-       }
-       else
-       { 
+        case 'www.amazon.com':
 
-           $meta = $this->getUrlData($url);
+            $data = $this->get_amazon_data($url);
 
-           $data = array('title' => '', 'description' => '', 'image' => '/images/stack-placeholder.png');
+        break;
 
+        default:       
 
-           if (isset($meta['title']))
-           {
-            $data['title'] = $meta['title'];
-            $metaTitle = true;
-           }
-
-           foreach($meta['metaProperties'] as $key => $value)
+           if ($parser)
            {
 
-            $keys = explode(':', $key);
-
-            if (count($keys) == 2)
-            {
-
-                if (preg_match('/title/', $key))
-                {
-                    $data['title'] = $value['value'];
-                }
-
-                if (preg_match('/description/', $key))
-                {
-                    $data['description'] = $value['value'];
-                }
-
-                if (preg_match('/image/', $key))
-                {
-                    $data['image'] = $value['value'];
-                }
-
-             }
-
+            $content = $this->get_remote_data($url, $parser);
            }
+           else
+           { 
 
+               $meta = $this->getUrlData($url);
+
+               $data = array('title' => '', 'description' => '', 'image' => '/images/stack-placeholder.png');
+
+
+               if (isset($meta['title']))
+               {
+                $data['title'] = $meta['title'];
+                $metaTitle = true;
+               }
+
+               foreach($meta['metaProperties'] as $key => $value)
+               {
+
+                $keys = explode(':', $key);
+
+                if (count($keys) == 2)
+                {
+
+                    if (preg_match('/title/', $key))
+                    {
+                        $data['title'] = $value['value'];
+                    }
+
+                    if (preg_match('/description/', $key))
+                    {
+                        $data['description'] = $value['value'];
+                    }
+
+                    if (preg_match('/image/', $key))
+                    {
+                        $data['image'] = $value['value'];
+                    }
+
+                 }
+
+               }
+
+            }
         }
 
        return json_encode($data);
@@ -466,24 +479,28 @@ class LinksController extends Controller
     }
 
 
-    function get_remote_data($url, $parser)
+    function xxget_remote_data($url, $parser)
     {
-
-        $document  = phpQuery::newDocumentFileHTML($url); 
+        $html  = phpQuery::newDocumentFileHTML($url); 
 
         $content = array();
 
-        print_r($parser);
-        print_r($document);
+        echo $parser->image;
+
+        $image = phpQuery::pq($parser->image, $html);
+
+
+        print_r($image);
+
 
         return $content;
     }
 
 
-    function xget_remote_data($url, $post_paramtrs=false,$extra=array('schemeless'=>true, 'replace_src'=>true, 'return_array'=>false))   
+    function get_remote_data($url, $post_paramtrs=false,$extra=array('schemeless'=>true, 'replace_src'=>true, 'return_array'=>false))   
     {
         $c = curl_init();
-        
+
         curl_setopt($c, CURLOPT_URL, $url);
         curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
         
@@ -526,8 +543,6 @@ class LinksController extends Controller
         
         $data = curl_exec($c);
 
-       echo "xxxx";
-    
         if(!empty($extra['return_array'])) 
         {
             preg_match("/(.*?)\r\n\r\n((?!HTTP\/\d\.\d).*)/si",$data, $x); 
@@ -894,6 +909,124 @@ class LinksController extends Controller
         if ($link)
         {
             return redirect($link->link);
+        }
+    }
+
+    private function get_amazon_data($url)
+    {
+        $data = array('title' => '', 'description' => '', 'image' => '', 'media_types' => array());
+
+        $url = explode('/dp/', $url);
+
+        if (isset($url[1]))
+        {
+            $codes = explode('/', $url[1]);
+
+            $code = $codes[0];
+
+            $parameters = array("Operation"   => "ItemSearch",
+                                "Keywords"    => $code,
+                                "ResponseGroup" => "Medium",
+                                "SearchIndex" => "All");
+                                
+            $result = $this->queryAmazon($parameters);
+
+            
+            if ($result)
+            {
+                $media = MediaType::where('media_type','=', 'Product')->first();
+
+                $data = array('title' => (string) $result->Items->Item->ItemAttributes->Title,
+                             'description' => (string) $result->Items->Item->ItemAttributes->Feature,
+                             'image' => (string) $result->Items->Item->LargeImage->URL,
+                             'media_types' =>  $media->id
+                         );
+            }    
+
+
+        } 
+
+        return $data;
+
+    }
+
+    private function queryAmazon($parameters)
+    {
+        $public_key = Config::get('amazon.public_key');
+        $secret_key = Config::get('amazon.secret_key');
+        $associate_tag = Config::get('amazon.associate_tag');
+
+        return $this->aws_signed_request("com", $parameters, $public_key, $secret_key, $associate_tag);
+    }
+
+
+    private function  aws_signed_request($region,$params,$public_key,$private_key,$associate_tag)
+    {
+
+        $method = "GET";
+        $host = "ecs.amazonaws.".$region; // must be in small case
+        $uri = "/onca/xml";
+        
+        
+        $params["Service"]          = "AWSECommerceService";
+        $params["AWSAccessKeyId"]   = $public_key;
+        $params["AssociateTag"]     = $associate_tag;
+        $params["Timestamp"]        = gmdate("Y-m-d\TH:i:s\Z");
+        $params["Version"]          = "2009-03-31";
+
+        /* The params need to be sorted by the key, as Amazon does this at
+          their end and then generates the hash of the same. If the params
+          are not in order then the generated hash will be different thus
+          failing the authetication process.
+        */
+        ksort($params);
+        
+        $canonicalized_query = array();
+
+        foreach ($params as $param=>$value)
+        {
+            $param = str_replace("%7E", "~", rawurlencode($param));
+            $value = str_replace("%7E", "~", rawurlencode($value));
+            $canonicalized_query[] = $param."=".$value;
+        }
+        
+        $canonicalized_query = implode("&", $canonicalized_query);
+
+        $string_to_sign = $method."\n".$host."\n".$uri."\n".$canonicalized_query;
+        
+        /* calculate the signature using HMAC with SHA256 and base64-encoding.
+           The 'hash_hmac' function is only available from PHP 5 >= 5.1.2.
+        */
+        $signature = base64_encode(hash_hmac("sha256", $string_to_sign, $private_key, True));
+        
+        /* encode the signature for the request */
+        $signature = str_replace("%7E", "~", rawurlencode($signature));
+        
+        /* create request */
+        $request = "http://".$host.$uri."?".$canonicalized_query."&Signature=".$signature;
+
+        /* I prefer using CURL */
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$request);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+
+        $xml_response = curl_exec($ch);
+        
+        /* If cURL doesn't work for you, then use the 'file_get_contents'
+           function as given below.
+        */
+        
+        if ($xml_response === False)
+        {
+            return False;
+        }
+        else
+        {
+            /* parse XML */
+            $parsed_xml = @simplexml_load_string($xml_response);
+            return ($parsed_xml === False) ? False : $parsed_xml;
         }
     }
 

@@ -27,8 +27,7 @@
     "autoload": {
         "classmap": [
             "database/seeds",
-            "database/factories",
-            "app/phpQuery"
+            "database/factories"
         ],
         "psr-4": {
             "App\\": "app/"
