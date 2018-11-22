@@ -928,7 +928,7 @@ class StacksController extends Controller {
 
         if ($media_id == 0)
         {
-            $media_id = MediaType::first()->id;
+            $media_id = MediaType::orderby('media_type')->first()->id;
         }
 
         if (auth()->id() == $stack->user_id)
@@ -966,16 +966,16 @@ class StacksController extends Controller {
 
             $data['media_id'] = $media_id;
 
+            $data['active_media_id'] = $media_id;
 
+            $recents = Stack::select('id', 'title')->where('user_id', '=', auth()->id())->orderby('updated_at', 'desc')->limit(5)->get();
 
-        $recents = Stack::select('id', 'title')->where('user_id', '=', auth()->id())->orderby('updated_at', 'desc')->limit(5)->get();
-
-        $options = array(
-                    'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),
-                    'parking' => 'Parking Lot',
-                    'new' => 'Create New Stack',
-                    'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
-                    );
+            $options = array(
+                        'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),
+                        'parking' => 'Parking Lot',
+                        'new' => 'Create New Stack',
+                        'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
+                        );
 
 
         $data['recents'] = $recents;
@@ -1013,6 +1013,8 @@ class StacksController extends Controller {
         $stack->private = request('private');
 
         $stack->save();
+
+        $active_media_id = request('active_media_id');
 
         DB::table('stack_categories')->where('stack_id','=', $id)->delete();
 
@@ -1076,7 +1078,7 @@ class StacksController extends Controller {
             }
         }
 
-        return redirect('stacks/' .  $id . '/edit')->with('success', 'Stack updated');
+        return redirect('stacks/' .  $id . '/edit/' . $active_media_id)->with('success', 'Stack updated');
     }
 
 

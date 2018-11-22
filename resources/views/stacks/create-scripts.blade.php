@@ -219,6 +219,13 @@ $(document).ready(function()
 
     });
 
+    $('.category-button').click(function()
+    {
+        var category = $(this).data('category');
+
+        $('input[name=active_media_id]').val(category);
+    });
+
     $('.links-nav a.active').trigger('click');
 
     $('.content').click(function(e)
