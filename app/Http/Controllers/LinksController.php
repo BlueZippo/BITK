@@ -1025,8 +1025,15 @@ class LinksController extends Controller
         }
         else
         {
-            /* parse XML */
+            libxml_use_internal_errors(true);
+            
             $parsed_xml = simplexml_load_string($xml_response);
+
+            foreach( libxml_get_errors() as $error ) 
+            {
+                print_r($error);
+            }
+            
             return ($parsed_xml === False) ? False : $parsed_xml;
         }
     }
