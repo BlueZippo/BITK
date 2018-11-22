@@ -950,7 +950,14 @@ class LinksController extends Controller
             {
                 $media = MediaType::where('media_type','=', 'Products')->first();
 
-                $description = (string) $result->Items->Item->EditorialReviews->EditorialReview->Content;
+                if (isset($result->Items->Item->EditorialReviews))
+                {    
+                    $description = (string) $result->Items->Item->EditorialReviews->EditorialReview->Content;
+                }
+                else if (isset($result->Items->Item->ItemAttributes->Feature))    
+                {
+                    $description = $result->Items->Item->ItemAttributes->Feature;
+                }    
 
                 $data = array('title' => (string) $result->Items->Item->ItemAttributes->Title,
                              'description' => strip_tags($description),
