@@ -370,6 +370,17 @@ $(document).ready(function()
                     $('.image-container').html('<img src="'+data.image+'">');
                 }
 
+                if (data.media_types)
+                {
+                  $('.add-links-container .media-types input[type=checkbox]').each(function()
+                  {
+                    if ($(this).val() == data.media_types)
+                    {
+                        $(this).attr('checked', 'checked');
+                    }
+                  })
+                }
+
                 $('.submit-button').removeClass('disabled');
             }
         });

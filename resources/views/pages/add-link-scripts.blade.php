@@ -66,6 +66,18 @@ $('input[name=link_url]').on('change', function()
                 $('.image-container').html('<img src="'+data.image+'">');
             }
 
+            if (data.media_types)
+            {
+              $('.add-links-container .media-types input[type=checkbox]').each(function()
+              {
+                if ($(this).val() == data.media_types)
+                {
+                    $(this).attr('checked', 'checked');
+                    $('.add-links-container input[name=media_id]').val(data.media_types)
+                }
+              })
+            }
+
             $('input[name=link_description]').val(data.description);
             $('input[name=link_image]').val(data.image);
             $('input[name=link_title]').val(data.title);
