@@ -249,12 +249,7 @@ class LinksController extends Controller
        $url = $request->input('link_url');
 
        $uri = parse_url($url);
-
-       if ($uri && isset($uri['host']))
-       {
-        $parser = LinkParser::where('domain', '=', $uri['host'])->first();
-       }
-
+       
        $metaTitle = false;
        $metaDescription  = false;
        $metaImage = false;
@@ -267,7 +262,13 @@ class LinksController extends Controller
 
         break;
 
-        default:       
+        default:   
+
+           if ($uri && isset($uri['host']))
+           {
+            $parser = LinkParser::where('domain', '=', $uri['host'])->first();
+           }
+    
 
            if ($parser)
            {
@@ -916,6 +917,7 @@ class LinksController extends Controller
     {
         $data = array('title' => '', 'description' => '', 'image' => '', 'media_types' => array());
 
+     
         $url = explode('/dp/', $url);
 
         if (isset($url[1]))

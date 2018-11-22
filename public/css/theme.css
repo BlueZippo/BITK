@@ -12,6 +12,7 @@ Table of Content:
 #Edit Stack
 #Explore
 #People
+#Profile
 *****************************/
 /*****************************
     #Layout
@@ -1231,4 +1232,37 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+/*****************************
+    #Profile
+*****************************/
+#profile-page > .profile-page-header {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+#profile-page .container {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#profile-page .profile-header_top {
+    background-color: var(--darker-gray);
+    background-image: url(../images/bgd-profile-header.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 205px;
+}
+#profile-page .profile-header_bottom {
+    background-color: #000000;
+    min-height: 55px;
+}
+#profile-page .profile-header_top .inner h2 {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: 800;
+    text-align: center;
 }
