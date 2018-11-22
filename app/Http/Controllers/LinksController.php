@@ -917,6 +917,8 @@ class LinksController extends Controller
     {
         $data = array('title' => '', 'description' => '', 'image' => '', 'media_types' => array());
 
+        echo $url; return;
+
      
         $url = explode('/dp/', $url);
 
