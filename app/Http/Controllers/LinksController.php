@@ -1006,8 +1006,6 @@ class LinksController extends Controller
         /* create request */
         $request = "http://".$host.$uri."?".$canonicalized_query."&Signature=".$signature;
 
-        echo $request; return;
-
         /* I prefer using CURL */
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,$request);
@@ -1016,6 +1014,8 @@ class LinksController extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 
         $xml_response = curl_exec($ch);
+
+        print_r($xml_response);
         
         /* If cURL doesn't work for you, then use the 'file_get_contents'
            function as given below.
