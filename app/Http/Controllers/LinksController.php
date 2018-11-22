@@ -935,12 +935,12 @@ class LinksController extends Controller
             
             if ($result)
             {
-                $media = MediaType::where('media_type','=', 'Product')->first();
+                //$media = MediaType::where('media_type','=', 'Product')->first();
 
                 $data = array('title' => (string) $result->Items->Item->ItemAttributes->Title,
                              'description' => (string) $result->Items->Item->ItemAttributes->Feature,
                              'image' => (string) $result->Items->Item->LargeImage->URL,
-                             'media_types' =>  $media->id
+                             //'media_types' =>  $media->id
                          );
             }    
 
