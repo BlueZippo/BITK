@@ -21,7 +21,7 @@ Route::get('/', 'PublicController@index')->name('home');
 Route::get('/dashboard', 'PagesController@index')->name('home');
 
 
-Route::group(['middleware' => ['auth']], function() 
+Route::group(['middleware' => ['auth']], function()
 {
 	Route::resource('admin/roles', 'RoleController');
 
@@ -30,8 +30,8 @@ Route::group(['middleware' => ['auth']], function()
 	Route::post('users/background', 'UserController@background');
 
 	Route::post('users/profile/update',  ['as' => 'users.profile_update', 'uses' => 'UserController@profile_update']);
-	
-	Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);	
+
+	Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);
 
 	Route::get('stacks/popular', 'StacksController@popular');
 	Route::get('stacks/new', 'StacksController@new');
@@ -49,9 +49,9 @@ Route::group(['middleware' => ['auth']], function()
 	Route::post('stacks/upload', 'StacksController@upload');
 	Route::post('stacks/trash', 'StacksController@trash');
 
-	Route::get('stacks/explore', 'StacksController@explore');	
+	Route::get('stacks/explore', 'StacksController@explore');
 
-	Route::get('stacks/view-all', 'StacksController@view_all');	
+	Route::get('stacks/view-all', 'StacksController@view_all');
 
 	Route::post('stacks/autosave', 'StacksController@autosave');
 
@@ -72,7 +72,7 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::resource('stacks', 'StacksController');
 
-	Route::resource('admin/categories', 'CategoriesController');	
+	Route::resource('admin/categories', 'CategoriesController');
 
 	Route::resource('admin/media_types', 'MediaTypeController');
 
@@ -80,7 +80,7 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::post('links/addreminder', ['as' => 'links.addreminder', 'uses' => 'LinksController@addreminder']);
 
-	Route::post('links/store', 'LinksController@store');	
+	Route::post('links/store', 'LinksController@store');
 
 	Route::resource('links', 'LinksController');
 
@@ -94,6 +94,8 @@ Route::group(['middleware' => ['auth']], function()
 Route::resource('permissions', 'PermissionController');
 
 Route::resource('people', 'PeopleController');
+
+Route::get('person/{id}', 'PeopleController@person');
 
 Route::get('/register', 'RegistrationController@create');
 

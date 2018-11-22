@@ -31,3 +31,5 @@
 	</div>
 
 </div>
+
+<p><a href="/person/{{$person->id}}" target="_blank">Profile Test Link</a></p>
