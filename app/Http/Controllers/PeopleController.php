@@ -25,7 +25,7 @@ class PeopleController extends Controller
 
         $follows = User::find(auth()->id())
                     ->peopleFollow()
-                    ->pluck('people_id');  
+                    ->pluck('people_id');
 
         $medias = MediaType::all();
 
@@ -36,9 +36,9 @@ class PeopleController extends Controller
                     'parking' => 'Parking Lot',
                     'new' => 'Create New Stack',
                     'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
-                    );          
+                    );
 
-        return view('people.index')->with(['users' => $users, 
+        return view('people.index')->with(['users' => $users,
                                            'peopleFollows' => $follows,
                                            'medias' => $medias,
                                            'options' => $options]);
@@ -117,7 +117,7 @@ class PeopleController extends Controller
         $people = PeopleFollow::where('user_id', '=', $user_id)
                  ->where('people_id', '=', $id);
 
-        $people->delete();         
+        $people->delete();
 
         $follow = new PeopleFollow;
 
@@ -136,7 +136,7 @@ class PeopleController extends Controller
         $people = PeopleFollow::where('user_id', '=', $user_id)
                  ->where('people_id', '=', $id);
 
-        $people->delete();    
+        $people->delete();
 
         return json_encode(array('user_id' => $user_id, 'people_id' => $id));
     }
@@ -186,5 +186,13 @@ class PeopleController extends Controller
         }
 
         return view('people.stacks')->with(['user' => $user, 'stacks' => $stacks]);
+    }
+
+    public function person($id) {
+
+        $user = User::find($id);
+
+        return view('people.person')->with(['user' => $user]);
+
     }
 }
