@@ -1121,7 +1121,7 @@ class LinksController extends Controller
                             {
                                 if ($imgAttributes->name == 'src')
                                 {
-                                    $image1 = $imgAttributes->value;
+                                    $image = $imgAttributes->value;
                                 }
                             }    
                         }    
