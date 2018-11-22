@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d211717fb1e4e4dab7d1f52a7e8a154",
+    "content-hash": "f815e72d04644c05cf85e16dc80e88d3",
     "packages": [
+        {
+            "name": "bariew/phpquery",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bariew/phpquery.git",
+                "reference": "233afd67f5d8188fa87b95ae9371e5aadd3dd927"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bariew/phpquery/zipball/233afd67f5d8188fa87b95ae9371e5aadd3dd927",
+                "reference": "233afd67f5d8188fa87b95ae9371e5aadd3dd927",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "phpQuery/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobiasz Cudnik",
+                    "email": "tobiasz.cudnik@gmail.com",
+                    "homepage": "https://github.com/TobiaszCudnik",
+                    "role": "Developer"
+                },
+                {
+                    "name": "didier Belot",
+                    "role": "Packager"
+                }
+            ],
+            "description": "phpQuery is a server-side, chainable, CSS3 selector driven Document Object Model (DOM) API based on jQuery JavaScript Library",
+            "homepage": "http://code.google.com/p/phpquery/",
+            "time": "2015-12-29T11:19:32+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
