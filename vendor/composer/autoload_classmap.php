@@ -2524,17 +2524,12 @@ return array(
     'PharIo\\Manifest\\RequiresElement' => $vendorDir . '/phar-io/manifest/src/xml/RequiresElement.php',
     'PharIo\\Manifest\\Type' => $vendorDir . '/phar-io/manifest/src/values/Type.php',
     'PharIo\\Manifest\\Url' => $vendorDir . '/phar-io/manifest/src/values/Url.php',
-<<<<<<< HEAD
-    'PharIo\\Version\\AbstractVersionConstraint' => $vendorDir . '/phar-io/version/src/constraints/AbstractVersionConstraint.php',
-    'PharIo\\Version\\AndVersionConstraintGroup' => $vendorDir . '/phar-io/version/src/constraints/AndVersionConstraintGroup.php',
-    'PharIo\\Version\\AnyVersionConstraint' => $vendorDir . '/phar-io/version/src/constraints/AnyVersionConstraint.php',
-    'PharIo\\Version\\ExactVersionConstraint' => $vendorDir . '/phar-io/version/src/ExactVersionConstraint.php',
-=======
+
     'PharIo\\Version\\AbstractVersionConstraint' => $vendorDir . '/phar-io/version/src/AbstractVersionConstraint.php',
     'PharIo\\Version\\AndVersionConstraintGroup' => $vendorDir . '/phar-io/version/src/constraints/AndVersionConstraintGroup.php',
     'PharIo\\Version\\AnyVersionConstraint' => $vendorDir . '/phar-io/version/src/AnyVersionConstraint.php',
     'PharIo\\Version\\ExactVersionConstraint' => $vendorDir . '/phar-io/version/src/constraints/ExactVersionConstraint.php',
->>>>>>> 9d85a9b17e72193d915822cff80a109962e75948
+
     'PharIo\\Version\\Exception' => $vendorDir . '/phar-io/version/src/exceptions/Exception.php',
     'PharIo\\Version\\GreaterThanOrEqualToVersionConstraint' => $vendorDir . '/phar-io/version/src/constraints/GreaterThanOrEqualToVersionConstraint.php',
     'PharIo\\Version\\InvalidPreReleaseSuffixException' => $vendorDir . '/phar-io/version/src/exceptions/InvalidPreReleaseSuffixException.php',
