@@ -957,8 +957,6 @@ class LinksController extends Controller
         $secret_key = Config::get('amazon.secret_key');
         $associate_tag = Config::get('amazon.associate_tag');
 
-        echo sprintf("public: %s secret: %s tag: %s", $public_key, $secret_key, $associate_tag); return;
-
         return $this->aws_signed_request("com", $parameters, $public_key, $secret_key, $associate_tag);
     }
 
@@ -1007,6 +1005,8 @@ class LinksController extends Controller
         
         /* create request */
         $request = "http://".$host.$uri."?".$canonicalized_query."&Signature=".$signature;
+
+        echo $request; return;
 
         /* I prefer using CURL */
         $ch = curl_init();
