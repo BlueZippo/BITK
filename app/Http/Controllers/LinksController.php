@@ -937,8 +937,10 @@ class LinksController extends Controller
             {
                 $media = MediaType::where('media_type','=', 'Products')->first();
 
+                $description = (string) $result->Items->Item->EditorialReviews->EditorialReview->Content;
+
                 $data = array('title' => (string) $result->Items->Item->ItemAttributes->Title,
-                             'description' => (string) $result->Items->Item->ItemAttributes->Feature,
+                             'description' => strip_tags($description),
                              'image' => (string) $result->Items->Item->LargeImage->URL,
                              'media_types' =>  $media->id
                          );
