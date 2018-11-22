@@ -1095,26 +1095,62 @@ class LinksController extends Controller
 
         header('Content-Type: text/html; charset=utf-8');
 
-$doc = new \DOMDocument();
+        $doc = new \DOMDocument();
 
-libxml_use_internal_errors(true);
+        libxml_use_internal_errors(true);
 
-$doc->loadHTMLFile($url);
+        $doc->loadHTMLFile($url);
 
-$xpath = new \DOMXpath($doc);
+        $xpath = new \DOMXpath($doc);
 
-$elements = $xpath->query("//*/div");
+        $elements = $xpath->query("//*/div");
 
-  foreach ($elements as $element) 
-  {
+        $image = false;
 
-    print_r($element);
+        foreach ($elements as $element) 
+        {       
+            foreach($element->attributes as $attribute)
+            {
+                if ($attribute->name == 'class' && $attribute->value == 'ProfileCanopy-headerBg')
+                {
+                    foreach($element->childNodes as $child)
+                    {
+                        if (isset($child->tagName) && $child->tagName == 'img')
+                        {
+                            foreach($child->attributes as $imgAttributes)
+                            {
+                                if ($imgAttributes->name == 'src')
+                                {
+                                    $image1 = $imgAttributes->value;
+                                }
+                            }    
+                        }    
+                    }    
+                }
+            }
+        }
 
-    
-  }
+        if (!$image)
+        {
+            $elements = $xpath->query("//*/img");
 
-
-
+            foreach($elements as $element)
+            {
+                foreach($element->attributes as $attribute)
+                {
+                    if ($attribute->name == 'class' && trim($attribute->value) == 'ProfileAvatar-image')
+                    {
+                        foreach($element->attributes as $imgAttribute)
+                        {
+                            if ($imgAttribute->name == 'src')
+                            {
+                                $image = $imgAttribute->value;
+                            }    
+                        }    
+                    }    
+                }
+            }
+        }    
         
         
         $data = array(
