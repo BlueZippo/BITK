@@ -925,6 +925,8 @@ class LinksController extends Controller
 
             $uri = parse_url($link->link);
 
+            print_r($uri);
+
             switch ($uri['host'])
             {
                 case 'www.amazon.com':
