@@ -922,7 +922,46 @@ class LinksController extends Controller
 
         if ($link)
         {
-            return redirect($link->link);
+
+            $uri = parse_url($link->link);
+
+            switch ($uri['host'])
+            {
+                case 'www.amazon.com':
+
+
+                    $query = explode('&', $uri['query']);
+
+                    foreach($query as $x => $q)
+                    {
+                        list($var, $value) = explode('=', $q);
+
+                        if ($var == 'linkId' || $var == 'linkCode' || $var == 'tag' || $var == 'language')
+                        {
+                            unset($query[$x]);
+                        }
+                    }
+
+
+                    $query[] = sprintf("linkId=%s", Config::get('amazon.linkId'));
+                    $query[] = sprintf("linkCode=%s", Config::get('amazon.linkCode'));
+                    $query[] = sprintf("tag=%s", Config::get('amazon.tag'));
+                    $query[] = sprintf("language=%s", Config::get('amazon.language'));                    
+
+                    $url = sprintf("%s://%s%s?%s", $uri['scheme'], $uri['host'], $uri['path'], implode('&', $query));
+
+                
+                    return redirect($url);
+
+                break;
+
+                default:
+
+                    return redirect($link->link);
+            }
+
+
+            //return redirect($link->link);
         }
     }
 
