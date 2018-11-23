@@ -1242,7 +1242,15 @@ a.downvote
 }
 
 .stack-meta .comments,
-.link-comment-button
+.link-comment-button,
+a.edit-link,
+a.delete-link
 {
 	cursor:pointer;
+}
+
+
+a.edit-link:hover, a.delete-link:hover
+{
+	color:var(--blue) !important;
 }

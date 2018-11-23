@@ -90,6 +90,8 @@
                 {{Form::hidden('status_id', $stack->status_id)}}
                 {{Form::hidden('id', $stack->id)}}
 
+                {{Form::hidden('active_media_id', $active_media_id)}}
+
                  {{ csrf_field() }}
 
                 <div class="dotted">
