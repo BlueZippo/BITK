@@ -925,22 +925,24 @@ class LinksController extends Controller
 
             $uri = parse_url($link->link);
 
-            print_r($uri);
-
             switch ($uri['host'])
             {
                 case 'www.amazon.com':
 
+                    $query = array();
 
-                    $query = explode('&', $uri['query']);
-
-                    foreach($query as $x => $q)
+                    if (isset($uri['query']))
                     {
-                        list($var, $value) = explode('=', $q);
+                        $query = explode('&', $uri['query']);
 
-                        if ($var == 'linkId' || $var == 'linkCode' || $var == 'tag' || $var == 'language')
+                        foreach($query as $x => $q)
                         {
-                            unset($query[$x]);
+                            list($var, $value) = explode('=', $q);
+
+                            if ($var == 'linkId' || $var == 'linkCode' || $var == 'tag' || $var == 'language')
+                            {
+                                unset($query[$x]);
+                            }
                         }
                     }
 
@@ -952,7 +954,7 @@ class LinksController extends Controller
 
                     $url = sprintf("%s://%s%s?%s", $uri['scheme'], $uri['host'], $uri['path'], implode('&', $query));
 
-                    echo $url;
+                    return $url;
                 
                     //return redirect($url);
 
