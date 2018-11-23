@@ -954,9 +954,9 @@ class LinksController extends Controller
 
                     $url = sprintf("%s://%s%s?%s", $uri['scheme'], $uri['host'], $uri['path'], implode('&', $query));
 
-                    return $url;
+                    //return $url;
                 
-                    //return redirect($url);
+                    return redirect($url);
 
                 break;
 
