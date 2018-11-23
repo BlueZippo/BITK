@@ -1255,14 +1255,89 @@ main {
     background-size: cover;
     background-position: center;
     min-height: 205px;
+    padding: 30px 0 60px;
+    position: relative;
+}
+#profile-page .profile-header_top.background:before {
+    content: "";
+    background: rgb(49,49,49);
+    background: -moz-linear-gradient(180deg, rgba(49,49,49,0.5) 30%, rgba(49,49,49,0.8) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(49,49,49,0.5) 30%, rgba(49,49,49,0.8) 100%);
+    background: linear-gradient(180deg, rgba(49,49,49,0.5) 30%, rgba(49,49,49,0.8) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#313131",endColorstr="#313131",GradientType=1);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
 }
 #profile-page .profile-header_bottom {
     background-color: #000000;
     min-height: 55px;
+}
+#profile-page .profile-header_bottom > .inner {
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 #profile-page .profile-header_top .inner h2 {
     color: #ffffff;
     font-size: 36px;
     font-weight: 800;
     text-align: center;
+    margin-bottom: 0;
+}
+#profile-page .profile-header_top .inner h4,
+#profile-page .profile-header_top .inner p {
+    color: var(--light-gray);
+    font-size: 16px;
+    text-align: center;
+}
+#profile-page .profile-header_top .inner p {
+    display: block;
+    max-width: 800px;
+    margin: 0 auto;
+}
+#profile-page .profile-header_top.background .inner h4,
+#profile-page .profile-header_top.background .inner p {
+    color: #ffffff;
+}
+#profile-page .profile-header_bottom .avatar {
+    display: block;
+    border-radius: 80px;
+    background-color: var(--darker-gray);
+    border: 5px solid var(--darker-gray);
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    top: -50px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    overflow: hidden;
+}
+#profile-page .profile-header_bottom .avatar > img {
+    width: 100%;
+    height: auto;
+}
+#profile-page .profile-header_bottom .avatar.no-image {
+    background-color: #cccccc;
+}
+#profile-page .profile-header_bottom .avatar.no-image:after {
+    content: "\f007";
+    color: var(--darker-gray);
+    display: block;
+    width: 80px;
+    height: 80px;
+    font-family: "Font Awesome\ 5 Free";
+    font-size: 80px;
+    font-weight: 900;
+    line-height: 80px;
+    text-align: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
 }

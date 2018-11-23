@@ -192,7 +192,26 @@ class PeopleController extends Controller
 
         $user = User::find($id);
 
-        return view('people.person')->with(['user' => $user]);
+        $stacks = array();
+
+        //$stacks = DB::table('stacks')->where('user_id', '=', $id)->get();
+
+        //$stacks = Stack::where('user_id', '=', $id)->get();
+
+        $results = Stack::where('user_id', '=', $id)->orderby('updated_at', 'desc')->get();
+
+        foreach($results as $result) {
+
+            $stacks[] = array(
+                'title' => $result->title,
+                'created' => $result->created_at,
+                'updated' => $result->updated_at,
+                'media' => $result->video_id,
+            );
+
+        }
+
+        return view('people.person')->with(['user' => $user, 'stacks' => $stacks]);
 
     }
 }
