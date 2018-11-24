@@ -974,13 +974,37 @@ class LinksController extends Controller
     {
         $data = array('title' => '', 'description' => '', 'image' => '', 'media_types' => array());
 
-        $url = explode('/dp/', $url);
+        $uri = parse_url($url);
 
-        if (isset($url[1]))
+        $dp = explode('/dp/', $uri['path']);
+
+        if (isset($dp[1]))
         {
-            $codes = explode('/', $url[1]);
+            $dp = explode('/', $dp[1]);
 
-            $code = $codes[0];
+            $code = $dp[0];
+        }
+        else if (isset($uri['query']))
+        {
+            $query = explode('&', $uri['query']);
+
+            foreach($query as $q)
+            {
+                list($var, $val) = explode('=', $q);
+
+                if ($var == 'field-keywords')
+                {
+                    $code = $val;
+                }
+            }
+        }
+
+
+        if ($code)
+        {
+            //$codes = explode('/', $url[1]);
+
+            //$code = $codes[0];
 
             $parameters = array("Operation"   => "ItemSearch",
                                 "Keywords"    => $code,
@@ -989,7 +1013,7 @@ class LinksController extends Controller
                                 
             $result = $this->queryAmazon($parameters);
 
-            
+
             if ($result)
             {
                 $media = MediaType::where('media_type','=', 'Products')->first();

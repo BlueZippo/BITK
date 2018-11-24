@@ -63,6 +63,11 @@ $('.send-container, .add-link-form').click(function(e)
 	e.stopPropagation();
 });
 
+$('.add-link-form').on('right-click', function(e)
+{
+	e.stopPropagation();
+})
+
 $(document).on('click', 'a.like-button', function()
 {
 	stack_id = $(this).data('id');
@@ -244,6 +249,13 @@ $(document).ready(function()
 		}
 
 		$('.add-link-form').show();
+
+	});
+
+
+	$('.add-link-form').on('show', function(e)
+	{
+		$('input', this).val('')
 	});
 
 	$('.cancel-btn').click(function()
