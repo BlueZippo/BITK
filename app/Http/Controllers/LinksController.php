@@ -283,16 +283,14 @@ class LinksController extends Controller
            if ($parser)
            {
 
-            $content = $this->get_remote_data($url, $parser);
+            $data = $this->get_remote_data($url, $parser);
            }
            else
            { 
 
                $meta = $this->getUrlData($url);
 
-               $data = array('title' => '', 'description' => '', 'image' => '/images/stack-placeholder.png');
-
-
+               
                if (isset($meta['title']))
                {
                 $data['title'] = $meta['title'];
@@ -330,12 +328,12 @@ class LinksController extends Controller
 
                  }
 
-
-               }
+               }               
 
             }
         }
 
+        
        return json_encode($data);
     }
 
@@ -493,25 +491,97 @@ class LinksController extends Controller
     }
 
 
-    function xxget_remote_data($url, $parser)
+    function get_remote_data($url, $parser)
     {
-        $html  = phpQuery::newDocumentFileHTML($url); 
-
         $content = array();
 
-        echo $parser->image;
+        $title = "";
+        $description = "";
+        $image = "";
 
-        $image = phpQuery::pq($parser->image, $html);
+        header('Content-Type: text/html; charset=utf-8');
+
+        $doc = new \DOMDocument();
+
+        libxml_use_internal_errors(true);
+
+        $doc->loadHTMLFile($url);
+
+        $xpath = new \DOMXpath($doc);
+
+        if ($parser->title == 'meta')
+        {
+            $elements = $xpath->query("//*/title");
+
+            foreach($elements as $element)
+            {
+                $title = $element->nodeValue;
+            }    
+        }
+
+        if ($parser->description == 'meta')    
+        {
+            $elements = $xpath->query('//meta[@name="description"]/@content');
+
+            foreach($elements as $element)
+            {
+                $description = $element->nodeValue;
+            }    
+        }
+
+        if ($parser->image == 'meta')    
+        {
+
+        }   
+        else
+        {
+            $tags = $parser->image;
+
+            switch ($tags[0])
+            {
+                case '.':
+
+                    $classname = substr($tags, 1);
+
+                    $elements = $xpath->query("//*[contains(@class, '$classname')]");
+
+                    foreach($elements as $element)
+                    {
+                        if ($element->tagName == 'img')
+                        {
+                            foreach($element->attributes as $attribute)
+                            {
+                                if ($attribute->name == 'src')
+                                {
+                                    $image = $attribute->value;
+                                }    
+                            }    
+                        }
+                        else
+                        {
+
+                        }    
+                    }    
 
 
-        print_r($image);
+                break;
 
+                default:
+
+            }
+        } 
+
+        $content = array(
+            'title' => $title,
+            'description' => $description,
+            'image' => $image
+            );    
 
         return $content;
     }
 
 
-    function get_remote_data($url, $post_paramtrs=false,$extra=array('schemeless'=>true, 'replace_src'=>true, 'return_array'=>false))   
+    function xget_remote_data($url, $post_paramtrs=false,$extra=array('schemeless'=>true, 'replace_src'=>true, 'return_array'=>false))   
     {
         $c = curl_init();
 
@@ -1008,7 +1078,7 @@ class LinksController extends Controller
 
             $parameters = array("Operation"   => "ItemSearch",
                                 "Keywords"    => $code,
-                                "ResponseGroup" => "Medium",
+                                "ResponseGroup" => "Large",
                                 "SearchIndex" => "All");
                                 
             $result = $this->queryAmazon($parameters);
