@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('stacks/{page}/more', 'StacksController@more');
 	Route::get('stacks/{id}/preview', 'StacksController@preview');
 
-	//Route::resource('stacks', 'StacksController');
+	Route::resource('stacks', 'StacksController');
 
 	Route::resource('admin/categories', 'CategoriesController');
 
