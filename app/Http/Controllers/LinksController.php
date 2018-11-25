@@ -1047,10 +1047,17 @@ class LinksController extends Controller
         $uri = parse_url($url);
 
         $dp = explode('/dp/', $uri['path']);
+        $dp2 = explode('/product/', $uri['path']);
 
         if (isset($dp[1]))
         {
             $dp = explode('/', $dp[1]);
+
+            $code = $dp[0];
+        }
+        else if (isset($dp2[1]))
+        {
+            $dp = explode('/', $dp2[1]);
 
             $code = $dp[0];
         }
