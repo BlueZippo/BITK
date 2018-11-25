@@ -472,7 +472,7 @@ class StacksController extends Controller {
 
         $sql .= " LEFT JOIN stacks_follows f ON f.stack_id = s.id";
 
-        $sql .= " LEFT JOIN stacks_votes v ON v.stack_id = s.id AND v.vote = 1";
+        $sql .= " LEFT JOIN stacks_votes v ON (v.stack_id = s.id AND v.vote = 1)";
 
         $sql .= " LEFT JOIN stack_comments co ON co.stack_id = s.id";
 
@@ -517,8 +517,6 @@ class StacksController extends Controller {
         {
             $sql .= " ORDER BY relevance DESC, s.created_at DESC";
         }
-
-        //echo $sql;
 
         $navSort = array(
 
