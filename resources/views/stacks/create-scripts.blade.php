@@ -63,7 +63,7 @@ $(document).ready(function()
 
     var autoSve = setInterval(stack_autosave, 60 * 1000);
 
-    $('.modal-body select[name=media_type]').change(function()
+    $('.modal-body select[name=media_types]').change(function()
     {
         var inp = $(this).val();
 
@@ -469,7 +469,7 @@ $(document).ready(function()
     $('#youtubeModal .btn-primary').click(function()
     {
 
-        var mediaType = $('#youtubeModal select[name=media_type]').val();
+        var mediaType = $('#youtubeModal select[name=media_types]').val();
 
         $('input[name=media_type]').val(mediaType);
 

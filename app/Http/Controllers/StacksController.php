@@ -261,8 +261,10 @@ class StacksController extends Controller {
 
     public function dashboard($id, $mode = 'normal')
     {
+        echo "id: $id";
+        
         $stack = Stack::find($id);
-
+        
         $view = $stack->view;
 
         $stack->view = $view + 1;
@@ -385,6 +387,8 @@ class StacksController extends Controller {
                     'new' => 'Create New Stack',
                     'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
                     );
+
+
 
 
         if ($mode == 'preview')
@@ -1389,7 +1393,7 @@ class StacksController extends Controller {
             }
         }
 
-        return json_encode(array('id' => $id));
+        return json_encode(array('id' => $id, 'stack' => $stack));
     }
 
     public function more($page)

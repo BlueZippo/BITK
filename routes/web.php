@@ -68,9 +68,9 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('stacks/{id}/edit/{media}', 'StacksController@edit');
 
 	Route::get('stacks/{page}/more', 'StacksController@more');
-	Route::get('stacks/{page}/preview', 'StacksController@preview');
+	Route::get('stacks/{id}/preview', 'StacksController@preview');
 
-	Route::resource('stacks', 'StacksController');
+	//Route::resource('stacks', 'StacksController');
 
 	Route::resource('admin/categories', 'CategoriesController');
 
