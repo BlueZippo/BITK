@@ -999,6 +999,7 @@ class LinksController extends Controller
             {
                 case 'www.amazon.com':
 
+                    /*
                     $query = array();
 
                     if (isset($uri['query']))
@@ -1025,8 +1026,11 @@ class LinksController extends Controller
                     $url = sprintf("%s://%s%s?%s", $uri['scheme'], $uri['host'], $uri['path'], implode('&', $query));
 
                     //return $url;
-                
-                    return redirect($url);
+                    */
+
+                    $data = $this->get_amazon_data($link->link);
+
+                    return redirect($data['amazon']);
 
                 break;
 
@@ -1107,7 +1111,8 @@ class LinksController extends Controller
                 $data = array('title' => (string) $result->Items->Item->ItemAttributes->Title,
                              'description' => strip_tags($description),
                              'image' => (string) $result->Items->Item->LargeImage->URL,
-                             'media_types' =>  $media->id
+                             'media_types' =>  $media->id,
+                             'amazon' => (string) $result->Items->Item->DetailPageURL
                          );
             }    
 
