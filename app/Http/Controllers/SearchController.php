@@ -20,7 +20,7 @@ class SearchController extends Controller
 
         for($i=0; $i<=10; $i++) 
         {
-            $options[] = $i;
+            $search_options[] = $i;
         }
 
         $title = 0;
