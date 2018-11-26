@@ -283,16 +283,14 @@ class LinksController extends Controller
            if ($parser)
            {
 
-            $content = $this->get_remote_data($url, $parser);
+            $data = $this->get_remote_data($url, $parser);
            }
            else
            { 
 
                $meta = $this->getUrlData($url);
 
-               $data = array('title' => '', 'description' => '', 'image' => '/images/stack-placeholder.png');
-
-
+               
                if (isset($meta['title']))
                {
                 $data['title'] = $meta['title'];
@@ -330,12 +328,12 @@ class LinksController extends Controller
 
                  }
 
-
-               }
+               }               
 
             }
         }
 
+        
        return json_encode($data);
     }
 
@@ -493,25 +491,97 @@ class LinksController extends Controller
     }
 
 
-    function xxget_remote_data($url, $parser)
+    function get_remote_data($url, $parser)
     {
-        $html  = phpQuery::newDocumentFileHTML($url); 
-
         $content = array();
 
-        echo $parser->image;
+        $title = "";
+        $description = "";
+        $image = "";
 
-        $image = phpQuery::pq($parser->image, $html);
+        header('Content-Type: text/html; charset=utf-8');
+
+        $doc = new \DOMDocument();
+
+        libxml_use_internal_errors(true);
+
+        $doc->loadHTMLFile($url);
+
+        $xpath = new \DOMXpath($doc);
+
+        if ($parser->title == 'meta')
+        {
+            $elements = $xpath->query("//*/title");
+
+            foreach($elements as $element)
+            {
+                $title = $element->nodeValue;
+            }    
+        }
+
+        if ($parser->description == 'meta')    
+        {
+            $elements = $xpath->query('//meta[@name="description"]/@content');
+
+            foreach($elements as $element)
+            {
+                $description = $element->nodeValue;
+            }    
+        }
+
+        if ($parser->image == 'meta')    
+        {
+
+        }   
+        else
+        {
+            $tags = $parser->image;
+
+            switch ($tags[0])
+            {
+                case '.':
+
+                    $classname = substr($tags, 1);
+
+                    $elements = $xpath->query("//*[contains(@class, '$classname')]");
+
+                    foreach($elements as $element)
+                    {
+                        if ($element->tagName == 'img')
+                        {
+                            foreach($element->attributes as $attribute)
+                            {
+                                if ($attribute->name == 'src')
+                                {
+                                    $image = $attribute->value;
+                                }    
+                            }    
+                        }
+                        else
+                        {
+
+                        }    
+                    }    
 
 
-        print_r($image);
+                break;
 
+                default:
+
+            }
+        } 
+
+        $content = array(
+            'title' => $title,
+            'description' => $description,
+            'image' => $image
+            );    
 
         return $content;
     }
 
 
-    function get_remote_data($url, $post_paramtrs=false,$extra=array('schemeless'=>true, 'replace_src'=>true, 'return_array'=>false))   
+    function xget_remote_data($url, $post_paramtrs=false,$extra=array('schemeless'=>true, 'replace_src'=>true, 'return_array'=>false))   
     {
         $c = curl_init();
 
@@ -929,6 +999,7 @@ class LinksController extends Controller
             {
                 case 'www.amazon.com':
 
+                    /*
                     $query = array();
 
                     if (isset($uri['query']))
@@ -955,8 +1026,11 @@ class LinksController extends Controller
                     $url = sprintf("%s://%s%s?%s", $uri['scheme'], $uri['host'], $uri['path'], implode('&', $query));
 
                     //return $url;
-                
-                    return redirect($url);
+                    */
+
+                    $data = $this->get_amazon_data($link->link);
+
+                    return redirect($data['amazon']);
 
                 break;
 
@@ -974,22 +1048,53 @@ class LinksController extends Controller
     {
         $data = array('title' => '', 'description' => '', 'image' => '', 'media_types' => array());
 
-        $url = explode('/dp/', $url);
+        $uri = parse_url($url);
 
-        if (isset($url[1]))
+        $dp = explode('/dp/', $uri['path']);
+        $dp2 = explode('/product/', $uri['path']);
+
+        if (isset($dp[1]))
         {
-            $codes = explode('/', $url[1]);
+            $dp = explode('/', $dp[1]);
 
-            $code = $codes[0];
+            $code = $dp[0];
+        }
+        else if (isset($dp2[1]))
+        {
+            $dp = explode('/', $dp2[1]);
+
+            $code = $dp[0];
+        }
+        else if (isset($uri['query']))
+        {
+            $query = explode('&', $uri['query']);
+
+            foreach($query as $q)
+            {
+                list($var, $val) = explode('=', $q);
+
+                if ($var == 'field-keywords')
+                {
+                    $code = $val;
+                }
+            }
+        }
+
+
+        if ($code)
+        {
+            //$codes = explode('/', $url[1]);
+
+            //$code = $codes[0];
 
             $parameters = array("Operation"   => "ItemSearch",
                                 "Keywords"    => $code,
-                                "ResponseGroup" => "Medium",
+                                "ResponseGroup" => "Large",
                                 "SearchIndex" => "All");
                                 
             $result = $this->queryAmazon($parameters);
 
-            
+
             if ($result)
             {
                 $media = MediaType::where('media_type','=', 'Products')->first();
@@ -1006,7 +1111,8 @@ class LinksController extends Controller
                 $data = array('title' => (string) $result->Items->Item->ItemAttributes->Title,
                              'description' => strip_tags($description),
                              'image' => (string) $result->Items->Item->LargeImage->URL,
-                             'media_types' =>  $media->id
+                             'media_types' =>  $media->id,
+                             'amazon' => (string) $result->Items->Item->DetailPageURL
                          );
             }    
 

@@ -63,7 +63,7 @@ $(document).ready(function()
 
     var autoSve = setInterval(stack_autosave, 60 * 1000);
 
-    $('.modal-body select[name=media_type]').change(function()
+    $('.modal-body select[name=media_types]').change(function()
     {
         var inp = $(this).val();
 
@@ -469,7 +469,7 @@ $(document).ready(function()
     $('#youtubeModal .btn-primary').click(function()
     {
 
-        var mediaType = $('#youtubeModal select[name=media_type]').val();
+        var mediaType = $('#youtubeModal select[name=media_types]').val();
 
         $('input[name=media_type]').val(mediaType);
 
@@ -478,7 +478,12 @@ $(document).ready(function()
 
             var url = $('#youtubeModal input[name=youtube]').val();
 
-            if (url.indexOf('youtu.be') > 0)
+            var l = document.createElement('a');
+
+            l.href = url;
+
+
+            if (l.hostname == 'youtu.be')
             {
                 url = url.split('/');
 
@@ -486,16 +491,15 @@ $(document).ready(function()
             }   
             else
             { 
-                url = url.split('=');
+                var youtubeID = url.split('v=')[1];
+                var ampersandPosition = youtubeID.indexOf('&');
+                
+                if(ampersandPosition != -1) 
+                {
+                    youtubeID = youtubeID.substring(0, ampersandPosition);
+                }
 
-                if (url[1])
-                {
-                    youtubeID = url[1];        
-                }
-                else
-                {
-                    youtubeID = url[0];
-                }
+                console.log(youtubeID);
             }
 
             //console.log(youtubeID);

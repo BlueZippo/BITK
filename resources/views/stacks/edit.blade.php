@@ -188,7 +188,7 @@
 
                     <form id="uploadForm"  enctype="multipart/form-data">
 
-                        {{Form::select('media_type', ['youtube' => 'Youtube', 'image' => 'Image', 'upload' => 'Upload Image'], 0, ['class' => 'form-control'])}}
+                        {{Form::select('media_types', ['youtube' => 'Youtube', 'image' => 'Image', 'upload' => 'Upload Image'], 0, ['class' => 'form-control'])}}
 
                         {{Form::text('image', '', ['class' => 'media-field form-control', 'placeholder' => 'Enter Image URL'])}}
 

@@ -261,8 +261,10 @@ class StacksController extends Controller {
 
     public function dashboard($id, $mode = 'normal')
     {
+        echo "id: $id";
+        
         $stack = Stack::find($id);
-
+        
         $view = $stack->view;
 
         $stack->view = $view + 1;
@@ -387,6 +389,8 @@ class StacksController extends Controller {
                     );
 
 
+
+
         if ($mode == 'preview')
         {
             return view('stacks.preview')->with($data);
@@ -468,7 +472,7 @@ class StacksController extends Controller {
 
         $sql .= " LEFT JOIN stacks_follows f ON f.stack_id = s.id";
 
-        $sql .= " LEFT JOIN stacks_votes v ON v.stack_id = s.id AND v.vote = 1";
+        $sql .= " LEFT JOIN stacks_votes v ON (v.stack_id = s.id AND v.vote = 1)";
 
         $sql .= " LEFT JOIN stack_comments co ON co.stack_id = s.id";
 
@@ -513,8 +517,6 @@ class StacksController extends Controller {
         {
             $sql .= " ORDER BY relevance DESC, s.created_at DESC";
         }
-
-        //echo $sql;
 
         $navSort = array(
 
@@ -1389,7 +1391,7 @@ class StacksController extends Controller {
             }
         }
 
-        return json_encode(array('id' => $id));
+        return json_encode(array('id' => $id, 'stack' => $stack));
     }
 
     public function more($page)
