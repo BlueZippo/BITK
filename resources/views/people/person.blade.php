@@ -61,29 +61,65 @@
 
     </div>
 
-</div>
+    <div id="profile-stacks">
 
-<divclass="row">
+        <div class="row">
 
-    @php $ctr = 0; @endphp
+            @php $ctr = 0; @endphp
 
-    @foreach($stacks as $stack)
+            @foreach($stacks as $stack)
 
-        @php
+                @php $ctr++ @endphp
 
-            $ctr++
+                @if($ctr == 1)
+                    <div class="col-md-12">
+                    @php $class = "main-stack" @endphp
+                @else
+                    <div class="col-md-4">
+                    @php $class = "" @endphp
+                @endif
 
-        @endphp
+                    <div class="stack {{$class}}">
 
-        <div class="col-md-12">
-            <div>
-                <div>{{$stack['media']}}</div>
-                <div><h4>{{$stack['title']}} {{$ctr}}</h4></div>
-                <div></div>
-            </div>
+                        @if(is_image($stack['media']))
+                            <div class="header"><img src="{{$stack['media']}}" alt="{{$stack['title']}}" /></div>
+                        @elseif($stack['media'] == '0')
+                            <div class="header"><img src="{{asset('images/stack-placeholder.png')}}" alt="{{$stack['title']}}" /></div>
+                        @else
+                            <div class="header"><img src="http://i3.ytimg.com/vi/{{$stack['media']}}/hqdefault.jpg" alt="{{$stack['title']}}" /></div>
+                        @endif
+                        <div class="content">
+                            <div class="title"><h4>{{$stack['title']}}</h4></div>
+                            <div class="footer">
+                                <div class="left">
+                                    <div class="ctrl"><i class="fas fa-plus-circle"></i></div>
+                                    <div class="ctrl"><i class="fas fa-heart"></i></div>
+                                    <div class="ctrl"><i class="fas fa-share"></i></div>
+                                </div>
+                                <div class="right">
+                                    <div class="ctrl"><i class="fas fa-thumbs-up"></i></div>
+                                    <div class="ctrl"><i class="fas fa-thumbs-down"></i></div>
+                                    <div class="ctrl"><i class="fas fa-comments"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if($ctr == 1 || $ctr == 4)
+                    </div>
+                    <div class="row">
+                @endif
+
+                @if($ctr == 4)
+                    @php $ctr = 1 @endphp
+                @endif
+
+            @endforeach
+
         </div>
 
-    @endforeach
+    </div>
 
 </div>
 
