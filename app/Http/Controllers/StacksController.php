@@ -464,7 +464,7 @@ class StacksController extends Controller {
 
         $sql .= " JOIN users u ON u.id = s.user_id";
 
-        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
+        $sql .= " JOIN links s2 ON s2.stack_id = s.id";
 
         $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
 
@@ -860,7 +860,7 @@ class StacksController extends Controller {
 
         $sql .= " JOIN users u ON u.id = s.user_id";
 
-        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
+        $sql .= " JOIN links s2 ON s2.stack_id = s.id";
 
         $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
 
