@@ -11,6 +11,10 @@ Table of Content:
     --pink: #fd3b82;
     --light-gray: #b1b2b2;
     --dark-gray: #949494;
+    --text-color: #404040;
+    --darker-gray: #313131;
+    --ps-bg-gray-color: #d1d1d1;
+    --border-color: #d1d1d1;
 }
 
 .follow-button,
@@ -1215,7 +1219,7 @@ a.downvote
 	display:inline-block;
 	font-size:9px;
 	padding:1px 7px;
-	border-radius:50%;	
+	border-radius:50%;
 	color:#fff;
 	margin:0px 5px;
 	vertical-align:middle;
