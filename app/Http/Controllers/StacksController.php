@@ -261,7 +261,7 @@ class StacksController extends Controller {
 
     public function dashboard($id, $mode = 'normal')
     {
-        echo "id: $id";
+        //echo "id: $id";
         
         $stack = Stack::find($id);
         
@@ -464,7 +464,7 @@ class StacksController extends Controller {
 
         $sql .= " JOIN users u ON u.id = s.user_id";
 
-        $sql .= " LEFT JOIN stack_links s2 ON s2.stack_id = s.id";
+        $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
 
         $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
 
@@ -786,6 +786,7 @@ class StacksController extends Controller {
             //$urlSQL[] = "if (p_url LIKE '%".$key."%',{$scoreUrlKeyword},0)";
 
 
+            /*
             $categorySQL[] = "if ((
                 SELECT count(cc.id)
                 FROM categories cc
@@ -794,6 +795,10 @@ class StacksController extends Controller {
                 WHERE ls.stack_id = s.id
                 AND cc.cat_name = '".$key."'
                             ) > 0,{$scoreCategoryKeyword},0)";
+
+            */
+
+            $categorySQL[] = "if (c2.cat_name LIKE '%".$key."%', {$scoreCategoryKeyword}, 0)";
 
         }
 
@@ -806,6 +811,8 @@ class StacksController extends Controller {
     {
 
         list($titleSQL, $docSQL, $userSQL, $categorySQL) = $this->getSearchWeight($query);
+
+        $hidden = StacksHidden::where('user_id', '=', auth()->id())->get()->pluck('stack_id')->toArray();
 
         if (empty($titleSQL))
         {
@@ -859,11 +866,20 @@ class StacksController extends Controller {
 
         $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
 
+        $sql .= " WHERE s.status_id = 1 AND s.private = 0";
+
+        if ($hidden)
+        {
+            $sql .= " AND s.id NOT IN (".implode(',', $hidden).")";
+        }
+
         $sql .= " GROUP BY s.id";
 
         $sql .= " ORDER BY relevance DESC, s2.created_at DESC";
 
         $results = DB::select($sql);
+
+       //echo $sql;
 
 
         if (!$results)
