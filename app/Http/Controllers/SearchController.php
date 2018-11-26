@@ -16,7 +16,7 @@ class SearchController extends Controller
     {
         $search = Search::first();
 
-        $options = array();
+        $search_options = array();
 
         for($i=0; $i<=10; $i++) 
         {
@@ -50,7 +50,7 @@ class SearchController extends Controller
 
 
 
-        $data['options'] = $options;
+        $data['search_options'] = $search_options;
 
         return view('search.index')->with($data);
     }

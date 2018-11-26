@@ -108,6 +108,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+
+
     /*
     |--------------------------------------------------------------------------
     | Logging Configuration
@@ -185,6 +187,8 @@ return [
 
         App\Providers\ComposerServiceProvider::class,
 
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+
     ],
 
     /*
@@ -237,6 +241,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
 
     ],
 

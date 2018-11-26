@@ -7,21 +7,21 @@
     <div class="form-group">
 
         {{Form::label('title', 'Title')}}
-        {{Form::select('title', $options, $title, ['class' => 'form-control', 'placeholder' => 'Title'])}} 
+        {{Form::select('title', $search_options, $title, ['class' => 'form-control', 'placeholder' => 'Title'])}} 
 
     </div>
 
 <div class="form-group">
 
     {{Form::label('content', 'Content')}}
-    {{Form::select('content', $options, $content, ['class' => 'form-control', 'placeholder' => 'Content'])}}
+    {{Form::select('content', $search_options, $content, ['class' => 'form-control', 'placeholder' => 'Content'])}}
 
 </div>
 
 <div class="form-group">
 
     {{Form::label('author', 'Author')}}
-    {{Form::select('author', $options, $author, ['class' => 'form-control', 'placeholder' => 'Author'])}}
+    {{Form::select('author', $search_options, $author, ['class' => 'form-control', 'placeholder' => 'Author'])}}
 
 </div>
 
@@ -29,14 +29,14 @@
 <div class="form-group">
 
     {{Form::label('popularity', 'Popularity')}}
-    {{Form::select('popularity', $options, $popularity, ['class' => 'form-control', 'placeholder' => 'Popularity'])}}
+    {{Form::select('popularity', $search_options, $popularity, ['class' => 'form-control', 'placeholder' => 'Popularity'])}}
 
 </div>
 
 <div class="form-group">
 
     {{Form::label('category', 'Category')}}
-    {{Form::select('category', $options, $category, ['class' => 'form-control', 'placeholder' => 'Category'])}}
+    {{Form::select('category', $search_options, $category, ['class' => 'form-control', 'placeholder' => 'Category'])}}
 
 </div>
 
@@ -44,7 +44,7 @@
 <div class="form-group">
 
     {{Form::label('tags', 'Tags')}}
-    {{Form::select('tags', $options, $tags, ['class' => 'form-control', 'placeholder' => 'Tags'])}}
+    {{Form::select('tags', $search_options, $tags, ['class' => 'form-control', 'placeholder' => 'Tags'])}}
 
 </div>
 

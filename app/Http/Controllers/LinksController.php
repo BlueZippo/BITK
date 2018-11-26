@@ -34,7 +34,7 @@ class LinksController extends Controller
 
         $this->middleware('auth');
 
-         $this->timestamp = $_SERVER["REQUEST_TIME"];
+        $this->timestamp = $_SERVER["REQUEST_TIME"];
 
     }
 
@@ -263,6 +263,12 @@ class LinksController extends Controller
         case 'www.amazon.com':
 
             $data = $this->get_amazon_data($url);
+
+        break;
+
+        case 'www.facebook.com':
+
+            $data = $this->get_facebook_data($url);
 
         break;
 
@@ -1314,7 +1320,19 @@ class LinksController extends Controller
     }
 
     
+    function get_facebook_data($url, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb)
+    {
+        
 
+        try {
+            $response = $fb->get('/me?fields=id,name,email', 'user-access-token');
+        } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+            dd($e->getMessage());
+        }
+
+        $userNode = $response->getGraphUser();
+        printf('Hello, %s!', $userNode->getName());
+    }
 
 
 }
