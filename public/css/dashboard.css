@@ -67,17 +67,20 @@
 {
 	padding:20px 40px;
 }
-
+.parking-container a {
+	transition: all 200ms ease-in-out;
+	-webkit-transition: all 200ms ease-in-out;
+}
 .parking-container .link-data h3 a
 {
-	color:#000;
+	color: var(--pink);
 	text-decoration:none;
 }
 
 .parking-container .link-data h3 a:hover
 {
 	text-decoration:none;
-	color:#1da1f2;
+	color: var(--text-color);
 }
 
 .parking-lot-container .panel-body
@@ -96,7 +99,12 @@
 	line-height:2;
 	font-weight:bold;
 }
-
+.parking-container .link-data .meta.small a {
+	color: var(--pink);
+}
+.parking-container .link-data .meta.small a:hover {
+	color: var(--text-color);
+}
 a.show-more
 {
 	color:#fff !important;

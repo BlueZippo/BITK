@@ -1,4 +1,4 @@
-<div class="stack-panel">
+<div class="stack-panel my-stacks">
 
 	<div class="panel-heading"><h3>My <span>Stacks</span></h3></div>
 
@@ -45,7 +45,7 @@
 
 			<div class="col-md-12 text-center">
 
-					<a class="view-all btn btn-primary show-more" data-page="1">Show More</a>
+					<a class="view-all btn btn-primary show-more btn-pink" data-page="1">Show More</a>
 
 			</div>
 

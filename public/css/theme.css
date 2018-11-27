@@ -80,6 +80,18 @@ and (min-width: 1200px) {
     background: radial-gradient(circle, rgba(108,108,108,1) 0%, rgba(64,64,64,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6c6c6c",endColorstr="#404040",GradientType=1);
 }
+.btn.btn-pink {
+    background-color: var(--pink);
+    border-color: var(--pink);
+}
+.btn.btn-pink:hover {
+    background-color: var(--text-color);
+    border-color: var(--text-color);
+}
+.btn.btn-pink:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(253,59,130,.5);
+    box-shadow: 0 0 0 0.2rem rgba(253,59,130,.5);
+}
 /*****************************
     #Header
 *****************************/
@@ -783,11 +795,12 @@ main {
 .dash-stack-tile .stack-footer .edit a {
     text-decoration: none;
 }
-.dash-stack-tile .stack-footer .edit a:hover {
-    color: var(--pink);
-}
 .dash-stack-tile .stack-footer .edit a.edit-dash-trigger {
+    color: var(--pink);
     margin-right: 5px;
+}
+.dash-stack-tile .stack-footer .edit a.edit-dash-trigger:hover {
+    color: var(--text-color);
 }
 .dash-stack-tile .stack-footer .likes {
     display: flex;
@@ -797,12 +810,13 @@ main {
 }
 .dash-stack-tile .stack-footer .forward,
 .dash-stack-tile .stack-footer .trash {
-    color: #1da1f2;
+    color: var(--pink);
     cursor: pointer;
     margin-right: 10px;
 }
-.dash-stack-tile .stack-footer .forward:hover {
-    color: #fd438d;
+.dash-stack-tile .stack-footer .forward:hover,
+.dash-stack-tile .stack-footer .trash:hover {
+    color: var(--text-color);
 }
 .dash-stack-tile .stack-footer .like {
     margin-right: 5px;
