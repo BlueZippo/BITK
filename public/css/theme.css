@@ -1279,7 +1279,7 @@ main {
     #Profile
 *****************************/
 #profile-page > .profile-page-header {
-    width: 100vw;
+    width: calc(100vw - 8px);
     position: relative;
     left: 50%;
     right: 50%;
@@ -1411,6 +1411,7 @@ main {
 }
 #profile-stacks .stack > .content > .title {
     border-bottom: 1px solid var(--border-color);
+    margin-bottom: 10px;
 }
 #profile-stacks .stack > .content > .title h4 {
     color: var(--text-color);
@@ -1447,6 +1448,24 @@ main {
     display: flex;
     align-items: center;
 }
-#profile-stacks .stack .footer .ctrl > i {
+#profile-stacks .stack .footer .ctrl:not(.more) > span {
+    color: var(--dark-gray);
+    font-size: 14px;
+    line-height: 16px;
+    vertical-align: baseline;
+}
+#profile-stacks .stack .footer .ctrl > span i {
     font-size: 16px;
+}
+#profile-stacks .footer > .left > .ctrl {
+    margin-right: 8px;
+}
+#profile-stacks .footer > .right > .ctrl {
+    margin-left: 8px;
+}
+#profile-stacks .footer > .left > .ctrl.share {
+    margin-right: 12px;
+}
+#profile-stacks .footer > .right > .ctrl.unlike i {
+    vertical-align: bottom;
 }
