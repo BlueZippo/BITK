@@ -34,6 +34,35 @@ $(document).on('click', 'a.follow-button', function()
 
 });
 
+$(document).on('click', '.dash-stack-tile a.follow', function()
+{
+	stack_id = $(this).data('id');
+	action = $(this).attr('data-action');
+
+	$.ajax(
+	{
+		url: '/stacks/' + stack_id + '/' + action,
+		type: 'get',
+		dataType: 'json',
+		success: function(data)
+		{
+			var action = data.action;
+
+			if (action == 'follow')
+			{
+				$('#stack' + data.stack_id + ' a.follow').attr('data-action', 'unfollow');
+				$('#stack' + data.stack_id + ' a.follow').html('<i class="fas fa-check-circle"></i>');
+			}
+			else
+			{
+				$('#stack' + data.stack_id + ' a.follow').attr('data-action', 'follow');
+				$('#stack' + data.stack_id + ' a.follow').html('<i class="fas fa-plus-circle"></i>');	
+			}
+		}
+	});
+
+});
+
 $(document).on('click', 'a.share-button', function(e)
 {
 	e.preventDefault();

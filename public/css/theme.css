@@ -805,11 +805,16 @@ main {
 .dash-stack-tile .stack-footer .edit a {
     text-decoration: none;
 }
-.dash-stack-tile .stack-footer .edit a.edit-dash-trigger {
+.dash-stack-tile .stack-footer .edit a.edit-dash-trigger,
+.dash-stack-tile .stack-footer .edit a.follow
+{
     color: var(--pink);
     margin-right: 5px;
+    cursor:pointer;
 }
-.dash-stack-tile .stack-footer .edit a.edit-dash-trigger:hover {
+.dash-stack-tile .stack-footer .edit a.edit-dash-trigger:hover,
+.dash-stack-tile .stack-footer .edit a.follow:hover
+{
     color: var(--text-color);
 }
 .dash-stack-tile .stack-footer .likes {

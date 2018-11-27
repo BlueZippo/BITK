@@ -53,13 +53,13 @@
 
                     @if ($stack['follow'])
 
-                        <a class="follow" data-id="{{$stack['id']}}">
+                        <a class="follow" data-id="{{$stack['id']}}" data-action="unfollow">
                             <i class="fas fa-check-circle"></i>
                         </a>                    
 
                     @else
 
-                        <a class="follow" data-id="{{$stack['id']}}">
+                        <a class="follow" data-id="{{$stack['id']}}" data-action="follow">
                             <i class="fas fa-plus-circle"></i>
                         </a>                    
 
