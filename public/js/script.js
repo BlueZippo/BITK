@@ -187,7 +187,40 @@ $(document).on('keydown', '.link-comment-form textarea[name=comment]', function(
 		});
 	}
 
-})
+});
+
+$(document).on('click', '.trash', function(e)
+{
+	e.preventDefault();
+
+    e.stopPropagation();
+
+    var stack_id = $(this).data('id');
+
+    if (confirm("Are  you sure you want to delete this stack?\n\nNOTE: This is cannot be undone!!!!"))
+    {
+    	$.ajaxSetup({
+	        headers: {
+	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	        }
+	    });
+    	
+    	$.ajax(
+    	{
+    		url: '/stacks/delete',
+    		data: 'id=' + stack_id,
+    		type: 'post',
+    		dataType: 'json',
+    		success: function(data)
+    		{
+    			$('.my-links #stack' + data.id).remove();
+    		}
+    	})
+    }	
+
+    
+
+});
 
 
 $(document).ready(function()

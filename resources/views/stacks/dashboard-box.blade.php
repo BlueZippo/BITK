@@ -1,4 +1,4 @@
-<div class="inner-wrap dash-stack-tile" id="stack{{$stack['id']}}">
+<div class="inner-wrap dash-stack-tile">
 
     <div class="featured-image">
         <div class="gradient"></div>
@@ -46,7 +46,7 @@
 
                     @if (Auth::user()->id == $stack['user_id'])
 
-                    <a class="trash trash-dash-trigger">
+                    <a class="trash trash-dash-trigger" data-id="{{$stack['id']}}">
                         <i class="fas fa-trash-alt"></i>
                     </a>
 

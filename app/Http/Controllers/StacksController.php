@@ -259,6 +259,33 @@ class StacksController extends Controller {
         return $this->dashboard($id, 'preview');
     }
 
+    public function delete(Request $request)
+    {
+        $id = $request->get('id');
+
+        $userid = auth()->id();
+
+        $stack = Stack::where('id', '=', $id)->first();
+
+        if ($stack->user_id == $userid)
+        {
+            $links = Link::where('stack_id','=', $id)->delete();    
+
+            StackCategory::where('stack_id','=', $id)->delete();
+
+            Stack::where('id', '=', $id)->delete();
+
+            return ['id' => $id];
+        } 
+        else
+        {
+            return ['error' => 'not allow'];
+        }    
+        
+
+        
+    }
+
     public function dashboard($id, $mode = 'normal')
     {
         //echo "id: $id";
@@ -1414,7 +1441,7 @@ class StacksController extends Controller {
     {
         $limit = 6;
         $more = 1;
-        $offset = ($limit * ($page - 1)) + 4;
+        $offset = ($limit * ($page - 1)) + 5;
 
 
         $results = Stack::where('user_id', '=', auth()->id())
