@@ -8,6 +8,7 @@ Table of Content:
     #Add a Link - Main Nav
 #Footer
 #Single Stack
+    #Transitions
 #Dashboard
 #Edit Stack
 #Explore
@@ -462,10 +463,18 @@ main {
     display: flex;
     align-items: center;
 }
+/* #Transitions */
 .stack-wrapper .stack-meta > .meta-date-comments i {
-    color: var(--blue);
+    transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+}
+.stack-wrapper .stack-meta > .meta-date-comments i {
+    color: var(--pink);
     font-size: 20px;
     vertical-align: middle;
+}
+.stack-wrapper .stack-meta > .meta-date-comments i:hover {
+    color: var(--text-color);
 }
 .stack-wrapper .stack-meta > .meta-date-comments > .date {
     padding-right: 8px;
@@ -555,7 +564,7 @@ main {
     position: relative;
 }
 .accordion.stack-single .card-header > button > i {
-    color:#1da1f2;
+    color: var(--pink);
     font-size:22px;
 }
 .accordion.stack-single .card-header > button:before {
@@ -934,14 +943,17 @@ main {
     margin-right: 5px;
 }
 .stack-controls > .stack-ctrl-item > i {
-    color: var(--blue);
+    color: var(--pink);
     font-size: 18px;
+}
+.stack-controls > .stack-ctrl-item svg #clone {
+    fill: var(--pink);
 }
 .stack-controls > .stack-ctrl-item:hover > i,
 .stack-controls > .stack-ctrl-item:hover svg #back,
 .stack-controls > .stack-ctrl-item:hover svg #clone {
-    color: var(--pink);
-    fill: var(--pink);
+    color: var(--text-color);
+    fill: var(--text-color);
 }
 .edit-stack .dotted.title[data-field="title"] {
     font-size: 28px;
@@ -1088,6 +1100,10 @@ main {
 .featured-upload-btn > a > i {
     color: var(--blue);
     font-size: 18px;
+}
+#layout-tabbed .links-nav a.active,
+#layout-tabbed .links-nav a.active:hover {
+    background: var(--pink);
 }
 /*****************************
     #Add a Link - Main Nav
