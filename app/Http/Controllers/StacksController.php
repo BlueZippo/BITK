@@ -1441,7 +1441,7 @@ class StacksController extends Controller {
     {
         $limit = 6;
         $more = 1;
-        $offset = ($limit * ($page - 1)) + 4;
+        $offset = ($limit * ($page - 1)) + 5;
 
 
         $results = Stack::where('user_id', '=', auth()->id())

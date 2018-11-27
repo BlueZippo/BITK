@@ -31,13 +31,13 @@
 		    @endif
 
 
-			<div class="col-md-2">
+			<!-- <div class="col-md-2">
 				<div class="inner-wrap dash-stack-tile create-stack reminder">
 					<div class="stack-content">
 						@include('stacks.reminder')
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 		</div>
 
