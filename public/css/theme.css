@@ -8,6 +8,7 @@ Table of Content:
     #Add a Link - Main Nav
 #Footer
 #Single Stack
+    #Transitions
 #Dashboard
 #Edit Stack
 #Explore
@@ -79,6 +80,18 @@ and (min-width: 1200px) {
     background: -webkit-radial-gradient(circle, rgba(108,108,108,1) 0%, rgba(64,64,64,1) 100%);
     background: radial-gradient(circle, rgba(108,108,108,1) 0%, rgba(64,64,64,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6c6c6c",endColorstr="#404040",GradientType=1);
+}
+.btn.btn-pink {
+    background-color: var(--pink);
+    border-color: var(--pink);
+}
+.btn.btn-pink:hover {
+    background-color: var(--text-color);
+    border-color: var(--text-color);
+}
+.btn.btn-pink:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(253,59,130,.5);
+    box-shadow: 0 0 0 0.2rem rgba(253,59,130,.5);
 }
 /*****************************
     #Header
@@ -450,10 +463,18 @@ main {
     display: flex;
     align-items: center;
 }
+/* #Transitions */
 .stack-wrapper .stack-meta > .meta-date-comments i {
-    color: var(--blue);
+    transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+}
+.stack-wrapper .stack-meta > .meta-date-comments i {
+    color: var(--pink);
     font-size: 20px;
     vertical-align: middle;
+}
+.stack-wrapper .stack-meta > .meta-date-comments i:hover {
+    color: var(--text-color);
 }
 .stack-wrapper .stack-meta > .meta-date-comments > .date {
     padding-right: 8px;
@@ -543,7 +564,7 @@ main {
     position: relative;
 }
 .accordion.stack-single .card-header > button > i {
-    color:#1da1f2;
+    color: var(--pink);
     font-size:22px;
 }
 .accordion.stack-single .card-header > button:before {
@@ -783,11 +804,12 @@ main {
 .dash-stack-tile .stack-footer .edit a {
     text-decoration: none;
 }
-.dash-stack-tile .stack-footer .edit a:hover {
-    color: var(--pink);
-}
 .dash-stack-tile .stack-footer .edit a.edit-dash-trigger {
+    color: var(--pink);
     margin-right: 5px;
+}
+.dash-stack-tile .stack-footer .edit a.edit-dash-trigger:hover {
+    color: var(--text-color);
 }
 .dash-stack-tile .stack-footer .likes {
     display: flex;
@@ -797,12 +819,13 @@ main {
 }
 .dash-stack-tile .stack-footer .forward,
 .dash-stack-tile .stack-footer .trash {
-    color: #1da1f2;
+    color: var(--pink);
     cursor: pointer;
     margin-right: 10px;
 }
-.dash-stack-tile .stack-footer .forward:hover {
-    color: #fd438d;
+.dash-stack-tile .stack-footer .forward:hover,
+.dash-stack-tile .stack-footer .trash:hover {
+    color: var(--text-color);
 }
 .dash-stack-tile .stack-footer .like {
     margin-right: 5px;
@@ -920,14 +943,17 @@ main {
     margin-right: 5px;
 }
 .stack-controls > .stack-ctrl-item > i {
-    color: var(--blue);
+    color: var(--pink);
     font-size: 18px;
+}
+.stack-controls > .stack-ctrl-item svg #clone {
+    fill: var(--pink);
 }
 .stack-controls > .stack-ctrl-item:hover > i,
 .stack-controls > .stack-ctrl-item:hover svg #back,
 .stack-controls > .stack-ctrl-item:hover svg #clone {
-    color: var(--pink);
-    fill: var(--pink);
+    color: var(--text-color);
+    fill: var(--text-color);
 }
 .edit-stack .dotted.title[data-field="title"] {
     font-size: 28px;
@@ -1074,6 +1100,10 @@ main {
 .featured-upload-btn > a > i {
     color: var(--blue);
     font-size: 18px;
+}
+#layout-tabbed .links-nav a.active,
+#layout-tabbed .links-nav a.active:hover {
+    background: var(--pink);
 }
 /*****************************
     #Add a Link - Main Nav
