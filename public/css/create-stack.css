@@ -95,7 +95,8 @@
 }
 
 
-.links-container
+.links-container,
+.links-accordion-container
 {
 	max-width:500px;
 	width:500px;
@@ -107,18 +108,27 @@
 	background:#fff;
 }
 
-div.links-container.right-position
+.links-accordion-container
+{
+	z-index:9;
+}
+
+div.links-container.right-position,
+div.links-accordion-container.right-position
 {
 	box-shadow:-5px 5px 5px #ccc;
 }
 
-div.links-container.left-position
+div.links-container.left-position,
+div.links-accordion-container.left-position
 {
 	box-shadow:5px 7px 5px #ccc;
 }
 
 div.links-container.right-position::after,
-div.links-container.left-position::after
+div.links-container.left-position::after,
+div.links-accordion-container.right-position::after,
+div.links-accordion-container.left-position::after
 {
 	content: "";
   	position: absolute;
@@ -130,24 +140,28 @@ div.links-container.left-position::after
 
 }
 
-div.links-container.right-position::after
+div.links-container.right-position::after,
+div.links-accordion-container.right-position::after
 {
 	left:-11px;
 	box-shadow: -5px 5px 5px  #ccc;
 }
 
-div.links-container.left-position::after
+div.links-container.left-position::after,
+div.links-accordion-container.left-position::after
 {
 	right: -11px;
 	box-shadow: 5px -5px 5px  #ccc;
 }
 
-div.links-container.middle-position
+div.links-container.middle-position,
+div.links-accordion-container.middle-position
 {
 	top:-120px;
 }
 
-div.links-container.middle-position::after
+div.links-container.middle-position::after,
+div.links-accordion-container.middle-position::after
 {
 	top:50%;
 }
@@ -230,7 +244,8 @@ div.links-container.middle-position::after
 	text-align:center;
 }
 
-.add-link-modal
+.add-link-modal,
+.add-link-accordion-modal
 {
 	display:block;
 	border:solid 1px #ccc;
@@ -238,12 +253,14 @@ div.links-container.middle-position::after
 	margin:10px 0;
 }
 
-.add-link-modal a
+.add-link-modal a,
+.add-link-accordion-modal a
 {
 	cursor:pointer;
 }
 
-.add-link-modal i
+.add-link-modal i,
+.add-link-accordion-modal i
 {
 	font-size:48px;
 	margin:30px auto;

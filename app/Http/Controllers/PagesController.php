@@ -36,7 +36,8 @@ class PagesController extends Controller {
 
 		$mystacks = array();
 
-
+		$followed = StacksFollow::where('user_id', '=', auth()->id())->get()->pluck('stack_id')->toArray();
+		$myStacks = Stack::where('user_id', '=', $user_id)->get()->pluck('id')->toArray();
 
 		foreach($results as $result)
 		{
@@ -49,7 +50,7 @@ class PagesController extends Controller {
 				$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
 			}
 
-			$follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+			//$follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
 			$upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=', 1)->get();
 
@@ -65,22 +66,22 @@ class PagesController extends Controller {
 					'upvotes' => $this->number_format(count($upvotes)),
 					'downvotes' => $this->number_format(count($downvotes)),
 					'user_id' => $result->user_id,
-					'follow' => $follow->isEmpty() ? false : true,
+					'follow' => in_array($result->id, $followed) ? true : false,
 					'updated_at' => date("F d, Y", strtotime($result->updated_at)),
 					'categories' => implode(',', array_unique($categories))
 				);
 		}
 
 
-    		$results = Stack::orderBy('created_at', 'desc')
-    			 ->where('user_id', '!=' , $user_id)
-    			 ->where('status_id', '=', 1)
-    			 ->where('private', '=', 0)
-    			 ->limit(12)
-    			 ->get();
+	    		$results = Stack::orderBy('created_at', 'desc')
+	    			 ->whereNotIn('id', array_merge($followed, $myStacks))
+	    			 ->where('status_id', '=', 1)
+	    			 ->where('private', '=', 0)
+	    			 ->limit(12)
+	    			 ->get();
 
 
-			  $follows = array();
+			  	$follows = array();
 				$stacks = array();
 
 				foreach($results as $stack)
@@ -99,7 +100,7 @@ class PagesController extends Controller {
 							$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
 						}
 
-						$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
+						//$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
 
 						$upvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 1)->get();
 
@@ -112,10 +113,11 @@ class PagesController extends Controller {
 							    'image' => $stack->video_id,
 								'author' => $author,
 								'user_id' => $stack->user_id,
+								
 								'media_type' => $stack->media_type,
 								'upvotes' => $this->number_format(count($upvotes)),
 								'downvotes' => $this->number_format(count($downvotes)),
-								'follow' => $follow->isEmpty() ? false : true,
+								'follow' => in_array($stack->id, $followed) ? true : false,
 								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
 								'categories' => implode(',', array_unique($categories))
 							);
@@ -127,17 +129,15 @@ class PagesController extends Controller {
 
 			
 
-    		$results = User::find($user_id)
-    				->stacksFollow()    			    
-                    ->where('status_id', '=', 1)
-                    ->where('private', '=', 0)
-                    ->get();
-
+    			$results =  Stack::whereIn('id', $followed)
+    							->where('status_id','=',1)
+    							->where('private','=',0)
+    							->get();
 
 
 				foreach($results as $result)
 				{
-					$stack = Stack::find($result->stack_id);
+					$stack = $result;
 
 					if ($stack)
 					{
@@ -148,7 +148,7 @@ class PagesController extends Controller {
 
 						if ($stack->user_id == auth()->id())
 						{
-							//$valid = false;
+							$valid = false;
 						}	
 
 						if ($valid && $author && $stack->status_id == 1)
@@ -173,6 +173,7 @@ class PagesController extends Controller {
 									'content' => $stack->content,
 								    'image' => $stack->video_id,
 									'author' => $author,
+									'followed' => true,
 									'user_id' => $stack->user_id,
 									'media_type' => $stack->media_type,
 									'upvotes' => $this->number_format(count($upvotes)),

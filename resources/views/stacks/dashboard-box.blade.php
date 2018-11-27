@@ -40,17 +40,30 @@
 
                 @if (Auth::user()->id == $stack['user_id'])
 
-                <a class="edit-dash-trigger" href="/stacks/{{$stack['id']}}/edit" target="_self">
-                    <i class="fas fa-edit"></i> edit
-                </a>
-
-                    @if (Auth::user()->id == $stack['user_id'])
+                    <a class="edit-dash-trigger" href="/stacks/{{$stack['id']}}/edit" target="_self">
+                        <i class="fas fa-edit"></i> edit
+                    </a>                    
 
                     <a class="trash trash-dash-trigger" data-id="{{$stack['id']}}">
                         <i class="fas fa-trash-alt"></i>
                     </a>
 
-                    @endif
+                @else
+
+
+                    @if ($stack['follow'])
+
+                        <a class="follow" data-id="{{$stack['id']}}">
+                            <i class="fas fa-check-circle"></i>
+                        </a>                    
+
+                    @else
+
+                        <a class="follow" data-id="{{$stack['id']}}">
+                            <i class="fas fa-plus-circle"></i>
+                        </a>                    
+
+                    @endif                    
 
                 @endif
 
