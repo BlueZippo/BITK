@@ -812,6 +812,10 @@ main {
     margin-right: 5px;
     cursor:pointer;
 }
+.dash-stack-tile .stack-footer .edit a.follow.followed
+{
+    color: var(--green);
+}
 .dash-stack-tile .stack-footer .edit a.edit-dash-trigger:hover,
 .dash-stack-tile .stack-footer .edit a.follow:hover
 {

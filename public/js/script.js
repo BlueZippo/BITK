@@ -51,11 +51,13 @@ $(document).on('click', '.dash-stack-tile a.follow', function()
 			if (action == 'follow')
 			{
 				$('#stack' + data.stack_id + ' a.follow').attr('data-action', 'unfollow');
+				$('#stack' + data.stack_id + ' a.follow').addClass('followed');
 				$('#stack' + data.stack_id + ' a.follow').html('<i class="fas fa-check-circle"></i>');
 			}
 			else
 			{
 				$('#stack' + data.stack_id + ' a.follow').attr('data-action', 'follow');
+				$('#stack' + data.stack_id + ' a.follow').removeClass('followed');
 				$('#stack' + data.stack_id + ' a.follow').html('<i class="fas fa-plus-circle"></i>');	
 			}
 		}
