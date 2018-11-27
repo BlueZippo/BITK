@@ -42,7 +42,7 @@
                 <h1>Edit <span>Stack</span></h1>
 
                 <div class="stack-controls">
-                    <div class="stack-ctrl-item switch-box">
+                    <div class="stack-ctrl-item switch-box" style="display:none;">
                         <div class="switch status @if($stack->status_id == 1) switchOn @endif" >@if($stack->status_id == 1) Published @else Draft @endif</div>
                     </div>
                     <div class="stack-ctrl-item switch-box">
@@ -87,7 +87,7 @@
                 {{Form::hidden('title', $stack->title)}}
                 {{Form::hidden('private', $stack->private)}}
                 {{Form::hidden('content', $stack->content)}}
-                {{Form::hidden('status_id', $stack->status_id)}}
+                {{Form::hidden('status_id', 1)}}
                 {{Form::hidden('id', $stack->id)}}
 
                 {{Form::hidden('active_media_id', $active_media_id)}}

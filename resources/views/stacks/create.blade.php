@@ -38,9 +38,11 @@
 			<div class="page-title-row">
                 <h1>Create A <span>Stack</span></h1>
                 <div class="stack-controls">
-                    <div class="stack-ctrl-item switch-box">
+                    
+                    <div class="stack-ctrl-item switch-box" style="display:none">
                         <div class="switch status" >Draft</div>
                     </div>
+
                     <div class="stack-ctrl-item switch-box">
                         <div class="switch public" >Private</div>
                     </div>
@@ -86,7 +88,7 @@
                 {{Form::hidden('video_id', 0)}}
                 {{Form::hidden('title', '')}}
                 {{Form::hidden('content', '')}}
-                {{Form::hidden('status_id', 0)}}
+                {{Form::hidden('status_id', 1)}}
                 {{Form::hidden('media_type','youtube')}}
                 {{Form::hidden('private', 1)}}
                 {{Form::hidden('id', 0)}}
