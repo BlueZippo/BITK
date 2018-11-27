@@ -59,7 +59,7 @@
 
         </div>
 
-    </div>
+    </div><!-- .profile-page-header -->
 
     <div id="profile-stacks">
 
@@ -92,14 +92,16 @@
                             <div class="title"><h4>{{$stack['title']}}</h4></div>
                             <div class="footer">
                                 <div class="left">
-                                    <div class="ctrl"><i class="fas fa-plus-circle"></i></div>
-                                    <div class="ctrl"><i class="fas fa-heart"></i></div>
-                                    <div class="ctrl"><i class="fas fa-share"></i></div>
+                                    <div class="ctrl"><span><i class="fas fa-plus-circle"></i></span></div>
+                                    <div class="ctrl favorite"><span><i class="fas fa-heart"></i></span></div>
+                                    <div class="ctrl share"><span><i class="fas fa-share"></i></span></div>
+                                    <div class="ctrl views"><span><i class="fas fa-eye"></i> 1,234</span></div>
                                 </div>
                                 <div class="right">
-                                    <div class="ctrl"><i class="fas fa-thumbs-up"></i></div>
-                                    <div class="ctrl"><i class="fas fa-thumbs-down"></i></div>
-                                    <div class="ctrl"><i class="fas fa-comments"></i></div>
+                                    <div class="ctrl like"><span><i class="fas fa-thumbs-up"></i> 436</span></div>
+                                    <div class="ctrl unlike"><span><i class="fas fa-thumbs-down"></i> 23</span></div>
+                                    <div class="ctrl"><span><i class="fas fa-comments"></i> 16</span></div>
+                                    <div class="ctrl more"><span><i class="fas fa-ellipsis-h"></i></span></div>
                                 </div>
                             </div>
                         </div>
