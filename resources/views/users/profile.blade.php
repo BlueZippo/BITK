@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="nav-wrapper">
+<div class="nav-wrapper profile">
     @include('pages.nav')
 </div>
 
@@ -65,7 +65,7 @@
 
          <div class="hover">
             <a href="" data-toggle="modal" data-target="#updateProfilePhotoModal"><i class="fa fa-camera"></i> Update Profile Picture</a>
-         </div>   
+         </div>
     </div>
 </div>
 
@@ -77,7 +77,7 @@
 
 <div class="row">
 
-    <div class="col-md-6">        
+    <div class="col-md-6">
 
         <div class="row">
 
@@ -117,7 +117,7 @@
 
              </div>
 
-            
+
 
             <div class="col-xs-12 col-sm-12 col-md-12">
 
@@ -145,11 +145,11 @@
 
         </div>
 
-    </div>        
+    </div>
 
     <div class="col-md-6">
 
-        
+
 
         <div class="row">
 
@@ -168,11 +168,11 @@
         </div>
 
     </div>
-    
+
 </div>
 
 <div class="row">
-    
+
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
         <button type="submit" class="btn btn-primary">Submit</button>

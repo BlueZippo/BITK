@@ -1,29 +1,27 @@
 <ul class="nav nav-pills transition">
 
-	{{--@if (!Request::is('dashboard'))--}}
 	<li class="nav-item">
-        <a class="nav-link" href="/dashboard">Dashboard</a>
-	</li>
-	{{--@endif--}}
-	<li class="nav-item">
-        <a class="nav-link" href="/stacks/create">Create a Stack</a>
+        <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="/dashboard">Dashboard</a>
 	</li>
 	<li class="nav-item">
-        <a class="nav-link" href="/stacks/explore">Explore</a>
+        <a class="nav-link {{ request()->is('stacks/create') ? 'active' : '' }}" href="/stacks/create">Create a Stack</a>
 	</li>
 	<li class="nav-item">
-        <a class="nav-link" href="/parking-lot/">Parking Lot</a>
+        <a class="nav-link {{ request()->is('stacks/explore') ? 'active' : '' }}" href="/stacks/explore">Explore</a>
 	</li>
 	<li class="nav-item">
-        <a class="nav-link" href="/users/profile">Profile</a>
+        <a class="nav-link {{ request()->is('parking-lot') ? 'active' : '' }}" href="/parking-lot/">Parking Lot</a>
+	</li>
+	<li class="nav-item">
+        <a class="nav-link {{ request()->is('users/profile') ? 'active' : '' }}" href="/users/profile">Profile</a>
 	</li>
 	<!--<li class="nav-item">
         <a class="nav-link" href="/skills-and-topics">Skills & Topics</a>
 	</li>-->
 	<li class="nav-item">
-        <a class="nav-link" href="/people/">People</a>
+        <a class="nav-link {{ request()->is('people') ? 'active' : '' }}" href="/people/">People</a>
 	</li>
 	<li class="nav-item">
-        <a class="nav-link" href="/tags/">Tags</a>
+        <a class="nav-link {{ request()->is('tags') ? 'active' : '' }}" href="/tags/">Tags</a>
 	</li>
 </ul>
