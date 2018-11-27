@@ -46,7 +46,7 @@
 .solid a.fa,
 .solid a.fa:hover
 {
-	color:#1da1f2;
+	color:var(--pink);
 	font-size:16px;
 	position:absolute;
 	right:10px;
@@ -247,7 +247,7 @@ div.links-container.middle-position::after
 {
 	font-size:48px;
 	margin:30px auto;
-	color:#1da1f2;
+	color:var(--pink);
 }
 
 
