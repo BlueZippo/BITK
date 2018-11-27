@@ -278,6 +278,12 @@ class LinksController extends Controller
 
         break;
 
+        case 'www.udemy.com':
+
+            $data = $this->get_udemy_data($url);
+
+        break;
+
         default:   
 
            if ($uri && isset($uri['host']))
@@ -293,6 +299,8 @@ class LinksController extends Controller
            }
            else
            { 
+
+
 
                $meta = $this->getUrlData($url);
 
@@ -348,7 +356,7 @@ class LinksController extends Controller
         $result = false;
 
 
-        $contents = $this->getUrlContents($url);
+        $contents = $this->getUrlContents($url, true);
 
         $result = array (
                 'title' => '',
@@ -428,11 +436,13 @@ class LinksController extends Controller
 
 
 
+    
     function getUrlContents($url, $maximumRedirections = null, $currentRedirection = 0)
     {
         $result = false;
 
-        $contents = @file_get_contents($url);
+        $contents = file_get_contents($url, true);
+
 
         if (isset($contents) && is_string($contents))
         {
@@ -455,6 +465,11 @@ class LinksController extends Controller
 
         return $contents;
     }
+    
+
+
+
+
 
     public function addreminder(Request $request)
     {
@@ -1332,6 +1347,30 @@ class LinksController extends Controller
 
         $userNode = $response->getGraphUser();
         printf('Hello, %s!', $userNode->getName());
+    }
+
+
+    function get_udemy_data($url)
+    {
+        $title = "";
+        $description = "";
+        $image = "";
+
+        $context = stream_context_create(
+            array(
+                "http" => array(
+                    "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+                )
+            )
+        );
+
+
+
+        $contents = file_get_contents($url, false, $context);
+
+        echo $contents;
+
+        return array('title' => $title, 'description' => $description, 'image' => $image);
     }
 
 

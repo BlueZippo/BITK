@@ -22,7 +22,7 @@
   <div class="form-group">
 
       {{Form::label('stack_name', 'Step 3: Select Where To Save Your Link:')}}
-      {{Form::select('stack_id', $options, 0 , ['class' => 'form-control', 'placeholder' => 'Type to bengin to searching Stacks'])}}
+      {{Form::select('stack_id', $options, 0 , ['class' => 'form-control', 'placeholder' => 'Type to begin searching the Stacks'])}}
 
       <span class="small font-italic">By not entering anything, the link will remain in Parking Lot</span>
 
