@@ -73,7 +73,7 @@
 }
 .parking-container .link-data h3 a
 {
-	color: var(--pink);
+	color: var(--blue);
 	text-decoration:none;
 }
 
@@ -100,7 +100,7 @@
 	font-weight:bold;
 }
 .parking-container .link-data .meta.small a {
-	color: var(--pink);
+	color: var(--blue);
 }
 .parking-container .link-data .meta.small a:hover {
 	color: var(--text-color);

@@ -171,7 +171,7 @@ nav.main_nav > .inner {
     height: 39px;
     font-size: 1.1em;
     font-weight: 500;
-    position: absolute;
+    position: absolute !important;
     top: 0;
     left: 0;
     right: 0;
@@ -471,7 +471,7 @@ main {
     -webkit-transition: all 200ms ease-in-out;
 }
 .stack-wrapper .stack-meta > .meta-date-comments i {
-    color: var(--pink);
+    color: var(--blue);
     font-size: 20px;
     vertical-align: middle;
 }
@@ -510,6 +510,7 @@ main {
     margin-bottom: 0;
 }
 .stack-wrapper .meta .avatar {
+    position: relative;
     width: 40px;
     margin-right: 6px;
 }
@@ -566,7 +567,7 @@ main {
     position: relative;
 }
 .accordion.stack-single .card-header > button > i {
-    color: var(--pink);
+    color: var(--blue);
     font-size:22px;
 }
 .accordion.stack-single .card-header > button:before {
@@ -809,7 +810,7 @@ main {
 .dash-stack-tile .stack-footer .edit a.edit-dash-trigger,
 .dash-stack-tile .stack-footer .edit a.follow
 {
-    color: var(--pink);
+    color: var(--blue);
     margin-right: 5px;
     cursor:pointer;
 }
@@ -827,7 +828,7 @@ main {
 }
 .dash-stack-tile .stack-footer .forward,
 .dash-stack-tile .stack-footer .trash {
-    color: var(--pink);
+    color: var(--blue);
     cursor: pointer;
     margin-right: 10px;
 }
@@ -951,12 +952,12 @@ main {
     margin-right: 5px;
 }
 .stack-controls > .stack-ctrl-item > i {
-    color: var(--pink);
+    color: var(--blue);
     font-size: 18px;
 }
 .stack-controls > .stack-ctrl-item svg #back,
 .stack-controls > .stack-ctrl-item svg #clone {
-    fill: var(--pink);
+    fill: var(--blue);
 }
 .stack-controls > .stack-ctrl-item:hover > i,
 .stack-controls > .stack-ctrl-item:hover svg #back,
@@ -979,7 +980,7 @@ main {
     cursor: pointer;
 }
 .edit-stack .stack-meta > .meta-data p i {
-    color: var(--pink);
+    color: var(--blue);
     font-size: 20px;
     vertical-align: middle;
 }
@@ -1113,7 +1114,18 @@ main {
 }
 #layout-tabbed .links-nav a.active,
 #layout-tabbed .links-nav a.active:hover {
-    background: var(--pink);
+    background: var(--off-white);
+    color: var(--text-color);
+}
+.edit-stack .author .avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+.edit-stack .author .avatar > .inner,
+.edit-stack .author .avatar img {
+    width: 40px;
+    height: 40px;
 }
 /*****************************
     #Add a Link - Main Nav
@@ -1524,6 +1536,7 @@ main {
 {
     background:var(--red);
 }
+
 
 a.open-all, a.close-all
 {

@@ -9,6 +9,7 @@ Table of Content:
 {
     --blue: #1da1f2;
     --pink: #fd3b82;
+    --off-white: #f2f2f2;
     --light-gray: #b1b2b2;
     --dark-gray: #949494;
     --text-color: #404040;
@@ -503,6 +504,9 @@ a.downvote
 }
 .dash-stack-tile .avatar {
 	margin-right: 6px;
+    position: relative;
+    width: 39px;
+    height: 39px;
 }
 .dash-stack-tile .avatar > img,
 .author.user-ctrl .avatar > img,
@@ -618,6 +622,7 @@ a.downvote
 {
 	border-top:solid 1px #ccc;
 	border-bottom:solid 1px #ccc;
+    margin-bottom: 5px;
 }
 
 .single-stack-wrapper .meta-category:after
@@ -629,13 +634,16 @@ a.downvote
 
 .single-stack-wrapper .avatar
 {
-	float:left;
-	margin-right:5px;
+    float:left;
+    margin-right:5px;
+    position: relative;
+    width: 39px;
+    height: 39px;
 }
 
 .single-stack-wrapper .author
 {
-	line-height:50px;
+	line-height:39px;
 }
 
 .single-stack-wrapper .author:after
