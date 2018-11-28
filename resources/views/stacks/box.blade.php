@@ -82,7 +82,7 @@
               </div>
             @endif
           </div>
-          by: {{$stack['author']['name']}}
+          <span>by: {{$stack['author']['name']}}</span>
         </div>
 
         <div class="stack-footer">
