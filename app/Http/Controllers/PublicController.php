@@ -78,7 +78,7 @@ class PublicController extends Controller {
 
         $sql .= " JOIN stack_links s2 ON s2.stack_id = s.id";
 
-        $sql .= " LEFT JOIN link_categories c ON c.link_id = s2.link_id";
+        $sql .= " LEFT JOIN stack_categories c ON c.stack_id = s.id";
 
         $sql .= " LEFT JOIN categories c2 ON c2.id = c.category_id";
 
