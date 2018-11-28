@@ -312,7 +312,7 @@ class StacksController extends Controller {
 
             $medias[] = $link->media_id;
 
-            if ($link->media_id > 0)
+            if ($link->media_id > 0 && $link->media)
             {
                 $media_type = $link->media->media_type;
             }
