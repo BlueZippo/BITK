@@ -2,6 +2,7 @@ $(document).click(function()
 {
 	$('.send-container').hide();
 	$('.add-link-form').hide();
+	$('.parking-add-link-form').hide();
 	$('.categories-popup').hide();
 });
 
@@ -143,12 +144,12 @@ $(document).on('click', 'a.share-button', function(e)
 
 });
 
-$('.send-container, .add-link-form').click(function(e)
+$('.send-container, .add-link-form, .parking-add-link-form').click(function(e)
 {
 	e.stopPropagation();
 });
 
-$('.add-link-form').on('right-click', function(e)
+$('.add-link-form, .parking-add-link-form').on('right-click', function(e)
 {
 	e.stopPropagation();
 })
@@ -342,15 +343,34 @@ $(document).ready(function()
 		})
 	});
 
+	$('.parking-lot-container .add-a-link-button').click(function(e)
+	{
+		var pForm = $('.parking-add-link-form');
 
-	$('.add-a-link-button').click(function(e)
+		e.preventDefault();
+
+    	e.stopPropagation();
+
+    	var offset = $(this).offset();
+
+    	console.log( "left: " + offset.left + ", top: " + offset.top );
+
+    	$(pForm).addClass('top');
+		$(pForm).css('top', '-40px');
+		$(pForm).css('left', '250px');
+
+    	$(pForm).show();
+	})
+
+
+	$('.navbar .add-a-link-button').click(function(e)
 	{
 		e.preventDefault();
 
     	e.stopPropagation();
 
 		var offset = $(this).offset();
-		console.log( "left: " + offset.left + ", top: " + offset.top );
+		
 
 		//if (offset.top > 110)
 		if( $(this).hasClass('main-nav') )

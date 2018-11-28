@@ -6,6 +6,8 @@
 
 	</div>
 
+	@include('links.parking-form')
+
 	<div class="panel-body">
 
 			@if (count($parking) > 0)

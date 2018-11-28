@@ -46,7 +46,7 @@ $('input[name=link_url]').on('change', function()
     $.ajax(
     {
         url: '/links/get-meta-tags',
-        data: $('.add-links-container input'),
+        data: 'link_url=' + $(this).val(),
         type: 'post',
         dataType: 'json',
         success: function(data)
@@ -143,6 +143,46 @@ $('.add-link-form .submit-button').click(function(e)
 
     $('.add-link-form').hide();
 });
+
+$('.parking-add-link-form .submit-button').click(function(e)
+{
+
+    e.preventDefault();
+
+    e.stopPropagation();
+
+    var par = $('.parking-add-link-form form').serialize();
+
+     $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax(
+    {
+        url: '/links/store',
+        data: par,
+        type: 'post',
+        dataType: 'json',
+        success: function(data)
+        {
+            if (data.redirect)
+            {
+                window.location = data.redirect
+            }
+            else
+            {
+                $('.parking-lot-container .panel-body').append(data.html);
+            }
+        }
+
+    })
+
+
+    $('.parking-add-link-form').hide();
+});
+
 
 
 

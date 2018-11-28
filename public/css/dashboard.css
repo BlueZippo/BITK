@@ -1,6 +1,7 @@
 .parking-lot-container
 {
-	min-height:500px;
+	min-height:500px;	
+	position:relative;
 }
 
 .stack-panel .panel-heading

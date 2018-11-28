@@ -1049,7 +1049,8 @@ a.downvote
 	display:inline-block;
 }
 
-.add-link-form
+.add-link-form,
+.parking-add-link-form
 {
 	max-width:500px;
 	width:500px;
@@ -1062,7 +1063,8 @@ a.downvote
 	z-index:9;
 }
 
-.add-link-form:after
+.add-link-form:after,
+.parking-add-link-form:after
 {
 	content: "";
   	position: absolute;
@@ -1094,7 +1096,8 @@ a.downvote
 
 
 
-.add-link-form .media-types
+.add-link-form .media-types,
+.parking-add-link-form .media-types
 {
 	list-style:none;
 	padding:5px 0;
@@ -1103,13 +1106,15 @@ a.downvote
 	border-bottom:solid 1px #ccc;
 }
 
-.add-link-form .media-types li
+.add-link-form .media-types li,
+.parking-add-link-form .media-types li
 {
 	float:left;
 	width:25%;
 }
 
-.add-link-form .media-types:after
+.add-link-form .media-types:after,
+.parking-add-link-form .media-types:after
 {
 	content:"";
 	clear:both;
