@@ -1549,5 +1549,5 @@ a.open-all, a.close-all
 a.open-all:hover, a.close-all:hover,
 a.open-all.active, a.close-all.active
 {
-    background:#e1e1e1;
+    background:#f2f2f2;
 }
