@@ -355,6 +355,7 @@ $(document).ready(function()
 
     	$('input', pForm).val('');
     	$('.content', pForm).html('');
+    	$('input[type=checkbox]', pForm).prop('checked', false);
 
     	$(pForm).addClass('top');
 		$(pForm).css('top', '-40px');
@@ -374,6 +375,7 @@ $(document).ready(function()
 
 		$('.add-link-form input').val('');
 		$('.add-link-form .content').html('');
+		$('.add-link-form input[type=checkbox]').prop('checked', false)
 		
 
 		//if (offset.top > 110)
