@@ -1525,4 +1525,16 @@ main {
     background:var(--red);
 }
 
+a.open-all, a.close-all
+{
+    display:inline-block;
+    padding:0px 5px;
+    border-radius:5px;
+    cursor:pointer;
+}
 
+a.open-all:hover, a.close-all:hover,
+a.open-all.active, a.close-all.active
+{
+    background:#e1e1e1;
+}

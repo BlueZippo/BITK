@@ -14,6 +14,8 @@
 
 				<div class="col-md-9">
 
+					<i class="fa {{$media->icon}}"></i>
+
 					{{$link['media_type']}}
 
 				</div>

@@ -409,7 +409,6 @@ class StacksController extends Controller {
 
 
 
-
         if ($mode == 'preview')
         {
             return view('stacks.preview')->with($data);

@@ -34,6 +34,27 @@ $(document).on('click', 'a.follow-button', function()
 
 });
 
+$(document).on('click', '.open-all, .close-all', function()
+{
+	$('.open-all, .close-all').removeClass('active');
+	$(this).addClass('active');
+
+	if ($(this).hasClass('open-all'))
+	{
+		$('.btn-link').removeClass('open');
+		$('.collapse').removeClass('show');		
+	}	
+
+	if ($(this).hasClass('close-all'))
+	{
+		$('.btn-link').addClass('open')
+		$('.collapse').addClass('show')
+	}	
+
+	$('.btn-link').trigger('click');
+
+});
+
 $(document).on('click', '.dash-stack-tile a.follow', function()
 {
 	stack_id = $(this).data('id');

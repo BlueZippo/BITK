@@ -1,4 +1,6 @@
-<div class="accordion stack-single">
+    <div class="accordion stack-single">
+
+            <a class="open-all">Open</a> / <a class="close-all">Close All</a>
 
             @php $showPanel = 'show'; @endphp
 
