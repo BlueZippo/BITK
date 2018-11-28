@@ -353,7 +353,8 @@ $(document).ready(function()
 
     	var offset = $(this).offset();
 
-    	console.log( "left: " + offset.left + ", top: " + offset.top );
+    	$('input', pForm).val('');
+    	$('.content', pForm).html('');
 
     	$(pForm).addClass('top');
 		$(pForm).css('top', '-40px');
@@ -370,6 +371,9 @@ $(document).ready(function()
     	e.stopPropagation();
 
 		var offset = $(this).offset();
+
+		$('.add-link-form input').val('');
+		$('.add-link-form .content').html('');
 		
 
 		//if (offset.top > 110)
@@ -399,6 +403,7 @@ $(document).ready(function()
 	$('.cancel-btn').click(function()
 	{
 		$('.add-link-form').hide();
+		$('.parking-add-link-form').hide();
 	});
 
 	$('.continue-button').click(function()

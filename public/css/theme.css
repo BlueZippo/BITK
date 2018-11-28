@@ -32,6 +32,11 @@ body {
 body > .container {
     padding: 20px 15px 0 !important;
 }
+
+body a
+{
+    cursor:pointer;
+}
 /*** Media Queries ***/
 @media screen and (min-width: 1600px) {
     .container {
