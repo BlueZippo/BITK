@@ -422,6 +422,7 @@ main {
 *****************************/
 .stack-wrapper {
     margin-bottom: 20px;
+    clear:both;
 }
 .stack-wrapper .content h2 {
     font-weight: 600;
@@ -812,10 +813,7 @@ main {
     margin-right: 5px;
     cursor:pointer;
 }
-.dash-stack-tile .stack-footer .edit a.follow.followed
-{
-    color: var(--green);
-}
+
 .dash-stack-tile .stack-footer .edit a.edit-dash-trigger:hover,
 .dash-stack-tile .stack-footer .edit a.follow:hover
 {
@@ -1478,3 +1476,53 @@ main {
 #profile-stacks .footer > .right > .ctrl.unlike i {
     vertical-align: bottom;
 }
+
+.stack-dashboard-follow-button
+{
+    float:right;
+    margin-bottom:10px;
+}
+
+.stack-dashboard-follow-button:after
+{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+.stack-dashboard-follow-button a
+{
+    background:var(--blue);
+    color:#fff !important;
+    padding:5px 10px;
+    border-radius:15px;
+    cursor:pointer;
+}
+
+.stack-dashboard-follow-button a:hover
+{
+    background:#404040;
+}
+
+.stack-dashboard-follow-button a span.hover,
+.stack-dashboard-follow-button a:hover span
+{
+    display:none;
+}
+
+.stack-dashboard-follow-button a:hover span.hover
+{
+    display:inline-block;
+}
+
+.stack-dashboard-follow-button a.follow.followed
+{
+    background:var(--green);
+}
+
+.stack-dashboard-follow-button a.follow.followed:hover
+{
+    background:var(--red);
+}
+
+

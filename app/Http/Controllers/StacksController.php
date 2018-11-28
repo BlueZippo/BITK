@@ -381,7 +381,6 @@ class StacksController extends Controller {
         }
 
 
-
         $data['links'] = $links;
 
         $data['medias'] = $medias;
@@ -396,14 +395,7 @@ class StacksController extends Controller {
 
         $data['comments'] = count($comments);
 
-        if (in_array($id, $follows))
-        {
-            $data['follow'] = sprintf("<a class='follow-button' data-id='%s' data-action='%s'>%s</a>", $id, 'follow', 'UnFollow');
-        }
-        else if (!in_array($id, $mystack))
-        {
-            $data['follow'] = sprintf("<a class='follow-button' data-id='%s' data-action='%s'>%s</a>", $id, 'follow', 'Follow');
-        }
+        $data['follow'] = in_array($id, $follows) ? true : false;
 
 
         $recents = Stack::select('id', 'title')->where('user_id', '=', auth()->id())->orderby('updated_at', 'desc')->limit(5)->get();

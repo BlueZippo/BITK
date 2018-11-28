@@ -65,6 +65,39 @@ $(document).on('click', '.dash-stack-tile a.follow', function()
 
 });
 
+$(document).on('click', '.stack-dashboard-follow-button a', function()
+{
+	stack_id = $(this).data('id');
+	action = $(this).attr('data-action');
+
+	$.ajax(
+	{
+		url: '/stacks/' + stack_id + '/' + action,
+		type: 'get',
+		dataType: 'json',
+		success: function(data)
+		{
+			var action = data.action;
+
+			if (action == 'follow')
+			{
+				$('.stack-dashboard-follow-button a').addClass('followed');
+				$('.stack-dashboard-follow-button a').attr('data-action', 'unfollow');
+
+				$('.stack-dashboard-follow-button a').html('<span><i class="fa fa-check-circle"></i> Following Stack</span><span class="hover"><i class="fa fa-minus-circle"></i> Unfollow Stack</span>');
+			}
+			else
+			{
+				$('.stack-dashboard-follow-button a').removeClass('followed');
+				$('.stack-dashboard-follow-button a').attr('data-action', 'follow');	
+
+				$('.stack-dashboard-follow-button a').html('<i class="fa fa-plus-circle"></i> Follow this Stack');
+			}
+		}
+	});
+
+});
+
 $(document).on('click', 'a.share-button', function(e)
 {
 	e.preventDefault();

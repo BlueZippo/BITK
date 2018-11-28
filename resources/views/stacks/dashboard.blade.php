@@ -16,6 +16,7 @@
     </div>
 
     @if (Auth::check())
+
     @if (Auth::user()->id == $stack['user_id'])
 
     <div class="row">
@@ -56,7 +57,13 @@
         }
     </script>
 
+    @else
+
+        @include('stacks.dashboard-follow-button')
+    
+
     @endif
+
     @endif
 
 
