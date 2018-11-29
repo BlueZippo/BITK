@@ -1,69 +1,27 @@
-@extends('layouts.master')
+<div class="edit-parking-container">
+  <form>  
 
-@section('content')
+      <div class="add-links-container">
 
-<h1>Edit Link</h1>
+          <div class="add-link">
 
-{!! Form::open(['url' => action('LinksController@update', ['id' => $link->id]), 'method' => 'POST']) !!}
+            @include('links.edit-step1')
 
-	<div class="form-group">
+            @include('links.edit-step2')   
 
-		{{Form::label('title', 'Title')}}
-		{{Form::text('title', $link->title, ['class' => 'form-control', 'placeholder' => 'Title'])}}
+            <div class="row">               
 
-	</div>	
+              <div class="col-md-12 text-right">
 
-	<div class="form-group">
+                <a class="cancel-btn">Cancel</a> <a class="btn btn-primary submit-button">Save</a>
 
-		{{Form::label('link', 'Link')}}
-		{{Form::text('link', $link->link, ['class' => 'form-control', 'placeholder' => 'Link'])}}
+              </div>
 
-	</div>	
+            </div> 
 
-	<div class="form-group">
+          </div>
 
-		{{Form::label('stack', 'Choose Where to Save Link')}}		
-		
-		@foreach($stacks as $stack)
-			<div class="form-check">
-				
-				@if ($link->stack->contains($stack->id))
-				{{Form::checkbox('stack[]', $stack->id, true, ['class' => 'form-check-input'])}}
-				@else
-				{{Form::checkbox('stack[]', $stack->id, false, ['class' => 'form-check-input'])}}
-				@endif
+      </div>            
 
-				<label class="form-check-label">{{$stack->title}}</label>
-			</div>		
-		@endforeach
-
-	</div>
-
-	<div class="form-group">
-	
-		{{Form::label('category', 'Choose Media Category')}}		
-
-		@foreach($categories as $category)
-
-		<div class="form-check">		
-
-			@if ($link->category->contains($category->id))
-			{{Form::checkbox('category[]', $category->id, true, ['class' => 'form-check-input'])}}
-			@else
-			{{Form::checkbox('category[]', $category->id, false, ['class' => 'form-check-input'])}}
-			@endif
-			<label class="form-check-label">{{$category->cat_name}}</label>
-
-		</div>
-
-		@endforeach
-
-	</div>	
-
-	{{Form::hidden('_method', 'PUT')}}
-	{{Form::submit('Save', ['class' => 'btn btn-primary'])}}
-	
-
-{!! Form::close() !!}
-
-@endsection
+  </form>
+</div>

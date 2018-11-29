@@ -394,6 +394,43 @@ nav.main_nav > .inner {
     .navbar-brand > img.mobile {
         margin-top: -8px;
     }
+
+    .stack-list.tile > .single-stack-wrapper
+    {
+        width:100%;
+        margin:0px 0px 10px;
+    }
+
+    .add-link-wrapper
+    {
+        width:100%;
+    }
+
+    .navbar-brand
+    {
+        width:auto;
+    }
+    .navbar, 
+    .navbar>.container, 
+    .navbar>.container-fluid
+    {
+        display:inline-block;
+    }
+
+    .explorer-nav
+    {
+        display:none;
+    }
+
+    nav.main_nav.bg-light
+    {
+        height:auto;
+    }
+
+    .navbar-expand-md .mobile-menu-wrapper.navbar-collapse
+    {
+        display:none !important;
+    }
 }
 @media screen and (max-width:639px) {
     .mobile-menu-wrapper {

@@ -4,6 +4,7 @@ $(document).click(function()
 	$('.add-link-form').hide();
 	$('.parking-add-link-form').hide();
 	$('.categories-popup').hide();
+	$('.edit-parking-container').remove();
 });
 
 $(document).on('click', 'a.follow-button', function()
@@ -144,7 +145,7 @@ $(document).on('click', 'a.share-button', function(e)
 
 });
 
-$('.send-container, .add-link-form, .parking-add-link-form').click(function(e)
+$(document).on('click', '.send-container, .add-link-form, .parking-add-link-form, .edit-parking-container', function(e)
 {
 	e.stopPropagation();
 });
@@ -275,6 +276,22 @@ $(document).on('keydown', '.link-comment-form textarea[name=comment]', function(
 
 });
 
+$(document).on('click', '.media-types input[type=checkbox]', function()
+{
+	$('.media-types input[type=checkbox]').prop('checked', false);
+	
+	$(this).prop('checked', true);
+	
+	$('input[name=media_id]').val($(this).val());
+});
+
+$(document).on('click', '.cancel-btn', function()
+{
+	$('.add-link-form').hide();
+	$('.parking-add-link-form').hide();
+	$('.edit-parking-container').remove();
+});
+
 $(document).on('click', '.trash', function(e)
 {
 	e.preventDefault();
@@ -353,7 +370,7 @@ $(document).ready(function()
 
     	var offset = $(this).offset();
 
-    	$('input', pForm).val('');
+    	$('input:not([type=checkbox])', pForm).val('');
     	$('.content', pForm).html('');
     	$('input[type=checkbox]', pForm).prop('checked', false);
 
@@ -373,7 +390,7 @@ $(document).ready(function()
 
 		var offset = $(this).offset();
 
-		$('.add-link-form input').val('');
+		$('.add-link-form input:not([type=checkbox])').val('');
 		$('.add-link-form .content').html('');
 		$('.add-link-form input[type=checkbox]').prop('checked', false)
 		
@@ -402,11 +419,7 @@ $(document).ready(function()
 		$('input', this).val('')
 	});
 
-	$('.cancel-btn').click(function()
-	{
-		$('.add-link-form').hide();
-		$('.parking-add-link-form').hide();
-	});
+
 
 	$('.continue-button').click(function()
 	{
@@ -636,12 +649,7 @@ $(document).ready(function()
 
 	})
 
-    $('.media-types input[type=checkbox]').click(function()
-    {
-    	$('.media-types input[type=checkbox]').prop('checked', false);
-    	$(this).prop('checked', true);
-    	$('input[name=media_id]').val($(this).val());
-    });
+    
 
     $('.link-comment-button').click(function()
     {

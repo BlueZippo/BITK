@@ -106,7 +106,7 @@ class LinksController extends Controller
        $link->description = $request->input('link_description');
        $link->link = $request->input('link_url');
        $link->stack_id = (int)$stack_id;
-       $link->media_id = $request->input('media_id');
+       $link->media_id = (int)$request->input('media_id');
        $link->image = $request->input('link_image');
 
        $link->code = $link->convertIntToShortCode();
@@ -150,15 +150,23 @@ class LinksController extends Controller
     {
         $link = Link::find($id);
 
-        $stacks = User::find(auth()->id())->stacks;
+        $userid = auth()->id();
 
-        $data['stacks'] = $stacks;
+        $recents = Stack::select('id', 'title')->where('user_id', '=', $userid)->orderby('updated_at', 'desc')->limit(5)->get();
 
-        $data['categories'] = Category::get();
+        $options = array(
+                'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),
+                'parking' => 'Parking Lot',
+                'new' => 'Create New Stack',
+                'My Stacks' => Stack::where('user_id', '=', $userid)->orderby('title')->get()->pluck('title','id')->toArray(),
+                );
 
         $data['link'] = $link;
+        $data['options'] = $options;
 
-        return view('links.edit')->with($data);
+        $html = view('links.edit', $data)->render();
+
+        return ['html' => $html];
     }
 
     /**
@@ -172,51 +180,93 @@ class LinksController extends Controller
     {
         $link = Link::find($id);
 
-        $link->title = $request->input('title');
-        $link->subtitle = $request->input('subtitle');
-        $link->description = $request->input('description');
-        $link->link = $request->input('link');
+        $stack_id = $request->input('stack_id');
 
-       $link->save();
-
-       if ($request->has('category'))
-       {
-        foreach($request->input('category') as $category_id)
-        {
-            $category = LinkCategory::where('category_id', '=', $category_id)->where('link_id', '=', $link->id);
-
-            $category->delete();
-
-            $category = new LinkCategory;
-
-            $category->link_id = $link->id;
-            $category->category_id = $category_id;
-
-            $category->save();
-
+        if ($stack_id == 'parking')
+        {    
+            $stack_id = 0;
         }
-       }
-
-       if ($request->has('stack'))
-       {
-        foreach($request->input('stack') as $stack_id)
+        else if ($stack_id == 'new')
         {
-            $stack = StackLink::where('stack_id', '=', $stack_id)->where('link_id', '=', $link->id);
+            $stack = new Stack;
 
-            $stack->delete();
-
-            $stack = new StackLink;
-
-            $stack->link_id = $link->id;
-            $stack->stack_id = $stack_id;
+            $stack->title = 'enter title...';
+            $stack->content = 'enter a topic...';
+            $stack->user_id = auth()->id();
 
             $stack->save();
 
+            $stack_id  = $stack->id;
         }
+        
+        
+        $link->title = $request->input('link_title');
+        
+        $link->description = $request->input('link_description');
+        
+        $link->link = $request->input('link_url');
+
+        $link->media_id = $request->input('media_id');
+
+        $link->stack_id = (int)$stack_id;
+
+        $link->image = $request->input('link_image');
+
+        $link->save();
+
+
+       if ($stack_id)
+       {
+             return ['message' => "Success", 'redirect' => '/stacks/' . $stack_id . '/edit/' . $link->media_id];
+       }
+       else
+       {
+
+            $html = view('links.link')->with(['link' => $link])->render();
+
+            return ['message' => "Success", 'html' => $html, 'id' => $link->id];
+        }
+
+        /*
+        if ($request->has('category'))
+        {
+            foreach($request->input('category') as $category_id)
+            {
+                $category = LinkCategory::where('category_id', '=', $category_id)->where('link_id', '=', $link->id);
+
+                $category->delete();
+
+                $category = new LinkCategory;
+
+                $category->link_id = $link->id;
+                $category->category_id = $category_id;
+
+                $category->save();
+
+            }
+        }
+
+           if ($request->has('stack'))
+           {
+            foreach($request->input('stack') as $stack_id)
+            {
+                $stack = StackLink::where('stack_id', '=', $stack_id)->where('link_id', '=', $link->id);
+
+                $stack->delete();
+
+                $stack = new StackLink;
+
+                $stack->link_id = $link->id;
+                $stack->stack_id = $stack_id;
+
+                $stack->save();
+
+            }
        }
 
 
         return redirect('/links/' . $id . '/edit')->with('success', 'Link updated');
+        */
     }
 
     /**

@@ -57,6 +57,7 @@
 .parking-container
 {
 	border-bottom:solid 1px #d1d1d1;
+	position:relative;
 }
 
 .parking-container .link-image

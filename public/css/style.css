@@ -1050,7 +1050,8 @@ a.downvote
 }
 
 .add-link-form,
-.parking-add-link-form
+.parking-add-link-form,
+.edit-parking-container
 {
 	max-width:500px;
 	width:500px;
@@ -1064,7 +1065,8 @@ a.downvote
 }
 
 .add-link-form:after,
-.parking-add-link-form:after
+.parking-add-link-form:after,
+.edit-parking-container:after
 {
 	content: "";
   	position: absolute;
@@ -1097,7 +1099,8 @@ a.downvote
 
 
 .add-link-form .media-types,
-.parking-add-link-form .media-types
+.parking-add-link-form .media-types,
+.edit-parking-container .media-types
 {
 	list-style:none;
 	padding:5px 0;
@@ -1107,18 +1110,31 @@ a.downvote
 }
 
 .add-link-form .media-types li,
-.parking-add-link-form .media-types li
+.parking-add-link-form .media-types li,
+.edit-parking-container .media-types li
 {
 	float:left;
 	width:25%;
 }
 
 .add-link-form .media-types:after,
-.parking-add-link-form .media-types:after
+.parking-add-link-form .media-types:after,
+.edit-parking-container .media-types:after
 {
 	content:"";
 	clear:both;
 	display:block;
+}
+
+.edit-parking-container 
+{
+	left:330px;
+	top:-190px;
+}
+
+.edit-parking-container:after
+{
+	top:50%;
 }
 
 .add-link label
@@ -1270,4 +1286,19 @@ a.delete-link
 a.edit-link:hover, a.delete-link:hover
 {
 	color:var(--blue) !important;
+}
+
+@media (max-width:767px)
+{
+	.add-link-form, 
+	.parking-add-link-form,
+	.edit-parking-container
+	{
+		width:90%;
+	}
+
+	.add-link-form .step2
+	{
+		display:none;
+	}
 }

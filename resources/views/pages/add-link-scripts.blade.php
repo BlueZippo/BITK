@@ -14,7 +14,9 @@ $(document).ready(function()
      });
 });
 
-$('input[name=link_url]').on('paste', function(e)
+
+
+$(document).on('paste', 'input[name=link_url]', function(e)
 {
     var clipboardData, pastedData;
 
@@ -31,7 +33,7 @@ $('input[name=link_url]').on('paste', function(e)
 
 });
 
-$('input[name=link_url]').on('change', function()
+$(document).on('change', 'input[name=link_url]', function()
 {
     $('.continue-button').addClass('disabled');
 
@@ -183,7 +185,81 @@ $('.parking-add-link-form .submit-button').click(function(e)
     $('.parking-add-link-form').hide();
 });
 
+$(document).on('click', '.edit-parking-container .submit-button', function(e)
+{
+
+    e.preventDefault();
+
+    e.stopPropagation();
+
+    var par = $('.edit-parking-container form').serialize();
+
+    var id = $('.edit-parking-container input[name=id]').val();
+
+     $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax(
+    {
+        url: '/links/' + id + '/update',
+        data: par,
+        type: 'post',
+        dataType: 'json',
+        success: function(data)
+        {
+            if (data.redirect)
+            {
+                window.location = data.redirect
+            }
+            else
+            {
+                $('#link' + data.id).remove();
+                $('.parking-lot-container .panel-body').append(data.html);
+            }
+        }
+
+    })
 
 
+    $('.edit-parking-container').remove();
+});
+
+
+$(document).on('click', '.edit-link', function(e)
+{
+    var id = $(this).data('id');
+
+    var offset = $(this);
+    var win = $(window);
+
+    e.preventDefault();
+
+    e.stopPropagation();
+
+    $('.edit-parking-container').remove();            
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax(
+    {
+        url: '/links/' + id + '/edit',
+        type: 'get',
+        dataType: 'json',
+        success: function(data)
+        {
+            $('.parking-lot-container #link' + id).append(data.html);
+            $('.edit-parking-container').show();
+        }
+
+    })
+
+});
 
 </script>
