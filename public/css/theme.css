@@ -1571,7 +1571,7 @@ main {
 
 .stack-dashboard-follow-button a.follow.followed
 {
-    background:var(--green);
+    background:var(--pink);
 }
 
 .stack-dashboard-follow-button a.follow.followed:hover
