@@ -1596,3 +1596,16 @@ a.open-all.active, a.close-all.active
 {
     background:#f2f2f2;
 }
+
+.chosen-container .chosen-results
+{
+    max-height:100% !important;
+}
+
+.add-link-form .chosen-container .chosen-results li[data-option-array-index="7"],
+.add-link-form .chosen-container .chosen-results li[data-option-array-index="8"],
+.parking-add-link-form .chosen-container .chosen-results li[data-option-array-index="7"],
+.parking-add-link-form .chosen-container .chosen-results li[data-option-array-index="8"]
+{
+    font-weight: bold;
+}
