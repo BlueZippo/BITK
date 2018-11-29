@@ -42,7 +42,7 @@ body a
 {
     .container 
     {
-        max-width: 90%;
+        max-width: 75%;
     }
 }
 
@@ -1608,4 +1608,10 @@ a.open-all.active, a.close-all.active
 .parking-add-link-form .chosen-container .chosen-results li[data-option-array-index="8"]
 {
     font-weight: bold;
+}
+
+
+@media (min-width:1600px)
+{
+
 }
