@@ -38,11 +38,14 @@ body a
     cursor:pointer;
 }
 /*** Media Queries ***/
-@media screen and (min-width: 1600px) {
-    .container {
-        max-width: 1400px;
+@media screen and (min-width: 1600px) 
+{
+    .container 
+    {
+        max-width: 90%;
     }
 }
+
 @media screen
 and (max-width: 1599px)
 and (min-width: 1200px) {
