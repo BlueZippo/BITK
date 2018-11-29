@@ -27,7 +27,9 @@ $(document).on('paste', 'input[name=link_url]', function(e)
     
     pastedData = clipboardData.getData('Text');    
 
-    $(this).val(pastedData);    
+    $(this).val(pastedData);   
+
+    console.log('i started here');
 
     $(this).trigger('change');
 
@@ -35,6 +37,8 @@ $(document).on('paste', 'input[name=link_url]', function(e)
 
 $(document).on('change', 'input[name=link_url]', function()
 {
+    console.log('i am here');
+
     $('.continue-button').addClass('disabled');
 
     $('.solid .content').html('Fetching link information, please wait...')

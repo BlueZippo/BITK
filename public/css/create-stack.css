@@ -251,6 +251,7 @@ div.links-accordion-container.middle-position::after
 	border:solid 1px #ccc;
 	text-align:center;
 	margin:10px 0;
+	min-height:253px;
 }
 
 .add-link-modal a,
@@ -262,9 +263,9 @@ div.links-accordion-container.middle-position::after
 .add-link-modal i,
 .add-link-accordion-modal i
 {
-	font-size:48px;
-	margin:30px auto;
+	font-size:75px;
 	color:var(--pink);
+	line-height:253px;
 }
 
 
