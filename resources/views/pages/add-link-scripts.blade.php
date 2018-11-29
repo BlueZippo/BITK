@@ -216,8 +216,8 @@ $(document).on('click', '.edit-parking-container .submit-button', function(e)
             }
             else
             {
-                $('#link' + data.id).remove();
-                $('.parking-lot-container .panel-body').append(data.html);
+                $('#link' + data.id).html(data.html);
+
             }
         }
 

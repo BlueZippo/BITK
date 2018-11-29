@@ -222,7 +222,7 @@ class LinksController extends Controller
        else
        {
 
-            $html = view('links.link')->with(['link' => $link])->render();
+            $html = view('links.edit-link')->with(['link' => $link])->render();
 
             return ['message' => "Success", 'html' => $html, 'id' => $link->id];
         }
