@@ -38,19 +38,37 @@ body a
     cursor:pointer;
 }
 /*** Media Queries ***/
-@media screen and (min-width: 1600px) 
-{
-    .container 
-    {
-        max-width: 90%;
+@media screen and (min-width: 1921px) {
+    .container {
+        max-width: 1800px;
     }
 }
-
 @media screen
-and (max-width: 1599px)
-and (min-width: 1200px) {
+and (max-width:1920px)
+and (min-width:1601px) {
     .container {
-        max-width: 1200px;
+        max-width: 1700px;
+    }
+}
+@media screen
+and (max-width:1600px)
+and (min-width:1441px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+@media screen
+and (max-width: 1440px)
+and (min-width: 1280px) {
+    .container {
+        max-width: 1220px;
+    }
+}
+@media screen
+and (max-width: 1279px)
+and (min-width: 1201px) {
+    .container {
+        max-width: 1140px;
     }
 }
 /*****************************
@@ -413,8 +431,8 @@ nav.main_nav > .inner {
     {
         width:auto;
     }
-    .navbar, 
-    .navbar>.container, 
+    .navbar,
+    .navbar>.container,
     .navbar>.container-fluid
     {
         display:inline-block;
