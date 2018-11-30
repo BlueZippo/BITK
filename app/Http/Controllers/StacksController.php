@@ -298,6 +298,9 @@ class StacksController extends Controller {
 
         $stack->save();
 
+        
+        $userid = auth()->id();
+
         $medias = array();
 
         $related = array();
@@ -340,7 +343,7 @@ class StacksController extends Controller {
 
         if (Auth::check())
         {
-            $follows = User::find(auth()->id())
+            $follows = User::find($userid)
                        ->stacksFollow()
                        ->pluck('stack_id')
                        ->toArray();
@@ -380,7 +383,13 @@ class StacksController extends Controller {
                         );
         }
 
+        $user = User::find($userid);
 
+        $authorFollows = $user->peopleFollow()->get()->pluck('people_id')->toArray();
+
+        $data['authorFollow'] = ($stack->user_id == $userid || in_array($stack->user_id, $authorFollows)) ? true: false;
+
+        
         $data['links'] = $links;
 
         $data['medias'] = $medias;
