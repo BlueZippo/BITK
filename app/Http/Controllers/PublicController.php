@@ -101,6 +101,7 @@ class PublicController extends Controller {
             $author = array('name' => $result->name,
                             'email' => $result->email,
                             'photo' => $result->photo,
+                            'id' => $result->user_id,
                             'followed' => false
                           );
 
