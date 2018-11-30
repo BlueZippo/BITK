@@ -56,9 +56,9 @@
           <span>
             {{$stack['author']['name']}} 
             @if ($stack['author']['followed'])
-              <a data-id="{{$stack['author']['id']}}" class="people-unfollow" title="Unfollow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+              <a id="author{{$stack['author']['id']}}" data-id="{{$stack['author']['id']}}" class="people-unfollow" title="Unfollow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
             @else
-              <a data-id="{{$stack['author']['id']}}" class="people-follow" title="Follow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+              <a id="author{{$stack['author']['id']}}" data-id="{{$stack['author']['id']}}" class="people-follow" title="Follow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
             @endif
           </span>
       </div>
@@ -92,9 +92,9 @@
           <span>
             by: {{$stack['author']['name']}}
             @if ($stack['author']['followed'])
-              <a data-id="{{$stack['author']['id']}}" class="people-unfollow" title="Unfollow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+              <a id="author{{$stack['author']['id']}}"  data-id="{{$stack['author']['id']}}" class="people-unfollow" title="Unfollow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
             @else
-              <a data-id="{{$stack['author']['id']}}" class="people-follow" title="Follow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+              <a id="author{{$stack['author']['id']}}"  data-id="{{$stack['author']['id']}}" class="people-follow" title="Follow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
             @endif
           </span>
         </div>

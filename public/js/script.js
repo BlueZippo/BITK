@@ -150,7 +150,7 @@ $(document).on('click', '.people-follow, .people-unfollow', function()
 	var userid = $(this).data('id');
 	var action = 'follow'
 
-	if ($(this).hasClass('unpeople-follow'))
+	if ($(this).hasClass('people-unfollow'))
 	{
 		action = 'unfollow';
 	}
@@ -162,7 +162,14 @@ $(document).on('click', '.people-follow, .people-unfollow', function()
 		dataType: 'json',
 		success: function(data)
 		{
-
+			if (data.action == 'unfollow')
+			{
+				$('a#author' + data.people_id).removeClass('people-unfollow').addClass('people-follow')
+			}	
+			else
+			{
+				$('a#author' + data.people_id).removeClass('people-follow').addClass('people-unfollow')
+			}
 		}
 	});	
 });

@@ -126,7 +126,7 @@ class PeopleController extends Controller
 
         $follow->save();
 
-        return json_encode(array('user_id' => $user_id, 'people_id' => $id));
+        return json_encode(array('user_id' => $user_id, 'people_id' => $id, 'action' => 'follow'));
     }
 
     public function unfollow($id)
@@ -138,7 +138,7 @@ class PeopleController extends Controller
 
         $people->delete();
 
-        return json_encode(array('user_id' => $user_id, 'people_id' => $id));
+        return json_encode(array('user_id' => $user_id, 'people_id' => $id, 'action' => 'unfollow'));
     }
 
     public function stacks($user_id)
