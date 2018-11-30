@@ -561,13 +561,19 @@ class StacksController extends Controller {
 
         $medias = Category::orderBy('cat_name')->get();
 
+        $user = User::find(auth()->id());
+
+        $peopleFollowed = $user->peopleFollow()->pluck('people_id')->toArray();
+
         foreach($results as $result)
         {
             $author = array();
 
             $author = array('name' => $result->name,
                             'email' => $result->email,
-                            'photo' => $result->photo);
+                            'photo' => $result->photo,
+                            'id' => $result->user_id,
+                            'followed' => in_array($result->user_id, $peopleFollowed) || $result->user_id == $user->id ? true : false);
 
 
             $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();

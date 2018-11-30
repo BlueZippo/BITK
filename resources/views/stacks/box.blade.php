@@ -53,7 +53,14 @@
               </div>
             @endif
           </div>
-          <span>{{$stack['author']['name']}}</span>
+          <span>
+            {{$stack['author']['name']}} 
+            @if ($stack['author']['followed'])
+              <a data-id="{{$stack['author']['id']}}" class="people-unfollow" title="Follow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+            @else
+              <a data-id="{{$stack['author']['id']}}" class="people-follow" title="Unfollow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+            @endif
+          </span>
       </div>
 
 
@@ -82,7 +89,14 @@
               </div>
             @endif
           </div>
-          <span>by: {{$stack['author']['name']}}</span>
+          <span>
+            by: {{$stack['author']['name']}}
+            @if ($stack['author']['followed'])
+              <a data-id="{{$stack['author']['id']}}" class="people-unfollow" title="Follow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+            @else
+              <a data-id="{{$stack['author']['id']}}" class="people-follow" title="Unfollow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+            @endif
+          </span>
         </div>
 
         <div class="stack-footer">

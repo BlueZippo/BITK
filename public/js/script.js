@@ -145,6 +145,28 @@ $(document).on('click', 'a.share-button', function(e)
 
 });
 
+$(document).on('click', '.people-follow, .people-unfollow', function()
+{
+	var userid = $(this).data('id');
+	var action = 'follow'
+
+	if ($(this).hasClass('unpeople-follow'))
+	{
+		action = 'unfollow';
+	}
+
+	$.ajax(
+	{
+		url: '/people/' + userid + '/' + action,
+		type: 'get',
+		dataType: 'json',
+		success: function(data)
+		{
+
+		}
+	});	
+});
+
 $(document).on('click', '.send-container, .add-link-form, .parking-add-link-form, .edit-parking-container', function(e)
 {
 	e.stopPropagation();

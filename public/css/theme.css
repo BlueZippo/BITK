@@ -1630,8 +1630,12 @@ a.open-all.active, a.close-all.active
     font-weight: bold;
 }
 
-
-@media (min-width:1600px)
+.people-follow i
 {
+    color:var(--blue);
+}
 
+.people-unfollow i
+{
+    color:var(--gray);
 }
