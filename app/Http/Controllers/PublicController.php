@@ -100,7 +100,9 @@ class PublicController extends Controller {
 
             $author = array('name' => $result->name,
                             'email' => $result->email,
-                            'photo' => $result->photo);
+                            'photo' => $result->photo,
+                            'followed' => false
+                          );
 
             $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=', 1)->get();
             $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=', 0)->get();
