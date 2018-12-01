@@ -77,134 +77,138 @@ class PagesController extends Controller {
 		}
 
 
-	    		$results = Stack::orderBy('created_at', 'desc')
-	    			 ->whereNotIn('id', array_merge($followed, $myStacks))
-	    			 ->where('status_id', '=', 1)
-	    			 ->where('private', '=', 0)
-	    			 ->limit(12)
-	    			 ->get();
+		$results = Stack::orderBy('created_at', 'desc')
+			 ->whereNotIn('id', array_merge($followed, $myStacks))
+			 ->where('status_id', '=', 1)
+			 ->where('private', '=', 0)
+			 ->limit(12)
+			 ->get();
 
 
-			  	$follows = array();
-				$stacks = array();
+	  	$follows = array();
+		$stacks = array();
 
-				foreach($results as $stack)
-				{
-					$user = User::find($stack->user_id);
+		foreach($results as $stack)
+		{
+			$user = User::find($stack->user_id);
 
-					if ($user)
-					{
-						$author = array('name' => $user->name, 
-										'email' => $user->email, 
-										'photo' => $user->photo, 
-										'id' => $user->id, 
-										'followed' => ($user->id == $user_id || in_array($user->id, $people))  ? 1 : 0
-									);
-
-						$categories = array();
-
-						foreach($stack->links as $link)
-						{
-							$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
-						}
-
-						//$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
-
-						$upvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 1)->get();
-
-						$downvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 0)->get();
-
-						$stacks[] = array(
-							    'id' => $stack->id,
-								'title' => $stack->title,
-								'content' => $stack->content,
-							    'image' => $stack->video_id,
-								'author' => $author,
-								'user_id' => $stack->user_id,
-								
-								'media_type' => $stack->media_type,
-								'upvotes' => $this->number_format(count($upvotes)),
-								'downvotes' => $this->number_format(count($downvotes)),
-								'follow' => in_array($stack->id, $followed) ? true : false,
-								'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
-								'categories' => implode(',', array_unique($categories))
+			if ($user)
+			{
+				$author = array('name' => $user->name, 
+								'email' => $user->email, 
+								'photo' => $user->photo, 
+								'id' => $user->id, 
+								'followed' => ($user->id == $user_id || in_array($user->id, $people))  ? 1 : 0
 							);
 
-					}
+				$categories = array();
 
-				}
-			
-
-			
-
-    			$results =  Stack::whereIn('id', $followed)
-    							->where('status_id','=',1)
-    							->where('private','=',0)
-    							->get();
-
-
-				foreach($results as $result)
+				foreach($stack->links as $link)
 				{
-					$stack = $result;
+					$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+				}
 
-					if ($stack)
-					{
+				//$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
 
-						$user = User::find($stack->user_id);
+				$upvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 1)->get();
 
-						$author = array('name' => $user->name, 
-										'email' => $user->email, 
-										'photo' => $user->photo, 
-										'id' => $user->id, 
-										'followed' => ($user->id == $user_id || in_array($user->id, $people))  ? 1 : 0
-									);
+				$downvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 0)->get();
 
+				$stacks[] = array(
+					    'id' => $stack->id,
+						'title' => $stack->title,
+						'content' => $stack->content,
+					    'image' => $stack->video_id,
+						'author' => $author,
+						'user_id' => $stack->user_id,
 						
-									
+						'media_type' => $stack->media_type,
+						'upvotes' => $this->number_format(count($upvotes)),
+						'downvotes' => $this->number_format(count($downvotes)),
+						'follow' => in_array($stack->id, $followed) ? true : false,
+						'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
+						'categories' => implode(',', array_unique($categories))
+					);
 
-						$valid = true;
+			}
 
-						if ($stack->user_id == auth()->id())
-						{
-							$valid = false;
-						}	
+		}
+	
 
-						if ($valid && $author && $stack->status_id == 1)
-						{
+			
 
-							$categories = array();
-
-							foreach($stack->links as $link)
-							{
-								$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
-							}
-
-							$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
-
-							$upvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 1)->get();
-
-							$downvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 0)->get();
+		$results =  Stack::whereIn('id', $followed)
+						->where('status_id','=',1)
+						->where('private','=',0)
+						->get();
 
 
-							$follows[] = array(
-								    'id' => $stack->id,
-									'title' => $stack->title,
-									'content' => $stack->content,
-								    'image' => $stack->video_id,
-									'author' => $author,
-									'followed' => true,
-									'user_id' => $stack->user_id,
-									'media_type' => $stack->media_type,
-									'upvotes' => $this->number_format(count($upvotes)),
-									'downvotes' => $this->number_format(count($downvotes)),
-									'follow' => $follow->isEmpty() ? false : true,
-									'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
-									'categories' => implode(',', array_unique($categories))
-								);
-						}
-					}
+		foreach($results as $result)
+		{
+			$stack = $result;
+
+			if ($stack)
+			{
+
+				$user = User::find($stack->user_id);
+
+				$valid = false;
+
+				if ($user)
+				{		
+
+					$author = array('name' => $user->name, 
+								'email' => $user->email, 
+								'photo' => $user->photo, 
+								'id' => $user->id, 
+								'followed' => ($user->id == $user_id || in_array($user->id, $people))  ? 1 : 0
+							);
+
+					$valid = true;
 
 				}
+
+				if ($stack->user_id == auth()->id())
+				{
+					$valid = false;
+				}	
+
+				if ($valid && $stack->status_id == 1)
+				{
+
+					$categories = array();
+
+					foreach($stack->links as $link)
+					{
+						$categories = array_merge($categories, $link->category->pluck('cat_name')->toArray());
+					}
+
+					$follow = StacksFollow::where('stack_id', '=', $stack->id)->where('user_id', '=', auth()->id())->get();
+
+					$upvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 1)->get();
+
+					$downvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 0)->get();
+
+
+					$follows[] = array(
+						    'id' => $stack->id,
+							'title' => $stack->title,
+							'content' => $stack->content,
+						    'image' => $stack->video_id,
+							'author' => $author,
+							'followed' => true,
+							'user_id' => $stack->user_id,
+							'media_type' => $stack->media_type,
+							'upvotes' => $this->number_format(count($upvotes)),
+							'downvotes' => $this->number_format(count($downvotes)),
+							'follow' => $follow->isEmpty() ? false : true,
+							'updated_at' => date("F d, Y", strtotime($stack->updated_at)),
+							'categories' => implode(',', array_unique($categories))
+						);
+				}
+			}
+
+		}
 
 
 		
