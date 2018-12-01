@@ -150,7 +150,7 @@ class PagesController extends Controller {
 					if ($stack)
 					{
 
-						$user = User::find($stack->user_id)->first();
+						$user = User::find($stack->user_id);
 
 						$author = array('name' => $user->name, 
 										'email' => $user->email, 
