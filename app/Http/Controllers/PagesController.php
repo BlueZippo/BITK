@@ -28,6 +28,10 @@ class PagesController extends Controller {
 
         $user_id = auth()->id();
 
+        
+
+        $people = User::find($user_id)->peopleFollow()->get()->pluck('people_id')->toArray();
+
         $results = User::find($user_id)
     				->stacks()
     				->limit(5)
@@ -90,8 +94,12 @@ class PagesController extends Controller {
 
 					if ($user)
 					{
-
-						$author = array('name' => $user->name, 'email' => $user->email, 'photo' => $user->photo);
+						$author = array('name' => $user->name, 
+										'email' => $user->email, 
+										'photo' => $user->photo, 
+										'id' => $user->id, 
+										'followed' => ($user->id == $user_id || in_array($user->id, $people))  ? 1 : 0
+									);
 
 						$categories = array();
 
@@ -142,7 +150,17 @@ class PagesController extends Controller {
 					if ($stack)
 					{
 
-						$author = User::find($stack->user_id);
+						$user = User::find($stack->user_id)->first();
+
+						$author = array('name' => $user->name, 
+										'email' => $user->email, 
+										'photo' => $user->photo, 
+										'id' => $user->id, 
+										'followed' => ($user->id == $user_id || in_array($user->id, $people))  ? 1 : 0
+									);
+
+						
+									
 
 						$valid = true;
 
@@ -166,6 +184,7 @@ class PagesController extends Controller {
 							$upvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 1)->get();
 
 							$downvotes = StacksVote::where('stack_id', '=', $stack->id)->where('vote', '=', 0)->get();
+
 
 							$follows[] = array(
 								    'id' => $stack->id,

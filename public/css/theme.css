@@ -875,7 +875,7 @@ main {
 .dash-stack-tile .stack-footer .edit a.edit-dash-trigger,
 .dash-stack-tile .stack-footer .edit a.follow
 {
-    color: var(--blue);
+    color: var(--pink);
     margin-right: 5px;
     cursor:pointer;
 }

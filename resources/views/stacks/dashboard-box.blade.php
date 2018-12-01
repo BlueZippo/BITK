@@ -32,7 +32,17 @@
                 <div class="inner">{{ render_initials( $stack['author']['name'] ? $stack['author']['name'] : $stack['author']['email']   ) }}</div>
                 @endif
             </div>
-            <div class="name">{{$stack['author']['name']}}</div>
+            <div class="name">
+                {{$stack['author']['name']}}
+
+                @if ($stack['author']['id'] != $user_id)
+                    @if ($stack['author']['followed'])
+                        <a id="author{{$stack['author']['id']}}" data-id="{{$stack['author']['id']}}" class="people-unfollow" title="Unfollow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+                    @else
+                        <a id="author{{$stack['author']['id']}}" data-id="{{$stack['author']['id']}}" class="people-follow" title="Follow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+                    @endif
+                @endif
+            </div>
         </div>
 
         <div class="stack-footer transition">

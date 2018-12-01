@@ -665,7 +665,6 @@ a.downvote
 	cursor:pointer;
 }
 
-.single-stack-wrapper a.follow-button,
 .single-stack-wrapper a.more-button
 {
 	color:var(--blue);
@@ -676,7 +675,8 @@ a.downvote
 	margin-right:0;
 }
 
-.single-stack-wrapper a.like-button
+.single-stack-wrapper a.like-button,
+.single-stack-wrapper a.follow-button
 {
 	color:var(--pink);
 }
