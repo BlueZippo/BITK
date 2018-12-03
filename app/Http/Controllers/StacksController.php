@@ -670,6 +670,10 @@ class StacksController extends Controller {
 
         $medias = Category::orderBy('cat_name')->get();
 
+        $user = User::find(auth()->id());
+
+        $peopleFollowed = $user->peopleFollow()->pluck('people_id')->toArray();
+
         $stacks = array();
 
         foreach($results as $result)
@@ -680,7 +684,9 @@ class StacksController extends Controller {
 
             $author = array('name' => $result->name,
                             'email' => $result->email,
-                            'photo' => $result->photo);
+                            'photo' => $result->photo,
+                            'id' => $result->user_id,
+                            'followed' => in_array($result->user_id, $peopleFollowed) ? 1: 0);
 
             $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
 
@@ -702,6 +708,7 @@ class StacksController extends Controller {
                               'follow' => $follow->isEmpty() ? false : true,
                               'favorite' => $favorite->isEmpty() ? false : true,
                               'media_type' => $result->media_type,
+                              'followed'  => $peopleFollowed,
                               'updated_at' => date("F d, Y", strtotime($result->updated_at)),
                               'categories' => $result->cat_name
                           );
