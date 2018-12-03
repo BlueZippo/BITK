@@ -2,9 +2,7 @@
 
         <div class="links-nav" role="tablist">
 
-            <a class="all">All</a>
-
-            <a class="top-three">Top Three</a>
+            
 
             @foreach($medias as $media)
 
