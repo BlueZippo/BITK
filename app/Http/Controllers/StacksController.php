@@ -1496,6 +1496,7 @@ class StacksController extends Controller {
                     'content' => $result->content,
                     'image' => $result->video_id,
                     'author' => $author,
+
                     'upvotes' => $this->number_format(count($upvotes)),
                     'downvotes' => $this->number_format(count($downvotes)),
                     'user_id' => $result->user_id,
@@ -1513,6 +1514,7 @@ class StacksController extends Controller {
 
 
         $data['mystacks'] = $mystacks;
+        $data['user_id'] = auth()->id();
 
         $json['more'] = $more;
 
