@@ -76,7 +76,7 @@
                 <h2 class="stack-title">{{$stack->title}}</h2>
                 <div class="stack-meta">
                     <div class="meta-topics">
-                        <p><strong>Under Topic:</strong> <span>Business, Customer Experience, Strategy</span></p>
+                        <p><strong>Under Topic:</strong> <span>{{$topics}}</span></p>
                     </div>
                     <div class="meta-date-comments">
                         <div class="date"><p>Updated: {{date("M d, Y", strtotime($stack->updated_at))}}</p></div>

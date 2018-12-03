@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stack extends Model {
 
-    protected $fillable = ['title', 'content', 'status_id', 'media_type','private', 'video_id'];
-
-    
+    protected $fillable = ['title', 'content', 'status_id', 'media_type','private', 'video_id'];    
 
     public function user()
     {

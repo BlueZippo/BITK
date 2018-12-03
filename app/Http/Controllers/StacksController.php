@@ -297,13 +297,19 @@ class StacksController extends Controller {
         $stack->view = $view + 1;
 
         $stack->save();
-
         
         $userid = auth()->id();
 
         $medias = array();
 
         $related = array();
+
+        $topics = array();
+
+        foreach($stack->categories as $category)
+        {
+            $topics[] = $category->category->cat_name;
+        }    
 
         $comments = StackComments::where('stack_id', '=', $id)->get();
 
@@ -405,6 +411,8 @@ class StacksController extends Controller {
         $data['comments'] = count($comments);
 
         $data['follow'] = in_array($id, $follows) ? true : false;
+
+        $data['topics'] = implode(', ', $topics);
 
 
         $recents = Stack::select('id', 'title')->where('user_id', '=', auth()->id())->orderby('updated_at', 'desc')->limit(5)->get();

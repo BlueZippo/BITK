@@ -20,7 +20,7 @@ class Category extends Model
 
     public function StackCategory()
     {
-    	return $this->hasMany('App\StackCategory');
+    	return $this->hasOne('App\StackCategory');
     }
 
 }
