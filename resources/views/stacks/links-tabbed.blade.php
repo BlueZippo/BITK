@@ -2,8 +2,9 @@
 
         <div class="links-nav" role="tablist">
 
-            
+            <a class="all">All</a>
 
+            
             @foreach($medias as $media)
 
                 @php
