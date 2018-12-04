@@ -78,7 +78,7 @@ $(document).on('change', 'input[name=link_url]', function()
               {
                 if ($(this).val() == data.media_types)
                 {
-                    $(this).attr('checked', 'checked');
+                    $(this).prop('checked', true);
                     $('.add-links-container input[name=media_id]').val(data.media_types)
                 }
               })
