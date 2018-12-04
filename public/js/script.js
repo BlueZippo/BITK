@@ -21,15 +21,19 @@ $(document).on('click', 'a.follow-button', function()
 		{
 			var action = data.action;
 
+			console.log(action);
+
 			if (action == 'follow')
 			{
 				$('#stack' + stack_id + ' .follow-button').addClass('followed');
-				$('#stack' + stack_id + ' .follow-button').attr('data-action', 'unfollow')
+				$('#stack' + stack_id + ' .follow-button').attr('data-action', 'unfollow');
+				$('#stack' + stack_id + ' .follow-button').html('<i class="fa fa-check-circle"></i>')
 			}
 			else
 			{
 				$('#stack' + stack_id + ' .follow-button').removeClass('followed');
 				$('#stack' + stack_id + ' .follow-button').attr('data-action', 'follow')
+				$('#stack' + stack_id + ' .follow-button').html('<i class="fa fa-plus-circle"></i>')
 			}
 		}
 	});
@@ -164,11 +168,11 @@ $(document).on('click', '.people-follow, .people-unfollow', function()
 		{
 			if (data.action == 'unfollow')
 			{
-				$('a#author' + data.people_id).removeClass('people-unfollow').addClass('people-follow')
+				$('a#author' + data.people_id).removeClass('people-unfollow').addClass('people-follow').html('<i class="fas fa-user-plus"></i>');
 			}	
 			else
 			{
-				$('a#author' + data.people_id).removeClass('people-follow').addClass('people-unfollow')
+				$('a#author' + data.people_id).removeClass('people-follow').addClass('people-unfollow').html('<i class="fas fa-user-check"></i>');
 			}
 		}
 	});	
@@ -492,36 +496,36 @@ $(document).ready(function()
 	});
 
 	$('.non-user').on('click', function () {
-                        $.confirm({
-                            title: 'Login Required',
-                            content: 'You need to login or register',
-                            icon: 'fa fa-question-circle',
-                            animation: 'scale',
-                            closeAnimation: 'scale',
-                            opacity: 0.5,
-                            buttons: {
-                                'confirm': {
-                                    text: 'Login',
-                                    btnClass: 'btn-blue',
-                                    action: function () {
-                                        window.location = '/login'
-                                    }
-                                },
-                                
-                                'register': {
-                                    text: 'Register',
-                                    btnClass: 'btn-green',
-                                    action: function () {
-                                        window.location = '/register'
-                                    }
-                                },
+        $.confirm({
+            title: 'Login Required',
+            content: 'You need to login or register',
+            icon: 'fa fa-question-circle',
+            animation: 'scale',
+            closeAnimation: 'scale',
+            opacity: 0.5,
+            buttons: {
+                'confirm': {
+                    text: 'Login',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location = '/login'
+                    }
+                },
+                
+                'register': {
+                    text: 'Register',
+                    btnClass: 'btn-green',
+                    action: function () {
+                        window.location = '/register'
+                    }
+                },
 
-                                cancel: function () {
-                                    
-                                },
-                            }
-                        });
-                    });
+                cancel: function () {
+                    
+                },
+            }
+        });
+    });
 
 
 	$('.upvote, .downvote').on('click', function()
