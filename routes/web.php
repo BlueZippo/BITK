@@ -89,6 +89,8 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::resource('links', 'LinksController');
 
+	Route::resource('settings', 'SettingController');
+
 	Route::resource('admin/search', 'SearchController');
 
 	Route::get('admin/links/parser', ['as' => 'admin.links.parser', 'uses' => 'AdminLinksController@parser']);

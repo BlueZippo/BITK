@@ -134,9 +134,19 @@
 
                         <div class="likes">
 
-                            <a class="upvote" data-id="{{$stack->id}}"><i class="fas fa-thumbs-up"></i> {{$upvote}}</a>
+                            @if (Auth::check())
 
-                            <a class="downvote" data-id="{{$stack->id}}"><i class="fas fa-thumbs-down"></i></a>
+                                <a class="upvote" data-id="{{$stack->id}}"><i class="fas fa-thumbs-up"></i> {{$upvote}}</a>
+
+                                <a class="downvote" data-id="{{$stack->id}}"><i class="fas fa-thumbs-down"></i></a>
+
+                            @else
+
+                                <a class="upvote non-user" data-id="{{$stack->id}}"><i class="fas fa-thumbs-up"></i> {{$upvote}}</a>
+
+                                <a class="downvote non-user" data-id="{{$stack->id}}"><i class="fas fa-thumbs-down"></i></a>
+
+                            @endif
 
                         </div>
 

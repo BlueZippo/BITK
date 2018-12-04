@@ -491,36 +491,75 @@ $(document).ready(function()
 		});
 	});
 
+	$('.non-user').on('click', function () {
+                        $.confirm({
+                            title: 'Login Required',
+                            content: 'You need to login or register',
+                            icon: 'fa fa-question-circle',
+                            animation: 'scale',
+                            closeAnimation: 'scale',
+                            opacity: 0.5,
+                            buttons: {
+                                'confirm': {
+                                    text: 'Login',
+                                    btnClass: 'btn-blue',
+                                    action: function () {
+                                        window.location = '/login'
+                                    }
+                                },
+                                
+                                'register': {
+                                    text: 'Register',
+                                    btnClass: 'btn-green',
+                                    action: function () {
+                                        window.location = '/register'
+                                    }
+                                },
+
+                                cancel: function () {
+                                    
+                                },
+                            }
+                        });
+                    });
+
 
 	$('.upvote, .downvote').on('click', function()
 	{
-		var stack_id = $(this).data('id');
+		if ($(this).hasClass('non-user'))
+		{	
 
-		var params = 'stack_id=' + stack_id + '&vote=1';
-
-		if ($(this).hasClass('downvote'))
-		{
-			params = 'stack_id=' + stack_id + '&vote=0';
 		}
-
-		$.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-		$.ajax(
+		else
 		{
-			url: '/stacks/' + stack_id + '/vote',
-			data: params,
-			type: 'post',
-			dataType: 'json',
-			success: function(data)
+			var stack_id = $(this).data('id');
+
+			var params = 'stack_id=' + stack_id + '&vote=1';
+
+			if ($(this).hasClass('downvote'))
 			{
-				$('.upvote').html('<i class="thumbsup"></i> ' + data.upvote);
-				$('.downvote').html('<i class="thumbsdown"></i> ' + data.downvote);
+				params = 'stack_id=' + stack_id + '&vote=0';
 			}
-		})
+
+			$.ajaxSetup({
+	            headers: {
+	                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	            }
+	        });
+
+			$.ajax(
+			{
+				url: '/stacks/' + stack_id + '/vote',
+				data: params,
+				type: 'post',
+				dataType: 'json',
+				success: function(data)
+				{
+					$('.upvote').html('<i class="thumbsup"></i> ' + data.upvote);
+					$('.downvote').html('<i class="thumbsdown"></i> ' + data.downvote);
+				}
+			});
+		}
 	});
 
 	$('.approve-button').on('click', function()

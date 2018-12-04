@@ -59,6 +59,8 @@
                             <a class="dropdown-item" href="/users/profile">My Profile</a>
                             <a class="dropdown-item" href="/parking-lot">Parking Lot</a>
 
+                            <a class="dropdown-item" href="/settings">Settings</a>
+
                             @role('admin')
 
                             <div class="dropdown-divider"></div>

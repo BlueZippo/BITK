@@ -391,7 +391,12 @@ class StacksController extends Controller {
 
         $user = User::find($userid);
 
-        $authorFollows = $user->peopleFollow()->get()->pluck('people_id')->toArray();
+        $authorFollows = array();
+
+        if ($user)
+        {    
+            $authorFollows = $user->peopleFollow()->get()->pluck('people_id')->toArray();
+        }    
 
         $data['authorFollow'] = ($stack->user_id == $userid || in_array($stack->user_id, $authorFollows)) ? true: false;
 
