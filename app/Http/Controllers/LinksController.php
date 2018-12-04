@@ -1168,7 +1168,7 @@ class LinksController extends Controller
 
             if ($result)
             {
-                $media = MediaType::where('media_type','=', 'Products')->first();
+                $media = MediaType::whereIn('media_type',['Products', 'Product'])->first();
 
                 if (isset($result->Items->Item->EditorialReviews))
                 {    
@@ -1177,7 +1177,8 @@ class LinksController extends Controller
                 else if (isset($result->Items->Item->ItemAttributes->Feature))    
                 {
                     $description = $result->Items->Item->ItemAttributes->Feature;
-                }    
+                }
+
 
                 $data = array('title' => (string) $result->Items->Item->ItemAttributes->Title,
                              'description' => strip_tags($description),
