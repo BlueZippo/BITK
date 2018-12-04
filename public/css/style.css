@@ -679,7 +679,7 @@ a.downvote
 .single-stack-wrapper a.like-button,
 .single-stack-wrapper a.follow-button
 {
-	color:var(--pink);
+	color:var(--gray);
 }
 
 .single-stack-wrapper a.share-button
@@ -933,7 +933,7 @@ a.downvote
 .single-stack-wrapper a.follow-button.followed,
 .single-stack-wrapper a.like-button.favorite
 {
-	color:#ccc;
+	color:var(--pink);
 }
 
 .send-container
