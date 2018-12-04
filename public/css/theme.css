@@ -1632,10 +1632,10 @@ a.open-all.active, a.close-all.active
 
 .people-follow i
 {
-    color:var(--blue);
+    color:var(--gray);
 }
 
 .people-unfollow i
 {
-    color:var(--gray);
+    color:var(--blue);
 }
