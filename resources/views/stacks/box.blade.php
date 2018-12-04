@@ -66,7 +66,7 @@
 
 
       <div class="stack-content">
-        <div class="title">
+        <div class="title" title="{{$stack['title']}}">
             <a href="/stacks/{{$stack['id']}}/dashboard">{{$stack['title']}}</a>
         </div>
 
