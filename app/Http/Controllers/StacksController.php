@@ -479,7 +479,7 @@ class StacksController extends Controller {
 
         $sql .= " u.name, u.photo, u.email,";
 
-        $sql .= " GROUP_CONCAT(DISTINCT c2.cat_name SEPARATOR ',') as cat_name";
+        $sql .= " GROUP_CONCAT(DISTINCT c2.cat_name SEPARATOR ', ') as cat_name";
 
         if ($sort)
         {
