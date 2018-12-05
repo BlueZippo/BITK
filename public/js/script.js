@@ -891,7 +891,7 @@ $(document).ready(function()
     	}	
     });
 
-    $('.settings-page input[type=checkbox]').click(function()
+    $('.settings-page input').click(function()
 	{
 		var params = $('.settings-page form').serialize();
 

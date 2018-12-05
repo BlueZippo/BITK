@@ -101,12 +101,9 @@ class SettingController extends Controller
         $timed_reminders = $request->get('timed_reminders');
         $upvotes = $request->get('upvotes');
         $new_followers = $request->get('new_followers');
-        $all_stacks_im_following = $request->get('all_stacks_im_following');
-        $only_my_favorite_stacks = $request->get('only_my_favorite_stacks');
-        $stacks_none = $request->get('stacks_none');
-        $all_people_im_following = $request->get('all_people_im_following');
-        $only_allowed_direct_message = $request->get('only_allowed_direct_message');
-        $people_none = $request->get('people_none');
+        $stacks_following = $request->get('stacks_following');        
+        $people_following = $request->get('people_following');
+        
 
         Setting::where('user_id','=', $userid)->delete();
 
@@ -127,12 +124,9 @@ class SettingController extends Controller
         $setting->timed_reminders = (int)$timed_reminders;
         $setting->upvotes = (int)$upvotes;
         $setting->new_followers = (int)$new_followers;
-        $setting->all_stacks_im_following = (int)$all_stacks_im_following;
-        $setting->only_my_favorite_stacks = (int)$only_my_favorite_stacks;
-        $setting->stacks_none = (int)$stacks_none;
-        $setting->all_people_im_following = (int)$all_people_im_following;
-        $setting->only_allowed_direct_message = (int)$only_allowed_direct_message;
-        $setting->people_none = (int)$people_none;
+        $setting->stacks_following = (int)$stacks_following;
+        $setting->people_following = (int)$people_following;
+        
 
         $setting->save();
 
