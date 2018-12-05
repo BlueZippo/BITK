@@ -120,9 +120,9 @@
                             {{$stack->user->name}} 
 
                             @if ($authorFollow)
-                                <a id="author{{$stack->user_id}}"  data-id="{{$stack->user_id}}" class="people-unfollow" title="Unfollow {{$stack->user->name}}"><i class="fa fa-plus-circle"></i></a>
+                                <a id="author{{$stack->user_id}}"  data-id="{{$stack->user_id}}" class="people-unfollow" title="Unfollow {{$stack->user->name}}"><i class="fas fa-user-check"></i></a>
                             @else
-                                <a id="author{{$stack->user_id}}"  data-id="{{$stack->user_id}}" class="people-follow" title="Follow {{$stack->user->name}}"><i class="fa fa-plus-circle"></i></a>
+                                <a id="author{{$stack->user_id}}"  data-id="{{$stack->user_id}}" class="people-follow" title="Follow {{$stack->user->name}}"><i class="fas fa-user-plus"></i></a>
                             @endif
 
                         </p>

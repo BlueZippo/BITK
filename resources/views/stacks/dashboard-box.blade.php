@@ -37,9 +37,9 @@
 
                 @if ($stack['author']['id'] != $user_id)
                     @if ($stack['author']['followed'])
-                        <a id="author{{$stack['author']['id']}}" data-id="{{$stack['author']['id']}}" class="people-unfollow" title="Unfollow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+                        <a id="author{{$stack['author']['id']}}" data-id="{{$stack['author']['id']}}" class="people-unfollow" title="Unfollow {{$stack['author']['name']}}"><i class="fas fa-user-check"></i></a>
                     @else
-                        <a id="author{{$stack['author']['id']}}" data-id="{{$stack['author']['id']}}" class="people-follow" title="Follow {{$stack['author']['name']}}"><i class="fa fa-plus-circle"></i></a>
+                        <a id="author{{$stack['author']['id']}}" data-id="{{$stack['author']['id']}}" class="people-follow" title="Follow {{$stack['author']['name']}}"><i class="fas fa-user-plus"></i></a>
                     @endif
                 @endif
             </div>
