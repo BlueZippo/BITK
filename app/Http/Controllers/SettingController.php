@@ -16,7 +16,18 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $data['setting'] = User::find(auth()->id())->settings;
+
+        $setting = User::find(auth()->id())->settings;
+
+        if ($setting)
+        {    
+            $data['setting'] = $setting;
+
+        }
+        else
+        {
+            $data['setting'] = new Setting;
+        }
 
         return view('settings.index')->with($data);
     }
