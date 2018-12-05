@@ -1,5 +1,5 @@
 <div class="tab-pane fade show active" id="v-pills-account" role="tabpanel" aria-labelledby="v-pills-account-tab">
-  <h5>ACCOUNT SETTINGS</h5>
+  <h5>ACCOUNT</h5>
 
   <ul>
   	<li class="row">

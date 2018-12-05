@@ -90,9 +90,8 @@ class SettingController extends Controller
 
         $allow_indexed_by_google = $request->get('allow_indexed_by_google');
         $allow_adult_content = $request->get('allow_adult_content');
-        $all_any_person = $request->get('all_any_person');
-        $allow_any_person_follow_send_messages = $request->get('allow_any_person_follow_send_messages');
-        $allow_no_one = $request->get('allow_no_one');
+        
+        $inbox_preference = $request->get('inbox_preference');
 
         $activity_public_content = $request->get('activity_public_content');
         $activity_comments_and_replies = $request->get('activity_comments_and_replies');
@@ -113,9 +112,8 @@ class SettingController extends Controller
 
         $setting->allow_indexed_by_google = (int)$allow_indexed_by_google;
         $setting->allow_adult_content = (int)$allow_adult_content;
-        $setting->all_any_person = (int)$all_any_person;
-        $setting->allow_any_person_follow_send_message = (int)$allow_any_person_follow_send_messages;
-        $setting->allow_no_one = (int)$allow_no_one;
+        
+        $setting->inbox_preference = (int)$inbox_preference;
 
         $setting->activity_public_content = (int)$activity_public_content;
         $setting->activity_comments_and_replies = (int)$activity_comments_and_replies;
