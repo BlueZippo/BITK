@@ -910,6 +910,18 @@ function mobile_menu($) {
 
 	});
 
+	$('.settings-page .nav a').click(function()
+	{
+		var target = $(this).attr('href');
+
+
+		$('.settings-page .nav a').removeClass('active');
+		$('.settings-page .tab-pane').removeClass('active');
+
+		$(this).addClass('active');
+		$(target).addClass('active show');
+	});
+
 }
 
 function single_stack($) {
