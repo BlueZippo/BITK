@@ -70,4 +70,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Tag');
     }
 
+    public function settings()
+    {
+        return $this->hasOne('App\Setting');
+    }
+
 }
