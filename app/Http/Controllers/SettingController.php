@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+use App\Setting;
+
 class SettingController extends Controller
 {
     /**
@@ -13,7 +16,9 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('settings.index');
+        $data['setting'] = User::find(auth()->id())->settings;
+
+        return view('settings.index')->with($data);
     }
 
     /**
@@ -66,9 +71,60 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $userid = auth()->id();
+
+        $user = User::find($userid);
+
+        $allow_indexed_by_google = $request->get('allow_indexed_by_google');
+        $allow_adult_content = $request->get('allow_adult_content');
+        $all_any_person = $request->get('all_any_person');
+        $allow_any_person_follow_send_messages = $request->get('allow_any_person_follow_send_messages');
+        $allow_no_one = $request->get('allow_no_one');
+
+        $activity_public_content = $request->get('activity_public_content');
+        $activity_comments_and_replies = $request->get('activity_comments_and_replies');
+        $mentions = $request->get('mentions');
+        $new_messages = $request->get('new_messages');
+        $timed_reminders = $request->get('timed_reminders');
+        $upvotes = $request->get('upvotes');
+        $new_followers = $request->get('new_followers');
+        $all_stacks_im_following = $request->get('all_stacks_im_following');
+        $only_my_favorite_stacks = $request->get('only_my_favorite_stacks');
+        $stacks_none = $request->get('stacks_none');
+        $all_people_im_following = $request->get('all_people_im_following');
+        $only_allowed_direct_message = $request->get('only_allowed_direct_message');
+        $people_none = $request->get('people_none');
+
+        Setting::where('user_id','=', $userid)->delete();
+
+        $setting = new Setting;
+
+        $setting->user_id = $userid;
+
+        $setting->allow_indexed_by_google = (int)$allow_indexed_by_google;
+        $setting->allow_adult_content = (int)$allow_adult_content;
+        $setting->all_any_person = (int)$all_any_person;
+        $setting->allow_any_person_follow_send_message = (int)$allow_any_person_follow_send_messages;
+        $setting->allow_no_one = (int)$allow_no_one;
+
+        $setting->activity_public_content = (int)$activity_public_content;
+        $setting->activity_comments_and_replies = (int)$activity_comments_and_replies;
+        $setting->mentions = (int)$mentions;
+        $setting->new_messages = (int)$new_messages;
+        $setting->timed_reminders = (int)$timed_reminders;
+        $setting->upvotes = (int)$upvotes;
+        $setting->new_followers = (int)$new_followers;
+        $setting->all_stacks_im_following = (int)$all_stacks_im_following;
+        $setting->only_my_favorite_stacks = (int)$only_my_favorite_stacks;
+        $setting->stacks_none = (int)$stacks_none;
+        $setting->all_people_im_following = (int)$all_people_im_following;
+        $setting->only_allowed_direct_message = (int)$only_allowed_direct_message;
+        $setting->people_none = (int)$people_none;
+
+        $setting->save();
+
     }
 
     /**

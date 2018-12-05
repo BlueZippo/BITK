@@ -1639,3 +1639,40 @@ a.open-all.active, a.close-all.active
 {
     color:var(--blue);
 }
+
+.settings-page ul
+{
+    padding:0;
+    margin:0;
+}
+
+.settings-page li
+{
+    list-style:none;
+    border-top:solid 1px #ccc;
+    padding:15px 0;
+    margin:0;
+}
+
+.settings-page li span.col-md-4
+{
+    padding:0;
+}
+
+.settings-page li input[type=checkbox]
+{
+    margin-right:15px;
+    margin-bottom:15px;
+    margin-top:5px;
+    float:left;
+}
+
+.settings-page br
+{
+    clear:both;
+}
+
+.settings-page small
+{
+    display:block;
+}

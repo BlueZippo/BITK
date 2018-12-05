@@ -89,6 +89,8 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::resource('links', 'LinksController');
 
+	Route::post('settings/update', 'SettingController@update');
+
 	Route::resource('settings', 'SettingController');
 
 	Route::resource('admin/search', 'SearchController');

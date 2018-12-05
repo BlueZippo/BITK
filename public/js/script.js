@@ -889,7 +889,30 @@ $(document).ready(function()
     			}
     		})
     	}	
-    })
+    });
+
+    $('.settings-page input[type=checkbox]').click(function()
+	{
+		var params = $('.settings-page form').serialize();
+
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+		$.ajax(
+		{
+			url: '/settings/update',
+			data: params,
+			type: 'post',
+			dataType: 'json',
+			success: function(data)
+			{
+
+			}
+		});
+	});
 
 });
 
@@ -921,6 +944,9 @@ function mobile_menu($) {
 		$(this).addClass('active');
 		$(target).addClass('active show');
 	});
+
+
+
 
 }
 
