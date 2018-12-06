@@ -406,6 +406,7 @@ class ComposerStaticInit09d0a8ab5cfd1496a7fcb458e7996b13
     public static $classMap = array (
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Email' => __DIR__ . '/../..' . '/app/Email.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdminLinksController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminLinksController.php',
         'App\\Http\\Controllers\\Auth\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthController.php',

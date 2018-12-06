@@ -9,6 +9,7 @@
         "bariew/phpquery": "^1.0",
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "~3.3",
+        "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.5.*",
         "laravel/socialite": "^3.1",
         "laravel/tinker": "~1.0",

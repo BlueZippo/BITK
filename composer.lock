@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f926597913b1cf6863e00f64183a81b4",
+    "content-hash": "72fd2cdfb9f0ecffc56cb01e67232045",
     "packages": [
         {
             "name": "bariew/phpquery",

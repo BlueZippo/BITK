@@ -75,4 +75,9 @@ class User extends Authenticatable
         return $this->hasOne('App\Setting');
     }
 
+    public function emails()
+    {
+        return $this->hasMany('App\Email');
+    }
+
 }

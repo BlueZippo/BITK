@@ -89,6 +89,8 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::resource('links', 'LinksController');
 
+	Route::post('settings/addemail', 'SettingController@addemail');
+
 	Route::post('settings/update', 'SettingController@update');
 
 	Route::resource('settings', 'SettingController');

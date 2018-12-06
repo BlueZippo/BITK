@@ -914,6 +914,90 @@ $(document).ready(function()
 		});
 	});
 
+	$('.add-another-email').click(function()
+	{
+		$(this).hide();
+		$('.add-email').show();
+	});
+
+	$('.add-email button').click(function()
+	{
+		var email = $('.add-email input[name=email]').val();
+
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+    	if (re.test(String(email).toLowerCase()))
+    	{
+    		$('#enterPasswordModal').modal();
+    	}
+    	else
+    	{
+    		$.confirm({
+	            title: 'Invalid Email address',
+	            content: 'Please enter valid email address',
+	            icon: 'fa fa-question-circle',
+	            animation: 'scale',
+	            closeAnimation: 'scale',
+	            opacity: 0.5,
+	            buttons: {                
+
+	                close: function () {
+	                    
+	                },
+	            }
+	        });
+
+    	}
+
+    	return false;
+	});
+
+	$('#enterPasswordModal .btn-primary').click(function()
+	{
+		var params = 'email=' + $('input[name=email]').val() + '&password=' + $('input[name=enterpassword]').val();
+
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+		$.ajax(
+		{
+			url: '/settings/addemail',
+			type: 'post',
+			data: params,
+			dataType: 'json',
+			success: function(data)
+			{
+				$('#enterPasswordModal').modal('hide');
+
+				if (data.success)
+				{
+					$('#confirmEmailModal .modal-body').html(data.message)
+					$('#confirmEmailModal').modal();
+				}
+				else
+				{
+					$.confirm({
+			            title: data.title,
+			            content: data.error,
+			            icon: 'fa fa-question-circle',
+			            animation: 'scale',
+			            closeAnimation: 'scale',
+			            opacity: 0.5,
+			            buttons: {                
+
+			                close: function () {
+			                    
+			                },
+			            }
+			        });
+				}
+			}
+		})
+	});
+
 });
 
 function mobile_menu($) {

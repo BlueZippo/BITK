@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Setting;
+use App\Email;
+use App\Mail\AddEmail;
+use Illuminate\Support\Facades\Mail;
 
 class SettingController extends Controller
 {
@@ -17,7 +20,13 @@ class SettingController extends Controller
     public function index()
     {
 
-        $setting = User::find(auth()->id())->settings;
+        $user = User::find(auth()->id());
+
+        $setting = $user->settings;
+
+        $data['user'] = $user;
+
+        $data['emails'] = $user->emails;
 
         if ($setting)
         {    
@@ -70,9 +79,74 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function addemail(Request $request)
     {
-        //
+        $userid = auth()->id();
+
+        $user = User::find($userid);
+
+        $hasher = app('hash');
+
+        $valid = false;
+
+        $email = $request->get('email');
+
+        if ($hasher->check($request->get('password'), $user->password)) 
+        {
+            $emails = Email::where('email', '=', $email)->get();
+            $users = User::where('email', '=', $email)->get();
+
+            if ($emails->isEmpty() && $users->isEmpty())
+            {
+                $valid = true;
+            }
+
+            if ($valid)
+            {  
+
+                $code = $this->generateRandomString(50);
+
+                $newEmail = new Email;
+
+                $newEmail->confirmation_code = $code;
+                $newEmail->email = $email;
+                $newEmail->user_id = $userid;
+                $newEmail->notify = 1;
+
+                $newEmail->save();
+
+                $content = new AddEmail;    
+
+                Mail::to('celsomalacasjr@gmail.com')->send($content);
+
+                return ['success' => 1, 'message' => sprintf("Confirmation email sent to %s", $email)];
+
+            }
+            else
+            {
+                return ['error' => 'Email already exists in Platstack. Choose another email address.', 'title' => 'Invalid Email'];       
+            }    
+        }
+        else
+        {
+            return ['error' => 'Incorrect password', 'title' => 'Invalid Password'];
+        }
+    }
+
+    function generateRandomString($length = 10) 
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        
+        $charactersLength = strlen($characters);
+        
+        $randomString = '';
+        
+        for ($i = 0; $i < $length; $i++) 
+        {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $randomString;
     }
 
     /**
