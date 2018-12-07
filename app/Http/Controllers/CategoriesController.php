@@ -57,6 +57,8 @@ class CategoriesController extends Controller
 
         $category->cat_name = $request->input('cat_name');
 
+        $category->icon = $request->input('icon');
+
         $category->save();
 
         return redirect()->route('categories.index')

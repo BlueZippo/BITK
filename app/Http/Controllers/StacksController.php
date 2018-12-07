@@ -24,6 +24,7 @@ use App\MediaType;
 use App\StackCategory;
 use DB;
 use Auth;
+use App\Notification;
 
 class StacksController extends Controller {
 
@@ -186,12 +187,24 @@ class StacksController extends Controller {
 
         $stack->delete();
 
+        $stack = Stack::find($id);
+
         $follow = new StacksFollow;
 
         $follow->user_id = $user_id;
         $follow->stack_id = $id;
 
         $follow->save();
+
+        $noti = new Notification;
+
+        $noti->user_id = $stack->user_id;
+        $noti->action = 'follow';
+        $noti->type = 'stack';
+        $noti->item_id = $id;
+        $noti->person_id = $user_id;
+
+        $noti->save();
 
         return json_encode(array('user_id' => $user_id, 'stack_id' => $id, 'action' => 'follow'));
     }

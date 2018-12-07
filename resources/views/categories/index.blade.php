@@ -34,6 +34,8 @@
 
    <th>Category</th>
 
+   <th>Icon</th>
+
    <th width="280px">Action</th>
 
  </tr>
@@ -45,6 +47,9 @@
     <td>{{ ++$i }}</td>
 
     <td>{{ $category->cat_name }}</td>
+
+
+    <td><i class="{{ $category->icon }}"></i></td>
 
     
     <td>

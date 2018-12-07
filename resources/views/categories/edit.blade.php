@@ -63,6 +63,18 @@
 
     </div>  
 
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <div class="form-group">
+
+            <strong>Icon:</strong>
+
+            {!! Form::text('icon', null, array('placeholder' => 'Icon','class' => 'form-control')) !!}
+
+        </div>
+
+    </div>  
+
 
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
