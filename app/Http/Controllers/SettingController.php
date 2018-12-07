@@ -10,6 +10,9 @@ use App\Email;
 use App\Mail\AddEmail;
 use Illuminate\Support\Facades\Mail;
 
+use Hash;
+
+
 class SettingController extends Controller
 {
     /**
@@ -68,9 +71,16 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function change_password(Request $request)
     {
-        //
+        $password = $request->get('password');
+
+        $input['password'] = $password;
+        $input['password_confirmation'] = Hash::make($password);
+
+        User::find(auth()->id())->update($input);
+
+        return ['success' => 1, 'message' => 'Password successfuly changed', 'title' => 'Success'];
     }
 
     /**
@@ -93,7 +103,7 @@ class SettingController extends Controller
 
         if ($hasher->check($request->get('password'), $user->password)) 
         {
-            $emails = Email::where('email', '=', $email)->get();
+            $emails = Email::where('email', '=', $email)->where('confirmed','=', 1)->get();
             $users = User::where('email', '=', $email)->get();
 
             if ($emails->isEmpty() && $users->isEmpty())
@@ -106,6 +116,11 @@ class SettingController extends Controller
 
                 $code = $this->generateRandomString(50);
 
+                $data['url'] = url('/settings/verify-email/' . $code);
+                $data['name'] = $user->name;
+                $data['email'] = $email;
+
+                
                 $newEmail = new Email;
 
                 $newEmail->confirmation_code = $code;
@@ -113,9 +128,9 @@ class SettingController extends Controller
                 $newEmail->user_id = $userid;
                 $newEmail->notify = 1;
 
-                $newEmail->save();
+                $newEmail->save();                
 
-                $content = new AddEmail;    
+                $content = new AddEmail($data);
 
                 Mail::to('celsomalacasjr@gmail.com')->send($content);
 
@@ -204,14 +219,102 @@ class SettingController extends Controller
 
     }
 
+
+    public function verify_email($code)
+    {
+        $email = Email::where('confirmation_code', '=', $code)->first();
+
+        if ($email)
+        {
+            $email->confirmed = 1;
+
+            $email->save();
+
+            return redirect('/dashboard');
+        }   
+        else
+        {
+            return redirect('/');
+        } 
+    }
+
+
+    public function delete_email(Request $request)
+    {
+        $id = $request->get('id');
+
+        $email = Email::find($id)->delete();
+
+        return ['success' => 1, 'id' => $id];
+    }
+
+    public function confirm_email(Request $request)
+    {
+        $id = $request->get('id');
+
+        $email = Email::find($id);
+
+        $user = User::find($email->user_id);
+
+        $code = $this->generateRandomString(50);
+
+        $email->confirmation_code = $code;
+
+        $email->notify = $email->notify + 1;
+
+        $email->save();
+
+        $data['url'] = url('/settings/verify-email/' . $code);
+        $data['name'] = $user->name;
+        $data['email'] = $email->email;
+
+        $content = new AddEmail($data);       
+
+        Mail::to('celsomalacasjr@gmail.com')->send($content); 
+
+        return ['success' => 1, 'message' => sprintf("Confirmation email sent to %s", $email->email)];
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function set_as_primary(Request $request)
     {
-        //
+        $userid = auth()->id();
+
+        $user = User::find($userid);
+
+        $primary_email = $user->email;
+
+        $email = $request->get('email');
+
+        $valid = true;
+
+        $hasher = app('hash');
+
+        if ($hasher->check($request->get('password'), $user->password)) 
+        { 
+
+            $user->email = $email;
+
+            $user->save();
+
+            Email::where('email', $email)->where('user_id', $userid)->update(['email' => $primary_email]);
+
+            if ($valid)
+            {  
+
+                return ['success' => 1, 'message' => sprintf("Primary email successfully change to %s", $email)];
+
+            }
+                
+        }
+        else
+        {
+            return ['error' => 'Incorrect password', 'title' => 'Invalid Password'];
+        }
     }
 }

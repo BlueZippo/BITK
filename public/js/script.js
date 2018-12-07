@@ -952,9 +952,74 @@ $(document).ready(function()
     	return false;
 	});
 
+	$('.delete-email').click(function()
+	{
+		var email = $(this).data('email');
+		var id = $(this).data('id');
+
+		if (confirm("Are you sure want to remove " + email + ' to your account?'))
+		{
+			$.ajaxSetup({
+	            headers: {
+	                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	            }
+        	});
+
+			$.ajax(
+			{
+				url: '/settings/delete-email',
+				data: 'email=' + email + '&id=' + id,
+				type: 'post',
+				dataType: 'json',
+				success: function(data)
+				{
+					$('#email' + data.id).remove();
+				}
+			});
+		}
+	});
+
+	$('.confirm-email').click(function()
+	{
+		var email = $(this).data('email');
+		var id = $(this).data('id');
+
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    	});
+
+		$.ajax(
+		{
+			url: '/settings/confirm-email',
+			type: 'post',
+			data: 'email=' + email + '&id=' + id,
+			dataType: 'json',
+			success: function(data)
+			{
+				$('#confirmEmailModal .modal-body').html(data.message)
+				$('#confirmEmailModal .modal-title').html('Confirm Email')
+				$('#confirmEmailModal').modal();
+			}
+		})
+	});
+
+	$('.set-as-primary').click(function()
+	{
+		var email = $(this).data('email');
+		var id = $(this).data('id');
+
+		$('input[name=primary_email]').val(email);
+		$('input[name=primary_id]').val(id);
+
+		$('#primaryPasswordModal').modal();
+	});
+	
+
 	$('#enterPasswordModal .btn-primary').click(function()
 	{
-		var params = 'email=' + $('input[name=email]').val() + '&password=' + $('input[name=enterpassword]').val();
+		var params = 'email=' + $('input[name=email]').val() + '&password=' + $('#enterPasswordModal input[name=enterpassword]').val();
 
 		$.ajaxSetup({
             headers: {
@@ -975,6 +1040,7 @@ $(document).ready(function()
 				if (data.success)
 				{
 					$('#confirmEmailModal .modal-body').html(data.message)
+					$('#confirmEmailModal .modal-title').html('Confirm Email')
 					$('#confirmEmailModal').modal();
 				}
 				else
@@ -996,6 +1062,102 @@ $(document).ready(function()
 				}
 			}
 		})
+	});
+
+	$('#primaryPasswordModal .btn-primary').click(function()
+	{
+		var params = 'email=' + $('input[name=primary_email]').val() + '&password=' + $('#primaryPasswordModal input[name=enterpassword]').val();
+
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+		$.ajax(
+		{
+			url: '/settings/set-as-primary',
+			type: 'post',
+			data: params,
+			dataType: 'json',
+			success: function(data)
+			{
+				$('#primaryPasswordModal').modal('hide');
+
+				if (data.success)
+				{
+					$('#confirmEmailModal .modal-body').html(data.message)
+					$('#confirmEmailModal .modal-title').html('Success');
+					$('#confirmEmailModal').modal();
+				}
+				else
+				{
+					$.confirm({
+			            title: data.title,
+			            content: data.error,
+			            icon: 'fa fa-question-circle',
+			            animation: 'scale',
+			            closeAnimation: 'scale',
+			            opacity: 0.5,
+			            buttons: {                
+
+			                close: function () {
+			                    
+			                },
+			            }
+			        });
+				}
+			}
+		})
+	});
+
+
+	$('.change-password').click(function()
+	{
+		$(this).hide();
+		$('.changePasswordForm').show();
+	});
+
+	$('.changePasswordForm .btn-primary').click(function()
+	{
+		var pass1 = $('input[name=newPassword]').val();
+		var pass2 = $('input[name=confirmPassword]').val();
+
+		if (pass1.length > 1 && pass1 == pass2)
+		{
+			$.ajax(
+			{
+				url: '/settings/change-password',
+				data: 'password=' + pass1,
+				type: 'post',
+				dataType: 'json',
+				success: function (data)
+				{
+					$('#confirmEmailModal .modal-body').html(data.message)
+					$('#confirmEmailModal .modal-title').html(data.title)
+					$('#confirmEmailModal').modal();
+				}
+			})
+		}
+		else
+		{
+			$.confirm({
+	            title: 'Invalid Password',
+	            content: 'Please enter valid password and must confirm',
+	            icon: 'fa fa-question-circle',
+	            animation: 'scale',
+	            closeAnimation: 'scale',
+	            opacity: 0.5,
+	            buttons: {                
+
+	                close: function () {
+	                    
+	                },
+	            }
+	        });
+		}
+
+		return false;
 	});
 
 });

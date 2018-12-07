@@ -1689,6 +1689,11 @@ a.open-all.active, a.close-all.active
     display:none;
 }
 
+.settings-page .changePasswordForm
+{
+    display:none;
+}
+
 @media (max-width:1200px)
 {
     .stack-list.tile > .single-stack-wrapper

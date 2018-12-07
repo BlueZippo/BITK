@@ -93,6 +93,16 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::post('settings/update', 'SettingController@update');
 
+	Route::post('settings/delete-email', 'SettingController@delete_email');
+
+	Route::post('settings/confirm-email', 'SettingController@confirm_email');
+
+	Route::post('settings/set-as-primary', 'SettingController@set_as_primary');
+
+	Route::post('settings/change-password', 'SettingController@change_password');
+
+	Route::get('settings/verify-email/{code}', 'SettingController@verify_email');
+
 	Route::resource('settings', 'SettingController');
 
 	Route::resource('admin/search', 'SearchController');

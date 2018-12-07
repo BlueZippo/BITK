@@ -11,14 +11,11 @@ class AddEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $data;
+
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -28,6 +25,6 @@ class AddEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.confirm-email-template');
+        return $this->view('emails.confirm-email-template')->with($this->data);
     }
 }
