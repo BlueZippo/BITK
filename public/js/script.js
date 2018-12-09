@@ -1160,6 +1160,32 @@ $(document).ready(function()
 		return false;
 	});
 
+
+	$('a.dropdown-item.notifications').click(function()
+	{
+		$('#notifications').modal();
+
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+	    $.ajax(
+	    {
+	    	url: '/notifications/read',
+	    	type: 'post',
+	    	dataType: 'json',
+	    	success: function()
+	    	{
+	    		$('span.notification').hide();
+	    		$('.notifications span').hide();		
+	    	}
+	    })
+
+		return false;
+	});
+
 });
 
 function mobile_menu($) {

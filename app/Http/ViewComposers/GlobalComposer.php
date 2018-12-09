@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Stack;
 use App\MediaType;
+use App\User;
 
 class GlobalComposer {
 
@@ -23,6 +24,8 @@ class GlobalComposer {
 
             $userid = Auth::user()->id;    
 
+            $user = User::find($userid);
+
             $user_stacks = Stack::select('id as value', 'title as label')->where('user_id', '=', $userid)->get();
 
             $medias = MediaType::orderby('media_type')->get();
@@ -33,10 +36,23 @@ class GlobalComposer {
                     'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),
                     'parking' => 'Parking Lot',
                     'new' => 'Create New Stack',
-                    'My Stacks' => Stack::where('user_id', '=', $userid)->orderby('title')->get()->pluck('title','id')->toArray(),
+                    'My Stacks' => Stack::where('user_id', '=', $userid)->orderBy('title')->get()->pluck('title','id')->toArray(),
                     );
 
-            $view->with(['MyStacks' => $user_stacks, 'mediaTypes' => $medias, 'options' => $options]);
+
+            $unread = 0;
+
+            $notifications = $user->notifications()->orderby('created_at', 'desc')->limit(15)->get();
+
+            foreach($notifications as $notification)
+            {
+                if ($notification->status == 0)
+                {
+                    $unread++;
+                }    
+            }
+
+            $view->with(['MyStacks' => $user_stacks, 'mediaTypes' => $medias, 'options' => $options, 'notifications' => $notifications, 'unread' => $unread]);
 
         }    
     }

@@ -333,6 +333,27 @@ nav.main_nav > .inner {
     margin-right: 0;
     justify-content: flex-end;
 }
+
+.avatar .notification,
+.dropdown-item.notifications span
+{
+    background:red;
+    color:#fff;
+    font-size:8px;
+    font-weight:bold;
+    border-radius:50%;    
+    min-width:15px;
+    text-align:center;
+    display:inline-block;
+}
+
+.avatar .notification
+{
+    position:absolute;
+    top:0;
+    right:0;
+}
+
 /*** Media Queries ***/
 @media screen and (max-width:1919px) {
     .topics-wrapper {width: 7%;}
@@ -1693,6 +1714,8 @@ a.open-all.active, a.close-all.active
 {
     display:none;
 }
+
+
 
 @media (max-width:1200px)
 {

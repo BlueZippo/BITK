@@ -36,11 +36,18 @@
 
                     @if (Auth::check())
 
+                    
+
                     <li class="list-divider"></li>
                     <li class="nav-item dropdown user-ctrl">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 
+
+
                             <div class="avatar">
+
+                                @if($unread > 0)<span class="notification">{{$unread}}</span> @endif
+
                                 @if (Auth::user()->photo)
 
                                 <img src="{{Auth::user()->photo}}">
@@ -58,7 +65,7 @@
                             <a class="dropdown-item" href="/stacks/create">Create a Stack</a>
                             <a class="dropdown-item" href="/users/profile">My Profile</a>
                             <a class="dropdown-item" href="/parking-lot">Parking Lot</a>
-
+                            <a class="dropdown-item notifications" href="/messages-notifications">Messages & Notifications @if ($unread)<span>{{$unread}}</span>@endif</a>
                             <a class="dropdown-item" href="/settings">Settings</a>
 
                             @role('admin')
@@ -107,3 +114,5 @@
     </div><!-- .inner -->
     </nav>
 </header>
+
+@include('emails.notifications')

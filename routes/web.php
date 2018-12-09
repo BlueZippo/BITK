@@ -201,3 +201,5 @@ Route::get('s/top-people', 'PublicController@people_top');
 Route::get('s/following-people', 'PublicController@people_following');
 
 Route::get('/x/{code}', 'LinksController@long_code');
+
+Route::post('/notifications/read', 'NotificationController@read');
