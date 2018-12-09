@@ -114,5 +114,6 @@
     </div><!-- .inner -->
     </nav>
 </header>
-
+@if (Auth::check())
 @include('emails.notifications')
+@endif

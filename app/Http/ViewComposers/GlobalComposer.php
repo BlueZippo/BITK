@@ -52,7 +52,11 @@ class GlobalComposer {
                 }    
             }
 
-            $view->with(['MyStacks' => $user_stacks, 'mediaTypes' => $medias, 'options' => $options, 'notifications' => $notifications, 'unread' => $unread]);
+            $view->with(['MyStacks' => $user_stacks, 
+                         'mediaTypes' => $medias, 
+                         'options' => $options, 
+                         'notifications' => $notifications, 
+                         'unread' => $unread]);
 
         }    
     }
