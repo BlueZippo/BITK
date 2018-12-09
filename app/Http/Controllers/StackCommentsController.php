@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\StackComments;
 use App\Stack;
+use App\Notification;
 use Auth;
 
 class StackCommentsController extends Controller
@@ -56,6 +57,16 @@ class StackCommentsController extends Controller
         $stack_id = request('stack_id');
 
         $stack = Stack::find($stack_id);
+
+        $noti = new Notification;
+
+        $noti->user_id = $stack->user_id;
+        $noti->action = 'comment';
+        $noti->type = 'stack';
+        $noti->item_id = $stack_id;
+        $noti->person_id = auth()->id();
+
+        $noti->save();
 
         $comments = $stack->comments()->limit(5)->orderby('updated_at', 'desc')->get();
 

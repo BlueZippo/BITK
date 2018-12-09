@@ -10,12 +10,22 @@
       <div class="modal-body">
         @foreach($notifications as $notification)
           <div>
+
+            @if ($notification->user_id == $notification->perso_id)
+
+            You 
+
+            @else
          
             <a href="/people/{{$notification->person_id}}/stacks">{{$notification->person->name}}</a> is 
+
+            @endif
             
             @if ($notification->action == 'follow') following @endif 
 
             @if ($notification->action == 'vote') upvote into @endif 
+
+            @if ($notification->action == 'comment') comment into @endif 
             
             @if ($notification->type == 'stack')
             your <a href="/stacks/{{$notification->item_id}}/dashboard">{{$notification->stack->title}}</a> stack
