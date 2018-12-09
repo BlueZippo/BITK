@@ -8,11 +8,11 @@ class StacksVote extends Model
 {
     public function stack()
     {
-    	$this->belongsTo('App\Stack');
+    	return $this->belongsTo('App\Stack', 'stack_id');
     }
 
     public function user()
     {
-    	$this->belongsTo('App\User');
+    	return $this->belongsTo('App\User', 'user_id');
     }
 }

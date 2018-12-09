@@ -12,10 +12,13 @@
           <div>
          
             <a href="/people/{{$notification->person_id}}/stacks">{{$notification->person->name}}</a> is 
+            
             @if ($notification->action == 'follow') following @endif 
+
+            @if ($notification->action == 'vote') upvote into @endif 
             
             @if ($notification->type == 'stack')
-            your <a href="/stacks/{{$notification->item_id}}/dashboard">{{$notification->stack->title}} stack</a>
+            your <a href="/stacks/{{$notification->item_id}}/dashboard">{{$notification->stack->title}}</a> stack
             @endif
 
             @if ($notification->type == 'people')you @endif            

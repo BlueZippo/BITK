@@ -1245,7 +1245,6 @@ class StacksController extends Controller {
 
         StacksVote::where('stack_id', '=', $id)->where('user_id', '=', auth()->id())->delete();
 
-
         $stack = new StacksVote;
 
         $stack->user_id = auth()->id();
@@ -1254,6 +1253,24 @@ class StacksController extends Controller {
 
         $stack->save();
 
+        Notification::where('person_id', auth()->id())
+                    ->where('action','vote')
+                    ->where('type','stack')
+                    ->where('item_id', $id)
+                    ->delete();
+
+        if ($action == 1)
+        {
+            $noti = new Notification;
+
+            $noti->user_id = $stack->stack->user_id;
+            $noti->action = 'vote';
+            $noti->type = 'stack';
+            $noti->item_id = $id;
+            $noti->person_id = auth()->id();
+
+            $noti->save();
+        }    
 
 
         $stack = Stack::find($id);
