@@ -308,6 +308,8 @@ class LinksController extends Controller
        $metaDescription  = false;
        $metaImage = false;
 
+       $data = array('title' => '', 'description' => '', 'image' => '/images/stack-placeholder.png');
+
        switch ($uri['host'])
        {
         case 'www.amazon.com':
@@ -348,11 +350,8 @@ class LinksController extends Controller
             $data = $this->get_remote_data($url, $parser);
            }
            else
-           { 
-
-
-
-               $meta = $this->getUrlData($url);
+           {
+              $meta = $this->getUrlData($url);
 
                
                if (isset($meta['title']))
