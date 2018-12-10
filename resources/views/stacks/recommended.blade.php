@@ -1,28 +1,32 @@
-<div class="stack-panel">
+<div class="dragdrop-target">
 
-	<div class="panel-heading"><h3><span>Stacks</span> Recommended for you</h3></div>
+	<div class="stack-panel dragdrop">
 
-	<div class="panel-body">
+		<div class="panel-heading"><h3><span>Stacks</span> Recommended for you</h3></div>
 
-		<div class="row">
+		<div class="panel-body">
 
-			@if (count($stacks) > 0)
+			<div class="row">
 
-				@foreach($stacks as $stack)
+				@if (count($stacks) > 0)
 
-					<div class="col-md-2" id="stack{{$stack['id']}}">
+					@foreach($stacks as $stack)
 
-						@include('stacks.dashboard-box')
+						<div class="col-md-2" id="stack{{$stack['id']}}">
 
-					</div>
+							@include('stacks.dashboard-box')
 
-				@endforeach
+						</div>
 
-			@else
+					@endforeach
 
-			<div class="no-stacks"><p>Nothing recommended yet. Once you follow a Stack or a person, this section will show Stacks!</p></div>
+				@else
 
-			@endif
+				<div class="no-stacks"><p>Nothing recommended yet. Once you follow a Stack or a person, this section will show Stacks!</p></div>
+
+				@endif
+
+			</div>
 
 		</div>
 

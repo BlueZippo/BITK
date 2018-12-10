@@ -1,30 +1,34 @@
-<div class="stack-panel">
+<div class="dragdrop-target">
 
-	<div class="panel-heading"><h3><span>Tags</span></h3> <a href="/tags/create" class="add-tag">Add a Tag</a></div>
+	<div class="stack-panel dragdrop">
 
-	<div class="panel-body">
+		<div class="panel-heading"><h3><span>Tags</span></h3> <a href="/tags/create" class="add-tag">Add a Tag</a></div>
 
-		<div class="row tags-container">
+		<div class="panel-body">
 
-					@if (count($tags) > 0)
+			<div class="row tags-container">
 
-						<div class="col-md-12">
+						@if (count($tags) > 0)
 
-						@foreach($tags as $tag)
+							<div class="col-md-12">
 
-							<span class="tag" id="tag{{$tag->id}}" data-id="{{$tag->id}}">#{{$tag->tag}} <i class="fa fa-minus"></i></span>
+							@foreach($tags as $tag)
 
-						@endforeach
+								<span class="tag" id="tag{{$tag->id}}" data-id="{{$tag->id}}">#{{$tag->tag}} <i class="fa fa-minus"></i></span>
 
-					</div>
+							@endforeach
 
-					@else
+						</div>
+
+						@else
 
 
-					<div class="no-stacks"><p>No Tags yet! Add one you'll like.</p></div>
+						<div class="no-stacks"><p>No Tags yet! Add one you'll like.</p></div>
 
 
-					@endif
+						@endif
+
+			</div>
 
 		</div>
 

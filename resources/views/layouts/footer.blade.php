@@ -24,6 +24,8 @@
 
     <script src="{{ asset('js/jquery.total-storage.min.js') }}"></script>
 
+    <script src="{{ asset('js/dragdrop.js') }}"></script>
+
     <script src="{{ asset('js/script.js') }}"></script>
 
     <script src="{{ asset('js/upload-image.js') }}"></script>
@@ -31,6 +33,14 @@
     @if (Auth::check())
     @include('pages.add-link-scripts')
     @endif
+
+    <script>
+        new dragdrop.start((dom, api) => {
+            dom.addEventListener('drop', (event) => {
+                console.log( api.orders );
+            })
+        });
+    </script>
 
 
     

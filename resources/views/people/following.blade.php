@@ -1,28 +1,32 @@
-<div class="stack-panel stack-panel-people">
+<div class="dragdrop-target">
 
-	<div class="panel-heading"><h3><span>People</span> I'm Following</h3></div>
+	<div class="stack-panel stack-panel-people dragdrop">
 
-	<div class="panel-body">
+		<div class="panel-heading"><h3><span>People</span> I'm Following</h3></div>
 
-		<div class="row">
+		<div class="panel-body">
 
-			@if ( $people )
+			<div class="row">
 
-				@foreach($people as $person)
+				@if ( $people )
 
-					<div class="col-md-2 people-{{$person->id}}" id="people-{{$person->id}}">
+					@foreach($people as $person)
 
-						@include('people.box')
+						<div class="col-md-2 people-{{$person->id}}" id="people-{{$person->id}}">
 
-					</div>
+							@include('people.box')
 
-				@endforeach
+						</div>
 
-			@else
+					@endforeach
 
-				<div class="no-stacks"><p>You're not following anybody, <a href="/people" target="_self">check our other People's</a> ideas to find something you like.</p></div>
+				@else
 
-			@endif
+					<div class="no-stacks"><p>You're not following anybody, <a href="/people" target="_self">check our other People's</a> ideas to find something you like.</p></div>
+
+				@endif
+
+			</div>
 
 		</div>
 

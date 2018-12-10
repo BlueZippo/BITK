@@ -1,59 +1,63 @@
-<div class="stack-panel parking-lot-container">
+<div class="dragdrop-target">
 
-	<div class="panel-heading">
+	<div class="stack-panel parking-lot-container dragdrop">
 
-		<h3><span>Parking</span> Lot</h3> <a class="add-a-link-button">Add a Link</a> @include('stacks.reminder')
+		<div class="panel-heading">
 
-	</div>
+			<h3><span>Parking</span> Lot</h3> <a class="add-a-link-button">Add a Link</a> @include('stacks.reminder')
 
-	@include('links.parking-form')
+		</div>
 
-	<div class="panel-body">
+		@include('links.parking-form')
 
-			@if (count($parking) > 0)
+		<div class="panel-body">
 
-				@foreach($parking as $parking)
+				@if (count($parking) > 0)
 
-					<div class="row parking-container" id="link{{$parking->id}}">
+					@foreach($parking as $parking)
 
-						<div class="col-md-2 link-image">
+						<div class="row parking-container" id="link{{$parking->id}}">
 
-							<img src="{{$parking->image}}">
+							<div class="col-md-2 link-image">
 
-						</div>
+								<img src="{{$parking->image}}">
 
-						<div class="col-md-10">
+							</div>
 
-							<div class="link-data">
+							<div class="col-md-10">
 
-								<h3><a href="@if($parking->code) {{config('APP_URL') . '/x/' . $parking->code}} @else {{$parking->link}} @endif" target="_blank">{{$parking->title}}</a></h3>
+								<div class="link-data">
 
-								<div class="host">
+									<h3><a href="@if($parking->code) {{config('APP_URL') . '/x/' . $parking->code}} @else {{$parking->link}} @endif" target="_blank">{{$parking->title}}</a></h3>
 
-									{{$parking->get_host($parking->link)}}
+									<div class="host">
 
-								</div>
+										{{$parking->get_host($parking->link)}}
 
-								<div class="meta small">
+									</div>
 
-									<a class="edit-link" data-id={{$parking->id}}>Edit</a> | <a class="delete-link" data-id="{{$parking->id}}">Delete</a>
+									<div class="meta small">
+
+										<a class="edit-link" data-id={{$parking->id}}>Edit</a> | <a class="delete-link" data-id="{{$parking->id}}">Delete</a>
+
+									</div>
 
 								</div>
 
 							</div>
 
+							
+
 						</div>
 
-						
 
-					</div>
+					@endforeach
 
-
-				@endforeach
-
-			@endif
+				@endif
 
 
+
+		</div>
 
 	</div>
 
