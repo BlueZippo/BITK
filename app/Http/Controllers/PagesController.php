@@ -28,9 +28,21 @@ class PagesController extends Controller {
 
         $user_id = auth()->id();
 
-        
+        $followers = array();	
 
         $people = User::find($user_id)->peopleFollow()->get()->pluck('people_id')->toArray();
+
+        $people_followers = User::find($user_id)->peopleFollow()->get()->pluck('user_id')->toArray();
+
+        $stack_followers = StacksFollow::whereIn('stack_id', 
+        						Stack::where('user_id', $user_id)
+        								->get()
+        								->pluck('id')
+        								->toArray()
+        						)
+        						->get()
+        						->pluck('user_id')
+        						->toArray();
 
         $results = User::find($user_id)
     				->stacks()
@@ -227,6 +239,8 @@ class PagesController extends Controller {
 
         $people = User::whereIn('id', $people)->get();
 
+        $followers = User::whereIn('id', array_merge($people_followers, $stack_followers))->get();
+
         $parking = User::find($user_id)
                    ->links()
                    ->where('stack_id', '=', 0)
@@ -243,7 +257,7 @@ class PagesController extends Controller {
                  'people' => $people,
                  'peopleFollows' => $people,
                  'user_id' => $user_id,
-                 
+                 'followers' => $followers,
                  
                  'parking' => $parking];
 

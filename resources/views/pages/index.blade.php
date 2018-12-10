@@ -23,6 +23,8 @@
 
 		@include('stacks.following')
 
+		@include('people.my-followers')
+
 		@include('people.following')
 
 		@include('stacks.mystacks')
