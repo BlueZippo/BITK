@@ -87,6 +87,8 @@
 
                             <a class="dropdown-item" href="/admin/search">Search Algorithm</a>
 
+                            <a class="dropdown-item" href="/admin/links/parser">Links Parser</a>
+
 
                             @endrole
 
