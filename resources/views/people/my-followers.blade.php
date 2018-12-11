@@ -1,6 +1,6 @@
-<div class="dragdrop-target" data-id="dashboard-followers">
+<div class="dragdrop-target">
 
-	<div class="stack-panel stack-panel-people dragdrop">
+	<div class="stack-panel stack-panel-people dragdrop" data-id="dashboard-followers">
 
 		<div class="panel-heading"><h3>My <span>Followers</span></h3></div>
 

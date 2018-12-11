@@ -39,15 +39,34 @@
             dom.addEventListener('drop', (event) => {
                 var drop = api.orders;
 
+                var dashboard = [];
+
                 for(i=1; i<= drop.length; i++)
                 {
                     var id = 'dragdrop-target-' + i;
 
-                    var c = $('#' + id);
+                    var c = $('#' + id + ' > div');
 
-                    console.log(c.data('id'));
-
+                    dashboard.push($(c).data('id'));
                 }
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax(
+                {
+                    url: '/user/dashboard',
+                    data: {'dashboard': dashboard},
+                    type:'post',
+                    dataType:'json',
+                    success: function(data)
+                    {
+
+                    }
+                });
 
             })
         });

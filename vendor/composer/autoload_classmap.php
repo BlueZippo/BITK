@@ -23,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\LinkCommentsController' => $baseDir . '/app/Http/Controllers/LinkCommentsController.php',
     'App\\Http\\Controllers\\LinksController' => $baseDir . '/app/Http/Controllers/LinksController.php',
     'App\\Http\\Controllers\\MediaTypeController' => $baseDir . '/app/Http/Controllers/MediaTypeController.php',
+    'App\\Http\\Controllers\\NotificationController' => $baseDir . '/app/Http/Controllers/NotificationController.php',
     'App\\Http\\Controllers\\PagesController' => $baseDir . '/app/Http/Controllers/PagesController.php',
     'App\\Http\\Controllers\\PeopleController' => $baseDir . '/app/Http/Controllers/PeopleController.php',
     'App\\Http\\Controllers\\PermissionController' => $baseDir . '/app/Http/Controllers/PermissionController.php',

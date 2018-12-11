@@ -1,6 +1,6 @@
-<div class="dragdrop-target" data-id="dashboard-mystacks">
+<div class="dragdrop-target">
 
-	<div class="stack-panel my-stacks dragdrop">
+	<div class="stack-panel my-stacks dragdrop" data-id="dashboard-mystacks">
 
 		<div class="panel-heading"><h3>My <span>Stacks</span></h3></div>
 

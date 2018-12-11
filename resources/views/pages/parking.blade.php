@@ -1,6 +1,6 @@
-<div class="dragdrop-target" data-id="dashboard-parking-lot">
+<div class="dragdrop-target">
 
-	<div class="stack-panel parking-lot-container dragdrop">
+	<div class="stack-panel parking-lot-container dragdrop" data-id="dashboard-parking-lot">
 
 		<div class="panel-heading">
 

@@ -353,4 +353,18 @@ class UserController extends Controller
         return json_encode(array('message'=> 'Image uploaded successfully', 'background' => $input['background']));
     }
 
+
+    public function dashboard(Request $request)
+    {
+        $userid = auth()->id();
+
+        $user = User::find($userid);
+
+        $user->dashboard = json_encode($request->get('dashboard'));
+
+        $user->save();
+
+        return ['success' => 1];
+    }
+
 }

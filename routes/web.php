@@ -60,6 +60,8 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::post('stacks/{id}/vote',   'StacksController@vote');
 
+	Route::post('user/dashboard', 'UserController@dashboard');
+	
 	Route::resource('admin/users', 'UserController');
 
 	//Route::post('stacks/{id}', 'StacksController@update');

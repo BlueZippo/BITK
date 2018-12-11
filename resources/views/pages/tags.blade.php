@@ -1,6 +1,6 @@
-<div class="dragdrop-target" data-id="dashboard-tags">
+<div class="dragdrop-target">
 
-	<div class="stack-panel dragdrop">
+	<div class="stack-panel dragdrop" data-id="dashboard-tags">
 
 		<div class="panel-heading"><h3><span>Tags</span></h3> <a href="/tags/create" class="add-tag">Add a Tag</a></div>
 

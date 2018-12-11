@@ -1,5 +1,5 @@
-<div class="dragdrop-target" data-id="dashboard-stacks-following">
-	<div class="stack-panel dragdrop">
+<div class="dragdrop-target">
+	<div class="stack-panel dragdrop" data-id="dashboard-stacks-following">
 
 		<div class="panel-heading"><h3><span>Stacks</span> I'm Following</h3></div>
 

@@ -1,6 +1,6 @@
-<div class="dragdrop-target" data-id="dashboard-recommended">
+<div class="dragdrop-target">
 
-	<div class="stack-panel dragdrop">
+	<div class="stack-panel dragdrop" data-id="dashboard-recommended">
 
 		<div class="panel-heading"><h3><span>Stacks</span> Recommended for you</h3></div>
 

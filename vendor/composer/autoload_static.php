@@ -421,6 +421,7 @@ class ComposerStaticInit09d0a8ab5cfd1496a7fcb458e7996b13
         'App\\Http\\Controllers\\LinkCommentsController' => __DIR__ . '/../..' . '/app/Http/Controllers/LinkCommentsController.php',
         'App\\Http\\Controllers\\LinksController' => __DIR__ . '/../..' . '/app/Http/Controllers/LinksController.php',
         'App\\Http\\Controllers\\MediaTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/MediaTypeController.php',
+        'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagesController.php',
         'App\\Http\\Controllers\\PeopleController' => __DIR__ . '/../..' . '/app/Http/Controllers/PeopleController.php',
         'App\\Http\\Controllers\\PermissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/PermissionController.php',
