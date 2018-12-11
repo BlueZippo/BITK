@@ -30,6 +30,10 @@ class PagesController extends Controller {
 
         $followers = array();	
 
+        $user = User::find($user_id);
+
+        $dashboard = $user->dashboard;
+
         $people = User::find($user_id)->peopleFollow()->get()->pluck('people_id')->toArray();
 
         $people_followers = User::find($user_id)->peopleFollow()->get()->pluck('user_id')->toArray();
@@ -248,9 +252,7 @@ class PagesController extends Controller {
 
         $medias = MediaType::all();
 
-       
-
-    	$data = ['mystacks' => $mystacks ,
+        $data = ['mystacks' => $mystacks ,
                  'stacks' => $stacks,
                  'follows' => $follows,
                  'tags' => $tags,
@@ -258,7 +260,7 @@ class PagesController extends Controller {
                  'peopleFollows' => $people,
                  'user_id' => $user_id,
                  'followers' => $followers,
-                 
+                 'dashboard' =>json_decode($dashboard),
                  'parking' => $parking];
 
        

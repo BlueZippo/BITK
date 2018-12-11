@@ -21,19 +21,77 @@
 
 		</div>
 
-		@include('stacks.following')
+		@if ($dashboard)
+		
+			@foreach($dashboard as $db)
 
-		@include('people.my-followers')
+				@if ($db == 'dashboard-stacks-following')
 
-		@include('people.following')
+					@include('stacks.following')
 
-		@include('stacks.mystacks')
+				@endif
 
-		@include('stacks.recommended')
+				@if ($db == 'dashboard-followers')
 
-		@include('pages.tags')
+					@include('people.my-followers')
 
-		@include('pages.parking')
+				@endif
+
+				@if ($db == 'dashboard-people-following')
+
+					@include('people.following')
+
+				@endif
+
+				@if ($db == 'dashboard-mystacks')
+
+					@include('stacks.mystacks')
+
+				@endif
+
+				@if ($db == 'dashboard-recommended')
+
+					@include('stacks.recommended')
+
+				@endif
+
+				@if ($db == 'dashboard-parking-lot')
+
+					@include('pages.parking')
+
+				@endif
+
+				@if ($db == 'dashboard-tags')
+
+					@include('pages.tags')
+
+				@endif
+
+				 
+
+			@endforeach
+
+		@else
+
+			@include('stacks.following')
+
+			@include('people.my-followers')
+
+			@include('people.following')
+
+			@include('stacks.mystacks')
+
+			@include('stacks.recommended')
+
+			@include('pages.tags')
+
+			@include('pages.parking')
+
+		@endif
+
+		
+
+		
 
        
 
