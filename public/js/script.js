@@ -311,9 +311,9 @@ $(document).on('keydown', '.link-comment-form textarea[name=comment]', function(
 
 $(document).on('click', '.media-types input[type=checkbox]', function()
 {
-	$('.media-types input[type=checkbox]').prop('checked', false);
+	//$('.media-types input[type=checkbox]').prop('checked', false);
 	
-	$(this).prop('checked', true);
+	//$(this).prop('checked', true);
 	
 	$('input[name=media_id]').val($(this).val());
 });

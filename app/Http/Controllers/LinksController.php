@@ -80,44 +80,66 @@ class LinksController extends Controller
         	]
         );
 
+       $medias = $request->input('media');
+
        $stack_id = $request->input('stack_id');
 
-       if ($stack_id == 'parking')
+       if ($stack_id == 'new')
        {
-            $stack_id = 0;
-       }
-       else if ($stack_id == 'new')
-       {
-        $stack = new Stack;
+            $stack = new Stack;
 
-        $stack->title = 'enter title...';
-        $stack->content = 'enter a topic...';
-        $stack->user_id = auth()->id();
+            $stack->title = 'enter title...';
+            $stack->content = 'enter a topic...';
+            $stack->user_id = auth()->id();
 
-        $stack->save();
+            $stack->save();
 
-        $stack_id  = $stack->id;
+            $stack_id  = $stack->id;            
 
        }
+       else if ($stack_id == 'parking' || (int)$stack_id == 0)
+       {
+           $stack_id = 0;
 
-       $link = new Link;
+           $link = new Link;
 
-       $link->title = $request->input('link_title');
-       $link->description = $request->input('link_description');
-       $link->link = $request->input('link_url');
-       $link->stack_id = (int)$stack_id;
-       $link->media_id = (int)$request->input('media_id');
-       $link->image = $request->input('link_image');
+           $link->title = $request->input('link_title');
+           $link->description = $request->input('link_description');
+           $link->link = $request->input('link_url');
+           $link->stack_id = (int)$stack_id;
+           $link->media_id = (int)$request->input('media_id');
+           $link->image = $request->input('link_image');
 
-       $link->code = $link->convertIntToShortCode();
+           $link->code = $link->convertIntToShortCode();
 
-       $link->user_id = auth()->id();
+           $link->user_id = auth()->id();
 
-       $link->save();
+           $link->save();
+
+       }
+       
 
        if ($stack_id)
        {
-             return ['message' => "Success", 'redirect' => '/stacks/' . $stack_id . '/edit/' . $link->media_id];
+            foreach($medias as $media_id)
+            {
+                $link = new Link;
+
+                $link->title = $request->input('link_title');
+                $link->description = $request->input('link_description');
+                $link->link = $request->input('link_url');
+                $link->stack_id = (int)$stack_id;
+                $link->media_id = $media_id;
+                $link->image = $request->input('link_image');
+
+                $link->code = $link->convertIntToShortCode();
+
+                $link->user_id = auth()->id();
+
+                $link->save();
+            }
+
+            return ['message' => "Success", 'redirect' => '/stacks/' . $stack_id . '/edit/' . $link->media_id];
        }
        else
        {
