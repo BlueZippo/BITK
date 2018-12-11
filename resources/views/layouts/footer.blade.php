@@ -37,7 +37,18 @@
     <script>
         new dragdrop.start((dom, api) => {
             dom.addEventListener('drop', (event) => {
-                console.log( api.orders );
+                var drop = api.orders;
+
+                for(i=1; i<= drop.length; i++)
+                {
+                    var id = 'dragdrop-target-' + i;
+
+                    var c = $('#' + id);
+
+                    console.log(c.data('id'));
+
+                }
+
             })
         });
     </script>

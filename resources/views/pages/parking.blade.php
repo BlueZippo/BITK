@@ -1,4 +1,4 @@
-<div class="dragdrop-target">
+<div class="dragdrop-target" data-id="dashboard-parking-lot">
 
 	<div class="stack-panel parking-lot-container dragdrop">
 

@@ -1,4 +1,4 @@
-<div class="dragdrop-target">
+<div class="dragdrop-target" data-id="dashboard-people-following">
 
 	<div class="stack-panel stack-panel-people dragdrop">
 

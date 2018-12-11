@@ -204,11 +204,9 @@ class LinksController extends Controller
 
         $stack_id = $request->input('stack_id');
 
-        if ($stack_id == 'parking')
-        {    
-            $stack_id = 0;
-        }
-        else if ($stack_id == 'new')
+        $medias = $request->input('media');
+
+        if ($stack_id == 'new')
         {
             $stack = new Stack;
 
@@ -219,27 +217,53 @@ class LinksController extends Controller
             $stack->save();
 
             $stack_id  = $stack->id;
+
+
         }
+        else if ($stack_id == 'parking' || (int)$stack_id == 0)
+        {    
+            $stack_id = 0;
+
+            $link->title = $request->input('link_title');
+        
+            $link->description = $request->input('link_description');
+        
+            $link->link = $request->input('link_url');
+
+            $link->media_id = $request->input('media_id');
+
+            $link->stack_id = (int)$stack_id;
+
+            $link->image = $request->input('link_image');
+
+            $link->save();
+        }        
         
         
-        $link->title = $request->input('link_title');
-        
-        $link->description = $request->input('link_description');
-        
-        $link->link = $request->input('link_url');
-
-        $link->media_id = $request->input('media_id');
-
-        $link->stack_id = (int)$stack_id;
-
-        $link->image = $request->input('link_image');
-
-        $link->save();
 
 
        if ($stack_id)
        {
-             return ['message' => "Success", 'redirect' => '/stacks/' . $stack_id . '/edit/' . $link->media_id];
+
+            foreach($medias as $media_id)
+            {
+                $link = new Link;
+
+                $link->title = $request->input('link_title');
+                $link->description = $request->input('link_description');
+                $link->link = $request->input('link_url');
+                $link->stack_id = (int)$stack_id;
+                $link->media_id = $media_id;
+                $link->image = $request->input('link_image');
+
+                $link->code = $link->convertIntToShortCode();
+
+                $link->user_id = auth()->id();
+
+                $link->save();
+            }
+
+            return ['message' => "Success", 'redirect' => '/stacks/' . $stack_id . '/edit/' . $link->media_id];
        }
        else
        {

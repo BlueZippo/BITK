@@ -10,7 +10,7 @@
 
         @foreach($mediaTypes as $media)
 
-          <li>{{Form::checkbox('', $media->id, $media->id == $link->media_id ? true : false)}} {{$media->media_type}}</li>
+          <li>{{Form::checkbox('media[]', $media->id, $media->id == $link->media_id ? true : false)}} {{$media->media_type}}</li>
 
         @endforeach
 
