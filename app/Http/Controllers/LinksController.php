@@ -302,6 +302,8 @@ class LinksController extends Controller
     {
        $url = $request->input('link_url');
 
+       $url = str_replace(':::', '&', $url);
+
        $uri = parse_url($url);
        
        $metaTitle = false;
@@ -346,8 +348,20 @@ class LinksController extends Controller
 
            if ($parser)
            {
+                $data = $this->get_remote_data($url, $parser);
 
-            $data = $this->get_remote_data($url, $parser);
+                switch ($uri['host'])
+                {
+                    case 'www.google.com':
+
+                        if (substr($data['image'], 0, 7) == '/images')
+                        {
+                            $data['image'] = sprintf("https://www.google.com%s", $data['image']);
+                        }
+
+                    break;
+                }
+
            }
            else
            {
@@ -492,7 +506,6 @@ class LinksController extends Controller
 
         $contents = file_get_contents($url, true);
 
-
         if (isset($contents) && is_string($contents))
         {
             preg_match_all('/<[\s]*meta[\s]*http-equiv="?REFRESH"?' . '[\s]*content="?[0-9]*;[\s]*URL[\s]*=[\s]*([^>"]*)"?' . '[\s]*[\/]?[\s]*>/si', $contents, $match);
@@ -601,7 +614,12 @@ class LinksController extends Controller
 
         if ($parser->image == 'meta')    
         {
+            $elements = $xpath->query('//meta[@itemprop="image"]/@content');
 
+            foreach($elements as $element)
+            {
+                $image = $element->nodeValue;
+            }
         }   
         else
         {
@@ -637,6 +655,13 @@ class LinksController extends Controller
                 break;
 
                 default:
+
+                    $elements = $xpath->query($parser->image);
+
+                    foreach($elements as $element)
+                    {
+                        $image = $element->nodeValue;
+                    }
 
             }
         } 

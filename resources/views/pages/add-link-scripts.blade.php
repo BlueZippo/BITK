@@ -6,15 +6,6 @@
 
 var STACKS = {!!$MyStacks!!};
 
-$(document).ready(function()
-{
-    $('select[name=stack_id]').chosen(
-        {
-
-     });
-});
-
-
 
 $(document).on('paste', 'input[name=link_url]', function(e)
 {
@@ -29,16 +20,12 @@ $(document).on('paste', 'input[name=link_url]', function(e)
 
     $(this).val(pastedData);   
 
-    console.log('i started here');
-
     $(this).trigger('change');
 
 });
 
 $(document).on('change', 'input[name=link_url]', function()
 {
-    console.log('i am here');
-
     $('.continue-button').addClass('disabled');
 
     $('.solid .content').html('Fetching link information, please wait...')
@@ -49,23 +36,21 @@ $(document).on('change', 'input[name=link_url]', function()
         }
     });
 
+    var linkUrl = $(this).val()
+
+    linkUrl = linkUrl.replace(/&/g, ':::')
+
     $.ajax(
     {
         url: '/links/get-meta-tags',
-        data: 'link_url=' + $(this).val(),
+        data: 'link_url=' + linkUrl,
         type: 'post',
         dataType: 'json',
         success: function(data)
         {
-            if (data.title)
-            {
-                $('*[data-field="link_title"] .content').html(data.title)
-            }
+            $('*[data-field="link_title"] .content').html(data.title)
 
-            if (data.description)
-            {
-                $('*[data-field="link_description"] .content').html(data.description);
-            }
+            $('*[data-field="link_description"] .content').html(data.description);
 
             if (data.image)
             {
