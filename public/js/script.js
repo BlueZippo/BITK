@@ -5,6 +5,7 @@ $(document).click(function()
 	$('.parking-add-link-form').hide();
 	$('.categories-popup').hide();
 	$('.edit-parking-container').remove();
+	$('.real-time-results').remove();
 });
 
 $(document).on('click', 'a.follow-button', function()
@@ -1107,6 +1108,30 @@ $(document).ready(function()
 			            }
 			        });
 				}
+			}
+		})
+	});
+
+
+	$('nav .search-wrapper input[name=search]').on('keydown', function()
+	{
+		$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+		$.ajax(
+		{
+			url: '/stacks/real-time-search',
+			data: 'search=' + $('.search-wrapper input[name=search]').val(),
+			type: 'post',
+			dataType: 'json',
+			success: function(data)
+			{
+				$('.real-time-result').remove();
+
+				$('.search-wrapper').append(data.html);
 			}
 		})
 	});

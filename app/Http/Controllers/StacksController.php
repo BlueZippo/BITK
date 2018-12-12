@@ -680,6 +680,67 @@ class StacksController extends Controller {
 
     }
 
+    public function real_time_search(Request $request)
+    {
+        $keywords = $request->input('search');
+
+        $user = User::find(auth()->id());
+
+        $peopleFollowed = $user->peopleFollow()->pluck('people_id')->toArray();
+
+        $results = $this->get_results($keywords);
+
+        $stacks = array();
+
+        foreach($results as $result)
+        {
+            $author = array();
+            $categories = array();
+
+
+            $author = array('name' => $result->name,
+                            'email' => $result->email,
+                            'photo' => $result->photo,
+                            'id' => $result->user_id,
+                            'followed' => in_array($result->user_id, $peopleFollowed) ? 1: 0);
+
+            $follow = StacksFollow::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+            $upvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',1)->get();
+
+            $downvotes = StacksVote::where('stack_id', '=', $result->id)->where('vote', '=',0)->get();
+
+            $favorite = StacksFavorite::where('stack_id', '=', $result->id)->where('user_id', '=', auth()->id())->get();
+
+            $comments = StackComments::where('stack_id', '=', $result->id)->get();
+
+            $stacks[] = array('title' => $result->title,
+                              'image' => $result->video_id,
+                              'author' => $author,
+                              'id' => $result->id,
+                              'upvotes' => $this->number_format(count($upvotes)),
+                              'downvotes' => $this->number_format(count($downvotes)),
+                              'comments' => $this->number_format(count($comments)),
+                              'follow' => $follow->isEmpty() ? false : true,
+                              'favorite' => $favorite->isEmpty() ? false : true,
+                              'media_type' => $result->media_type,
+                              'followed'  => $peopleFollowed,
+                              'updated_at' => date("F d, Y", strtotime($result->updated_at)),
+                              'categories' => $result->cat_name
+                          );
+        }
+
+        $data['stacks'] = $stacks;
+
+
+        $html = view('stacks.real-time-search')->with($data)->render();
+
+
+        return ['html' => $html];
+
+
+    }
+
     public function search(Request $request)
     {
         $keywords = $request->input('search');

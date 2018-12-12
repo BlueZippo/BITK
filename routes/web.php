@@ -178,6 +178,8 @@ Route::get('stacks/{id}/category', 'StacksController@category');
 
 Route::post('stacks/search', 'StacksController@search');
 
+Route::post('stacks/real-time-search', 'StacksController@real_time_search');
+
 Route::get('link_comments/{id}/comments', 'LinkCommentsController@show');
 Route::post('link_comments/store', 'LinkCommentsController@store');
 Route::resource('link_comments', 'LinkCommentsController');

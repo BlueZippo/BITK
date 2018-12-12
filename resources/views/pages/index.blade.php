@@ -99,3 +99,9 @@
 
 @endsection
 
+@section('scripts')
+
+@include('pages.jscript')
+
+@endsection
+

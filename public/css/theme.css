@@ -1716,7 +1716,6 @@ a.open-all.active, a.close-all.active
 }
 
 
-
 @media (max-width:1200px)
 {
     .stack-list.tile > .single-stack-wrapper
@@ -1771,5 +1770,39 @@ a.open-all.active, a.close-all.active
         bottom:auto;
     }
 }
+
+/* REAL TIME RESULT STYLE */
+
+.real-time-results
+{
+    position: absolute;
+    z-index:999;
+    background:#fff;
+    border:solid 1px #ccc;
+    padding:20px;
+    top:38px;
+}
+
+.real-time-results .single-stack-wrapper
+{
+    width:200px;
+    margin:0px 10px 10px 0px;
+    float:left;
+    border:solid 1px #ccc;
+    box-shadow:5px 5px 5px #ccc;
+}
+
+.real-time-results .featured-image > img
+{
+    width:100%;
+    max-height:131px;
+}
+
+.real-time-results .stack-footer
+{
+    display:none;
+}
+
+/* END OF REAL TIME RESULT */
 
  
