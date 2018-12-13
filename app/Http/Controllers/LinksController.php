@@ -481,8 +481,19 @@ class LinksController extends Controller
             }
         }
 
+        $paths = explode('/', $uri['path']);
+
+        foreach($paths as $path)
+        {
+            $media = MediaType::where('media_type', '=', $path)->first();
+
+            if ($media)
+            {    
+                $data['media_types'][] = $media->id;
+            }    
+        }    
         
-       return json_encode($data);
+        return json_encode($data);
     }
 
     function getUrlData($url, $raw=false) // $raw - enable for raw display
@@ -653,6 +664,8 @@ class LinksController extends Controller
         $description = "";
         $image = "";
 
+        $category = array($parser->category);
+
         header('Content-Type: text/html; charset=utf-8');
 
         $doc = new \DOMDocument();
@@ -684,6 +697,36 @@ class LinksController extends Controller
             {
                 $description = $element->nodeValue;
             }    
+        }
+        else
+        {
+            $tags = $parser->description;
+
+            switch ($tags[0])
+            {
+                case '.':
+
+                    $classname = substr($tags, 1);
+
+                    $elements = $xpath->query("//*[contains(@class, '$classname')]");
+
+                    foreach($elements as $element)
+                    {
+                        $description = $element->nodeValue;
+                    }    
+
+
+                break;
+
+                default:
+
+                    $elements = $xpath->query($parser->description);
+
+                    foreach($elements as $element)
+                    {
+                        $description = $element->nodeValue;
+                    }
+            }
         }
 
         if ($parser->image == 'meta')    
@@ -740,10 +783,22 @@ class LinksController extends Controller
             }
         } 
 
+        if ($parser->image == 'meta')    
+        {
+            $elements = $xpath->query('//meta[@property="og:type"]/@content');
+
+            foreach($elements as $element)
+            {
+                $media = MediaType::where('media_type','=', $element->nodeValue)->first();
+                $category[] = $media->id;
+            }
+        } 
+
         $content = array(
             'title' => $title,
             'description' => $description,
-            'image' => $image
+            'image' => $image,
+            'media_types' => $category,
             );    
 
         return $content;

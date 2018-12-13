@@ -59,14 +59,20 @@ $(document).on('change', 'input[name=link_url]', function()
 
             if (data.media_types)
             {
-              $('.add-links-container .media-types input[type=checkbox]').each(function()
-              {
-                if ($(this).val() == data.media_types)
+                var media = data.media_types;
+
+                for(var i=0; i< media.length; i++)
                 {
-                    $(this).prop('checked', true);
-                    $('.add-links-container input[name=media_id]').val(data.media_types)
-                }
-              })
+                  $('.add-links-container .media-types input[type=checkbox]').each(function()
+                  {
+                    if ($(this).val() == media[i])
+                    {
+                        $(this).prop('checked', true);
+                        $('.add-links-container input[name=media_id]').val(media[i])
+                    }
+                  })
+
+                }  
             }
 
             $('input[name=link_description]').val(data.description);
