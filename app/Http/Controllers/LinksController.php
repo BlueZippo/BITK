@@ -1336,7 +1336,7 @@ class LinksController extends Controller
                 $data = array('title' => (string) $result->Items->Item->ItemAttributes->Title,
                              'description' => strip_tags($description),
                              'image' => (string) $result->Items->Item->LargeImage->URL,
-                             'media_types' =>  $media->id,
+                             'media_types' =>  array($media->id),
                              'amazon' => (string) $result->Items->Item->DetailPageURL
                          );
             }    
