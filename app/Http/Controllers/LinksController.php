@@ -16,6 +16,10 @@ use App\Reminder;
 use App\LinkParser;
 use App\phpQuery\phpQuery;
 use App\MediaType;
+use App\Email;
+use App\Mail\NewLinkNotification;
+use Illuminate\Support\Facades\Mail;
+
 use DB;
 use Config;
 
@@ -390,7 +394,28 @@ class LinksController extends Controller
            {
             $parser = LinkParser::where('domain', '=', $uri['host'])->first();
            }
-    
+
+            if (!$parser)           
+            {
+                $parser = new LinkParser;
+
+                $parser->title = 'meta';
+                $parser->description = 'meta';
+                $parser->image = 'meta';
+                $parser->domain = $uri['host'];
+                $parser->lookup = 'meta';
+
+                $parser->save();
+
+                $notification['host'] = $uri['host'];     
+                $notification['url']  = $url;
+
+                $content = new NewLinkNotification($notification);
+
+                Mail::to('celsomalacasjr@gmail.com')->send($content);
+
+
+            }
 
            if ($parser)
            {
@@ -644,7 +669,10 @@ class LinksController extends Controller
 
             foreach($elements as $element)
             {
-                $title = $element->nodeValue;
+                if ($element->nodeValue)
+                {    
+                    $title = $element->nodeValue;
+                }    
             }    
         }
 
@@ -660,7 +688,7 @@ class LinksController extends Controller
 
         if ($parser->image == 'meta')    
         {
-            $elements = $xpath->query('//meta[@itemprop="image"]/@content');
+            $elements = $xpath->query('//meta[@property="og:image"]/@content');
 
             foreach($elements as $element)
             {

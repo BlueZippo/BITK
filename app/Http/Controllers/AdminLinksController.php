@@ -8,6 +8,7 @@ use Validator;
 use Illuminate\Http\Request;
 
 use App\LinkParser;
+use App\MediaType;
 
 class AdminLinksController extends Controller
 {
@@ -28,7 +29,16 @@ class AdminLinksController extends Controller
      */
     public function create()
     {
-        return view('admin.links.create');
+        $categories = array('Sselect');
+
+        foreach(MediaType::orderby('media_type')->get() as $media)
+        {
+            $categories[$media->id] = $media->media_type;
+        }    
+
+        $data['CATEGORIES'] = $categories;
+
+        return view('admin.links.create')->with($data);
     }
 
     /**
@@ -62,6 +72,8 @@ class AdminLinksController extends Controller
         $parser->title = request('title');
         $parser->description = request('description');
         $parser->image = request('image');
+        $parser->category = request('category');
+        $parser->lookup = request('lookup');
 
         $parser->save();
         
@@ -87,6 +99,14 @@ class AdminLinksController extends Controller
      */
     public function edit($id)
     {
+        $categories = array('Sselect');
+
+        foreach(MediaType::orderby('media_type')->get() as $media)
+        {
+            $categories[$media->id] = $media->media_type;
+        }    
+
+        $data['CATEGORIES'] = $categories;
         $data['link'] = LinkParser::find($id);
 
         return view('admin.links.edit')->with($data);
@@ -124,6 +144,8 @@ class AdminLinksController extends Controller
         $parser->title = request('title');
         $parser->description = request('description');
         $parser->image = request('image');
+        $parser->category = request('category');
+        $parser->lookup = request('lookup');
 
         $parser->save();
         

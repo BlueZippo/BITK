@@ -16,4 +16,9 @@ class MediaType extends Model
     {
     	return $this->belongsTo('App\Link');
     }
+
+    public function linkParser()
+    {
+    	return $this->belongsTo('App\LinkParser');
+    }
 }

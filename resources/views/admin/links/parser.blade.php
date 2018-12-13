@@ -40,9 +40,13 @@
 
     <th>Description</th>
 
-    <th>Image</th>   
+    <th>Image</th>
 
-     <th width="280px" class="text-center">Action</th>
+    <th>Default Category</th>   
+
+    <th>Category Lookup</th>
+
+    <th width="280px" class="text-center">Action</th>
 
    </tr>
 
@@ -65,6 +69,10 @@
       <td>{{$link->description}}</td>
 
       <td>{{$link->image}}</td>
+
+      <td>@if($link->media_type){{$link->media_type->media_type}}@endif</td>
+
+      <td>{{$link->lookup}}</td>
 
       <td class="text-center">
 

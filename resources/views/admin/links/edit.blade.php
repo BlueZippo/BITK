@@ -100,6 +100,30 @@
 
     </div>
 
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <div class="form-group">
+
+            <strong>Default Category:</strong>
+
+            {!! Form::select('category', $CATEGORIES, $link->category, array('class' => 'form-control')) !!}
+
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <div class="form-group">
+
+            <strong>Category Lookup:</strong>
+
+            {!! Form::text('lookup', $link->lookup, array('placeholder' => 'Enter the tag for the site category','class' => 'form-control')) !!}
+
+        </div>
+
+    </div>
+
     <div class="col-xs-12 col-sm-12 col-md-12 text-right">
 
         <button type="submit" class="btn btn-primary">Submit</button>
