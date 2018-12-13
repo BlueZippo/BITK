@@ -29,7 +29,7 @@ class AdminLinksController extends Controller
      */
     public function create()
     {
-        $categories = array('Sselect');
+        $categories = array('Select');
 
         foreach(MediaType::orderby('media_type')->get() as $media)
         {
@@ -99,7 +99,7 @@ class AdminLinksController extends Controller
      */
     public function edit($id)
     {
-        $categories = array('Sselect');
+        $categories = array('Select');
 
         foreach(MediaType::orderby('media_type')->get() as $media)
         {
