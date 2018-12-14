@@ -20,7 +20,7 @@ Route::get('/', 'PublicController@index')->name('home');
 
 Route::get('/dashboard', 'PagesController@index')->name('home');
 
-Route::resource('/chrome', 'ChromeController@index');
+Route::resource('/chrome', 'ChromeController');
 
 Route::group(['middleware' => ['auth']], function()
 {
