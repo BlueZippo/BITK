@@ -13,7 +13,7 @@ class ChromeController extends Controller
      */
     public function index()
     {
-        return ['html' => 'hello, world']
+        return ['html' => 'hello, world'];
     }
 
     /**
