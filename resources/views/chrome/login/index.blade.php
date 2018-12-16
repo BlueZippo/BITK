@@ -3,7 +3,7 @@
             <div class="card">
                 <div class="card-header">Login</div>
                 <div class="card-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <form class="form-horizontal" method="POST" action="" id="loginForm">
                         {{ csrf_field() }}
 
                         <div class="form-group row">
@@ -60,7 +60,7 @@
 
                         <div class="form-group row">
                             <div class="col-lg-8 offset-lg-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-login">
                                     Login
                                 </button>
 
