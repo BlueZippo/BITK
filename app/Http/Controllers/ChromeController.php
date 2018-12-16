@@ -27,6 +27,12 @@ class ChromeController extends Controller
         }    
     }
 
+
+    public function login(Request $request)
+    {
+        return ['success' => 1];
+    }
+
     /**
      * Show the form for creating a new resource.
      *

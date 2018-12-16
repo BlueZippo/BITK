@@ -208,3 +208,6 @@ Route::get('s/following-people', 'PublicController@people_following');
 Route::get('/x/{code}', 'LinksController@long_code');
 
 Route::post('/notifications/read', 'NotificationController@read');
+
+
+Route::post('/chrome/login', 'ChromeController@login');
