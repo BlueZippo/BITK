@@ -300,7 +300,7 @@ class ChromeController extends Controller
 
         $html =  view('chrome.dashboard')->with($data)->render();
 
-
+        return ['html' => $html];
 
     }
 
