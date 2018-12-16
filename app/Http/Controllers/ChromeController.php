@@ -30,6 +30,11 @@ class ChromeController extends Controller
 
     public function login(Request $request)
     {
+        if (! auth()->attempt( request(['email', 'password']) )) 
+        {
+            return ['html' => 'Please check your credentials and try again.'];
+        }
+
         return ['html' => 'hello, world'];
     }
 

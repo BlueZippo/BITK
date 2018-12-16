@@ -22,11 +22,11 @@ class SessionsController extends Controller {
         $recents = Stack::select('id', 'title')->where('user_id', '=', auth()->id())->orderby('updated_at', 'desc')->limit(5)->get();
 
         $data['options'] = array(
-                    'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),
-                    'parking' => 'Parking Lot',
-                    'new' => 'Create New Stack',
-                    'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
-                    );
+            'Most Recent Stacks' => $recents->pluck('title', 'id')->toArray(),
+            'parking' => 'Parking Lot',
+            'new' => 'Create New Stack',
+            'My Stacks' => Stack::where('user_id', '=', auth()->id())->orderby('title')->get()->pluck('title','id')->toArray(),
+        );
 
 
     	return view('sessions.create')->with($data);
