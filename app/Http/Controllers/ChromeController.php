@@ -21,7 +21,7 @@ class ChromeController extends Controller
         }   
         else
         {
-            $html = view('chrome.login.index');
+            $html = view('chrome.login.index')->render();
 
             return ['html' => $html];
         }    
