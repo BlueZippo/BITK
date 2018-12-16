@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class ChromeController extends Controller
 {
@@ -13,7 +14,17 @@ class ChromeController extends Controller
      */
     public function index()
     {
-        return ['html' => 'hello, world'];
+
+        if (auth()->id() > 0)
+        {
+            return $this->dashboard();
+        }   
+        else
+        {
+            $html = view('chrome.login.index');
+
+            return ['html' => $html];
+        }    
     }
 
     /**
