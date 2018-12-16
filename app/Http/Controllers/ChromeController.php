@@ -30,7 +30,7 @@ class ChromeController extends Controller
 
     public function login(Request $request)
     {
-        return ['success' => 1];
+        return ['html' => 'hello, world'];
     }
 
     /**
