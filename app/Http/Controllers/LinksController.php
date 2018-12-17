@@ -790,7 +790,10 @@ class LinksController extends Controller
             foreach($elements as $element)
             {
                 $media = MediaType::where('media_type','=', $element->nodeValue)->first();
-                $category[] = $media->id;
+                if ($media)
+                {    
+                    $category[] = $media->id;
+                }    
             }
         } 
 
