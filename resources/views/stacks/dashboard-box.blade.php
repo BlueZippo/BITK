@@ -21,13 +21,13 @@
     <div class="stack-content">
 
         <div class="title" style="display: none;">
-            <h4><a href="/stacks/{{$stack['id']}}/dashboard">{{$stack['title']}}</a></h4>
+            <h4><a href="{{url('/stacks/' . $stack['id'] . '/dashboard')}}">{{$stack['title']}}</a></h4>
         </div>
 
         <div class="author user-ctrl">
             <div class="avatar">
                 @if ($stack['author']['photo'])
-                    <img src="{{$stack['author']['photo']}}">
+                    <img src="{{url($stack['author']['photo'])}}">
                 @else
                 <div class="inner">{{ render_initials( $stack['author']['name'] ? $stack['author']['name'] : $stack['author']['email']   ) }}</div>
                 @endif

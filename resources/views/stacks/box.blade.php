@@ -46,7 +46,7 @@
       <div class="compact-author user-ctrl">
           <div class="avatar">
             @if ($stack['author']['photo'])
-              <img src="{{$stack['author']['photo']}}">
+              <img src="{{url($stack['author']['photo'])}}">
             @else
               <div class="inner">
                 {{ render_initials( $stack['author']['name'] ? $stack['author']['name'] : $stack['author']['email']   ) }}
