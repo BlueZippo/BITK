@@ -783,7 +783,7 @@ class LinksController extends Controller
             }
         } 
 
-        if ($parser->image == 'meta')    
+        if ($parser->lookup == 'meta')    
         {
             $elements = $xpath->query('//meta[@property="og:type"]/@content');
 
