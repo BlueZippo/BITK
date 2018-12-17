@@ -4,9 +4,9 @@
 
 	<div class="user-image-follow-wrapper">
 		<div class="user-image">
-			<a href="/people/{{$person->id}}/stacks">
+			<a href="{{url('/people/' . $person->id . '/stacks')}}">
 				@if ($person->photo)
-				  <img src="{{$person->photo}}" alt="{{$person->name}}">
+				  <img src="{{url($person->photo)}}" alt="{{$person->name}}">
 				@else
 					<div class="avatar">{{ render_initials( $person->name ? $person->name : $person->email   ) }}</div>
 				@endif
@@ -32,4 +32,4 @@
 
 </div>
 
-<p><a href="/person/{{$person->id}}" target="_blank">Profile Test Link</a></p>
+<p><a href="{{url('/person/' . $person->id)}}" target="_blank">Profile Test Link</a></p>
