@@ -48,7 +48,7 @@ class ChromeController extends Controller
         }
         else
         {    
-           $this->dashboard();
+           return $this->dashboard();
         }    
     }
 
