@@ -660,6 +660,34 @@ class LinksController extends Controller
         return ['Success'];
     }
 
+    function get_remote_image($elements)
+    {
+        $image = "";
+
+        foreach($elements as $element)
+        {
+            $child = $element->childNodes;
+
+            if (isset($element->tagName) && $element->tagName == 'img')
+            {
+                foreach($element->attributes as $attribute)
+                {
+                    if ($attribute->name == 'src')
+                    {
+                        $image = $attribute->value;
+                    }    
+                }    
+            }
+            else if (!empty($child))
+            {
+                $image = $this->get_remote_image($element->childNodes);
+            }
+
+        }
+
+        return $image;
+    }
+
 
     function get_remote_data($url, $parser)
     {
@@ -755,6 +783,9 @@ class LinksController extends Controller
 
                     $elements = $xpath->query("//*[contains(@class, '$classname')]");
 
+                    $image = $this->get_remote_image($elements);
+
+                    /*
                     foreach($elements as $element)
                     {
                         if ($element->tagName == 'img')
@@ -766,12 +797,9 @@ class LinksController extends Controller
                                     $image = $attribute->value;
                                 }    
                             }    
-                        }
-                        else
-                        {
-
-                        }    
+                        }                        
                     }    
+                    */                  
 
 
                 break;
