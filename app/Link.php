@@ -44,6 +44,20 @@ class Link extends Model
     }
 
 
+    public function get_image($image)
+    {
+        $url = parse_url($image);
+        
+        if (strpos($image, 'http') === false)
+        {
+            $image = sprintf("%s://%s/%s", $url['scheme'], $url['host'], $image);
+        }    
+        
+        return $image;
+        
+    }
+
+
     public function comments()
     {
         return $this->hasMany('App\LinkComment');
