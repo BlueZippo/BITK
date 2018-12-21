@@ -56,7 +56,7 @@
                             <input type="hidden" name="links[{{$linkCounter}}][image]" value="{{$link['image']}}">
                             <input type="hidden" name="links[{{$linkCounter}}][media_id]" value="{{$link['media_id']}}">
                             <input type="hidden" name="links[{{$linkCounter}}][code]" value="{{$link['code']}}">
-                            <div class="image"><img src="{{$link->get_image($link['image'])}}"></div>
+                            <div class="image"><img src="{{$link->get_image($link)}}"></div>
                             <div class="title">{{$link['title']}}</div>
                             <div class="link-hover"><a data-id={{$linkCounter}} onClick="$('#link{{$linkCounter}}').remove()" class="btn btn-primary link-delete-button"><i class="fa fa-minus"></i></a></div>
                         </div>
