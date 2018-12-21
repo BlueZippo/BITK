@@ -764,12 +764,26 @@ class LinksController extends Controller
 
         if ($parser->image == 'meta')    
         {
-            $elements = $xpath->query('//meta[@property="og:image"]/@content');
+            $elements = $xpath->query('//meta[@property="og:image"]/@content');            
 
-            foreach($elements as $element)
-            {
-                $image = $element->nodeValue;
+            if ($elements->length > 0)
+            {    
+                foreach($elements as $element)
+                {
+                    $image = $element->nodeValue;
+                }
             }
+
+            $elements = $xpath->query('//meta[@name="twitter:image"]/@content');            
+
+            if ($elements->length > 0)
+            {    
+                foreach($elements as $element)
+                {
+                    $image = $element->nodeValue;
+                }
+            }
+
         }   
         else
         {
