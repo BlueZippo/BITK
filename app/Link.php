@@ -48,7 +48,7 @@ class Link extends Model
     {
         $url = parse_url($image);
         
-        if (strpos($image, 'http') === false)
+        if (strpos($image, 'http') === false && isset($url['scheme']))
         {
             $image = sprintf("%s://%s/%s", $url['scheme'], $url['host'], $image);
         }    
