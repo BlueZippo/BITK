@@ -348,6 +348,11 @@ class StacksController extends Controller {
                 $links[$i]['link'] = config('APP_URL') . '/x/' . $link->code;
             }    
 
+            if ( strpos($links[$i]['image'], 'http') === false )
+            {
+               $links[$i]['image'] = sprintf("%s://%s%s", $url['scheme'],$url['host'], $links[$i]['image']);
+            }
+
             $links[$i]['domain'] = isset($url['host']) ? $url['host'] : "";
             $links[$i]['media_type'] = $media_type;
             $links[$i]['date'] = date("F d, Y", strtotime($link->created_at));

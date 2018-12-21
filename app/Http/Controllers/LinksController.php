@@ -483,6 +483,11 @@ class LinksController extends Controller
 
         $paths = explode('/', $uri['path']);
 
+        if ( strpos($data['image'], 'http') === false )
+        {
+           $data['image'] = sprintf("%s://%s%s", $uri['scheme'],$uri['host'], $data['image']);
+        }
+
         foreach($paths as $path)
         {
             $media = MediaType::where('media_type', '=', $path)->first();
