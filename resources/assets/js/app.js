@@ -1,16 +1,22 @@
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes React and other helpers. It's a great starting point while
- * building robust, powerful web applications using React + Laravel.
- */
-
 require('./bootstrap');
 
-/**
- * Next, we will create a fresh React component instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+import React from 'react';
+import { render } from 'react-dom';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
-require('./components/Example');
+import WhatsNew from './components/WhatsNew';
+import AdminWhatsNew from './components/AdminWhatsNew';
+import AdminWhatsNewAdd from './components/AdminWhatsNewAdd';
+import AdminWhatsNewEdit from './components/AdminWhatsNewEdit';
+
+render(
+	<Router>
+		<div>
+      		<Route path="/whats-new" component={WhatsNew} />
+      		<Route path="/admin/whatsnew" component={AdminWhatsNew} />        
+      		<Route path="/admin/add-whatsnew" component={AdminWhatsNewAdd} />        
+      		<Route path={"/admin/edit-whatsnew/:id"} component={AdminWhatsNewEdit} />        
+      	</div>
+    </Router>, 
+    document.getElementById('example'));

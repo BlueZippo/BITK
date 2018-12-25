@@ -35,6 +35,32 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('users/profile', ['as' => 'users.profile', 'uses' => 'UserController@profile']);
 
 	Route::get('stacks/popular', 'StacksController@popular');
+
+	Route::get('/whats-new', 'PagesController@index');
+
+	Route::resource('/whatsnew', 'WhatsNewController');
+
+	Route::get('/admin/whatsnew', function()
+	{
+		return view('admin.whatsnew.index');
+	});
+
+	Route::get('/admin/add-whatsnew', function()
+	{
+		return view('admin.whatsnew.index');
+	});
+
+	Route::get('/admin/edit-whatsnew/{id}', function()
+	{
+		return view('admin.whatsnew.index');
+	});
+
+	Route::get('admin/whatsnew/list', 'AdminWhatsNewController@list');
+	Route::get('admin/whatsnew/create', 'AdminWhatsNewController@create');
+	Route::get('admin/whatsnew/{id}/edit', 'AdminWhatsNewController@edit');
+	Route::patch('admin/whatsnew/{id}/update', 'AdminWhatsNewController@update');
+	Route::patch('/admin/whatsnew/submit', 'AdminWhatsNewController@submit');
+
 	Route::get('stacks/new', 'StacksController@new');
 	Route::get('stacks/trending', 'StacksController@trending');
 	Route::get('stacks/top-voted', 'StacksController@top');

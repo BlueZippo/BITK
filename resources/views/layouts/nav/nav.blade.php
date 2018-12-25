@@ -66,13 +66,13 @@
                             <a class="dropdown-item" href="/users/profile">My Profile</a>
                             <a class="dropdown-item" href="/parking-lot">Parking Lot</a>
                             <a class="dropdown-item notifications" href="/messages-notifications">Messages & Notifications @if ($unread)<span>{{$unread}}</span>@endif</a>
-                            <a class="dropdown-item" href="/settings">Settings</a>
+                            
 
                             @role('admin')
 
                             <div class="dropdown-divider"></div>
 
-                                <a class="dropdown-item">ADMIN</a>
+                            <a class="dropdown-item">ADMIN</a>
 
                             <div class="dropdown-divider"></div>
 
@@ -89,11 +89,18 @@
 
                             <a class="dropdown-item" href="/admin/links/parser">Links Parser</a>
 
+                            <a class="dropdown-item" href="/admin/whatsnew">What's New</a>
+
 
                             @endrole
 
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout">Logout</a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/settings">Settings</a>
+                            <a class="dropdown-item" href="/whats-new">What's New</a>
+
                         </div>
                     </li>
 

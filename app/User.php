@@ -85,4 +85,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Notification');
     }
 
+    public function whatsnew()
+    {
+        return $this->hasMany('App\WhatsNew');   
+    }
+
 }
