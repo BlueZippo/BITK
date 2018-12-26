@@ -37,8 +37,14 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('stacks/popular', 'StacksController@popular');
 
 	Route::get('/whats-new', 'PagesController@index');
+	Route::get('/whats-new-single/{id}', function()
+	{
+		return view('layouts.master');
+	});
 
-	Route::resource('/whatsnew', 'WhatsNewController');
+	Route::get('/whatsnew/{id}/show', 'WhatsNewController@show');
+
+	Route::resource('/whatsnew/', 'WhatsNewController');
 
 	Route::get('/admin/whatsnew', function()
 	{

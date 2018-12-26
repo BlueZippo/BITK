@@ -11374,11 +11374,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_WhatsNew__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_AdminWhatsNew__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_AdminWhatsNewAdd__ = __webpack_require__(407);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_AdminWhatsNewEdit__ = __webpack_require__(409);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_WhatsNewSingle__ = __webpack_require__(413);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_AdminWhatsNew__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_AdminWhatsNewAdd__ = __webpack_require__(407);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_AdminWhatsNewEdit__ = __webpack_require__(409);
 
 __webpack_require__(107);
+
 
 
 
@@ -11396,9 +11398,10 @@ Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(__WEBPACK_IMPORTED_MOD
     'div',
     null,
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { path: '/whats-new', component: __WEBPACK_IMPORTED_MODULE_3__components_WhatsNew__["a" /* default */] }),
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { path: '/admin/whatsnew', component: __WEBPACK_IMPORTED_MODULE_4__components_AdminWhatsNew__["a" /* default */] }),
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { path: '/admin/add-whatsnew', component: __WEBPACK_IMPORTED_MODULE_5__components_AdminWhatsNewAdd__["a" /* default */] }),
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { path: "/admin/edit-whatsnew/:id", component: __WEBPACK_IMPORTED_MODULE_6__components_AdminWhatsNewEdit__["a" /* default */] })
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { path: '/whats-new-single/:id', component: __WEBPACK_IMPORTED_MODULE_4__components_WhatsNewSingle__["a" /* default */] }),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { path: '/admin/whatsnew', component: __WEBPACK_IMPORTED_MODULE_5__components_AdminWhatsNew__["a" /* default */] }),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { path: '/admin/add-whatsnew', component: __WEBPACK_IMPORTED_MODULE_6__components_AdminWhatsNewAdd__["a" /* default */] }),
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Route */], { path: "/admin/edit-whatsnew/:id", component: __WEBPACK_IMPORTED_MODULE_7__components_AdminWhatsNewEdit__["a" /* default */] })
   )
 ), document.getElementById('example'));
 
@@ -88972,7 +88975,7 @@ var DivList = function (_Component) {
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "a",
-            { href: "/whats-new/" + this.props.obj.id },
+            { href: "/whats-new-single/" + this.props.obj.id },
             this.props.obj.title
           )
         ),
@@ -89026,10 +89029,90 @@ exports = module.exports = __webpack_require__(252)(false);
 
 
 // module
-exports.push([module.i, ".whats-new\r\n{\r\n\tposition:fixed;\r\n\ttop:75px;\r\n\tright:0;\r\n\tz-index:9;\r\n\twidth:400px;\r\n\tbackground:#fff;\r\n\theight:100vh;\t\r\n\tbox-shadow:0 0 20px #ccc;\r\n\r\n}\r\n\r\n.whats-new h2\r\n{\r\n\tmargin:5px 15px 15px;\r\n}\r\n\r\n.whats-new .whats-new-item\r\n{\r\n\tborder-top:solid 1px #ccc;\r\n\tpadding:10px;\r\n}\r\n\r\n.whats-new .whats-new-item h3\r\n{\r\n\tfont-size:16px;\r\n}", ""]);
+exports.push([module.i, ".whats-new\r\n{\r\n\tposition:fixed;\r\n\ttop:75px;\r\n\tright:0;\r\n\tz-index:9;\r\n\twidth:400px;\r\n\tbackground:#fff;\r\n\theight:100vh;\t\r\n\tbox-shadow:0 0 20px #ccc;\r\n\r\n}\r\n\r\n.whats-new h2\r\n{\r\n\tmargin:5px 15px 15px;\r\n}\r\n\r\n.whats-new .fa-times\r\n{\r\n\tposition:absolute;\r\n\tright:10px;\r\n\ttop:10px;\r\n}\r\n\r\n.whats-new .whats-new-item\r\n{\r\n\tborder-top:solid 1px #ccc;\r\n\tpadding:10px;\r\n}\r\n\r\n.whats-new .whats-new-item h3\r\n{\r\n\tfont-size:16px;\r\n}", ""]);
 
 // exports
 
+
+/***/ }),
+/* 413 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DivList__ = __webpack_require__(410);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__whats_new_css__ = __webpack_require__(411);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__whats_new_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__whats_new_css__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+var WhatsNewSingle = function (_Component) {
+  _inherits(WhatsNewSingle, _Component);
+
+  function WhatsNewSingle(props) {
+    _classCallCheck(this, WhatsNewSingle);
+
+    var _this = _possibleConstructorReturn(this, (WhatsNewSingle.__proto__ || Object.getPrototypeOf(WhatsNewSingle)).call(this, props));
+
+    _this.state = { data: '' };
+    return _this;
+  }
+
+  _createClass(WhatsNewSingle, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get("/whatsnew/" + this.props.match.params.id + "/show").then(function (response) {
+        _this2.setState({
+          info: response.data.info
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+
+      var info = this.state.info;
+
+      return info ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'whats-new-single' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h2',
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-gift' }),
+          ' ',
+          info.title
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'whats-new-article' },
+          info.content
+        )
+      ) : null;
+    }
+  }]);
+
+  return WhatsNewSingle;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (WhatsNewSingle);
 
 /***/ })
 /******/ ]);

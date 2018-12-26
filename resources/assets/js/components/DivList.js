@@ -8,7 +8,7 @@ class DivList extends Component {
     return (
 
       <div className="whats-new-item">
-        <h3><a href={"/whats-new/" + this.props.obj.id}>{this.props.obj.title}</a></h3>
+        <h3><a href={"/whats-new-single/" + this.props.obj.id}>{this.props.obj.title}</a></h3>
         {this.props.obj.content}
       </div>        
     );

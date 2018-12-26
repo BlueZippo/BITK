@@ -16,6 +16,13 @@
 	margin:5px 15px 15px;
 }
 
+.whats-new .fa-times
+{
+	position:absolute;
+	right:10px;
+	top:10px;
+}
+
 .whats-new .whats-new-item
 {
 	border-top:solid 1px #ccc;

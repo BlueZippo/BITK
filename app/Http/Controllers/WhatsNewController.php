@@ -59,7 +59,18 @@ class WhatsNewController extends Controller
      */
     public function show($id)
     {
-        //
+        $result = WhatsNew::find($id);
+
+        $info['title'] = $result->title;
+        $info['date'] = date("M d, Y", strtotime($result->created_at));
+        $info['content'] = $result->content;
+        $info['author'] = $result->user->name;
+
+        $data['info'] = $info;
+
+        $data['list'] = WhatsNew::orderby('id', 'desc')->limit(5)->get();
+
+        return response()->json($data);
     }
 
     /**
