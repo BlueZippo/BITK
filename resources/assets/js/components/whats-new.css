@@ -1,0 +1,27 @@
+.whats-new
+{
+	position:fixed;
+	top:75px;
+	right:0;
+	z-index:9;
+	width:300px;
+	background:#fff;
+	height:100vh;
+
+}
+
+.whats-new h2
+{
+	margin:5px 15px 15px;
+}
+
+.whats-new .whats-new-item
+{
+	border-top:solid 1px #ccc;
+	padding:10px;
+}
+
+.whats-new .whats-new-item h3
+{
+	font-size:16px;
+}

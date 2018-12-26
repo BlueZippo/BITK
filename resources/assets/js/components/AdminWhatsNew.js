@@ -32,8 +32,7 @@ export default class AdminWhatsNew extends Component {
     {
       return this.state.items.map(function(object, i)
       {
-        console.log(object);
-         return <TableRow obj={object} key={i} />;
+        return <TableRow obj={object} key={i} />;
       })
     }
   }
@@ -42,7 +41,7 @@ export default class AdminWhatsNew extends Component {
     
 
         return (
-            <div className="whats-new">
+            <div className="admin-whats-new">
             	
               <div className="col-lg-10 col-lg-offset-1">
                 <h2><i className="fas fa-gift"></i> What's New</h2>

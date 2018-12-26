@@ -5,8 +5,7 @@ import React, { Component } from 'react';
 class TableRow extends Component {
   render() {
 
-    var Link = require('react-router').Link
-
+    
     return (
         <tr>
           <td>

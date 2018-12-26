@@ -15,15 +15,19 @@ class WhatsNewController extends Controller
      */
     public function index()
     {
-        $all = WhatsNew::all();
+        $results = WhatsNew::orderby('id', 'DESC')->limit(5)->get();
 
-        $data['data'] = $all;
+        $data = array();
 
-        $html = view('whatsnew.index')->with($data)->render();
+        foreach($results as $result)
+        {
+            $data[] = array('title' => $result->title,
+                            'content' => substr(strip_tags($result->content), 0, 200),
+                            'id' => $result->id);
+        }
 
-        $json['html'] = $html;
 
-        return response()->json($json);
+        return response()->json($data);
     }
 
     /**
