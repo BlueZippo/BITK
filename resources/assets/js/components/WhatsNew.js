@@ -47,7 +47,7 @@ export default class WhatsNew extends Component {
             this.state.visible ?
 
             <div className="whats-new">
-              <a onClick={this.toggleBox} className="close">X</a>
+              <a onClick={this.toggleBox} className="fas fa-times"></a>
             	<h2><i className="fas fa-gift"></i> What's New</h2>
               <div className="whats-new-list">
                 {this.divList()}

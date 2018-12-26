@@ -73166,11 +73166,7 @@ var WhatsNew = function (_Component) {
       return this.state.visible ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'whats-new' },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'a',
-          { onClick: this.toggleBox, className: 'close' },
-          'X'
-        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { onClick: this.toggleBox, className: 'fas fa-times' }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'h2',
           null,
@@ -89030,7 +89026,7 @@ exports = module.exports = __webpack_require__(252)(false);
 
 
 // module
-exports.push([module.i, ".whats-new\r\n{\r\n\tposition:fixed;\r\n\ttop:75px;\r\n\tright:0;\r\n\tz-index:9;\r\n\twidth:300px;\r\n\tbackground:#fff;\r\n\theight:100vh;\r\n\r\n}\r\n\r\n.whats-new h2\r\n{\r\n\tmargin:5px 15px 15px;\r\n}\r\n\r\n.whats-new .whats-new-item\r\n{\r\n\tborder-top:solid 1px #ccc;\r\n\tpadding:10px;\r\n}\r\n\r\n.whats-new .whats-new-item h3\r\n{\r\n\tfont-size:16px;\r\n}", ""]);
+exports.push([module.i, ".whats-new\r\n{\r\n\tposition:fixed;\r\n\ttop:75px;\r\n\tright:0;\r\n\tz-index:9;\r\n\twidth:400px;\r\n\tbackground:#fff;\r\n\theight:100vh;\t\r\n\tbox-shadow:0 0 20px #ccc;\r\n\r\n}\r\n\r\n.whats-new h2\r\n{\r\n\tmargin:5px 15px 15px;\r\n}\r\n\r\n.whats-new .whats-new-item\r\n{\r\n\tborder-top:solid 1px #ccc;\r\n\tpadding:10px;\r\n}\r\n\r\n.whats-new .whats-new-item h3\r\n{\r\n\tfont-size:16px;\r\n}", ""]);
 
 // exports
 
