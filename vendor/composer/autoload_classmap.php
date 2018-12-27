@@ -11,6 +11,7 @@ return array(
     'App\\Email' => $baseDir . '/app/Email.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AdminLinksController' => $baseDir . '/app/Http/Controllers/AdminLinksController.php',
+    'App\\Http\\Controllers\\AdminWhatsNewController' => $baseDir . '/app/Http/Controllers/AdminWhatsNewController.php',
     'App\\Http\\Controllers\\Auth\\AuthController' => $baseDir . '/app/Http/Controllers/Auth/AuthController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',

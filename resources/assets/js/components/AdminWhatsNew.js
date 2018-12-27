@@ -44,10 +44,14 @@ export default class AdminWhatsNew extends Component {
             <div className="admin-whats-new">
             	
               <div className="col-lg-10 col-lg-offset-1">
-                <h2><i className="fas fa-gift"></i> What's New</h2>
-
                 
+                <a href="/admin/add-whatsnew" className="btn btn-success float-right">Add</a>
+
+                <h2 className="float-left"><i className="fas fa-gift"></i> What's New</h2>
+                
+                <br clear="all" />
                 <hr />
+
                 <div className="table-responsive">
                     <table className="table table-bordered table-striped">
                         <thead>
@@ -66,7 +70,7 @@ export default class AdminWhatsNew extends Component {
                     </table>
                 </div>
 
-                <a href="/admin/add-whatsnew" className="btn btn-success">Add</a>
+                
 
               </div>
 

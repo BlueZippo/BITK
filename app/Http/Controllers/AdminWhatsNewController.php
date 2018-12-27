@@ -58,6 +58,10 @@ class AdminWhatsNewController extends Controller
 
         $new->title = $request->get('title');
         $new->content = $request->get('content');
+        $new->published_date = $request->get('published_date');
+        $new->subtitle = $request->get('subtitle');
+        $new->excerpt = $request->get('excerpt');
+        $new->type = $request->get('type');
         $new->user_id = auth()->id();
 
         $new->save();
@@ -102,6 +106,10 @@ class AdminWhatsNewController extends Controller
 
         $new->title = request('title');
         $new->content = request('content');
+        $new->published_date = $request->get('published_date');
+        $new->subtitle = $request->get('subtitle');
+        $new->excerpt = $request->get('excerpt');
+        $new->type = $request->get('type');
 
         $new->save();
 
