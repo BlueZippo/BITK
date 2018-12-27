@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\WhatsNew;
+use App\WhatsNewNotification;
 
 class WhatsNewController extends Controller
 {
@@ -25,6 +26,15 @@ class WhatsNewController extends Controller
                             'content' => substr(strip_tags($result->content), 0, 200),
                             'id' => $result->id);
         }
+
+        WhatsNewNotification::where('user_id', auth()->id())->where('last_viewed', date("Y-m-d"))->delete();
+
+        $noti = new WhatsNewNotification;
+
+        $noti->user_id = auth()->id();
+        $noti->last_viewed = date("Y-m-d");
+
+        $noti->save();
 
 
         return response()->json($data);
@@ -79,9 +89,23 @@ class WhatsNewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function notification()
     {
-        //
+        $notification = 0;
+
+        $user = WhatsNewNotification::orderby('last_viewed', 'desc')->where('user_id', auth()->id())->first();
+
+        
+        if ($user)
+        {
+            $results = WhatsNew::where('published_date', '>', $user->last_viewed)->get();
+        }   
+        else
+        {
+           $results = WhatsNew::all();
+        }
+
+        return response()->json(count($results));
     }
 
     /**

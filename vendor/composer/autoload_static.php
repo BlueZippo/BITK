@@ -480,6 +480,7 @@ class ComposerStaticInit09d0a8ab5cfd1496a7fcb458e7996b13
         'App\\Tag' => __DIR__ . '/../..' . '/app/Tag.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\WhatsNew' => __DIR__ . '/../..' . '/app/WhatsNew.php',
+        'App\\WhatsNewNotification' => __DIR__ . '/../..' . '/app/WhatsNewNotification.php',
         'App\\phpQuery\\DOMDocumentWrapper' => __DIR__ . '/..' . '/bariew/phpquery/phpQuery/phpQuery.php',
         'App\\phpQuery\\phpQuery' => __DIR__ . '/..' . '/bariew/phpquery/phpQuery/phpQuery.php',
         'App\\phpQuery\\phpQueryObject' => __DIR__ . '/..' . '/bariew/phpquery/phpQuery/phpQuery.php',

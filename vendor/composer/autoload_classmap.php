@@ -82,6 +82,7 @@ return array(
     'App\\Tag' => $baseDir . '/app/Tag.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\WhatsNew' => $baseDir . '/app/WhatsNew.php',
+    'App\\WhatsNewNotification' => $baseDir . '/app/WhatsNewNotification.php',
     'App\\phpQuery\\DOMDocumentWrapper' => $vendorDir . '/bariew/phpquery/phpQuery/phpQuery.php',
     'App\\phpQuery\\phpQuery' => $vendorDir . '/bariew/phpquery/phpQuery/phpQuery.php',
     'App\\phpQuery\\phpQueryObject' => $vendorDir . '/bariew/phpquery/phpQuery/phpQuery.php',
