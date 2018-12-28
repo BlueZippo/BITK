@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('admin/whatsnew/{id}/edit', 'AdminWhatsNewController@edit');
 	Route::patch('admin/whatsnew/{id}/update', 'AdminWhatsNewController@update');
 	Route::patch('/admin/whatsnew/submit', 'AdminWhatsNewController@submit');
+	Route::patch('/admin/whatsnew/delete', 'AdminWhatsNewController@destroy');
 
 	Route::get('stacks/new', 'StacksController@new');
 	Route::get('stacks/trending', 'StacksController@trending');

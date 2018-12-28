@@ -30,13 +30,17 @@ $(document).on('change', 'input[name=link_url]', function()
 
     $('.solid .content').html('Fetching link information, please wait...')
 
+    
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    
 
     var linkUrl = $(this).val()
+
+    
 
     linkUrl = linkUrl.replace(/&/g, ':::')
 

@@ -29,7 +29,8 @@ class AdminWhatsNewController extends Controller
         {
             $data[] = array('id' => $new->id,
                             'title' => $new->title,
-                            'date' => date("M d, Y H:i", strtotime($new->created_at)),
+                            'type' => $new->type == 'whatsnew' ? "What's New" : "News",
+                            'date' => date("M d, Y H:i", strtotime($new->published_date)),
                             'author' => $new->user->name);
         }
         
@@ -57,7 +58,7 @@ class AdminWhatsNewController extends Controller
         $new = new WhatsNew;
 
         $new->title = $request->get('title');
-        $new->content = $request->get('content');
+        $new->content = json_encode($request->get('content'));
         $new->published_date = $request->get('published_date');
         $new->subtitle = $request->get('subtitle');
         $new->excerpt = $request->get('excerpt');
@@ -122,8 +123,12 @@ class AdminWhatsNewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->get('id');
+
+        WhatsNew::find($id)->delete();
+
+        return response()->json(['success' => 1]);
     }
 }

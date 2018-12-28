@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import renderHTML from 'react-render-html';
+import DatePicker from "react-datepicker";
 import MyEditor from './MyEditor';
+import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
+
 
 class AdminWhatsNewEdit extends Component {
 
@@ -11,14 +15,21 @@ class AdminWhatsNewEdit extends Component {
        this.state = {title:'', 
        				content: '', 
        				id:0, 
-       				published_date: '', 
+       				published_date: new Date(), 
        				subtitle:'', 
        				type: 'whatsnew',
        				excerpt: ''};
        
        this.handleChange = this.handleChange.bind(this);
        this.handleSubmit = this.handleSubmit.bind(this);
+       this.handleChangeDate = this.handleChangeDate.bind(this);
+       this.updateContent = this.updateContent.bind(this);
 
+    }
+
+    updateContent(data)
+    {
+      this.setState({content: data});
     }
 
     
@@ -38,7 +49,12 @@ class AdminWhatsNewEdit extends Component {
       		console.log(error);
     	})
   	}
-  	
+
+
+  	handleChangeDate(date) 
+  	{
+    	this.setState({published_date: date});
+  	} 	
 
 
     handleChange(e)
@@ -158,7 +174,7 @@ class AdminWhatsNewEdit extends Component {
 
 				                <strong>Date:</strong>
 
-				               	<input onChange={this.handleChange} type="text" name="published_date" className="form-control" value={this.state.published_date} />
+				               	<DatePicker selected={moment(this.state.published_date)} onSelect={this.handleChangeDate} className="form-control" />
 
 				            </div>
 
@@ -170,7 +186,7 @@ class AdminWhatsNewEdit extends Component {
 
 				                <strong>Type:</strong>
 
-				               	<select name="type" className="form-control"> 	
+				               	<select name="type" className="form-control" value={this.state.type} onChange={this.handleChange}> 	
 				               		<option value="whatsnew">What's New</option>
 				               		<option value="news">News</option>
 				                </select>	
@@ -213,10 +229,7 @@ class AdminWhatsNewEdit extends Component {
 
 				                <br/>
 
-				                <textarea className="form-control textarea" onChange={this.handleChange} name="content" value={this.state.content}></textarea>
-
-				                
-				               
+				                <MyEditor UpdateContent={this.updateContent} value={this.state.content} />
 
 				            </div>
 

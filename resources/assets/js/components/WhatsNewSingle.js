@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DivList from './DivList';
+import Parser from 'html-react-parser';
 import './whats-new.css'; 
 
 
@@ -37,7 +38,7 @@ export default class WhatsNewSingle extends Component {
               <h2><i className="fas fa-gift"></i> {info.title}</h2>              
 
               <div className="whats-new-article">
-                {info.content}
+                {Parser(info.content)}
               </div>
             </div>
 

@@ -77,15 +77,15 @@
         @yield('content')
 
         <div id="example"></div>   
-        
+
     </main>
 
     
-
+    
 
     @include('layouts.footer')
 
-    <script src="{{asset('js/app.js')}}" ></script>
+    
 
     @yield('scripts')
 

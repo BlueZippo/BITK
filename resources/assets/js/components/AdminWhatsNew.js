@@ -58,6 +58,7 @@ export default class AdminWhatsNew extends Component {
                             <tr>
                                 <th>Title</th>
                                 <th>Date Published</th>
+                                <th>Type</th>
                                 <th>Author</th>
                                 <th colSpan={2}>Action</th>
                             </tr>

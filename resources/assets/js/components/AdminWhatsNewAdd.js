@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
+import DatePicker from "react-datepicker";
 import renderHTML from 'react-render-html';
+import "react-datepicker/dist/react-datepicker.css";
+import MyEditor from './MyEditor';
+
+import moment from 'moment';
+ 
 
 export default class AdminWhatsNewAdd extends Component {
 
@@ -10,15 +16,30 @@ export default class AdminWhatsNewAdd extends Component {
        this.state = {title:'', 
               content: '', 
               id:0, 
-              published_date: '', 
+              published_date: new Date(), 
+              startDate: new Date(),
               subtitle:'', 
               type:'whatsnew',
               excerpt: ''};
        
        this.handleChange = this.handleChange.bind(this);
        this.handleSubmit = this.handleSubmit.bind(this);
+       this.handleChangeDate = this.handleChangeDate.bind(this);
+       this.updateContent = this.updateContent.bind(this);
 
     }
+
+    updateContent(data)
+    {
+      this.setState({content: data});
+    }
+
+    handleChangeDate(date) 
+    {
+      this.setState({
+          published_date: date
+      });
+    } 
 
 
     handleChange(e)
@@ -137,7 +158,7 @@ export default class AdminWhatsNewAdd extends Component {
 
                         <strong>Date:</strong>
 
-                        <input onChange={this.handleChange} type="text" name="published_date" className="form-control"  />
+                        <DatePicker className="form-control" selected={moment(this.state.published_date)}  onSelect={this.handleChangeDate} />
 
                     </div>
 
@@ -149,7 +170,7 @@ export default class AdminWhatsNewAdd extends Component {
 
                         <strong>Type:</strong>
 
-                        <select name="type" className="form-control">   
+                        <select name="type" className="form-control" onChange={this.handleChange}>   
                           <option value="whatsnew">What's New</option>
                           <option value="news">News</option>
                         </select> 
@@ -190,7 +211,7 @@ export default class AdminWhatsNewAdd extends Component {
 
 				                <br/>
 
-				                <textarea onChange={this.handleChange} name="content" className="form-control textarea" placeholder="Add content here..."></textarea>
+				                <MyEditor UpdateContent={this.updateContent} />
 				               
 
 				            </div>

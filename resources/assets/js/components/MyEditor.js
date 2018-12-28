@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, RichUtils, getDefaultKeyBinding, AtomicBlockUtils, convertToRaw, ContentState} from 'draft-js';
+import {Editor, EditorState, RichUtils, getDefaultKeyBinding, AtomicBlockUtils, convertToRaw, ContentState, convertFromRaw} from 'draft-js';
+import {stateToHTML} from 'draft-js-export-html';
+import htmlToDraft from 'html-to-draftjs';
 import './RichEditor.css'; 
 
 export default class MyEditor extends Component 
@@ -9,16 +11,19 @@ export default class MyEditor extends Component
   constructor(props) 
   {
     super(props);
-    
-    this.state = {editorState: EditorState.createWithContent(ContentState.createFromText(props.value)),
+
+    this.state = {
+                  editorState: EditorState.createEmpty(),
                   default: props.value,
                   showURLInput: false,
                   name: props.name,
                   url: '',
-                  urlType: '',};
+                  urlType: '',
+                };
 
     this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.setState({editorState});
+    
+    this.onChange = this.onChange.bind(this); //(editorState) => this.setState({editorState});
 
     this.handleKeyCommand = this._handleKeyCommand.bind(this);
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
@@ -63,10 +68,16 @@ export default class MyEditor extends Component
 
         return media;
       };
+    
 
   }
 
-
+  onChange(editorState)
+  {
+    console.log(editorState);
+    this.setState({editorState});
+    this.props.UpdateContent(convertToRaw(editorState.getCurrentContent()));
+  }
 
   _handleKeyCommand(command, editorState) {
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -155,27 +166,31 @@ export default class MyEditor extends Component
           });
         }
 
-        _addAudio() {
-          this._promptForMedia('audio');
-        }
+  _addAudio() {
+    this._promptForMedia('audio');
+  }
 
-        _addImage() {
-          this._promptForMedia('image');
-        }
+  _addImage() {
+    this._promptForMedia('image');
+  }
 
-        _addVideo() {
-          this._promptForMedia('video');
-        }
+  _addVideo() {
+    this._promptForMedia('video');
+  }     
 
 
+  componentWillReceiveProps(props)
+  {
+    const contentState = convertFromRaw(JSON.parse(props.value));    
+    const editorState = EditorState.createWithContent(contentState);
+    this.setState({editorState});
+  }      
 
 
   render() {
 
     const {editorState} = this.state;
 
-    // If the user changes block type before entering any text, we can
-    // either style the placeholder or hide it. Let's just hide it now.
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
     
@@ -185,6 +200,7 @@ export default class MyEditor extends Component
         className += ' RichEditor-hidePlaceholder';
       }
     }
+    
 
     const styles = {
         root: {
@@ -242,9 +258,6 @@ export default class MyEditor extends Component
     }
 
     
-    console.log(this.state);
-
-    
     return (
         <div>
 
@@ -277,6 +290,7 @@ export default class MyEditor extends Component
                 handleKeyCommand={this.handleKeyCommand}
                 keyBindingFn={this.mapKeyToEditorCommand}
                 onChange={this.onChange}
+                onEditorStateChange={this.onEditorStateChange}
                 placeholder="Tell a story..."
                 ref="editor"
                 spellCheck={true}
