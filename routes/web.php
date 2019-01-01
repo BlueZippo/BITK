@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::get('/whatsnew/{id}/show', 'WhatsNewController@show');
 	Route::get('/whatsnew/notification', 'WhatsNewController@notification');
+	Route::get('/whatsnew/list', 'WhatsNewController@list');
 
 	Route::resource('/whatsnew/', 'WhatsNewController');
 

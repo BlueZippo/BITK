@@ -40,6 +40,53 @@ class WhatsNewController extends Controller
         return response()->json($data);
     }
 
+    public function list()
+    {       
+        
+        $results = WhatsNew::where('type', 'whatsnew')->orderby('id', 'DESC')->limit(5)->get();
+
+        $data = array();
+
+        $advisory = array();
+        $news = array();
+
+        foreach($results as $result)
+        {
+            $advisory[] = array('title' => $result->title,
+                            'content' => substr(strip_tags($result->content), 0, 200),
+                            'published_date' => date("M d Y", strtotime($result->published_date)),
+                            'id' => $result->id);
+        }
+
+        $results = WhatsNew::where('type', 'news')->orderby('id', 'DESC')->limit(5)->get();
+
+        foreach($results as $result)
+        {
+            $news[] = array('title' => $result->title,
+                            'content' => substr(strip_tags($result->content), 0, 200),
+                            'published_date' => date("M d Y", strtotime($result->published_date)),
+                            'id' => $result->id);
+        }
+
+        WhatsNewNotification::where('user_id', auth()->id())->where('last_viewed', date("Y-m-d"))->delete();
+
+        $noti = new WhatsNewNotification;
+
+        $noti->user_id = auth()->id();
+        $noti->last_viewed = date("Y-m-d");
+
+        $noti->save();
+
+
+
+        $data['advisory'] = view('whatsnew.sublist')->with(['results' => $advisory])->render();
+        $data['news'] = view('whatsnew.sublist')->with(['results' => $news])->render();
+
+        $out['html'] = view('whatsnew.list')->with($data)->render();
+
+        return response()->json($out);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,8 +95,6 @@ class WhatsNewController extends Controller
     public function single($id)
     {
         $val = WhatsNew::where('id', $id)->first();
-
-        $val['content'] = htmlentities($val->content);
 
         return view('whatsnew.single')->with(['val' => $val]);
     }

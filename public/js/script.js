@@ -378,23 +378,16 @@ $(document).ready(function()
 
 		$.ajax(
 			{
-				url: '/whatsnew/',
+				url: '/whatsnew/list',
 				type:'get',
 				dataType: 'json',
 				success: function(data)
-				{
-					var html = '<div class="whats-new"><a class="fas fa-times"></a><h2><i class="fas fa-gift"></i> What\'s New</h2><div class="whats-new-list">';
+				{	
+					$('.whats-new-modal').remove();
 
-					for(var i = 0; i < data.length; i++)
-					{
-						console.log(data[i]);
+					$('main').after(data.html);
 
-						html += '<div class="whats-new-item"><h3><a href="/whats-new-single/' + data[i].id +'">' + data[i].title + '</a></h3>' + data[i].content + '</div'
-					}
-
-					html += '</div></div>';
-
-					$('#example').append(html);
+					$('.whats-new-modal').modal();
 				}
 
 

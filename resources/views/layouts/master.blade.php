@@ -82,22 +82,19 @@
 
         @yield('content')
 
-        <div id="example"></div>   
+        
 
     </main>
+
+
 
     <!---
     <script src="{{asset('js/app.js')}}" ></script>
     -->
 
-    @include('layouts.footer')
-
-    
+    @include('layouts.footer')    
 
     @yield('scripts')
-
-    
-
 
 </body>
 

@@ -1331,10 +1331,39 @@ a.edit-link:hover, a.delete-link:hover
 	top:10px;
 }
 
+.whats-new-modal .whats-new-item
+{
+	padding:15px;
+	margin-bottom:20px;
+	border-bottom:solid 1px #ccc;
+}
+
+.whats-new-modal li.nav-item
+{
+	max-width:50%;
+	min-width:50%;
+	text-align:center;
+	font-weight:bold;
+}
+
 .whats-new .whats-new-item
 {
 	border-top:solid 1px #ccc;
 	padding:10px;
+}
+
+.whats-new-item h3
+{
+	color:var(--blue);
+	font-size:20px;
+}
+
+.whats-new-item .whats-new-date
+{
+	font-size:14px;
+	font-weight:bold;
+	color:#3b5998;
+	margin-top:20px;
 }
 
 .whats-new .whats-new-item h3
@@ -1354,6 +1383,19 @@ a.edit-link:hover, a.delete-link:hover
 	border-radius:5px;
 	z-index:9999;
 	cursor:pointer;
+}
+
+
+
+h1 small
+{
+	display:block;
+	font-size:50%;
+}
+
+.whats-new-body
+{
+	margin-top:40px;
 }
 
 /* END WHATS NEW */
