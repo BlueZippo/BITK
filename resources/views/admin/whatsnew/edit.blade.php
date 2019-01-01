@@ -4,8 +4,14 @@
 
 <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
 
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+
 <script>
 $('input.date').datepicker();
+CKEDITOR.replace( 'content' );
 </script>
 
 @endsection
@@ -130,7 +136,7 @@ $('input.date').datepicker();
 
                 <br/>
 
-                {!! Form::textarea('content', $new->content, array('placeholder' => 'Content','class' => 'form-control', 'required' => true)) !!}
+                {!! Form::textarea('content', $new->content, array('placeholder' => 'Content','class' => 'form-control', 'id' => 'content')) !!}
                
 
             </div>
