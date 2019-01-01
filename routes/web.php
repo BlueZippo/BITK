@@ -37,20 +37,14 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('stacks/popular', 'StacksController@popular');
 
 	Route::get('/whats-new', 'PagesController@index');
-	Route::get('/whats-new-single/{id}', function()
-	{
-		return view('layouts.master');
-	});
+	Route::get('/whats-new-single/{id}', 'WhatsNewController@single');
 
 	Route::get('/whatsnew/{id}/show', 'WhatsNewController@show');
 	Route::get('/whatsnew/notification', 'WhatsNewController@notification');
 
 	Route::resource('/whatsnew/', 'WhatsNewController');
 
-	Route::get('/admin/whatsnew', function()
-	{
-		return view('admin.whatsnew.index');
-	});
+	Route::get('/admin/whatsnew', ['as' => 'admin.whatsnew', 'uses' => 'AdminWhatsNewController@index']);
 
 	Route::get('/admin/add-whatsnew', function()
 	{
@@ -65,9 +59,13 @@ Route::group(['middleware' => ['auth']], function()
 	Route::get('admin/whatsnew/list', 'AdminWhatsNewController@list');
 	Route::get('admin/whatsnew/create', 'AdminWhatsNewController@create');
 	Route::get('admin/whatsnew/{id}/edit', 'AdminWhatsNewController@edit');
-	Route::patch('admin/whatsnew/{id}/update', 'AdminWhatsNewController@update');
-	Route::patch('/admin/whatsnew/submit', 'AdminWhatsNewController@submit');
-	Route::patch('/admin/whatsnew/delete', 'AdminWhatsNewController@destroy');
+	
+	//Route::patch('admin/whatsnew/{id}/update', 'AdminWhatsNewController@update');
+
+	//Route::patch('/admin/whatsnew/submit', 'AdminWhatsNewController@submit');
+	
+	//Route::patch('/admin/whatsnew/delete', 'AdminWhatsNewController@destroy');
+
 
 	Route::get('stacks/new', 'StacksController@new');
 	Route::get('stacks/trending', 'StacksController@trending');
@@ -154,6 +152,13 @@ Route::group(['middleware' => ['auth']], function()
 
 	Route::get('admin/links/create', ['as' => 'admin.links.create', 'uses' => 'AdminLinksController@create']);
 
+	Route::get('admin/whatsnew/create', ['as' => 'admin.whatsnew.create', 'uses' => 'AdminWhatsNewController@add']);
+
+	Route::post('admin/whatsnew/submit', ['as' => 'admin.whatsnew.submit', 'uses' => 'AdminWhatsNewController@submit']);
+
+	Route::post('admin/whatsnew/{id}/update', ['as' => 'admin.whatsnew.update', 'uses' => 'AdminWhatsNewController@update']);
+
+	Route::post('admin/whatsnew/delete','AdminWhatsNewController@delete');
 	
 });
 

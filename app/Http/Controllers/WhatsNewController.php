@@ -45,9 +45,13 @@ class WhatsNewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function single($id)
     {
-        //
+        $val = WhatsNew::where('id', $id)->first();
+
+        $val['content'] = htmlentities($val->content);
+
+        return view('whatsnew.single')->with(['val' => $val]);
     }
 
     /**

@@ -118,7 +118,11 @@ export default class AdminWhatsNewAdd extends Component {
     	{
     		console.log(this.props);
           	this.props.history.push('/admin/whatsnew');
-    	});
+    	})
+      .catch(function (error) 
+      {
+        console.log(error);
+      });
   	}
 	
 

@@ -99,7 +99,7 @@
 
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/settings"><i class="fas fa-cog"></i> Settings</a>
-                            <a class="dropdown-item" href="/whats-new"><i class="fas fa-gift"></i> What's New</a>
+                            <a id="whats-new-button" class="dropdown-item" href="/whats-new"><i class="fas fa-gift"></i> What's New</a>
 
                         </div>
                     </li>

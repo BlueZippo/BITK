@@ -2,6 +2,7 @@
 require('./bootstrap');
 
 import React from 'react';
+import $ from 'jquery';
 import { render } from 'react-dom';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 

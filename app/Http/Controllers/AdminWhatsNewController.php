@@ -14,14 +14,24 @@ class AdminWhatsNewController extends Controller
 
     public function index()
     {
-        return view('admin.whatsnew.index');
+        $results = WhatsNew::orderBy('id','DESC')->get();
+
+        $data = array('results' => array());
+
+        foreach($results as $result)
+        {
+            $result['published_date'] = date("m/d/Y", strtotime($result->published_date));
+
+            $data['results'][] = $result;
+        }
+
+        return view('admin.whatsnew.index')->with($data);
     }
 
 
     public function list()
     {
         $news = WhatsNew::orderBy('id','DESC')->get();
-
        
         $data = array();
 
@@ -47,6 +57,13 @@ class AdminWhatsNewController extends Controller
 
     }
 
+    public function add()
+    {
+        $data['date'] = date("m/d/Y");
+
+        return view('admin.whatsnew.create')->with($data);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -57,9 +74,11 @@ class AdminWhatsNewController extends Controller
     {
         $new = new WhatsNew;
 
+        list($m, $d, $y) = explode("/", $request->get('published_date'));
+
         $new->title = $request->get('title');
-        $new->content = json_encode($request->get('content'));
-        $new->published_date = $request->get('published_date');
+        $new->content = $request->get('content');
+        $new->published_date = sprintf("%s-%s-%s", $y, $m, $d);
         $new->subtitle = $request->get('subtitle');
         $new->excerpt = $request->get('excerpt');
         $new->type = $request->get('type');
@@ -67,7 +86,9 @@ class AdminWhatsNewController extends Controller
 
         $new->save();
 
-        return response()->json(['success' => 1]);
+        //return response()->json(['success' => 1]);
+
+        return redirect()->route('admin.whatsnew'); 
     }
 
     /**
@@ -91,7 +112,13 @@ class AdminWhatsNewController extends Controller
     {
         $new = WhatsNew::find($id);
 
-        return response()->json($new);
+        $new->published_date = date("m/d/Y", strtotime($new->published_date));
+
+        $data['new'] = $new;
+
+        return view('admin.whatsnew.edit')->with($data);
+
+        //return response()->json($new);
     }
 
     /**
@@ -105,16 +132,20 @@ class AdminWhatsNewController extends Controller
     {
         $new = WhatsNew::find($id);
 
+        list($m, $d, $y) = explode("/", $request->get('published_date'));
+
         $new->title = request('title');
         $new->content = request('content');
-        $new->published_date = $request->get('published_date');
+        $new->published_date = sprintf("%s-%s-%s", $y, $m, $d);
         $new->subtitle = $request->get('subtitle');
         $new->excerpt = $request->get('excerpt');
         $new->type = $request->get('type');
 
         $new->save();
 
-        return response()->json(['success' => 1]);
+        return redirect()->route('admin.whatsnew'); 
+
+        //return response()->json(['success' => 1]);
     }
 
     /**
@@ -124,6 +155,15 @@ class AdminWhatsNewController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
+    {
+        $id = $request->get('id');
+
+        WhatsNew::find($id)->delete();
+
+        return response()->json(['success' => 1]);
+    }
+
+    public function delete(Request $request)
     {
         $id = $request->get('id');
 

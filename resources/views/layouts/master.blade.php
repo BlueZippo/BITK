@@ -21,7 +21,13 @@
     {{--<title>{{config('app.name')}}</title>--}}
     <title>Platstack</title>
 
+
+
     <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
+
+    <script>
+        $ = jQuery.noConflict();
+    </script>
 
     <!-- Bootstrap core CSS -->
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
@@ -43,7 +49,7 @@
     <!-- Custom styles for this template -->
     {{--<link href="/css/sticky-footer-navbar.css" rel="stylesheet">--}}
 
-    <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
+    <!-- <script src="{{ asset('js/jquery-3.3.1.js') }}"></script> -->
 </head>
 
 <body>
@@ -80,8 +86,9 @@
 
     </main>
 
-    
-    
+    <!---
+    <script src="{{asset('js/app.js')}}" ></script>
+    -->
 
     @include('layouts.footer')
 

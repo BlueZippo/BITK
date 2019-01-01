@@ -372,6 +372,38 @@ $(document).ready(function()
 		}
 	});
 
+	$('#whats-new-button').click(function()
+	{
+		$('li.dropdown').removeClass('show');
+
+		$.ajax(
+			{
+				url: '/whatsnew/',
+				type:'get',
+				dataType: 'json',
+				success: function(data)
+				{
+					var html = '<div class="whats-new"><a class="fas fa-times"></a><h2><i class="fas fa-gift"></i> What\'s New</h2><div class="whats-new-list">';
+
+					for(var i = 0; i < data.length; i++)
+					{
+						console.log(data[i]);
+
+						html += '<div class="whats-new-item"><h3><a href="/whats-new-single/' + data[i].id +'">' + data[i].title + '</a></h3>' + data[i].content + '</div'
+					}
+
+					html += '</div></div>';
+
+					$('#example').append(html);
+				}
+
+
+			}
+		)
+
+		return false;
+	});
+
 	$('.show-more').click(function()
 	{
 		var page = $(this).attr('data-page');
