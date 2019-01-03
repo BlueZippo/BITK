@@ -54,7 +54,9 @@ class ChromeController extends Controller
 
     public function csrf()
     {
-        return csrf_token();
+        $config = config('session');
+
+        return $config;
     }
 
     /**
