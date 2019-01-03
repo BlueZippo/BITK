@@ -52,6 +52,11 @@ class ChromeController extends Controller
         }    
     }
 
+    public function csrf()
+    {
+        return csrf_token();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
