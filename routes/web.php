@@ -250,4 +250,4 @@ Route::get('/x/{code}', 'LinksController@long_code');
 Route::post('/notifications/read', 'NotificationController@read');
 
 Route::post('/chrome/login', 'ChromeController@login');
-Route::get('/chrome/csrf', 'ChromeController@csrf');
+Route::get('/chrome/login-form', 'ChromeController@loginForm');

@@ -390,4 +390,12 @@ class ChromeController extends Controller
         return $num;
     
     }
+
+
+    public function LoginForm()
+    {
+        $html = view('chrome.login-form')->render();
+
+        return response()->json(['html' => $html]);
+    }
 }
