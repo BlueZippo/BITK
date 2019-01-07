@@ -12,6 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'chrome/*'
+        'chrome/*',
+        'http://localhost:3000',
+        'http://phpstack-93963-566910.cloudwaysapps.com/chrome/*'
     ];
 }
