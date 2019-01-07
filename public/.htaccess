@@ -21,7 +21,7 @@
 </IfModule>
 
 <ifmodule mod_headers.c="">
-   Header set Access-Control-Allow-Origin "*"
+   Header set Access-Control-Allow-Origin "http://localhost:3000"
    Header set Access-Control-Allow-Methods: "*"
    Header set Access-Control-Allow-Headers: "*"
 </ifmodule>
