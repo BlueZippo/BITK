@@ -20,7 +20,7 @@ Route::get('/', 'PublicController@index')->name('home');
 
 Route::get('/dashboard', 'PagesController@index')->name('home');
 
-Route::resource('/chrome', 'ChromeController');
+Route::get('/chrome', 'ChromeController@index');
 
 Route::group(['middleware' => ['auth']], function()
 {
@@ -250,4 +250,4 @@ Route::get('/x/{code}', 'LinksController@long_code');
 Route::post('/notifications/read', 'NotificationController@read');
 
 Route::post('/chrome/login', 'ChromeController@login');
-Route::get('/chrome/login-form', 'ChromeController@loginForm');
+Route::get('/chrome/form', 'ChromeController@loginForm');
