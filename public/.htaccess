@@ -20,8 +20,8 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
-<IfModule mod_headers.c>
-  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css|js)$">
-    Header set Access-Control-Allow-Origin "*"
-  </FilesMatch>
-</IfModule>
+<ifmodule mod_headers.c="">
+   Header set Access-Control-Allow-Origin "*"
+   Header set Access-Control-Allow-Methods: "*"
+   Header set Access-Control-Allow-Headers: "*"
+</ifmodule>
