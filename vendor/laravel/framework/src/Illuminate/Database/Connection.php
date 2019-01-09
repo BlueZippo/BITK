@@ -172,6 +172,8 @@ class Connection implements ConnectionInterface
 
         $this->config = $config;
 
+        //print_r($config);
+
         // We need to initialize a query grammar and the query post processors
         // which are both very important parts of the database abstractions
         // so we initialize these to their default values while starting.
