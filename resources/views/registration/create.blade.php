@@ -50,11 +50,17 @@
 
 			</form>
 
+		</div>
+
+	</div>
+
+	<div class="row">
+
 		    <div class="form-group">
-		        <div class="col-md-6 col-md-offset-4">
-		            <a href="{{ url('/auth/facebook') }}" class="btn btn-outline-secondary"><i class="fa fa-facebook"></i>  Facebook</a>
-		           	<a href="{{ url('/auth/google') }}" class="btn btn-outline-secondary"><i class="fa fa-google"></i>  Google</a>
-		           	<a href="{{ url('/auth/linkedin') }}" class="btn btn-outline-secondary"><i class="fa fa-linkedin"></i>  LinkedIn</a>
+		        <div class="col-md-12">
+		            <a href="{{ url('/auth/facebook') }}" class="btn btn-outline-secondary"><i class="fas fa-facebook"></i>  Facebook</a>
+		           	<a href="{{ url('/auth/google') }}" class="btn btn-outline-secondary"><i class="fas fa-google"></i>  Google</a>
+		           	<a href="{{ url('/auth/linkedin') }}" class="btn btn-outline-secondary"><i class="fas fa-linkedin"></i>  LinkedIn</a>
 		        </div>
 		    </div>
 			

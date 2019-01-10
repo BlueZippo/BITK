@@ -1,7 +1,9 @@
 <header>
     <!-- Fixed navbar -->
     <nav class="navbar main_nav navbar-expand-md navbar-light fixed-top bg-light">
-        <div class="inner container-fluid">
+        <div class="inner container">
+
+
 
             @if (Auth::check())
                 <a class="navbar-brand" href="/dashboard">
@@ -15,112 +17,129 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <div class="collapse navbar-collapse" id="navbarCollapse">
 
+                <ul class="navbar-nav">
 
-            @include('layouts.nav.topics')
-
-            <div class="add-link-wrapper"><div class="add-a-link-button main-nav">Add a Link</div></div>
-
-            @include('layouts.nav.search')
-
-            @include('links.create')
-
-
-            <div class="mobile-menu-wrapper collapse navbar-collapse" id="navbarCollapse">
-
-                <!-- Mobile User Settings -->
-
-                @include('layouts.nav.mobile-menu')
-
-                <ul class="navbar-nav justify-content-end desktop-user-menu user-menu">
-
-                    @if (Auth::check())
-
-                    
-
-                    <li class="list-divider"></li>
-                    <li class="nav-item dropdown user-ctrl">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-
-
-
-                            <div class="avatar">
-
-                                @if($unread > 0)<span class="notification">{{$unread}}</span> @endif
-
-                                @if (Auth::user()->photo)
-
-                                <img src="{{Auth::user()->photo}}">
-
-                                @else
-
-                                <div class="inner">{{ render_initials( isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email ) }}</div>
-
-                                @endif
-                            </div>
-
-                            <div class="name">{{ Auth::user()->name }}</div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="/stacks/create"><i class="fas fa-folder-plus"></i> Create a Stack</a>
-                            <a class="dropdown-item" href="/users/profile"><i class="far fa-user-circle"></i> My Profile</a>
-                            <a class="dropdown-item" href="/parking-lot"><i class="fas fa-parking"></i> Parking Lot</a>
-                            <a class="dropdown-item notifications" href="/messages-notifications"><i class="fas fa-bell"></i> Messages & Notifications @if ($unread)<span>{{$unread}}</span>@endif</a>
-                            
-
-                            @role('admin')
-
-                            <div class="dropdown-divider"></div>
-
-                            <a class="dropdown-item">ADMIN</a>
-
-                            <div class="dropdown-divider"></div>
-
-
-                            <a class="dropdown-item" href="/admin/categories"><i class="fas fa-layer-group"></i> Categories</a>
-
-                            <a class="dropdown-item" href="/admin/media_types"><i class="fas fa-compact-disc"></i> Media Types</a>
-
-                            <a class="dropdown-item" href="/admin/users"><i class="fas fa-users"></i> Users</a>
-
-                            <a class="dropdown-item" href="/admin/roles"><i class="fas fa-user-tag"></i> Roles</a>
-
-                            <a class="dropdown-item" href="/admin/search"><i class="fas fa-search"></i> Search Algorithm</a>
-
-                            <a class="dropdown-item" href="/admin/links/parser"><i class="fas fa-link"></i> Links Parser</a>
-
-                            <a class="dropdown-item" href="/admin/whatsnew"><i class="fas fa-gift"></i> What's New</a>
-
-
-                            @endrole
-
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/settings"><i class="fas fa-cog"></i> Settings</a>
-                            <a id="whats-new-button" class="dropdown-item" href="/whats-new"><i class="fas fa-gift"></i> What's New</a>
-
-                        </div>
+                    <li class="nav-item {{Request::path() == 'dashboard' ? 'active' : ''}}">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item {{Request::path() == 'create-a-stack' ? 'active' : ''}}">
+                        <a class="nav-link" href="/create-a-stack">Create A Stack</a>
                     </li>
 
-                @else
-
-                    <li class="list-divider"></li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
+                    <li class="nav-item {{Request::path() == 'explore' ? 'active' : ''}}">
+                        <a class="nav-link" href="/explore">Explore</a>
                     </li>
 
-                @endif
+                    <li class="nav-item {{Request::path() == 'parking-lot' ? 'active' : ''}}">
+                        <a class="nav-link" href="/parking-lot">Parking Lot</a>
+                    </li>
+
+                    <li class="nav-item {{Request::path() == 'people' ? 'active' : ''}}">
+                        <a class="nav-link" href="/people">People</a>
+                    </li>
+
 
                 </ul>
 
+            </div>
+
+            <div class="float-right">
+
+                @if (Auth::check())
+
+                    <ul class="navbar-nav user-menu">
+
+                        
+                        <li class="nav-item notification">
+                            <i class="fas fa-bell"></i>
+                            @if($unread > 0)
+                                <span>{{$unread}}</span> 
+                            @endif
+                        </li>
+                        
+
+                        <li class="nav-item search">
+
+                            @include('layouts.nav.nav-search')
+
+                        </li>
+
+                        <li class="nav-item user-ctrl">
+
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+
+                                <div class="avatar">
+
+                                    @if (Auth::user()->photo)
+
+                                        <img src="{{Auth::user()->photo}}">
+
+                                    @else
+
+                                        <div class="inner">{{ render_initials( isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email ) }}</div>
+
+                                    @endif
+                            
+                                </div>
+
+                                
+                            </a>
+
+                        </li>
+
+
+                    </ul>
+
+
+                @else
+
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item {{Request::path() == 'login' ? 'active' : ''}}">
+                            <a class="nav-link float-right" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item {{Request::path() == 'register' ? 'active' : ''}}">
+                            <a class="nav-link" href="/register">Register</a>
+                        </li>
+
+                    </ul>
+
+                @endif
+
+
+            </div>
+
+            
         </div>
 
     </div><!-- .inner -->
+    </nav>
+
+    <nav class="secondary-navbar">
+
+        <div class="container">
+
+            <ul class="float-right navbar-nav">
+                <li class="nav-item">
+                    <a class="plus nav-link float-right"><i class="fa fa-plus"></i></a>
+                    <ul class="navbar-nav sub-navbar">
+                        <li class="nav-item">
+                            <a class="nav-link">Create New Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">Create New Stack</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">Create New Collection</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+
     </nav>
 </header>
 @if (Auth::check())

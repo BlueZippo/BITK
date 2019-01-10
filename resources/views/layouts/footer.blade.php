@@ -1,10 +1,10 @@
-    <footer class="footer">
+    <!--<footer class="footer">
       <div class="container">
         <span class="copyright">Platstack {{date("Y")}}</span>
       </div>
     </footer>
 
-    <!-- Bootstrap core JavaScript
+     Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 

@@ -18,43 +18,17 @@ Table of Content:
 /*****************************
     #Layout
 *****************************/
+/*
 :root {
-  --blue: #47A9FF;
-  --indigo: #6610f2;
-  --purple: #6f42c1;
-  --pink: #FD3B82;
-  --red: #dc3545;
-  --orange: #fd7e14;
-  --yellow: #ffc107;
-  --green: #28a745;
-  --teal: #20c997;
-  --cyan: #17a2b8;
-  --white: #fff;
-  --gray: #6c757d;
-  --gray-dark: #7d7d7d;
-  --primary: #3097D1;
-  --secondary: #6c757d;
-  --success: #2ab27b;
-  --info: #8eb4cb;
-  --warning: #cbb956;
-  --danger: #bf5329;
-  --light: #f8f9fa;
-  --dark: #343a40;
-  --light-blue: #F0F8FF;
-  --light-gray: #f2f2f2;
-  --breakpoint-xs: 0;
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Raleway", sans-serif;
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --text-color: #404040;
+    --darker-gray: #313131;
+    --ps-bg-gray-color: #d1d1d1;
+    --border-color: #d1d1d1;
 }
-
+*/
 body {
-    font-family: 'helvetica_neueregular';
+    font-family: "Lato", sans-serif;
 }
-
 body > .container {
     padding: 20px 15px 0 !important;
 }
@@ -153,13 +127,12 @@ and (min-width: 1201px) {
     #Header
 *****************************/
 header {
-    min-height: 110px;
+    min-height: 80px;
     background-color: #ffffff;
 }
 nav.main_nav.bg-light {
     background-color: #ffffff !important;
-    height: 60px;
-    padding:0 1rem;
+    height: 80px;
 }
 .navbar-brand {
     margin-right: 2rem;
@@ -168,87 +141,7 @@ nav.main_nav.bg-light {
 nav.main_nav > .inner {
     align-items: unset;
     justify-content: unset;
-    height:100%;
 }
-
-ul.navbar-nav
-{
-    height:100%;
-}
-
-.nav-item a
-{
-    padding:0 .5rem;
-    display:block;
-    line-height:60px;
-    border-top:solid 5px var(--white);
-    color:var(--dark-gray);
-    letter-spacing:0.05rem;
-}
-
-.nav-item a:hover,
-.nav-item.active a
-{
-    border-color:var(--blue);
-    font-weight:bold;
-}
-
-nav.secondary-navbar
-{
-    background-color:var(--light-blue);
-    height:50px;
-    position:fixed;
-    top:60px;
-    left:0;
-    right:0;
-    z-index:1030;
-}
-
-.secondary-navbar .nav-item a
-{
-    border-top: none;
-    line-height:50px;
-}
-
-a.plus.nav-link
-{
-    color:#fff;
-    background:var(--pink);
-    font-size:2rem;
-    display:inline-block;
-    padding:0 18px;
-}
-
-.nav-item:hover a.plus.nav-link i
-{
-    transform:rotate(45deg);
-}
-
-.secondary-navbar .nav-item a,
-.secondary-navbar .nav-item a:hover
-{
-    color:var(--white);
-}
-
-.sub-navbar
-{
-    background:var(--pink);
-    clear:both;
-    display:none;
-}
-
-.secondary-navbar .navbar-nav:hover .sub-navbar
-{
-    display:block;
-}
-
-.sub-navbar .nav-item a
-{
-    padding-left:15px;
-    padding-right:15px;
-    border-bottom:solid 1px rgba(255,255,255,0.5);
-}
-
 .navbar-brand,
 .topics-wrapper,
 .add-link-wrapper,
@@ -269,21 +162,12 @@ a.plus.nav-link
 .search-wrapper {width: 74.5%;}
 .mobile-menu-wrapper {width: 10%;}
 
-.user-menu .nav-item a.nav-link
-{
-    border-top:none;
-    padding-right:0;
-    padding-left:0;
+.desktop-user-menu .avatar img {
+    height: 50px;
 }
-
-.user-menu .dropdown-toggle::after
-{
-    display:none;
-}
-
 .navbar-brand > img {
-    height: 45px;
-    margin-top: 0px;
+    height: 55px;
+    margin-top: -10px;
 }
 .desktop-user-menu .user-ctrl > a .name  {
     line-height: 16px;
@@ -299,12 +183,11 @@ a.plus.nav-link
     width: 50px;
 }
 .user-menu li.user-ctrl .avatar {
-  
+    margin-right: 8px;
 }
 .user-menu li.user-ctrl .avatar > img {
     border-radius: 30px;
     width: 50px;
-    height:50px;
 }
 .user-ctrl .avatar > .inner,
 .mobile-nav > ul.menu > li.user > a > .avatar > .inner {
@@ -325,33 +208,6 @@ a.plus.nav-link
     bottom: 0;
     margin: auto;
 }
-
-.nav-item.notification,
-.nav-item.search
-{
-    position:relative;
-    padding:0 15px;
-}
-
-.notification i
-{
-    color:var(--light-gray);
-    font-size:30px;
-    line-height:50px;
-}
-
-.notification span
-{
-    color:var(--white);
-    background-color:var(--blue);
-    border-radius:50%;
-    padding:0px 6px;
-    font-size:14px;
-    position:absolute;
-    top:7px;
-    right:7px;
-}
-
 .desktop-user-menu .user-ctrl .dropdown-menu {
     top: 60px;
 }
