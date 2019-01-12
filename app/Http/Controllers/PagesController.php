@@ -12,6 +12,7 @@ use App\StacksFollow;
 use App\StacksVote;
 use App\MediaType;
 use App\PeopleFollow;
+use App\Collection;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -36,11 +37,23 @@ class PagesController extends Controller {
 		$following = PeopleFollow::where('people_id', $user_id)->get();
 		$followers = PeopleFollow::where('user_id', $user_id)->get();
 
+		$mycollections = Collection::where('user_id', $user_id)->get();
+
+		$collections = Collection::whereNotIn('user_id', [$user_id])->get();
+
+		foreach($mycollections as $i => $collection)
+		{
+			$cs = $collection->stack;
+
+			$mycollections[$i]['stacks'] = $cs;
+		}
 		
 		$data['user'] = $user;
 		$data['stacks'] = $stacks;
 		$data['following'] = $following;
 		$data['followers'] = $followers;
+		$data['mycollections'] = $mycollections;
+		$data['collections'] = $collections;
 		
 		return view('pages.index')->with($data);
 	}

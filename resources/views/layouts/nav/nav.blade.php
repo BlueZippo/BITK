@@ -68,24 +68,13 @@
 
                         <li class="nav-item user-ctrl">
 
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-
-                                <div class="avatar">
-
-                                    @if (Auth::user()->photo)
-
-                                        <img src="{{Auth::user()->photo}}">
-
-                                    @else
-
-                                        <div class="inner">{{ render_initials( isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email ) }}</div>
-
-                                    @endif
                             
-                                </div>
+                            @php $person = Auth::user() @endphp
 
-                                
-                            </a>
+                            @include('pages.avatar')
+
+
+                            
 
                         </li>
 

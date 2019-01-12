@@ -41,4 +41,10 @@ class Stack extends Model {
     }
 
 
+    public function collection()
+    {
+        return $this->belongsTo('App\Collection');
+    }
+
+
 }

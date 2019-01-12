@@ -5,20 +5,17 @@
 
 		<div class="user-hero-image mb-5" @if($user->background) style="background-image:url({{$user->background}})" @endif >
 
-			<div class="avatar">
-	        
-	        	@if ($user->photo)
-	        		<img id="profile-img" src="{{$user->photo}}">
-	        	@else
-	        		<img id="profile-img" src="/public/no-image-available.png">
-	         	@endif
+			@php $person = $user @endphp
 
-	         </div>
+			@include('pages.avatar')
 
 		</div>
 
 		<div class="name text-center">{{$user->name}}</div>
+		
+		@if ($user->instagram)
 		<div class="handle text-center mb-3">{{'@' . $user->instagram}}</div>
+		@endif
 
 		<div class="row user-score">
 

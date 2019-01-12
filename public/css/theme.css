@@ -97,7 +97,7 @@ and (min-width:1441px) {
 and (max-width: 1440px)
 and (min-width: 1280px) {
     .container {
-        max-width: 1220px;
+        max-width: 96%;
 
     }
 }
