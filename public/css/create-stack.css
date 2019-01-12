@@ -17,7 +17,7 @@
 {
 	font-size:26px;
 	font-weight:bold;
-	color:#000;
+	color:var(--gray);
 	min-height:65px;
 	display:block;
 }
@@ -87,7 +87,7 @@
 	color:#696969;
 }
 
-.dotted .youtube a.click-here
+.stack-data .youtube a.click-here
 {
 	min-height:308px;
 	width:100%;
@@ -245,27 +245,25 @@ div.links-accordion-container.middle-position::after
 }
 
 .add-link-modal,
-.add-link-accordion-modal
-{
+.add-link-accordion-modal {
 	display:block;
-	border:solid 1px #ccc;
+	border:solid 1px var(--light-blue2);
 	text-align:center;
-	margin:10px 0;
-	min-height:253px;
+	padding:100px 0;
+	background-color:var(--light-blue2);
+	color:var(--blue) !important;
 }
 
 .add-link-modal a,
-.add-link-accordion-modal a
-{
+.add-link-accordion-modal a {
 	cursor:pointer;
+	color:var(--blue);
 }
 
 .add-link-modal i,
-.add-link-accordion-modal i
-{
-	font-size:75px;
-	color:var(--pink);
-	line-height:253px;
+.add-link-accordion-modal i {
+	font-size:45px;
+	color:var(--blue);
 }
 
 
@@ -314,7 +312,7 @@ div.links-accordion-container.middle-position::after
     height:30px;
     background:#E5E5E5;
     z-index:0;
-    margin:10px 70px 0 0;
+    margin:10px 10px 0px 84px;
     padding:0;
     appearance:none;
     border:none;
@@ -322,8 +320,19 @@ div.links-accordion-container.middle-position::after
     position:relative;
     display:inline-block;
     border-radius:30px;
-    text-indent:50px;
+    
     line-height:2;
+}
+
+.switch span {
+	position:absolute;
+	width:100px;
+	left:-74px;
+	color:var(--gray);
+}
+
+.switch i {
+	color:var(--blue);
 }
 
 .switch:before
@@ -363,6 +372,18 @@ div.links-accordion-container.middle-position::after
     left:16px;
 }
 
+.stack-control .back {
+	margin-top:10px;
+	margin-right:30px;
+	line-height:2;
+	text-transform:uppercase;
+	color:var(--gray);
+}
+
+.stack-control .back i
+{
+	margin-right:10px;
+}
 
 .stack-sidebar
 {

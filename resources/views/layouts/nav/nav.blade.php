@@ -24,12 +24,12 @@
                     <li class="nav-item {{Request::path() == 'dashboard' ? 'active' : ''}}">
                         <a class="nav-link" href="/dashboard">Dashboard</a>
                     </li>
-                    <li class="nav-item {{Request::path() == 'create-a-stack' ? 'active' : ''}}">
-                        <a class="nav-link" href="/create-a-stack">Create A Stack</a>
+                    <li class="nav-item {{Request::path() == 'stacks/create' ? 'active' : ''}}">
+                        <a class="nav-link" href="/stacks/create">Create A Stack</a>
                     </li>
 
-                    <li class="nav-item {{Request::path() == 'explore' ? 'active' : ''}}">
-                        <a class="nav-link" href="/explore">Explore</a>
+                    <li class="nav-item {{Request::path() == 'stacks/explore' ? 'active' : ''}}">
+                        <a class="nav-link" href="/stacks/explore">Explore</a>
                     </li>
 
                     <li class="nav-item {{Request::path() == 'parking-lot' ? 'active' : ''}}">
@@ -121,18 +121,20 @@
 
         <div class="container">
 
+            @include('layouts.nav.extras')
+
             <ul class="float-right navbar-nav">
                 <li class="nav-item">
                     <a class="plus nav-link float-right"><i class="fa fa-plus"></i></a>
                     <ul class="navbar-nav sub-navbar">
                         <li class="nav-item">
-                            <a class="nav-link">Create New Link</a>
+                            <a   class="add-link nav-link">Create New Link</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">Create New Stack</a>
+                            <a href="/stacks/create" class="nav-link">Create New Stack</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">Create New Collection</a>
+                            <a  href="/collections/create" class="nav-link">Create New Collection</a>
                         </li>
                     </ul>
                 </li>

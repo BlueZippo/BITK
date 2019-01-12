@@ -2,7 +2,6 @@
 
 @section('style')
 
-
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 <link href="{{ asset('css/create-stack.css') }}" rel="stylesheet">
 
@@ -24,25 +23,24 @@
 -->
 {{--@endsection--}}
 
-
 @section('content')
 
+    
 
+	<div class="row edit-stack">
 
-    <div class="row edit-stack">
+		<div class="col-sm-12">
 
-        <div class="col-sm-12">
-
-            <div class="page-title-row">
-
-                <h1>Edit <span>Stack</span></h1>
-
+			<div class="page-title-row">
+                <h1>Create A <span>Stack</span></h1>
                 <div class="stack-controls">
-                    <div class="stack-ctrl-item switch-box" style="display:none;">
-                        <div class="switch status @if($stack->status_id == 1) switchOn @endif" >@if($stack->status_id == 1) Published @else Draft @endif</div>
+                    
+                    <div class="stack-ctrl-item switch-box" style="display:none">
+                        <div class="switch status" >Draft</div>
                     </div>
+
                     <div class="stack-ctrl-item switch-box">
-                        <div class="switch public @if($stack->private == 0) switchOn @endif" >@if($stack->private == 1) Private @else Public @endif</div>
+                        <div class="switch public" >Private</div>
                     </div>
                     <div class="stack-ctrl-item back">
                         <svg width="29" height="19" xmlns="http://www.w3.org/2000/svg">
@@ -50,6 +48,8 @@
                         </svg>
                         <span>Back</span>
                     </div>
+
+                    <!-- 
                     <div class="stack-ctrl-item clone">
                         <svg width="38" height="18" xmlns="http://www.w3.org/2000/svg">
                           <g>
@@ -58,37 +58,36 @@
                         </svg>
                         <span>Clone</span>
                     </div>
+                    -->
+
                     <div class="stack-ctrl-item trash">
                         <i class="fas fa-trash-alt"></i>
                         <span>Trash</span>
                     </div>
+
                     <div class="stack-ctrl-item save">
                         <i class="fas fa-save"></i>
                         <span>Save</span>
                     </div>
+
                     <div class="stack-ctrl-item preview">
                         <i class="fas fa-eye"></i>
                         <span>Preview</span>
                     </div>
                 </div>
-
             </div>
 
             <hr />
 
-            <form method="POST" action="/stacks/{{$stack->id}}/update">
+            {!! Form::open(['action' => 'StacksController@store', 'method' => 'POST']) !!}
 
-                {{Form::hidden('video_id', $stack->video_id)}}
-                {{Form::hidden('media_type',$stack->media_type)}}
-                {{Form::hidden('title', $stack->title)}}
-                {{Form::hidden('private', $stack->private)}}
-                {{Form::hidden('content', $stack->content)}}
+                {{Form::hidden('video_id', 0)}}
+                {{Form::hidden('title', '')}}
+                {{Form::hidden('content', '')}}
                 {{Form::hidden('status_id', 1)}}
-                {{Form::hidden('id', $stack->id)}}
-
-                {{Form::hidden('active_media_id', $active_media_id)}}
-
-                 {{ csrf_field() }}
+                {{Form::hidden('media_type','youtube')}}
+                {{Form::hidden('private', 1)}}
+                {{Form::hidden('id', 0)}}
 
                 <div class="dotted">
 
@@ -98,8 +97,8 @@
 
                             <div class="form-group">
 
-                                <div class="dotted" data-field="title">
-                                    <div class="content" contenteditable="true">{{$stack->title}}</div>
+                                <div class="dotted title" data-field="title">
+                                    <div class="content" contenteditable="true">enter title...</div>
                                     <a class="fa fa-edit"></a>
                                 </div>
 
@@ -111,7 +110,7 @@
 
                                     <div class="dotted" data-field="topics">
 
-                                        <div class="content categories-content" contenteditable="true">{{$stack_categories}}</div>
+                                        <div class="content categories-content" contenteditable="true">enter a topic...</div>
                                         <a class="fa fa-edit"></a>
 
                                         @include('stacks.create-categories')
@@ -129,6 +128,7 @@
 
                                 </div>
 
+
                             </div>
 
                             <hr />
@@ -136,7 +136,7 @@
                             <div class="form-group">
 
                                 <div class="dotted" data-field="content">
-                                    <div class="content" contenteditable="true">{{$stack->content}}</div>
+                                    <div class="content" contenteditable="true">enter description...</div>
                                     <a class="fa fa-edit"></a>
                                 </div>
 
@@ -168,7 +168,7 @@
 
 
 
-            </form>
+            {!! Form::close() !!}
 
 
             <div class="modal fade" id="youtubeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -184,7 +184,7 @@
 
                     <form id="uploadForm"  enctype="multipart/form-data">
 
-                        {{Form::select('media_types', ['youtube' => 'Youtube', 'image' => 'Image', 'upload' => 'Upload Image'], 0, ['class' => 'form-control'])}}
+                        {{Form::select('media_types', ['youtube' => 'YouTube', 'image' => 'Image', 'upload' => 'Upload Image'], 0, ['class' => 'form-control'])}}
 
                         {{Form::text('image', '', ['class' => 'media-field form-control', 'placeholder' => 'Enter Image URL'])}}
 
@@ -204,9 +204,9 @@
               </div>
             </div>
 
-        </div>
+		</div>
 
-    </div>
+	</div>
 
 @endsection
 

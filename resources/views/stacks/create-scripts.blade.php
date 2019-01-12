@@ -73,7 +73,7 @@ $(document).ready(function()
 
     });
 
-    $('.edit-stack .back').click(function()
+    $('.edit-stack .back, .back').click(function()
     {
         location = '/dashboard';
     });
@@ -146,11 +146,10 @@ $(document).ready(function()
         var lblOn = 'Published';
         var isPublic = false;
 
-        if ($(this).hasClass('public'))
-        {
+        if ($(this).hasClass('public')) {
             fld = 'private';
-            lblOff = 'Private';
-            lblOn = 'Public';
+            lblOff = '<i class="fas fa-eye-slash"></i> Private';
+            lblOn =  '<i class="fas fa-eye"></i> Public';
             isPublic = true;
         }
 
@@ -167,7 +166,7 @@ $(document).ready(function()
                 $('input[name='+fld+']').val(1);
             }
                 
-            $(this).html(lblOn);
+            $('span', this).html(lblOn);
         }
         else
         {
@@ -180,7 +179,7 @@ $(document).ready(function()
                 $('input[name='+fld+']').val(0);
             }
 
-            $(this).html(lblOff);
+            $('span', this).html(lblOff);
         }
 
         stack_autosave();

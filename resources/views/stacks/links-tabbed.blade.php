@@ -68,7 +68,7 @@
 
                 <div class="col-md-3 add-link-button-wrapper">
 
-                    <a class="add-link-modal"><i class="fa fa-plus-circle"></i></a>
+                    <a class="add-link-modal"><i class="fa fa-plus"></i><br />Add a Link</a>
 
                     @include('stacks.add-link-form')
 

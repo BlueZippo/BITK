@@ -11,6 +11,7 @@ use App\LinksFollow;
 use App\StacksFollow;
 use App\StacksVote;
 use App\MediaType;
+use App\PeopleFollow;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -24,7 +25,28 @@ class PagesController extends Controller {
 		$this->middleware('auth');
 	}
 
-    public function index() {
+	public function index() {
+
+		$user_id = auth()->id();
+
+		$user = User::find($user_id);
+
+		$stacks = Stack::where('user_id', $user_id)->get();
+
+		$following = PeopleFollow::where('people_id', $user_id)->get();
+		$followers = PeopleFollow::where('user_id', $user_id)->get();
+
+		
+		$data['user'] = $user;
+		$data['stacks'] = $stacks;
+		$data['following'] = $following;
+		$data['followers'] = $followers;
+		
+		return view('pages.index')->with($data);
+	}
+
+
+    public function xxxindex() {
 
         $user_id = auth()->id();
 

@@ -30,7 +30,7 @@ Table of Content:
   --teal: #20c997;
   --cyan: #17a2b8;
   --white: #fff;
-  --gray: #6c757d;
+  --gray: #909090;
   --gray-dark: #7d7d7d;
   --primary: #3097D1;
   --secondary: #6c757d;
@@ -41,7 +41,9 @@ Table of Content:
   --light: #f8f9fa;
   --dark: #343a40;
   --light-blue: #F0F8FF;
+  --light-blue2: #DEF0FF;
   --light-gray: #f2f2f2;
+  --border-gray: #e3e3e3;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -53,6 +55,8 @@ Table of Content:
 
 body {
     font-family: 'helvetica_neueregular';
+    font-size:0.9rem;
+    background-color:var(--light-gray);
 }
 
 body > .container {
@@ -62,6 +66,11 @@ body > .container {
 body a
 {
     cursor:pointer;
+}
+
+body main.container
+{
+    margin-top:20px;
 }
 /*** Media Queries ***/
 
@@ -179,11 +188,17 @@ ul.navbar-nav
 .nav-item a
 {
     padding:0 .5rem;
+    margin-right:0.5rem;
     display:block;
     line-height:60px;
     border-top:solid 5px var(--white);
     color:var(--dark-gray);
     letter-spacing:0.05rem;
+}
+
+.nav-item a.plus
+{
+    margin-right:0;
 }
 
 .nav-item a:hover,
@@ -352,6 +367,15 @@ a.plus.nav-link
     right:7px;
 }
 
+.nav-item.search .form-group {
+    margin-top:0.7rem;
+}
+
+.nav-item.search input {
+    border-radius:30px;
+    font-size:0.75rem;
+}
+
 .desktop-user-menu .user-ctrl .dropdown-menu {
     top: 60px;
 }
@@ -497,6 +521,67 @@ a.plus.nav-link
     top:0;
     right:0;
 }
+
+/*** sidebar ***/
+
+.sidebar .inner {
+    background-color:var(--white);
+    border:solid 1px var(--border-gray);
+}
+ 
+
+.sidebar .avatar {
+    width:33%;
+    position:absolute;
+    top:55px;
+    left:35%;
+}
+
+.sidebar #followers .avatar,
+.sidebar #following .avatar {
+    position:relative;
+    top:auto;
+    left:auto;
+}
+
+
+
+.sidebar .user-hero-image {
+    background-size:cover;
+    background-position:center center;
+    height:100px;
+    margin-bottom:40px;
+}
+
+
+.sidebar .avatar > img {
+    width:85px;
+    height:85px;
+    border-radius:50%;
+
+}
+
+.sidebar .user-score {
+    color:var(--black);
+    font-size:2rem;
+}
+
+.sidebar .user-score span {
+    display:block;
+    font-size:0.7rem;
+    color:var(--gray);
+}
+
+.sidebar .handle {
+    color:var(--blue);
+}
+
+.sidebar .name {
+    color:var(--black);
+    font-size:1.5rem;
+}
+
+/*** end of sidebar ***/
 
 /*** Media Queries ***/
 @media screen and (max-width:1919px) {
@@ -907,7 +992,7 @@ main {
     #Dashboard
 *****************************/
 .dashboard .nav.nav-pills {
-    padding: 10px 0;
+    padding: 0;
 }
 .dashboard .nav.nav-pills li a,
 .explorer-nav .nav.nav-pills li a,
@@ -917,18 +1002,38 @@ main {
     color: #404040;
     font-weight: 500;
     position: relative;
-    padding: .5rem 1rem;
+    padding: .5rem 0;
     text-transform: none;
     text-decoration: none;
     cursor:pointer;
+    background-color:var(--light-gray);
+    border-top:none;
+    margin-right:0;
+    border-radius:0;
 }
 .dashboard .nav.nav-pills li a.active,
 .dashboard .nav.nav-pills li a:hover,
 .profile > .nav.nav-pills li a.active,
 .profile > .nav.nav-pills li a:hover {
-    color: var(--text-color);
-    background-color: #f2f2f2;
+    color: var(--blue);
+    background-color: var(--white);
 }
+
+.nav-pills a span {
+    background-color:var(--gray);
+    color:var(--white);
+    line-height:2;
+    display:inline-block;
+    padding:0 10px;
+    border-radius:30px;
+}
+
+
+.nav-pills a.active span {
+    background-color:var(--blue);
+}
+
+
 .stack-panel .panel-heading > a:not(.set-link-reminder) {
     color: #ffffff;
     padding: .5rem 1rem;
@@ -1092,7 +1197,8 @@ main {
 .people-box > .user-image-follow-wrapper > .user-image > a {
     text-decoration: none;
 }
-.people-box > .user-image-follow-wrapper > .user-image > a > .avatar {
+.people-box > .user-image-follow-wrapper > .user-image > a > .avatar,
+.user-image > a > .avatar {
     color: var(--darker-gray);
     display: flex;
     align-items: center;
@@ -1166,12 +1272,24 @@ main {
     align-items: center;
     padding: 0px 6px;
 }
+
 .stack-controls > .stack-ctrl-item {
     padding: 8px 6px;
     cursor: pointer;
     display: flex;
     align-items: center;
 }
+
+.stack-ctrl-item.save
+{
+    background-color:var(--blue);
+    color:var(--white);
+    padding:4px 18px;
+    border-radius:30px;
+    letter-spacing:1px;
+    margin-top:10px;
+}
+
 .stack-controls > .stack-ctrl-item.switch-box .switch {
     color: var(--text-color);
     margin: 0 50px 0 0;
@@ -1256,7 +1374,7 @@ main {
     border-right: 1px solid var(--border-color);
     padding-right: 10px;
 }
-.edit-stack .dotted .youtube a.click-here {
+.stack-data .youtube a.click-here {
     display: block;
     position: relative;
     background: rgb(93,93,93);
@@ -1265,7 +1383,7 @@ main {
     background: radial-gradient(circle, rgba(93,93,93,1) 0%, rgba(49,49,49,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#5d5d5d",endColorstr="#313131",GradientType=1);
 }
-.edit-stack .dotted .youtube a.click-here:before {
+.stack-data .youtube a.click-here:before {
     content: "\f03e";
     color: #cccccc;
     font-family: "FontAwesome";
@@ -1277,7 +1395,7 @@ main {
     left: 0;
     right: 0;
 }
-.edit-stack .dotted .youtube a.click-here:after {
+.stack-data .youtube a.click-here:after {
     content: "Click to enter a Youtube URL or upload an image.";
     color: #cccccc;
     position: absolute;

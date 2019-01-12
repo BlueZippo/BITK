@@ -109,7 +109,7 @@
 
                     <div class="form-group">
 
-                        <strong>Instagram:</strong>
+                        <strong>Handle:</strong>
 
                         {!! Form::text('instagram', null, array('placeholder' => 'Instagram','class' => 'form-control')) !!}
 

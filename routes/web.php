@@ -161,6 +161,10 @@ Route::group(['middleware' => ['auth']], function()
 	Route::post('admin/whatsnew/{id}/update', ['as' => 'admin.whatsnew.update', 'uses' => 'AdminWhatsNewController@update']);
 
 	Route::post('admin/whatsnew/delete','AdminWhatsNewController@delete');
+
+	Route::get('collections/create', 'CollectionsController@create');
+
+	Route::get('parking-lot', 'LinksController@index');
 	
 });
 

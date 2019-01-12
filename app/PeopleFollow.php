@@ -8,11 +8,11 @@ class PeopleFollow extends Model
 {
     public function user()
     {
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User');
     }
 
     public function people()
     {
-    	$this->belongsTo('App\User', 'people_id');
+    	return $this->belongsTo('App\User', 'people_id');
     }
 }
