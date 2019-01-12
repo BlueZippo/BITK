@@ -583,6 +583,29 @@ a.plus.nav-link
 
 /*** end of sidebar ***/
 
+
+/**** dashboard ***/
+
+.square-3 .stack-image {
+    width:50%;
+    height:0;
+    padding-bottom:50%;
+    float:left;
+    background-size:cover;
+}
+
+
+
+
+.stack-image + .stack-image + .stack-image + .stack-image + .stack-image {
+    display:none;
+}
+
+
+
+/*** end dashboard ***/
+
+
 /*** Media Queries ***/
 @media screen and (max-width:1919px) {
     .topics-wrapper {width: 7%;}

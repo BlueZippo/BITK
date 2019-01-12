@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class CollectionStack extends Model
 {
-    public function collection()
+    public function collections()
     {
-    	return $this->hasMany('App\Collection', 'collection_id')
+    	return $this->hasMany('App\Collection', 'collection_id');
     }
 
-    public function stack()
+    public function stacks()
     {
-    	return $this->hasMany('App\Stack', 'stack_id');
+    	return $this->hasMany('App\Stack');
     }
 }

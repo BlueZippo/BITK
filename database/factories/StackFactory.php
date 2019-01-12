@@ -17,6 +17,7 @@ $factory->define(App\Stack::class, function (Faker $faker) {
     return [
         'title' => $faker->text,
         'user_id' => rand(1,51),
-        
+        'video_id' => $faker->imageUrl($width = 640, $height = 480),
+        'media_type' => 'image'
     ];
 });

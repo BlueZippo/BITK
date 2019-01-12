@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\CollectionStack::class, function (Faker $faker) {
     return [
-        'stack_id' => rand(1, 110),
+        'stack_id' => rand(111, 310),
         'collection_id' => rand(53, 72),
         
     ];

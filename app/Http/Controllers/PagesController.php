@@ -41,12 +41,7 @@ class PagesController extends Controller {
 
 		$collections = Collection::whereNotIn('user_id', [$user_id])->get();
 
-		foreach($mycollections as $i => $collection)
-		{
-			$cs = $collection->stack;
-
-			$mycollections[$i]['stacks'] = $cs;
-		}
+		
 		
 		$data['user'] = $user;
 		$data['stacks'] = $stacks;
